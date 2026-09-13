@@ -1,1011 +1,411 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>NESCIO</title>
-
-    <meta name="description" content="NESCIO — fragmentos, textos e outras formas de desassossego.">
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NESCIO — arquivo de fragmentos, cicatrizes e confissões</title>
+<meta name="description" content="NESCIO — arquivo pessoal em blocos: fragmentos noturnos, cicatrizes do comum e a trilogia Magna.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
-
-
 <body>
+<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
 
-<header class="header">
+<div class="tape-rail" aria-hidden="true">
+  <span class="dot"></span>
+  <span class="line"></span>
+  <span id="tapeCounter">00:00</span>
+</div>
 
-    <a href="index.html" class="logo">
-        NESCIO
-    </a>
+<nav class="nav" id="siteNav">
+  <a href="#inicio" class="nav__mark">NESCIO <small>arquivo</small></a>
+  <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+  <div class="nav__links" id="navLinks">
+    <a href="#fragmentos">Fragmentos</a>
+    <a href="#cicatrizes">Cicatrizes</a>
+    <a href="#magna">Magna</a>
+    <a href="#universo">Universo</a>
+    <a href="#textos">Textos</a>
+  </div>
+</nav>
 
-    <nav>
-        <a href="#fragmentos">Fragmentos</a>
-        <a href="#mais">Mais</a>
-    </nav>
+<main id="conteudo">
 
-</header>
+  <header class="hero" id="inicio">
+    <div class="container hero__inner">
+      <p class="eyebrow">arquivo pessoal · escrita noturna</p>
+      <h1>NESCIO</h1>
+      <p class="hero__sub">Textos escritos de madrugada, tatuados na pele ou deixados por dizer. Não há capítulos aqui — há blocos, gravados fora de ordem, à medida que aconteceram.</p>
+      <div class="hero__meta"><span class="rec-dot"></span> a gravar desde 2023</div>
+    </div>
+    <div class="hero__scroll"><span class="stem"></span> desliza</div>
+  </header>
 
+  <section id="fragmentos" data-theme="light" aria-labelledby="fragmentos-title">
+    <div class="container">
+      <div class="section-head reveal-init">
+        <p class="eyebrow">Bloco I</p>
+        <h2 id="fragmentos-title">At os Amigos São Musas</h2>
+        <p class="sub">Fragmentos · registados por hora</p>
+        <p class="lede">Uma desconstrução do autor a partir de histórias que, pela primeira vez, não são sobretudo as suas próprias. Quatro textos, gravados como quem fala sozinho às tantas da manhã.</p>
+      </div>
 
-<main>
+      <article class="piece" id="pouco-espero">
+        <div class="piece__head">
+          <h3 class="piece__title">Pouco espero de pouco espertos</h3>
+          <span class="piece__meta">00:00 — 00:55</span>
+        </div>
+        <div class="transcript">
+          <div class="transcript__row"><span class="transcript__time">00:00</span><p class="transcript__text">Larguei o que não me prendia. Estou cheio de fome, daquela de quem precisa de que o outro lhe dê trabalho, que discuta, que contradiga, que cite alguém às duas da manhã com convicção suficiente para perder o sono. Não é demais pedir. É o mínimo que se deve para alguém tão mínimo quanto eu.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:15</span><p class="transcript__text">Quero as noites suadas onde Kafka entra na conversa sem avisar e a queda do pacote laboral é debatida com a mesma urgência que o calor permite. As bocas dos meus amigos de repente também são normais. Já que o verão começou, porque não cruzar linhas que ninguém tem de explicar.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:27</span><p class="transcript__text">Não me sinto mal em perder-te, e confesso que isso me incomoda mais do tudo. Eu fico por aqui, a tentar esquecer algo que já não sei bem onde começou. Abraça-me, estou nojento e suado — e adoro ser assim.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:37</span><p class="transcript__text">Se tens tanto medo de mim, deixa-me cuspir-te na cara, ao menos ficas sujo também. Já que não há esperteza, que haja corpos. Já que não há conteúdo, que haja contenção com o pouco que me tinhas para dar. Não te consigo abraçar sabendo de que pouco ou nada sabes sobre o mundo. E está tudo bem.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:49</span><p class="transcript__text">O verão é o que tiver de ser. Assim como esta caixinha que todos gostam de abrir mas não nunca ficam para ver.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:53</span><p class="transcript__text">Lanço o décimo texto ou fecho esta caixinha para sempre?</p></div>
+        </div>
+      </article>
 
-    <!-- =================================
-         ABERTURA
-    ================================== -->
+      <article class="piece" id="manifesto">
+        <div class="piece__head">
+          <h3 class="piece__title">Manifesto de insatisfeito</h3>
+          <span class="piece__meta">00:00 — 01:12</span>
+        </div>
+        <div class="transcript">
+          <div class="transcript__row"><span class="transcript__time">00:00</span><p class="transcript__text">Impressionante como é sempre de noite que procuro pensar na próxima rotina. Quem é este louco de que tanto falam e que tantas peripécias tem para contar? Que louco pretendo ser amanhã?</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:09</span><p class="transcript__text">Tenho refletido se uma produção artística deve ter um fim. Todos os textos que escrevi, como tudo, parecem ter uma finitude. Uma cristalização após o ponto final. Sinto necessidade de questionar isto: tem de ter um final? E se não tiver? Até posso estender uma prosa, mas terá impacto? Será irritante? Ou será que faz sentido sequer?</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:26</span><p class="transcript__text">Talvez a solução para toda esta antítese seja mesmo a violência contra a tese. Nunca nos questionamos sobre o porquê das coisas, pois parece proteger aqueles que fazem mal. E faz mal acreditar em tudo o que nos dizem também. É punitivo termos de ser justos para com quem nunca aprendeu sequer a ter moral, sendo que o que nos resta é desabafar em textos. Textos que nos obrigam a ter um fim — onde é que já se viu! Repudiamos esta violência como ferramenta de solução no nosso quotidiano porque raramente nos falta o ar. Se calhar é hora de desferir mais do que tinta. Se calhar é tempo de fechar traqueias.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:53</span><p class="transcript__text">Dizem que faz bem à alma praticar o bem — assim pregam os devotos, de costas voltadas a todos os que são diferentes, para que nunca tenham de tentar perceber onde erram. Pratiquemos o impensável. É mais confortável gritar contra o chão do que chorar para o céu. É mais confortável aceitar o desfecho do que contrariar: quem disse que os prefácios não podem ser o começo do fim?</p></div>
+          <div class="transcript__row"><span class="transcript__time">01:07</span><p class="transcript__text">Se alguém disse que não se pode: vai-te foder, porque este manifesto diz que se pode.</p></div>
+          <div class="transcript__row"><span class="transcript__time">01:10</span><p class="transcript__text">Gostava que pensassem numa coisa que acreditam ser impossível de destruir ou de ter fim.</p></div>
+        </div>
+      </article>
 
-    <section class="opening">
+      <article class="piece" id="sem-virgulas">
+        <div class="piece__head">
+          <h3 class="piece__title">Um texto sem vírgulas porque as pessoas não param para pensar</h3>
+          <span class="piece__meta">00:00 — 00:36</span>
+        </div>
+        <div class="transcript">
+          <div class="transcript__row"><span class="transcript__time">00:00</span><p class="transcript__text">Este conforto em abraçar quem nos destrói e chamar amor àquilo que nos desespera.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:04</span><p class="transcript__text">O sofrimento das almas bonitas nunca vai acabar porque o mundo está cheio de criaturas que criam caricaturas daqueles que lhes fazem bem. A ternura é fraqueza ou apenas honestidade pura.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:14</span><p class="transcript__text">Sabemos no momento exacto em que abrimos os braços de que seremos engolidos pela dor alheia. É mais fácil curar a ilusão do próximo do que a nossa. Quando estamos ocupados a curar os outros não olhamos para o quanto sangramos das nossas próprias mãos.</p></div>
+          <div class="transcript__row"><span class="transcript__time">00:27</span><p class="transcript__text">Deformar quem nos fez bem é uma forma de justificar o que se fez pelo mal que se tem. Amar é um risco onde frequentemente perdemos. E mesmo assim há quem continue a achar que não ser assim não vale a pena. Vale sempre. Não se deve transformar naquilo que nos partiu. O mundo precisa dessa justificação para continuar. As almas bonitas ficam para magoar.</p></div>
+        </div>
+      </article>
 
-        <div class="opening-image image-placeholder">
-            <span>imagem</span>
+      <article class="piece" id="putas-e-cabroes">
+        <div class="piece__head">
+          <h3 class="piece__title">Putas e Cabrões</h3>
+          <span class="piece__meta">00:41</span>
+        </div>
+        <div class="verse">
+          <p class="stanza">Todos putas e cabrões,<br>erguidos por ego que nunca tiveram.<br>Assim começa uma bela história,<br>no mesmo chão onde tanto cuspiram.</p>
+          <p class="stanza">Vendem prazer por desejos vãos,<br>fingem ter corpos que nunca sentiram.<br>No cio das noites tropeçam em mãos,<br>“Mas eu nunca”, assim diziam.</p>
+          <p class="stanza">Trocam carícias por vazio,<br>sexo punível por castigo.<br>Cedo regressam à ilusão,<br>sem cama, corpo e abrigo.</p>
+          <p class="stanza">Putas de alma e cabrões de pele,<br>numa noite depressa ruíram.<br>O cio consome, o prazer repele,<br>acabam nos becos que tanto queriam.</p>
+          <p class="stanza">A luxúria escreve a última canção,<br>eco sujo e que tanto rejeitam.<br>Somos todos muito bons<br>até lamberem quem tanto desejam.</p>
+        </div>
+      </article>
+
+      <div class="tracklist" aria-label="Índice do Bloco I">
+        <div class="tracklist__head"><span>Faixa</span><span>Título</span><span>Duração</span></div>
+        <a class="track-row" href="#manifesto"><span class="track-num">01</span><span class="track-title">Manifesto de insatisfeito</span><span class="track-dur">01:12</span></a>
+        <div class="track-row track-row--muted"><span class="track-num">02</span><span class="track-title">Rejeição (quarta-feira)</span><span class="track-dur">por publicar</span></div>
+        <a class="track-row" href="#sem-virgulas"><span class="track-num">03</span><span class="track-title">Um texto sem vírgulas porque as pessoas não param para pensar</span><span class="track-dur">00:36</span></a>
+        <div class="track-row"><span class="track-num">04</span><span class="redact-bar" style="width:38%"></span><span class="track-dur">— : —</span></div>
+        <a class="track-row" href="#putas-e-cabroes"><span class="track-num">05</span><span class="track-title">Putas e Cabrões</span><span class="track-dur">00:41</span></a>
+        <div class="track-row"><span class="track-num">06</span><span class="redact-bar" style="width:78%"></span><span class="track-dur">— : —</span></div>
+        <div class="track-row"><span class="track-num">07</span><span class="redact-bar" style="width:56%"></span><span class="track-dur">— : —</span></div>
+        <div class="track-row"><span class="track-num">08</span><span class="redact-bar" style="width:30%"></span><span class="track-dur">— : —</span></div>
+        <a class="track-row" href="#pouco-espero"><span class="track-num">09</span><span class="track-title">Pouco espero de pouco espertos</span><span class="track-dur">00:55</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="cicatrizes" data-theme="dark" aria-labelledby="cicatrizes-title">
+    <div class="container">
+      <div class="section-head reveal-init">
+        <p class="eyebrow">Bloco II</p>
+        <h2 id="cicatrizes-title">Cicatrizes do Comum</h2>
+        <p class="sub">Pele com pele</p>
+        <p class="lede">Nove textos escritos à volta de uma agulha. Onde a tinta entra, o corpo confessa aquilo que a boca ainda não sabe dizer.</p>
+      </div>
+
+      <div class="scars">
+        <div class="scar-row">
+          <figure class="scar-figure"><span class="scar-index">01/09</span><img src="https://static.wixstatic.com/media/7ebe17_38074eabbb0c486b8c844b6db462307c~mv2.jpeg" alt="Fotografia que acompanha o texto “Cães Enraivecidos”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Cães Enraivecidos</h3>
+            <p>Uma tradução na pele. A agulha perfura a sentença, e o corpo oferece-se ao castigo com uma estranha dignidade. As costas, por agora vazias, são um eco de tudo o que ficou por dizer — um murmúrio de raiva que será disciplinada.</p>
+            <p>Entre o ardor e o silêncio, é que o desprezo encontra forma. Cada linha de tinta é uma confissão, uma sentença que reflete o cansaço.</p>
+            <p>Enquanto me crava as costas, o tatuador pergunta se existem arrependimentos a considerar. O silêncio parecia a resposta, mas porque não contar só dessa vez. “Há dores que não se explicam, apenas se inscrevem”. E quando a pele começa a latejar, há um alívio perverso: finalmente, o corpo disse que a tinta lhe fica bem.</p>
+            <p>O traço é rude, perfeito e verdadeiro. Uma lembrança de que a dor, tal como os cães, também pode ser domesticada, por mais neura que tenha. Quando cicatrizar, saber-se-á: o amor, por vezes, só se liberta quando aprende a morder de volta.</p>
+            <p>Que a fúria grave a sua vontade nesta tatuagem de cães enraivecidos.</p>
+          </div>
         </div>
 
-        <div class="opening-title">
-            <span class="number">01</span>
-
-            <h1>
-                NESCIO
-            </h1>
-
-            <p>
-                Até os amigos são musas.
-            </p>
+        <div class="scar-row reverse">
+          <figure class="scar-figure"><span class="scar-index">02/09</span><img src="https://static.wixstatic.com/media/7ebe17_2f6ab40a121a4eb5a5dec34305d958da~mv2.png" alt="Fotografia que acompanha o texto “Não Sou”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Não Sou</h3>
+            <p>Não sou forte o suficiente para fingir que não sinto. Não sou estável, nem constante, nem imune ao desassossego. Não sou quem planeia.</p>
+            <p>Não sou o exemplo que se mostra — sou o erro que se repete. Não sou quem disfarça o orgulho mesmo quando se perde. Não sou quem perdoa depressa, muito menos quem esquece com elegância.</p>
+            <p>Não sou o ideal que se espera, nem a promessa que se cumpre. Não sou o que desiste. Não sou o que se rende ao vazio, nem o que morre preso à memória.</p>
+            <p>Não sou perfeito — e por isso continuo. Não sou um fracasso irremediável. Não sou domável e isso fascina-me. Não sou o que ficou sozinho.</p>
+          </div>
         </div>
 
-    </section>
-
-
-    <!-- =================================
-         FRAGMENTOS
-    ================================== -->
-
-    <section id="fragmentos" class="fragment-section">
-
-        <div class="section-label">
-            FRAGMENTOS
+        <div class="scar-row" id="pele-com-pele">
+          <figure class="scar-figure"><span class="scar-index">03/09</span><img src="https://static.wixstatic.com/media/7ebe17_f6c45fb5551d4d55926c7cf757d1af46~mv2.jpeg" alt="Fotografia que acompanha o texto “Pele com Pele”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Pele com Pele</h3>
+            <p>Há feridas que não se fecham — apenas aprendem a coexistir. Reconhecem-se pelo modo como sangram em silêncio. Nada separa duas feridas que se reconhecem pelos piores motivos.</p>
+            <p>Uma espécie de ritual profano que persiste não pela ternura, mas pela inércia do que foi demasiado intenso para morrer de vez. Há um instante, quase impercetível, em que o afeto se transmuta em rancor — e é nesse limiar que a alma se denuncia.</p>
+            <p>Amar, depois do fim, é uma forma sofisticada de punição. É querer purificar-se através da mesma impureza que feriu. É a raiva do amor que não encontrou redenção.</p>
+            <p>Talvez o corpo recorde mais do que a mente permite. Talvez a pele guarde vestígios de um pacto antigo, entre duas solidões que se confundiram com pertença. Há memórias que não sobrevivem nas palavras — apenas na carne que já não se quer ver.</p>
+            <p>Por fim, quando o tempo se impõe, apresenta mais do mesmo. O sentimento não desaparece: depura-se, até restar apenas a substância crua da perda — uma ausência quase nobre, que ainda dói, mas já não suplica por pele com pele.</p>
+          </div>
         </div>
 
-
-        <!-- MANIFESTO -->
-
-        <article class="text-piece">
-
-            <div class="piece-number">
-                01
-            </div>
-
-            <div class="piece-main">
-
-                <div class="piece-header">
-
-                    <h2>
-                        Manifesto do insatisfeito
-                    </h2>
-
-                    <span>
-                        01:12
-                    </span>
-
-                </div>
-
-                <div class="piece-text">
-
-                    <p>
-                        <span class="timestamp">00:00</span>
-                        Impressionante como é sempre de noite que procuro
-                        pensar na próxima rotina. Quem é este louco de que
-                        tanto falam e que tantas peripécias tem para contar?
-                        Que louco pretendo ser amanhã?
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:09</span>
-                        Tenho refletido se uma produção artística deve ter um fim.
-                        Todos os textos que escrevi, como tudo, parecem ter uma
-                        finitude. Uma cristalização após o ponto final.
-                    </p>
-
-                    <p>
-                        Sinto necessidade de questionar isto: Tem de ter um final?
-                        E se não tiver? Até posso estender uma prosa, mas terá impacto?
-                        Será irritante? Ou será que faz sentido sequer?
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:26</span>
-                        Talvez a solução para toda esta antítese seja mesmo
-                        a violência contra a tese. Nunca nos questionamos
-                        sobre o porquê das coisas, pois parece proteger
-                        aqueles que fazem mal.
-                    </p>
-
-                    <p>
-                        É punitivo termos de ser justos para com quem nunca
-                        aprendeu sequer a ter moral, sendo que o que nos resta
-                        é desabafar em textos.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:53</span>
-                        Dizem que faz bem à alma praticar o bem — assim pregam
-                        os devotos, de costas voltadas a todos os que são diferentes,
-                        para que nunca tenham de tentar perceber onde erram.
-                    </p>
-
-                    <p>
-                        Pratiquemos o impensável. É mais confortável gritar
-                        contra o chão do que chorar para o céu.
-                    </p>
-
-                    <p class="ending">
-                        Se alguém disse que não se pode: vai-te foder,
-                        porque este manifesto diz que se pode.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">01:10</span>
-                        Gostava que pensassem numa coisa que acreditam
-                        ser impossível de destruir ou de ter fim.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- REJEIÇÃO -->
-
-        <article class="text-piece">
-
-            <div class="piece-number">
-                02
-            </div>
-
-            <div class="piece-main">
-
-                <div class="piece-header">
-
-                    <h2>
-                        Rejeição
-                    </h2>
-
-                    <span>
-                        01:19
-                    </span>
-
-                </div>
-
-                <div class="piece-text">
-
-                    <p>
-                        <span class="timestamp">00:00</span>
-                        Gostava de puder dizer-te tudo, sem o risco de te perder.
-                        Prometi a mim mesmo que a única linha que vamos atravessar
-                        será as que trazes contigo para uma longa noite de conversa.
-                    </p>
-
-                    <p>
-                        Uma toxicidade mútua, daquela que só quem tem medo
-                        de gostar de alguém tem. Mútua na minha cabeça,
-                        pois sei perfeitamente que nunca me verás da mesma forma.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:12</span>
-                        Sou apenas o amigo que te ocupa as noites enquanto
-                        tu me ocupas a cabeça.
-                    </p>
-
-                    <p>
-                        Sou o amigo que olha para ti preocupado se estou
-                        a transparecer demasiado.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:23</span>
-                        Um vinho à uma da manhã, um álbum novo às duas.
-                        Ideias de vídeo-clips que sonhamos mas nunca vamos
-                        fazer às três.
-                    </p>
-
-                    <p>
-                        A tua curta-metragem às quatro. Lemos os nossos textos
-                        que dizemos nunca lançar, um para o outro, às cinco.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:44</span>
-                        A única arte que não se perde é a nossa incongruência,
-                        ou pelos menos a minha.
-                    </p>
-
-                    <p>
-                        Gosto de ti em segredo, e primeira vez: quero perder.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:54</span>
-                        Tenho medo de que me rejeites.
-                        Tenho receio de ser confrontado com aquilo que faço
-                        aos outros muitas vezes.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:58</span>
-                        Quero estar apaixonado por amigos que me alimentam,
-                        mas talvez só o cérebro.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">01:11</span>
-                        Conheço a dinâmica desta dança porque já a dancei
-                        na tua perspetiva.
-                    </p>
-
-                    <p class="ending">
-                        Rejeitei demais os outros, algum dia teria de ser eu.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- TEXTO SEM VÍRGULAS -->
-
-        <article class="text-piece">
-
-            <div class="piece-number">
-                03
-            </div>
-
-            <div class="piece-main">
-
-                <div class="piece-header">
-
-                    <h2>
-                        Um texto sem vírgulas porque as pessoas não param para pensar
-                    </h2>
-
-                    <span>
-                        00:36
-                    </span>
-
-                </div>
-
-                <div class="piece-text">
-
-                    <p>
-                        <span class="timestamp">00:00</span>
-                        Este conforto em abraçar quem nos destrói
-                        e chamar amor àquilo que nos desespera.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:04</span>
-                        O sofrimento das almas bonitas nunca vai acabar
-                        porque o mundo está cheio de criaturas que criam
-                        caricaturas daqueles que lhes fazem bem.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:14</span>
-                        Sabemos no momento exacto em que abrimos os braços
-                        de que seremos engolidos pela dor alheia.
-                    </p>
-
-                    <p>
-                        É mais fácil curar a ilusão do próximo do que a nossa.
-                    </p>
-
-                    <p>
-                        Quando estamos ocupados a curar os outros não olhamos
-                        para o quanto sangramos das nossas próprias mãos.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:27</span>
-                        Deformar quem nos fez bem é uma forma de justificar
-                        o que se fez pelo mal que se tem.
-                    </p>
-
-                    <p>
-                        Amar é um risco onde frequentemente perdemos.
-                        E mesmo assim há quem continue a achar que não ser assim
-                        não vale a pena.
-                    </p>
-
-                    <p class="ending">
-                        As almas bonitas ficam para magoar.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- PUTAS E CABRÕES -->
-
-        <article class="text-piece poem-piece">
-
-            <div class="piece-number">
-                05
-            </div>
-
-            <div class="piece-main">
-
-                <div class="piece-header">
-
-                    <h2>
-                        Putas e Cabrões
-                    </h2>
-
-                    <span>
-                        00:41
-                    </span>
-
-                </div>
-
-                <div class="poem">
-
-                    <p>
-                        Todos putas e cabrões,<br>
-                        erguidos por ego que nunca tiveram.<br>
-                        Assim começa uma bela história,<br>
-                        no mesmo chão onde tanto cuspiram.
-                    </p>
-
-                    <p>
-                        Vendem prazer por desejos vãos,<br>
-                        fingem ter corpos que nunca sentiram.<br>
-                        No cio das noites tropeçam em mãos,<br>
-                        “Mas eu nunca”, assim diziam.
-                    </p>
-
-                    <p>
-                        Trocam carícias por vazio,<br>
-                        Sexo punível por castigo.<br>
-                        Cedo regressam a ilusão,<br>
-                        sem cama, corpo e abrigo.
-                    </p>
-
-                    <p>
-                        Putas de alma e cabrões de pele,<br>
-                        Numa noite depressa ruíram.<br>
-                        O cio consome, o prazer repele,<br>
-                        Acabam nos becos que tanto queriam.
-                    </p>
-
-                    <p>
-                        Somos todos muito bons<br>
-                        até lamberem quem tanto desejam.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- POUCO ESPERO -->
-
-        <article class="text-piece">
-
-            <div class="piece-number">
-                09
-            </div>
-
-            <div class="piece-main">
-
-                <div class="piece-header">
-
-                    <h2>
-                        Pouco espero de pouco espertos
-                    </h2>
-
-                    <span>
-                        00:55
-                    </span>
-
-                </div>
-
-                <div class="piece-text">
-
-                    <p>
-                        <span class="timestamp">00:00</span>
-                        Larguei o que não me prendia. Estou cheio de fome,
-                        daquela de quem precisa de que o outro lhe dê trabalho,
-                        que discuta, que contradiga, que cite alguém às duas
-                        da manhã com convicção suficiente para perder o sono.
-                    </p>
-
-                    <p>
-                        Não é demais pedir. É o mínimo que se deve
-                        para alguém tão mínimo quanto eu.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:15</span>
-                        Quero as noites suadas onde Kafka entra na conversa
-                        sem avisar e a queda do pacote laboral é debatida
-                        com a mesma urgência que o calor permite.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:27</span>
-                        Não me sinto mal em perder-te, e confesso
-                        que isso me incomoda mais do tudo.
-                    </p>
-
-                    <p>
-                        <span class="timestamp">00:37</span>
-                        Se tens tanto medo de mim, deixa-me cuspir-te na cara,
-                        ao menos ficas sujo também.
-                    </p>
-
-                    <p>
-                        Já que não há esperteza, que haja corpos.
-                        Já que não há conteúdo, que haja contenção.
-                    </p>
-
-                    <p class="ending">
-                        Lanço o décimo texto ou fecho esta caixinha para sempre?
-                    </p>
-
-                </div>
-
-            </div>
-
-        </article>
-
-    </section>
-
-
-    <!-- =================================
-         ARQUIVO VISUAL
-    ================================== -->
-
-    <section id="mais" class="visual-archive">
-
-        <div class="section-label">
-            MAIS
+        <div class="scar-row reverse">
+          <figure class="scar-figure"><span class="scar-index">04/09</span><img src="https://static.wixstatic.com/media/7ebe17_e2c0124e4956442b8c496ac9337af814~mv2.jpeg" alt="Fotografia que acompanha o texto “Cicatrizes do Comum”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Cicatrizes do Comum</h3>
+            <p>A fome nunca se cala. Não de alimento, mas de presença e pertença. De tudo o que se ausenta e, no seu silêncio, grita com uma insistência que cansa. Há denúncias que permanecem nas margens, mudas, invisíveis e pesadas, lembrando que a injustiça não precisa de palavras para existir.</p>
+            <p>O desconforto permanece, como quem se recusa a desaparecer. O espelho devolve reflexos que ferem, o corpo guarda memórias que a mente tenta esquecer. Entre escolhas que nunca se completam, aprende-se a habitar no intervalo entre o silêncio e o grito.</p>
+            <p>A fúria tem forma, ritualiza-se no corpo e na dor que se transforma em gesto menos dócil. Marcas que circulam pelas costas, recordando que a raiva, quando bem dirigida, sempre ajudou a sobreviver. Não sou constante ou invulnerável. Mas respiro. Mesmo no fracasso, há ar.</p>
+            <p>Continuidade, um eco de insolência e desconforto, de intervalos e feridas, de negação e sobrevivência. Não sou perfeito, não sou completo, não sou invencível, apenas suficiente.</p>
+          </div>
         </div>
 
-
-        <!-- PELE COM PELE -->
-
-        <article class="visual-piece">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_0654_edited.jpg</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    CICATRIZES DO COMUM
-                </span>
-
-                <h2>
-                    Pele com Pele
-                </h2>
-
-                <p>
-                    Há feridas que não se fecham — apenas aprendem
-                    a coexistir. Reconhecem-se pelo modo como sangram
-                    em silêncio.
-                </p>
-
-                <p>
-                    Uma espécie de ritual profano que persiste
-                    não pela ternura, mas pela inércia do que foi
-                    demasiado intenso para morrer de vez.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- CÃES ENRAIVECIDOS -->
-
-        <article class="visual-piece reverse">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_9879.JPEG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    CICATRIZES DO COMUM
-                </span>
-
-                <h2>
-                    Cães Enraivecidos
-                </h2>
-
-                <p>
-                    Uma tradução na pele. A agulha perfura a sentença,
-                    e o corpo oferece-se ao castigo com uma estranha dignidade.
-                </p>
-
-                <p>
-                    O traço é rude, perfeito e verdadeiro.
-                    Uma lembrança de que a dor, tal como os cães,
-                    também pode ser domesticada.
-                </p>
-
-                <p class="ending">
-                    Que a fúria grave a sua vontade nesta tatuagem
-                    de cães enraivecidos.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- NÃO SOU -->
-
-        <article class="visual-piece">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_0497.PNG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    FRAGMENTO
-                </span>
-
-                <h2>
-                    Não Sou
-                </h2>
-
-                <p>
-                    Não sou forte o suficiente para fingir que não sinto.
-                </p>
-
-                <p>
-                    Não sou estável, nem constante,
-                    nem imune ao desassossego.
-                </p>
-
-                <p>
-                    Não sou quem planeia.
-                </p>
-
-                <p>
-                    Não sou o exemplo que se mostra —
-                    sou o erro que se repete.
-                </p>
-
-                <p>
-                    Não sou quem perdoa depressa,
-                    muito menos quem esquece com elegância.
-                </p>
-
-                <p>
-                    Não sou o que desiste.
-                </p>
-
-                <p>
-                    Não sou perfeito — e por isso continuo.
-                </p>
-
-                <p class="ending">
-                    Não sou domável e isso fascina-me.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- CICATRIZES -->
-
-        <article class="visual-piece reverse">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_0596.JPEG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    CICATRIZES DO COMUM
-                </span>
-
-                <h2>
-                    Cicatrizes do Comum
-                </h2>
-
-                <p>
-                    A fome nunca se cala. Não de alimento,
-                    mas de presença e pertença.
-                </p>
-
-                <p>
-                    O desconforto permanece, como quem se recusa
-                    a desaparecer. O espelho devolve reflexos que ferem,
-                    o corpo guarda memórias que a mente tenta esquecer.
-                </p>
-
-                <p>
-                    A fúria tem forma, ritualiza-se no corpo e na dor
-                    que se transforma em gesto.
-                </p>
-
-                <p class="ending">
-                    Não sou perfeito, não sou completo,
-                    não sou invencível, apenas suficiente.
-                    E isso basta.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- DESABAFO -->
-
-        <article class="visual-piece">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_9652.JPEG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    FRAGMENTO
-                </span>
-
-                <h2>
-                    Desabafo de Fome
-                </h2>
-
-                <p>
-                    O mundo adormece na suavidade da ilusão,
-                    mas cada sono tem o preço da apatia.
-                </p>
-
-                <p>
-                    Recordo-me dos textos que escrevi às escondidas,
-                    pensando em jamais publicar, com medo de incomodar
-                    amostras de gente.
-                </p>
-
-                <p>
-                    Gente pequena que mente como gente grande.
-                </p>
-
-                <p class="ending">
-                    Um erro crasso, uma impureza irracional,
-                    uma imperfeição sem cura.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- DENÚNCIA -->
-
-        <article class="visual-piece reverse">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_9696.PNG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    FRAGMENTO
-                </span>
-
-                <h2>
-                    Denúncia
-                </h2>
-
-                <p>
-                    São almas que não mudam. Não porque não possam,
-                    mas porque não querem.
-                </p>
-
-                <p>
-                    Amar é cortar. Cortar fundo, sem piedade
-                    e explicações ensaiadas.
-                </p>
-
-                <p>
-                    Não há redenção em arder ao lado de quem gosta
-                    de se queimar.
-                </p>
-
-                <p class="ending">
-                    Deixar não é perder nada —
-                    é finalmente perceber que nunca tiveste
-                    nada para largar.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- QUEM DISSE -->
-
-        <article class="visual-piece">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_9697.PNG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    FRAGMENTO
-                </span>
-
-                <h2>
-                    Quem Disse Que Não Posso?
-                </h2>
-
-                <p>
-                    Quem disse que não posso rasgar a pele do costume
-                    e vestir-me de lobo mau?
-                </p>
-
-                <p>
-                    Quem disse que não posso cuspir na ordem
-                    e dançar em pleno silêncio?
-                </p>
-
-                <p>
-                    Quem disse que não posso amar em excesso
-                    e odiar em verdade?
-                </p>
-
-                <p>
-                    Quem disse que não posso fazer as estátuas mexer?
-                </p>
-
-                <p>
-                    Quem disse que não posso ser um contratempo?
-                </p>
-
-                <p class="ending">
-                    Quem disse que sou obrigado a usar
-                    o mesmo casaco rasgado para sempre?
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- INCOMODO -->
-
-        <article class="visual-piece reverse">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_9695.png</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    FRAGMENTO
-                </span>
-
-                <h2>
-                    Incómodo
-                </h2>
-
-                <p>
-                    A irreverência nasce pelo corpo que contesta
-                    a obediência.
-                </p>
-
-                <p>
-                    É carregar o risco no paladar, tocar no mundo
-                    sem luvas — é criar feridas para não adormecer.
-                </p>
-
-                <p>
-                    Uma devoção ao que não cabe nas margens
-                    seguras desta caixa tão quadrada.
-                </p>
-
-                <p class="ending">
-                    Recuso-me.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ENTRE DOIS -->
-
-        <article class="visual-piece">
-
-            <div class="visual-image image-placeholder">
-                <span>IMG_9236.JPEG</span>
-            </div>
-
-            <div class="visual-copy">
-
-                <span class="small-title">
-                    FRAGMENTO
-                </span>
-
-                <h2>
-                    Entre Dois
-                </h2>
-
-                <p>
-                    Entre o impulso e a renúncia aos maus hábitos,
-                    dança com alma presa, invisível entre dois abismos.
-                </p>
-
-                <p>
-                    Talvez a graça seja essa: a de desejar profundamente
-                    algo sem se destruir o pouco que se tem.
-                </p>
-
-                <p>
-                    O minimalismo destas almas entedia qualquer ser
-                    de naturezas complicadas.
-                </p>
-
-                <p class="ending">
-                    Já não se sabe complicar nada?
-                </p>
-
-            </div>
-
-        </article>
-
-    </section>
-
-
-    <!-- =================================
-         MAGNA
-    ================================== -->
-
-    <section class="magna">
-
-        <div class="section-label">
-            MAGNA
+        <div class="scar-row">
+          <figure class="scar-figure"><span class="scar-index">05/09</span><img src="https://static.wixstatic.com/media/7ebe17_1753795023d9449f9137f0a3c8911935~mv2.jpeg" alt="Fotografia que acompanha o texto “Desabafo de Fome”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Desabafo de Fome</h3>
+            <p>O mundo adormece na suavidade da ilusão, mas cada sono tem o preço da apatia. A verdade corta os pés de quem se levanta da cama.</p>
+            <p>Recordo-me dos textos que escrevi às escondidas, pensando em jamais publicar, com medo de incomodar amostras de gente. Gente pequena que mente como gente grande.</p>
+            <p>Poucas foram as cartas de amor, pois não se dá lume a quem não tem chama e nunca se estimou — talvez daí procurar noutros aquilo que nunca vi em ti.</p>
+            <p>Um erro crasso, uma impureza irracional, uma imperfeição sem cura. Vozes como a tua não chegam à minha tribuna — traumas de burguês bem pago nunca fizeram chorar a minha corte.</p>
+          </div>
         </div>
 
-        <article class="magna-piece">
+        <div class="scar-row reverse">
+          <figure class="scar-figure"><span class="scar-index">06/09</span><img src="https://static.wixstatic.com/media/7ebe17_4a1ed0ef934c4bc6805075c810b710dc~mv2.png" alt="Fotografia que acompanha o texto “Denúncia”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Denúncia</h3>
+            <p>São almas que não mudam. Não porque não possam, mas porque não querem. E cada vez que se acredita na promessa desgastada, vende-se um pedaço teu a quem nunca te quis comprar.</p>
+            <p>Amar é cortar. Cortar fundo, sem piedade e explicações ensaiadas. É assumir que não se salva quem se afoga de propósito e ainda nos arrasta consigo. Não há redenção em arder ao lado de quem gosta de se queimar.</p>
+            <p>Merecem mais do que restos. Merecem espaço para respirar sem medo, para amar sem cálculo, para existir sem ceder terreno a buracos negros emocionais.</p>
+            <p>Deixar não é perder nada — é finalmente perceber que nunca tiveste nada para largar.</p>
+          </div>
+        </div>
 
-            <div class="magna-number">
-                I
-            </div>
+        <div class="scar-row">
+          <figure class="scar-figure"><span class="scar-index">07/09</span><img src="https://static.wixstatic.com/media/7ebe17_8e6868d52d114d64a3dba0ed1885f485~mv2.png" alt="Fotografia que acompanha o texto “Quem Disse Que Não Posso?”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Quem Disse Que Não Posso?</h3>
+            <p>Quem disse que não posso rasgar a pele do costume e vestir-me de lobo mau? Quem disse que não posso cuspir na ordem e dançar em pleno silêncio?</p>
+            <p>Quem disse que não posso amar em excesso e odiar em verdade? Quem disse que não posso ganhar enquanto se perde? Quem disse que não posso gritar com quem também grita?</p>
+            <p>Quem disse que não posso fazer as estátuas mexer? Quem disse que não posso aceitar o que não se aceita? Quem disse que não posso ignorar o que é meu por direito?</p>
+            <p>Quem disse que não posso amar os corvos enquanto desprezo os cães? Quem disse que não posso ser um contratempo?</p>
+            <p>Quem disse que não posso usar relógio para contar quanto tempo falta para ser livre? Quem disse que não posso usar as desvantagens para ser mais feliz?</p>
+            <p>Quem disse que sou obrigado a usar o mesmo casaco rasgado para sempre?</p>
+          </div>
+        </div>
 
-            <h2>
-                MAGNA<br>
-                EROTICA
-            </h2>
+        <div class="scar-row reverse">
+          <figure class="scar-figure"><span class="scar-index">08/09</span><img src="https://static.wixstatic.com/media/7ebe17_22eee4e525884614b7503a441b98b49d~mv2.png" alt="Fotografia que acompanha o texto “Incómodo”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Incómodo</h3>
+            <p>A irreverência nasce pelo corpo que contesta a obediência. Um latejo que não se cala e pretende romper as costuras do hábito, claramente indomável — a recusa de se curvar perante as ordens sem alma, vividas por todos nós, que não as questionam.</p>
+            <p>É carregar o risco no paladar, tocar no mundo sem luvas — é criar feridas para não adormecer. Contra o dócil forçado, a vaidade e a monotonia, como alguém que fura a garganta para poder respirar.</p>
+            <p>Uma devoção ao que não cabe nas margens seguras desta caixa tão quadrada. Recuso-me.</p>
+            <p>Terei a coragem de ser incómodo e excessivo, mesmo que o mundo insista em lamber as botas a quem não tem pés.</p>
+          </div>
+        </div>
 
-            <p>
-                Uma troca de olhares improvisada.
-                A descontração entre amigos não permite
-                germinar muito mais do que esta sápida curiosidade.
-            </p>
+        <div class="scar-row">
+          <figure class="scar-figure"><span class="scar-index">09/09</span><img src="https://static.wixstatic.com/media/7ebe17_b755dfb6c469477fa54203beab740285~mv2.jpeg" alt="Fotografia que acompanha o texto “Entre Dois”." loading="lazy"></figure>
+          <div class="scar-text">
+            <h3>Entre Dois</h3>
+            <p>Entre o impulso e a renúncia aos maus hábitos, dança com alma presa, invisível entre dois abismos.</p>
+            <p>Talvez a graça seja essa: a de desejar profundamente algo sem se destruir o pouco que se tem, em perder-se devagar, com a dignidade de quem sabe que há vertigens que valem a pena temer.</p>
+            <p>O minimalismo destas almas entedia qualquer ser de naturezas complicadas — o ápice dos mínimos, que pavor tenho desta sedução.</p>
+            <p>Já não se sabe complicar nada?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <p>
-                Era óbvio que te queria, mas não por muito tempo.
-            </p>
+  <section data-theme="dim" aria-label="Interlúdio">
+    <div class="container">
+      <p class="eyebrow">Interlúdio</p>
+      <div class="filmstrip" role="list" aria-label="Fragmentos visuais do arquivo">
+        <img role="listitem" src="https://static.wixstatic.com/media/7ebe17_c5bc5ca152ac45c38bdd8fb34ee32465~mv2.png" alt="Fragmento visual do arquivo NESCIO." loading="lazy">
+        <img role="listitem" src="https://static.wixstatic.com/media/7ebe17_ca55ee7157394448b161d07e11099a9d~mv2.jpeg" alt="Fragmento visual do arquivo NESCIO." loading="lazy">
+        <img role="listitem" src="https://static.wixstatic.com/media/7ebe17_2fe207afbfff4088a47c5dfc17142265~mv2.jpeg" alt="Fragmento visual do arquivo NESCIO." loading="lazy">
+        <img role="listitem" src="https://static.wixstatic.com/media/7ebe17_f2dd55d8b9964760a405c877f550a394~mv2.jpeg" alt="Fragmento visual do arquivo NESCIO." loading="lazy">
+        <img role="listitem" src="https://static.wixstatic.com/media/7ebe17_51079703626d40a0818045a72c80a5a4~mv2.jpeg" alt="Fragmento visual do arquivo NESCIO." loading="lazy">
+        <img role="listitem" src="https://static.wixstatic.com/media/7ebe17_0e15cf70b6f54bc4ae69cdceefb3c265~mv2.jpeg" alt="Fragmento visual do arquivo NESCIO." loading="lazy">
+      </div>
 
-            <p>
-                Entre carreiras e aspirações, ao que se quer ser
-                ou se foi outrora, é evidente o destino desta sátira:
-                será que ele também me deseja?
-            </p>
+      <div class="interlude__grid interlude">
+        <div class="interlude__images">
+          <img src="https://static.wixstatic.com/media/7ebe17_a737658cc18542c0a55fa14d156888bb~mv2.jpg" alt="Fotografia que acompanha o texto sobre a tarde entre os ramos." loading="lazy">
+          <img src="https://static.wixstatic.com/media/7ebe17_d94280cc9f5b4263b2993bde25962c61~mv2.jpg" alt="Fotografia que acompanha o texto sobre a tarde entre os ramos." loading="lazy">
+        </div>
+        <div class="interlude__text">
+          <h3>Entre os ramos, o sussurro do vento despiu a tarde</h3>
+          <p>A pele, tocada por luz e areia, lembrava-se de como era ser tocada sem pressa. Cada passo sobre a terra era um convite — não para fugir, mas para ceder ao essencial.</p>
+          <p>Os dedos passavam pelas dunas como por uma memória antiga, húmida, viva. O corpo respondia em silêncio, acordando onde antes dormia por defesa. Nenhum olhar julgava, nenhuma palavra travava este pulsar de ser inteiro.</p>
+          <p>Serei um corpo feliz que se permitirá sentir — um escape natural para aquilo que nunca mais necessitará de ser escondido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <p class="ending">
-                A beleza que vejo em entregar o corpo
-                e nunca a alma.
-            </p>
+  <section id="magna" data-theme="ink" aria-labelledby="magna-title">
+    <div class="container">
+      <div class="section-head reveal-init">
+        <p class="eyebrow">Bloco III</p>
+        <h2 id="magna-title">Magna</h2>
+        <p class="sub">Trilogia · três cantos</p>
+        <p class="lede">Três estados do mesmo corpo: o desejo, a raiva e o que resta quando o sol não chega para curar nada.</p>
+        <nav class="canto-nav" aria-label="Saltar para canto">
+          <a href="#erotica">I. Erotica</a>
+          <a href="#raiva">II. Raiva</a>
+          <a href="#solar">III. Solar</a>
+        </nav>
+      </div>
 
-        </article>
+      <article class="canto canto--erotica" id="erotica">
+        <p class="canto__label">Canto I</p>
+        <h3 class="canto__title">Magna Erotica</h3>
+        <p>Uma troca de olhares improvisada. A descontração entre amigos não permite germinar muito mais do que esta sápida curiosidade. Agora não importa, que tudo o resto seja visto neste momento.</p>
+        <p>Perguntou-me se tinha gostado deste tempo perdido. Na tragédia do lamento, ambos aferimos que não, por ser longo demais, apesar de não termos pressa alguma.</p>
+        <p>Combinámos um lanche como outro qualquer que, rapidamente, se converteu num jantar. Surge por consequência agradável. Trocas de ideia que aguçam o ego tímido de cada um. Era óbvio que te queria, mas não por muito tempo.</p>
+        <p>Entre carreiras e aspirações, ao que se quer ser ou se foi outrora, é evidente o destino desta sátira: será que ele também me deseja? Não, desta vez será diferente — quão perversas são as mentiras do livre arbítrio.</p>
+        <p>E assim foi, o mundo parou para podermos correr. Um punhado vira um beijo firme. Agarra-me pela cintura, vamos fingir que não o sinto crescer contra o meu.</p>
+        <p>Parado, o mundo continuou para nós, onde a tua boca oscilante decide o rumo do tempo. Cada veia a engrossar, cada pulsar manifesta-se na tua língua que me humedece as preces. E pressiono a tua cabeça para perto de mim — sentir-te como todos os outros não basta. Quero-te perto e quente.</p>
+        <p>O tempo só avança quando quisermos. Somos deuses e por aí ficaremos, assim somos e podemos. Toca-me na barriga e não pares. Apetece-me marcar a tua boca. Tentei resistir — como estou feliz pelo fracasso. Falhei pelos teus cantos, seguido de um beijo que tranca a tua perversidade à minha.</p>
+        <p>O único lamento foi o tempo que traiu a nossa confiança, continuou quando não devia. A próxima boca era a minha, era isso que se antevia. Os cães já passam com os seus donos, temos medo de ser vistos.</p>
+        <p>Novamente serei Deus e farei do tempo meu escravo, só para sentir a tua boca marcada mais uma vez.</p>
+        <p>Sem mais nada que te queira dar, regresso à sobriedade. Despeço-me de ti, pois sei que jamais preciso de te ver novamente — é a beleza que vejo em entregar o corpo e nunca a alma. Cospe o meu néctar na boca do próximo, do teu não bebi e jamais pretendo beber novamente.</p>
+      </article>
 
+      <article class="canto canto--raiva" id="raiva">
+        <p class="canto__label">Canto II</p>
+        <h3 class="canto__title">Magna Raiva</h3>
+        <p>Confrontei aquilo que outrora fui, um ser triste e enraivecido. Nunca segui a minha própria sombra: muito menos te deixarei pensar que estive sequer na tua. Pelo contrário, é sempre aquele que não se vê que tudo conduz como bem entende.</p>
+        <p>Entendo a tua dor, e por esse mesmo motivo, não serei complacente com esta tua tão pesada corrente. Que a amargura da tua própria saliva enraivecida e sem sentido seja apenas mais uma das tuas muitas ruínas — as únicas conquistas que ostentas.</p>
+        <p>As tuas canetas, tingidas de raiva e angústia, não brilham mais do que as minhas — neste jogo de palavras, o teu receio é o meu recreio. De que valem louros exímios se a única coisa que possuis é um talento de ser alguém sem alma? Uma essência destruída não pela vida mas pela vontade de não querer viver.</p>
+        <p>Estagnadas estão as estátuas; fica perto delas se assim te comportas. As tuas dores carregarás tu, tal como somente as tuas derrotas. Não almejo por empatia ou qualquer ato de luto. Pensa apenas que me preocupo, por mais que possa parecer bruto. Mas recordo — e que fiques com isto — que a boa fé tem limites. Somente dor pulsa pelas tuas veias: é a verdade que me transmites. Escondes perante os outros a tua fraqueza e vaidade. Recordo que os cegos não veem, mas não como tu — cego apenas és por não conhecer humildade.</p>
+        <p>Conhecendo a verdade, saberei sempre para onde ir. Olha, mais uma vez, para alguém que te deu as costas: é somente mais um a partir.</p>
+      </article>
 
-        <article class="magna-piece">
+      <article class="canto canto--solar" id="solar">
+        <p class="canto__label">Canto III</p>
+        <h3 class="canto__title">Magna Solar</h3>
+        <p>A rotina solar não preenche a minha ruptura. Se não posso agarrar ao que me pertence, também não proponhamos o sol como solução.</p>
+        <p>Se bem que o frio também queima, descubro da pior maneira. Digo-o muitas vezes, mais do que Nietzsche diz Zaratustra, mais do que Schopenhauer diz dor, mais do que Kafka deixa por dizer.</p>
+        <p>Ninguém percebe que não me percebo. Coloco o ego em posições frágeis, deitado na cama e com os pés na parede, pensativo sobre o próximo passo que já tarda a fazer-se sentir. Quem me dera não querer fumar, que vulgar e degradante, e a música torna-se repetitiva — um lugar confortável. Ora, pois se me encontro confortável, é porque permaneço também muito mal governado pelo agora sepultado.</p>
+        <p>Alguém se torna mais atraente quando percebe e aceita o desespero da sua irrelevância perante o todo — e esse é o meu problema. Aceito que não se aceite, percebo que não se perceba, quero que se queira. Fecho a porta ao tempo, recuso que este passe por mim ao mesmo ritmo. Se calhar é por isso que tento correr mais rápido — recuso que me domines.</p>
+        <p>A indiferença sobre os iguais é esta: tudo continuará na mesma, assim como a música e a vontade de fumar. Queima-me os dedos, cega-me por palavras tuas e conta-me sobre quem são os teus heróis de rapina. Voemos até à tua sepultura, foi lá que te entreguei o último beijo e suspiro. Omite que me odeias só para arder mais uma vez. Parte por onde não haveria começo, esse é o teu melhor desfecho: seria igual a todos os outros, seria esse o meu maior desejo.</p>
+      </article>
+    </div>
+  </section>
 
-            <div class="magna-number">
-                II
-            </div>
+  <section id="universo" data-theme="light" aria-labelledby="universo-title">
+    <div class="container">
+      <div class="section-head reveal-init">
+        <p class="eyebrow">Universo NESCIO</p>
+        <h2 id="universo-title">Outros arquivos</h2>
+        <p class="sub">Dois projetos irmãos, cada um com o seu próprio espaço</p>
+      </div>
+      <div class="portal-grid">
+        <a class="portal-card" href="https://bernnescio.wixstudio.com/n-e-s-c-i-o" target="_blank" rel="noopener">
+          <span class="eyebrow">N.E.S.C.I.O.</span>
+          <h3>Na Essência, Sonhos Constroem Imensidões Ocultas</h3>
+          <p>Textos datados, escritos à medida que aconteceram — um diário público de insónias, desabafos e promessas por cumprir.</p>
+          <span class="arrow">Visitar arquivo ↗</span>
+        </a>
+        <a class="portal-card" href="https://bernnescio.wixstudio.com/grito" target="_blank" rel="noopener">
+          <span class="eyebrow">GRITO</span>
+          <h3>O grito não começou com som</h3>
+          <p>Um segundo espaço dentro do mesmo arquivo, com voz e forma próprias.</p>
+          <span class="arrow">Visitar arquivo ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-            <h2>
-                MAGNA<br>
-                RAIVA
-            </h2>
+  <section id="textos" data-theme="dim" aria-labelledby="textos-title">
+    <div class="container">
+      <div class="section-head reveal-init">
+        <p class="eyebrow">Bloco IV</p>
+        <h2 id="textos-title">Outros Textos</h2>
+        <p class="sub">Cada texto vive na sua própria página</p>
+      </div>
+      <div class="text-grid">
+        <a class="text-card" href="https://bernnescio.wixsite.com/nescio/c%C3%B3pia-rotina-solar" target="_blank" rel="noopener">
+          <h3>Repúdio</h3>
+          <p>“E daqui risco todos os que sempre ignoraram o que é seu por direito. A minha companhia está cansada do vosso cansaço.”</p>
+          <span class="arrow">Ler texto ↗</span>
+        </a>
+        <a class="text-card" href="https://bernnescio.wixsite.com/nescio/capela-de-corvos" target="_blank" rel="noopener">
+          <h3>Capela de Corvus</h3>
+          <p>“O jogo de sorte pela capela não vale uma reza — encontrada, quanto mais duas almas perdidas.”</p>
+          <span class="arrow">Ler texto ↗</span>
+        </a>
+        <a class="text-card" href="https://bernnescio.wixsite.com/nescio/casaco" target="_blank" rel="noopener">
+          <h3>Casaco</h3>
+          <p>“Abre a minha boca, extrai de mim aquilo que não conseguimos em conversa.”</p>
+          <span class="arrow">Ler texto ↗</span>
+        </a>
+        <a class="text-card" href="https://bernnescio.wixsite.com/nescio/metropolisa" target="_blank" rel="noopener">
+          <h3>Metropolisa</h3>
+          <p>“Caso não consigam combater os vossos contrapontos, não passarão de um contratempo.”</p>
+          <span class="arrow">Ler texto ↗</span>
+        </a>
+        <a class="text-card" href="https://bernnescio.wixsite.com/nescio/livre-arbitrio-determinado" target="_blank" rel="noopener">
+          <h3>Livre Arbítrio Determinado</h3>
+          <p>“O destino não me pertence porque, no meu mundo, não existem relógios nem réguas capazes de medir vontade e bom proveito.”</p>
+          <span class="arrow">Ler texto ↗</span>
+        </a>
+        <a class="text-card" href="https://bernnescio.wixsite.com/nescio/um-texto-que-escrevi-com-frio" target="_blank" rel="noopener">
+          <h3>Um Texto que Escrevi com Frio</h3>
+          <p>“Tenho saudades de saber que a lua sente a minha falta. De perceber que é de dia que vivem os infelizes.”</p>
+          <span class="arrow">Ler texto ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-            <p>
-                Confrontei aquilo que outrora fui,
-                um ser triste e enraivecido.
-            </p>
-
-            <p>
-                Entendo a tua dor, e por esse mesmo motivo,
-                não serei complacente desta tua tão pesada corrente.
-            </p>
-
-            <p>
-                As tuas dores carregarás tu,
-                tal como somente as tuas derrotas.
-            </p>
-
-            <p class="ending">
-                Somente dor pulsa pelas tuas veias:
-                é a verdade que me transmites.
-            </p>
-
-        </article>
-
-
-        <article class="magna-piece">
-
-            <div class="magna-number">
-                III
-            </div>
-
-            <h2>
-                MAGNA<br>
-                SOLAR
-            </h2>
-
-            <p>
-                A rotina solar não preenche a minha ruptura.
-            </p>
-
-            <p>
-                Se não posso agarrar ao que me pertence,
-                também não proponhamos o sol como solução.
-            </p>
-
-        </article>
-
-    </section>
+  <section data-theme="ink" aria-labelledby="projetos-title">
+    <div class="container">
+      <div class="section-head reveal-init" style="margin-bottom:0;">
+        <p class="eyebrow">Projetos</p>
+        <h2 id="projetos-title">Em construção</h2>
+      </div>
+      <div class="projetos-band">
+        <p>Este bloco ainda não tem data de gravação. Volta depois.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-
 <footer>
-
-    <span>NESCIO</span>
-
-    <span>
-        pequenos textos / grandes desassossegos
-    </span>
-
-    <span>
-        © 2026
-    </span>
-
+  <div class="container footer__row">
+    <a href="#inicio" class="footer__mark">NESCIO</a>
+    <span class="footer__meta">Arquivo pessoal · por NESCIO</span>
+    <a href="#inicio" class="footer__top">Voltar ao início ↑</a>
+  </div>
 </footer>
 
-
+<script src="js/main.js"></script>
 </body>
 </html>

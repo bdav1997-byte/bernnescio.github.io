@@ -585,3 +585,130 @@ a {
         text-align: left;
     }
 }
+
+/* =========================================
+   PÁGINA INDIVIDUAL DE TEXTO
+========================================= */
+
+.fragment-page {
+    padding: 100px 5vw 140px;
+    min-height: 85vh;
+}
+
+.fragment-page-meta {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    margin-bottom: 100px;
+}
+
+.fragment-page-content {
+    max-width: 900px;
+    margin-left: 25%;
+}
+
+.fragment-page-category {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.1em;
+    margin-bottom: 25px;
+}
+
+.fragment-page h1 {
+    font-size: clamp(60px, 9vw, 140px);
+    line-height: 0.88;
+    letter-spacing: -0.065em;
+    font-weight: 500;
+    margin-bottom: 80px;
+}
+
+.fragment-page-intro {
+    max-width: 650px;
+    font-size: clamp(25px, 3vw, 40px);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin-bottom: 90px;
+    color: var(--white);
+}
+
+.fragment-page-text {
+    max-width: 650px;
+}
+
+.fragment-page-text p {
+    color: #c4c4bf;
+    font-size: 18px;
+    line-height: 1.9;
+    margin-bottom: 35px;
+}
+
+.fragment-page-text .fragment-page-ending {
+    color: var(--white);
+    font-size: 22px;
+    line-height: 1.5;
+    margin-top: 80px;
+}
+
+.fragment-page-back {
+    margin-top: 120px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+}
+
+.fragment-page-back a {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    color: var(--grey);
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.fragment-page-back a:hover {
+    color: var(--blue);
+}
+
+
+/* =========================================
+   PÁGINA INDIVIDUAL — MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .fragment-page {
+        padding: 70px 6vw 100px;
+    }
+
+    .fragment-page-meta {
+        margin-bottom: 70px;
+    }
+
+    .fragment-page-content {
+        margin-left: 0;
+    }
+
+    .fragment-page h1 {
+        font-size: clamp(55px, 15vw, 100px);
+        margin-bottom: 60px;
+    }
+
+    .fragment-page-intro {
+        margin-bottom: 65px;
+        font-size: 26px;
+    }
+
+    .fragment-page-text p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .fragment-page-text .fragment-page-ending {
+        margin-top: 60px;
+        font-size: 19px;
+    }
+
+    .fragment-page-back {
+        margin-top: 80px;
+    }
+}

@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500;600&display=swap');
+/* =========================================
+   NESCIO — STYLE
+========================================= */
 
 :root {
     --black: #080808;
     --white: #f5f5f2;
-    --grey: #9b9b96;
+    --grey: #8d8d88;
+    --dark-grey: #4d4d49;
     --blue: #315cff;
-    --line: #242424;
+    --line: #252525;
 }
 
 * {
@@ -21,9 +24,9 @@ html {
 body {
     background: var(--black);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    line-height: 1.5;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 a {
@@ -31,422 +34,554 @@ a {
     text-decoration: none;
 }
 
+::selection {
+    background: var(--blue);
+    color: var(--white);
+}
 
-/* HEADER */
 
-.header {
+/* =========================================
+   HEADER
+========================================= */
+
+.site-header {
     width: 100%;
     padding: 28px 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
+    border-bottom: 1px solid var(--line);
 }
 
 .logo {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-family: "DM Mono", monospace;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
 }
 
-.nav {
+.main-nav {
     display: flex;
-    gap: 32px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    gap: 35px;
+}
+
+.main-nav a {
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
     text-transform: uppercase;
-}
-
-.nav a {
+    letter-spacing: 0.08em;
     color: var(--grey);
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-.nav a:hover {
+.main-nav a:hover {
     color: var(--white);
 }
 
 
-/* HERO */
+/* =========================================
+   HERO
+========================================= */
 
 .hero {
-    min-height: 100vh;
-    padding: 180px 10vw 100px;
+    min-height: 88vh;
+    padding: 8vw 5vw 5vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    position: relative;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
 }
 
 .hero-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--grey);
-    letter-spacing: 0.08em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 45px;
-}
-
-.hero-label span {
-    width: 6px;
-    height: 6px;
-    background: var(--blue);
-    display: inline-block;
-    border-radius: 50%;
+    font-family: "DM Mono", monospace;
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 0.1em;
 }
 
 .hero h1 {
-    font-size: clamp(55px, 8vw, 125px);
-    line-height: 0.91;
-    letter-spacing: -0.06em;
-    font-weight: 400;
     max-width: 1100px;
+    font-size: clamp(65px, 10vw, 160px);
+    line-height: 0.9;
+    letter-spacing: -0.065em;
+    font-weight: 500;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-.hero h1 em {
+.hero h1 span {
     color: var(--blue);
-    font-style: normal;
 }
 
-.hero-intro {
+.hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+}
+
+.hero-bottom p {
     max-width: 430px;
-    margin-top: 55px;
-    margin-left: 35%;
     color: var(--grey);
     font-size: 15px;
 }
 
-.hero-link {
-    margin-top: 65px;
-    font-family: 'DM Mono', monospace;
+.scroll-mark {
+    font-family: "DM Mono", monospace;
+    font-size: 24px;
+}
+
+
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
+
+.intro,
+.fragmentos,
+.archive,
+.projects,
+.magna,
+.about {
+    padding: 120px 5vw;
+    border-bottom: 1px solid var(--line);
+}
+
+.section-number {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    text-transform: uppercase;
+}
+
+.section-heading {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: baseline;
+    gap: 20px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--line);
+}
+
+.section-heading > span:first-child {
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    color: var(--blue);
+}
+
+.section-heading h2 {
+    font-size: clamp(42px, 6vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+}
+
+.section-description {
+    font-family: "DM Mono", monospace;
+    color: var(--grey);
     font-size: 11px;
     text-transform: uppercase;
-    width: fit-content;
-    border-bottom: 1px solid var(--grey);
-    padding-bottom: 8px;
-    transition: border-color 0.3s ease;
-}
-
-.hero-link:hover {
-    border-color: var(--blue);
-}
-
-.hero-link span {
-    color: var(--blue);
-    margin-left: 12px;
 }
 
 
-/* STATEMENT */
+/* =========================================
+   INTRO
+========================================= */
 
-.statement {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 100px 10vw;
+.intro {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-}
-
-.statement-number,
-.section-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--blue);
-}
-
-.statement p {
-    font-size: clamp(28px, 4vw, 60px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    max-width: 900px;
-}
-
-
-/* SECTIONS */
-
-.content-section,
-.projects {
-    padding: 150px 10vw;
-}
-
-.section-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 25% 1fr;
     gap: 50px;
-    margin-bottom: 90px;
 }
 
-.section-header h2 {
-    margin-top: 12px;
-    font-size: clamp(40px, 5vw, 75px);
-    letter-spacing: -0.05em;
-    font-weight: 400;
+.intro-content {
+    max-width: 850px;
 }
 
-.section-header p {
-    max-width: 320px;
+.large-text {
+    font-size: clamp(35px, 5vw, 70px);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin-bottom: 60px;
+}
+
+.intro-content > p:not(.large-text) {
+    max-width: 500px;
     color: var(--grey);
-    font-size: 13px;
-    align-self: end;
 }
 
 
-/* TEXTS */
+/* =========================================
+   FRAGMENTOS
+========================================= */
 
-.texts-grid {
+.fragment {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 1px;
-    background: var(--line);
+    grid-template-columns: 25% 1fr;
+    gap: 50px;
+    padding: 80px 0;
+    border-bottom: 1px solid var(--line);
 }
 
-.text-card {
-    background: var(--black);
-    min-height: 360px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: background 0.4s ease;
+.fragment:last-child {
+    border-bottom: none;
 }
 
-.text-card.featured {
-    grid-row: span 2;
-    min-height: 721px;
-}
-
-.text-card:hover {
-    background: #101010;
-}
-
-.text-category {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--blue);
+.fragment-meta {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    color: var(--dark-grey);
     letter-spacing: 0.08em;
 }
 
-.text-card h3 {
-    font-size: clamp(25px, 3vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 400;
-    max-width: 500px;
+.fragment-content {
+    max-width: 780px;
 }
 
-.text-card:not(.featured) h3 {
-    font-size: 27px;
+.fragment-content h3 {
+    font-size: clamp(35px, 4vw, 65px);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    margin-bottom: 45px;
 }
 
-.read {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
+.fragment-content p {
+    max-width: 650px;
+    color: #c4c4bf;
+    margin-bottom: 25px;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.fragment-content .fragment-lead {
+    font-size: 25px;
+    line-height: 1.3;
+    color: var(--white);
+    margin-bottom: 45px;
+}
+
+.fragment-content .fragment-ending {
+    color: var(--white);
+    margin-top: 45px;
+    font-size: 20px;
+}
+
+.poem {
+    font-family: "DM Mono", monospace;
+    line-height: 2 !important;
+    color: var(--white) !important;
+}
+
+
+/* =========================================
+   ARCHIVE
+========================================= */
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-left: 1px solid var(--line);
+}
+
+.archive-item {
+    min-height: 230px;
+    padding: 35px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background 0.25s ease;
+}
+
+.archive-item:hover {
+    background: #101010;
+}
+
+.archive-item > span {
+    font-family: "DM Mono", monospace;
+    color: var(--blue);
+    font-size: 11px;
+}
+
+.archive-item strong {
+    font-size: clamp(24px, 3vw, 40px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+
+.archive-item small {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
     color: var(--grey);
+    text-transform: uppercase;
 }
 
 
-/* PROJECTS */
-
-.projects {
-    border-top: 1px solid var(--line);
-}
+/* =========================================
+   PROJECTS
+========================================= */
 
 .project-list {
-    border-top: 1px solid var(--line);
+    margin-top: 30px;
 }
 
 .project {
     display: grid;
-    grid-template-columns: 80px 1fr 40px;
+    grid-template-columns: 10% 1fr 40px;
     align-items: center;
-    padding: 30px 0;
+    gap: 30px;
+    padding: 45px 0;
     border-bottom: 1px solid var(--line);
-    transition: padding 0.3s ease;
+    transition: padding 0.25s ease;
 }
 
 .project:hover {
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
-.project-index {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
+.project-number {
+    font-family: "DM Mono", monospace;
     color: var(--blue);
+    font-size: 12px;
 }
 
-.project-name h3 {
-    font-size: 28px;
-    font-weight: 400;
-    letter-spacing: -0.03em;
+.project-info h3 {
+    font-size: clamp(35px, 5vw, 75px);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    font-weight: 500;
 }
 
-.project-name p {
+.project-info p {
     color: var(--grey);
-    font-size: 11px;
-    margin-top: 5px;
+    margin-top: 12px;
 }
 
 .project-arrow {
+    font-size: 25px;
     color: var(--blue);
 }
 
 
-/* ABOUT */
+/* =========================================
+   MAGNA
+========================================= */
+
+.magna-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 70px;
+    background: var(--line);
+}
+
+.magna article {
+    background: var(--black);
+    padding: 45px 35px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+}
+
+.magna article > span {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 0.08em;
+}
+
+.magna article h2 {
+    margin-top: auto;
+    margin-bottom: 30px;
+    font-size: clamp(30px, 3vw, 50px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    font-weight: 500;
+}
+
+.magna article p {
+    color: var(--grey);
+    margin-bottom: 20px;
+}
+
+.text-link {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.text-link:hover {
+    color: var(--blue);
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
 
 .about {
-    min-height: 75vh;
-    padding: 150px 10vw;
-    border-top: 1px solid var(--line);
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 25% 1fr;
+    gap: 50px;
+}
+
+.about-content {
+    max-width: 850px;
 }
 
 .about-content h2 {
-    font-size: clamp(60px, 12vw, 180px);
-    line-height: 0.8;
-    letter-spacing: -0.08em;
-    font-weight: 400;
-    margin-bottom: 80px;
+    font-family: "DM Mono", monospace;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 40px;
 }
 
-.about-content p {
-    max-width: 550px;
-    font-size: 18px;
+.about-large {
+    font-size: clamp(40px, 6vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    margin-bottom: 60px;
+}
+
+.about-content > p:not(.about-large) {
+    max-width: 600px;
     color: var(--grey);
     margin-bottom: 25px;
 }
 
-.about-content p:first-of-type {
-    color: var(--white);
-}
 
+/* =========================================
+   FOOTER
+========================================= */
 
-/* FOOTER */
-
-footer {
+.site-footer {
     padding: 35px 5vw;
-    border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-logo {
-    font-size: 12px;
-    letter-spacing: 0.18em;
-}
-
-.footer-info {
-    display: flex;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
     color: var(--grey);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
     text-transform: uppercase;
 }
 
+.site-footer div:nth-child(2) {
+    text-align: center;
+}
 
-/* MOBILE */
+.site-footer div:last-child {
+    text-align: right;
+}
 
-@media (max-width: 700px) {
 
-    .header {
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .site-header {
         padding: 22px 6vw;
     }
 
-    .nav {
-        gap: 14px;
-        font-size: 8px;
+    .main-nav {
+        gap: 15px;
+    }
+
+    .main-nav a {
+        font-size: 10px;
     }
 
     .hero {
-        padding: 150px 6vw 80px;
+        min-height: 85vh;
+        padding: 12vw 6vw 8vw;
     }
 
     .hero h1 {
-        font-size: 16vw;
+        font-size: clamp(52px, 15vw, 100px);
     }
 
-    .hero-intro {
-        margin-left: 0;
-        margin-top: 45px;
-        font-size: 14px;
-    }
-
-    .statement {
-        padding: 70px 6vw;
+    .hero-bottom {
         display: block;
     }
 
-    .statement p {
+    .scroll-mark {
         margin-top: 35px;
     }
 
-    .content-section,
-    .projects {
-        padding: 100px 6vw;
+    .intro,
+    .fragment,
+    .about {
+        grid-template-columns: 1fr;
+        gap: 35px;
     }
 
-    .section-header {
-        display: block;
-        margin-bottom: 55px;
+    .intro,
+    .fragmentos,
+    .archive,
+    .projects,
+    .magna,
+    .about {
+        padding: 80px 6vw;
     }
 
-    .section-header p {
-        margin-top: 25px;
+    .section-heading {
+        grid-template-columns: 45px 1fr;
     }
 
-    .texts-grid {
-        display: block;
+    .section-description {
+        display: none;
     }
 
-    .text-card,
-    .text-card.featured {
-        min-height: 350px;
-        border-bottom: 1px solid var(--line);
+    .fragment {
+        padding: 60px 0;
     }
 
-    .text-card h3,
-    .text-card:not(.featured) h3 {
-        font-size: 28px;
+    .fragment-content p {
+        font-size: 16px;
+    }
+
+    .archive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .archive-item {
+        min-height: 190px;
     }
 
     .project {
-        grid-template-columns: 40px 1fr 25px;
+        grid-template-columns: 35px 1fr 25px;
+        gap: 15px;
     }
 
-    .project-name h3 {
-        font-size: 20px;
+    .project:hover {
+        padding-left: 0;
     }
 
-    .about {
-        min-height: auto;
-        padding: 100px 6vw;
-        display: block;
+    .magna-grid {
+        grid-template-columns: 1fr;
     }
 
-    .about-content {
-        margin-top: 45px;
+    .magna article {
+        min-height: 400px;
     }
 
-    .about-content h2 {
-        font-size: 25vw;
-        margin-bottom: 60px;
+    .site-footer {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 30px 6vw;
     }
 
-    footer {
-        padding: 25px 6vw;
-    }
-
-    .footer-info {
-        gap: 10px;
-        flex-direction: column;
-        align-items: flex-end;
+    .site-footer div,
+    .site-footer div:nth-child(2),
+    .site-footer div:last-child {
+        text-align: left;
     }
 }

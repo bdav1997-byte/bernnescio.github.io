@@ -18,39 +18,60 @@ fetch("menu.html")
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
 
-    if (!menuToggle || !sideMenu) {
-      return;
-    }
+    if (menuToggle && sideMenu) {
+      menuToggle.addEventListener("click", () => {
 
-    menuToggle.addEventListener("click", () => {
+        const isOpen = sideMenu.classList.toggle("open");
 
-      const isOpen = sideMenu.classList.toggle("open");
-
-      menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-    });
-
-    sideMenu.querySelectorAll("a").forEach(link => {
-
-      link.addEventListener("click", () => {
-
-        sideMenu.classList.remove("open");
-
-        menuToggle.textContent = "MENU";
+        menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
 
         menuToggle.setAttribute(
           "aria-expanded",
-          "false"
+          isOpen ? "true" : "false"
         );
 
       });
 
+      sideMenu.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          sideMenu.classList.remove("open");
+
+          menuToggle.textContent = "MENU";
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        });
+
+      });
+    }
+
+    const backToTop = document.createElement("button");
+    backToTop.className = "back-to-top";
+    backToTop.type = "button";
+    backToTop.setAttribute("aria-label", "Voltar ao topo");
+    backToTop.setAttribute("title", "Voltar ao topo");
+    backToTop.innerHTML = "↑";
+    document.body.appendChild(backToTop);
+
+    const updateBackToTop = () => {
+      backToTop.classList.toggle("visible", window.scrollY > 250);
+    };
+
+    window.addEventListener("scroll", updateBackToTop, { passive: true });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
+
+    updateBackToTop();
 
   })
   .catch(error => {

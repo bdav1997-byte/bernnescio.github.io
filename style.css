@@ -195,7 +195,8 @@ article h1 {
 
 article p {
     margin-bottom: 25px;
-    font-size: 16px;
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 18px;
     text-align: justify;
 }
 
@@ -296,7 +297,7 @@ hr {
     }
 
     article p {
-        font-size: 15px;
+        font-size: 17px;
         text-align: justify;
     }
 

@@ -6,8 +6,8 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
 }
 
 body {
@@ -17,7 +17,7 @@ body {
 main {
     width: 100%;
     min-height: 100vh;
-    padding: 70px 30px 80px;
+    padding: 70px 20px 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,41 +25,35 @@ main {
 
 .logo {
     display: block;
-    width: 98px;
-    height: 118px;
-    object-fit: contain;
-    margin: 0 auto 58px auto;
+    width: 95px;
+    height: auto;
+    margin: 0 auto 55px;
 }
 
 article {
     width: 100%;
-    max-width: 900px;
+    max-width: 650px;
     margin: 0 auto;
+    text-align: justify;
     font-size: 16px;
     line-height: 1.55;
-    font-weight: 400;
-    text-align: justify;
 }
 
-p {
-    margin: 0 0 25px 0;
+article p {
+    margin: 0 0 25px;
 }
 
 .signature {
-    margin-top: 55px;
-    margin-bottom: 0;
-    text-align: center;
+    display: none;
 }
 
 @media (max-width: 700px) {
-
     main {
-        padding: 40px 25px 55px;
+        padding: 45px 25px 55px;
     }
 
     .logo {
-        width: 82px;
-        height: 99px;
+        width: 80px;
         margin-bottom: 45px;
     }
 
@@ -67,13 +61,5 @@ p {
         max-width: 100%;
         font-size: 15px;
         line-height: 1.55;
-    }
-
-    p {
-        margin-bottom: 21px;
-    }
-
-    .signature {
-        margin-top: 42px;
     }
 }

@@ -25,13 +25,11 @@ body {
 
 .menu-toggle {
     position: fixed;
-    top: 35px;
-    left: 35px;
-    z-index: 1001;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
 
     border: none;
-    padding: 0;
-
     background: transparent;
     color: #000;
 
@@ -40,7 +38,12 @@ body {
     font-weight: 400;
     letter-spacing: 0.12em;
 
+    padding: 0;
     cursor: pointer;
+}
+
+.menu-toggle:hover {
+    text-decoration: underline;
 }
 
 

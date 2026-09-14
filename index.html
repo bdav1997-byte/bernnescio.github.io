@@ -9,14 +9,24 @@
 
 <body>
 
-  <nav class="side-menu">
+  <!-- MENU -->
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+    MENU
+  </button>
+
+  <nav class="side-menu" id="sideMenu">
     <a href="#sofia">SOFIA</a>
     <a href="#soberania">SOBERANIA DA FUTILIDADE</a>
   </nav>
 
+  <!-- CONTEÚDO -->
+
   <main>
 
     <img src="LOGO.png" class="logo" alt="NESCIO">
+
+    <!-- SOFIA -->
 
     <article id="sofia">
       <h1>SOFIA</h1>
@@ -42,6 +52,8 @@
 
     <div class="separator"></div>
 
+    <!-- SOBERANIA DA FUTILIDADE -->
+
     <article id="soberania">
       <h1>SOBERANIA DA FUTILIDADE</h1>
 
@@ -65,6 +77,28 @@
     </article>
 
   </main>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const sideMenu = document.getElementById("sideMenu");
+
+    menuToggle.addEventListener("click", function () {
+      const isOpen = sideMenu.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
+    });
+
+    sideMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        sideMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "MENU";
+      });
+    });
+  </script>
 
 </body>
 </html>

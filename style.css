@@ -1,0 +1,15 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; color: #000; }
+body { font-family: Arial, Helvetica, sans-serif; }
+main { width: 100%; min-height: 100vh; padding: 58px 7.5vw 80px; }
+.logo { display: block; width: 98px; height: 118px; object-fit: contain; margin: 0 0 62px 0; }
+article { width: 100%; max-width: 980px; font-size: 16px; line-height: 1.55; font-weight: 400; }
+p { margin: 0 0 24px; }
+.signature { margin-top: 54px; margin-bottom: 0; }
+@media (max-width: 700px) {
+  main { padding: 34px 28px 55px; }
+  .logo { width: 82px; height: 99px; margin-bottom: 45px; }
+  article { font-size: 15px; line-height: 1.55; }
+  p { margin-bottom: 21px; }
+  .signature { margin-top: 42px; }
+}

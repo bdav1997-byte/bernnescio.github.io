@@ -23,12 +23,16 @@ main {
     align-items: center;
 }
 
+/* LOGO */
+
 .logo {
     display: block;
     width: 95px;
     height: auto;
     margin: 0 auto 70px;
 }
+
+/* TEXTOS */
 
 article {
     width: 100%;
@@ -43,7 +47,18 @@ article p {
     margin: 0 0 25px;
 }
 
+/* TÍTULOS */
+
+article h1 {
+    margin: 0 0 45px;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-align: left;
+}
+
 /* SEPARADOR */
+
 .separator {
     width: 100%;
     max-width: 650px;
@@ -52,11 +67,10 @@ article p {
     margin: 70px 0;
 }
 
-.signature {
-    display: none;
-}
+/* TELEMÓVEL */
 
 @media (max-width: 700px) {
+
     main {
         padding: 45px 25px 55px;
     }
@@ -68,6 +82,11 @@ article p {
 
     article {
         max-width: 100%;
+    }
+
+    article h1 {
+        font-size: 17px;
+        margin-bottom: 35px;
     }
 
     .separator {

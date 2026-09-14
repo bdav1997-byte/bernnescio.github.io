@@ -1,0 +1,49 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SOFIA — NESCIO</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main>
+
+    <a href="index.html" class="back-link">← VOLTAR</a>
+
+    <img src="LOGO.png" class="logo" alt="NESCIO">
+
+    <article>
+
+      <h1>SOFIA</h1>
+
+      <p>Eu sei que tenho sido bastante duro contigo. Sou frio, imensamente distante e, por vezes, parece — mas só parece — que me esqueço daquilo que temos e somos. Não sou de expressar emoções, muito menos aquelas de que mais gosto, as mais pessoais e reconfortantes. Mas acho que é isso que falta da minha parte.</p>
+
+      <p>Não precisamos de muitas palavras, verdade seja dita. Basta olhar nos teus olhos e, como que por instinto, percebo com clareza que não estás bem, que algo te atormenta e que precisas de um ombro amigo, de um pilar. E, neste preciso momento, é exatamente disso que necessitas. Posso não ser o melhor, mas luto muito para o ser, pelo menos para ti — não gosto de falhar aos meus e tento, de alguma forma, retribuir o conforto e carinho que me dão.</p>
+
+      <p>Sempre estiveste lá para mim, desde o princípio: na fase em que me distanciei bastante de ti, pois ganhar confiança pelo desconhecido é complicado (sou reservado, peço desculpa). Estiveste ao meu lado numa das fases mais críticas, negativas e destrutivas da minha vida. Devo-te a vida, pois salvaste a minha. Lembras-te disso? Lembras-te da minha voz fraca a dizer-te que não tinha mais ninguém que percebesse aquilo que sentia? Quem ouviu tais palavras foste tu. Tu, e somente tu. És a única capaz de compreender-me em aspetos que mais ninguém pretende ou é capaz de compreender.</p>
+
+      <p>E é por esse motivo que eu não te posso afastar. Não te posso deixar partir. E quero que fique claro, de uma vez por todas, e de qualquer forma, que, para mim, és uma das pessoas mais importantes desta jornada a que chamo vida.</p>
+
+      <p>Sei que não é justificação, mas pressuponho que também me afasto de ti (agora), pois tenho receio do dia em que vais partir, onde em que nos vamos deixar de ver — seja pelas decisões da tua mãe (minha querida “tia”), ou pelas tuas decisões próprias, como a tua carreira, por exemplo. Eu não sou comum, e sabes perfeitamente os meus mecanismos de defesa: prefiro afastar-me o mais rapidamente possível para a dor desaparecer mais depressa do que sofrer até ao último minuto. Sou cobarde no que toca à dor. Mas, por ti, vou aguentar, irei sacrificar-me e lutar contra mim mesmo até ao último minuto, até ao último adeus.</p>
+
+      <p>Porque?</p>
+
+      <p>Vai valer a pena dizer aos meus sobrinhos, por exemplo, o quão bom foi ter uma Sofia na minha vida. Vai valer a pena recordar. Vai valer a pena viver o que nos resta. Não escrevo isto para que todos vejam, não escrevo isto por reconhecimento. Escrevo isto pois, como referi, queria deixar, de alguma forma, bem claro e permanente que, independentemente de tudo, tu és e sempre serás alguém para mim.</p>
+
+      <p>Com amor,</p>
+
+      <p>Bern.</p>
+
+    </article>
+
+  </main>
+
+</body>
+</html>
+```

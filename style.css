@@ -1,26 +1,22 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-html,
 body {
-    margin: 0;
-    padding: 0;
     background: #fff;
     color: #000;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
 }
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 
 /* =========================
-   BOTÃO DO MENU
+   MENU
    ========================= */
 
 .menu-toggle {
@@ -29,111 +25,93 @@ body {
     left: 20px;
     z-index: 1000;
 
-    border: none;
+    border: 0;
+    outline: 0;
     background: transparent;
     color: #000;
+
+    padding: 0;
+    margin: 0;
 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.12em;
 
-    padding: 0;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .menu-toggle:hover {
     text-decoration: underline;
 }
 
-
-/* =========================
-   MENU
-   ========================= */
-
 .side-menu {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 999;
 
     width: 300px;
     min-height: 210px;
 
     padding: 70px 35px 35px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
     background: #fff;
 
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
+    pointer-events: none;
 
-    transition:
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        visibility 0.2s ease;
-
-    z-index: 1000;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .side-menu.open {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    pointer-events: auto;
 }
 
-
-/* =========================
-   SECÇÕES DO MENU
-   ========================= */
-
 .menu-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    margin-bottom: 35px;
 }
 
 .menu-title {
-    margin: 0;
+    margin-bottom: 12px;
 
-    color: #000;
-
-    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
+    color: #000;
 }
-
-
-/* LINKS DO MENU */
 
 .side-menu .menu-section a,
 .side-menu .menu-section a:link,
-.side-menu .menu-section a:visited,
-.side-menu .menu-section a:hover,
-.side-menu .menu-section a:active {
+.side-menu .menu-section a:visited {
     display: block;
 
-    padding-left: 15px;
+    margin-left: 15px;
 
     color: #000;
     background: transparent;
 
-    text-decoration: none;
-
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.12em;
-    line-height: 1.4;
+    letter-spacing: 0.08em;
+
+    text-decoration: none;
 }
 
 .side-menu .menu-section a:hover {
     text-decoration: underline;
 }
 
+.side-menu .menu-section a:active {
+    color: #000;
+}
 
 /* =========================
    CONTEÚDO
@@ -141,180 +119,107 @@ body {
 
 main {
     width: 100%;
-    min-height: 100vh;
-
-    padding: 70px 20px 70px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 80px 25px 100px;
 }
-
-
-/* =========================
-   LOGO
-   ========================= */
 
 .logo {
     display: block;
-
-    width: 95px;
+    width: 120px;
     height: auto;
-
-    margin: 0 auto 70px;
+    margin: 0 auto 80px;
 }
 
-
-/* =========================
-   ARTIGOS
-   ========================= */
-
-article {
-    width: 100%;
-    max-width: 650px;
-
-    margin: 0 auto;
+article h1 {
+    margin-bottom: 45px;
 
     color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 
-    text-align: justify;
-
-    font-size: 16px;
-    line-height: 1.55;
+    text-align: left;
 }
 
 article p {
-    margin: 0 0 25px;
+    margin-bottom: 25px;
+    font-size: 16px;
 }
 
+article + article {
+    margin-top: 100px;
+}
+
+hr {
+    margin: 100px 0;
+    border: 0;
+    border-top: 1px solid #000;
+}
 
 /* =========================
-   TÍTULOS DOS TEXTOS
+   VOLTAR
    ========================= */
 
-article h1,
-article h1 a {
-    margin: 0 0 45px;
+.back-link {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0 auto 35px;
 
     color: #000;
-
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-
-    letter-spacing: 0.18em;
-
-    text-align: left;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
 
     text-decoration: none;
 }
 
-
-/* =========================
-   SEPARADOR
-   ========================= */
-
-.separator {
-    width: 100%;
-    max-width: 650px;
-
-    height: 1px;
-
-    background: #000;
-
-    margin: 70px 0;
+.back-link:hover {
+    text-decoration: underline;
 }
 
-
 /* =========================
-   TELEMÓVEL
+   MOBILE
    ========================= */
 
 @media (max-width: 700px) {
 
-    /* BOTÃO */
-
     .menu-toggle {
-        top: 25px;
-        left: 25px;
+        top: 18px;
+        left: 18px;
+        font-size: 11px;
     }
-
-
-    /* MENU */
 
     .side-menu {
         width: 100%;
-        min-height: 170px;
-
-        padding: 60px 25px 30px;
-
-        gap: 28px;
+        min-height: 230px;
+        padding: 65px 25px 30px;
     }
-
-    .menu-title {
-        font-size: 10px;
-    }
-
-    .menu-section {
-        gap: 11px;
-    }
-
-    .side-menu .menu-section a,
-    .side-menu .menu-section a:link,
-    .side-menu .menu-section a:visited,
-    .side-menu .menu-section a:hover,
-    .side-menu .menu-section a:active {
-        padding-left: 15px;
-
-        color: #000;
-
-        font-size: 11px;
-        letter-spacing: 0.1em;
-    }
-
-
-    /* CONTEÚDO */
 
     main {
-        padding: 90px 25px 55px;
+        padding: 70px 20px 80px;
     }
-
-
-    /* LOGO */
 
     .logo {
-        width: 80px;
-        margin-bottom: 45px;
+        width: 100px;
+        margin-bottom: 60px;
     }
 
-
-    /* TEXTO */
-
-    article {
-        max-width: 100%;
-
-        color: #000;
-
-        font-size: 16px;
-        line-height: 1.55;
-    }
-
-    article h1,
-    article h1 a {
-        color: #000;
-
-        font-size: 17px;
+    article h1 {
+        font-size: 19px;
         margin-bottom: 35px;
-        letter-spacing: 0.14em;
-
-        text-decoration: none;
     }
 
+    article p {
+        font-size: 15px;
+    }
 
-    /* SEPARADOR */
-
-    .separator {
-        width: 100%;
-        margin: 55px 0;
+    .back-link {
+        margin-bottom: 30px;
+        font-size: 11px;
     }
 }

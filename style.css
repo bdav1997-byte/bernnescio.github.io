@@ -85,6 +85,9 @@ body {
     left: 0;
     z-index: 1000;
     width: 300px;
+    max-height: calc(100vh - 55px);
+    overflow-y: auto;
+    overflow-x: hidden;
     min-height: 210px;
     padding: 20px 35px 35px;
     background: #fff;
@@ -92,6 +95,21 @@ body {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.2s ease, visibility 0.2s ease;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #000 transparent;
+}
+
+.side-menu::-webkit-scrollbar {
+    width: 5px;
+}
+
+.side-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+    background: #000;
 }
 
 .side-menu.open {
@@ -288,6 +306,7 @@ hr {
     .side-menu {
         top: 50px;
         width: 100%;
+        max-height: calc(100vh - 50px);
         min-height: 230px;
         padding: 20px 25px 30px;
     }

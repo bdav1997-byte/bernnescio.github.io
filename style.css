@@ -18,57 +18,117 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* MENU LATERAL */
+/* =========================
+   BOTÃO DO MENU
+   ========================= */
+
+.menu-toggle {
+    position: fixed;
+    top: 35px;
+    left: 35px;
+    z-index: 1000;
+
+    border: 0;
+    padding: 0;
+
+    background: transparent;
+    color: #000;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+
+    cursor: pointer;
+}
+
+/* =========================
+   MENU
+   ========================= */
 
 .side-menu {
     position: fixed;
     top: 70px;
-    left: 40px;
+    left: 35px;
+
     display: flex;
     flex-direction: column;
     gap: 14px;
-    z-index: 10;
+
+    max-width: 250px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+
+    z-index: 999;
+}
+
+.side-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .side-menu a {
     color: #000;
     text-decoration: none;
+
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.12em;
+    line-height: 1.4;
 }
 
 .side-menu a:hover {
     text-decoration: underline;
 }
 
-/* CONTEÚDO */
+/* =========================
+   CONTEÚDO
+   ========================= */
 
 main {
     width: 100%;
     min-height: 100vh;
+
     padding: 70px 20px 70px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* LOGO */
+/* =========================
+   LOGO
+   ========================= */
 
 .logo {
     display: block;
+
     width: 95px;
     height: auto;
+
     margin: 0 auto 70px;
 }
 
-/* TEXTOS */
+/* =========================
+   TEXTOS
+   ========================= */
 
 article {
     width: 100%;
     max-width: 650px;
+
     margin: 0 auto;
+
     text-align: justify;
+
     font-size: 16px;
     line-height: 1.55;
 }
@@ -77,32 +137,64 @@ article p {
     margin: 0 0 25px;
 }
 
-/* TÍTULOS */
+/* =========================
+   TÍTULOS
+   ========================= */
 
 article h1 {
     margin: 0 0 45px;
+
     font-size: 18px;
     font-weight: 700;
+
     letter-spacing: 0.18em;
+
     text-align: left;
 }
 
-/* SEPARADOR */
+/* =========================
+   SEPARADOR
+   ========================= */
 
 .separator {
     width: 100%;
     max-width: 650px;
+
     height: 1px;
+
     background: #000;
+
     margin: 70px 0;
 }
 
-/* TELEMÓVEL */
+/* =========================
+   ECRÃS MAIS PEQUENOS
+   ========================= */
 
 @media (max-width: 700px) {
 
+    .menu-toggle {
+        top: 25px;
+        left: 25px;
+    }
+
+    .side-menu {
+        top: 60px;
+        left: 25px;
+        right: 25px;
+
+        max-width: none;
+
+        padding: 0;
+    }
+
+    .side-menu a {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+    }
+
     main {
-        padding: 45px 25px 55px;
+        padding: 90px 25px 55px;
     }
 
     .logo {
@@ -112,24 +204,18 @@ article h1 {
 
     article {
         max-width: 100%;
+        font-size: 16px;
+        line-height: 1.55;
     }
 
     article h1 {
         font-size: 17px;
         margin-bottom: 35px;
+        letter-spacing: 0.14em;
     }
 
     .separator {
         width: 100%;
         margin: 55px 0;
-    }
-
-    .side-menu {
-        position: static;
-        width: 100%;
-        margin-bottom: 45px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 12px 20px;
     }
 }

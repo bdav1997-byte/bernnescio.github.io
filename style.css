@@ -27,10 +27,9 @@ body {
     position: fixed;
     top: 35px;
     left: 35px;
-
     z-index: 1001;
 
-    border: 0;
+    border: none;
     padding: 0;
 
     background: transparent;
@@ -95,24 +94,40 @@ body {
 }
 
 .menu-title {
+    margin: 0;
+
+    color: #000;
+
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.14em;
 }
 
-.menu-section a {
+
+/* LINKS DO MENU */
+
+.side-menu .menu-section a,
+.side-menu .menu-section a:link,
+.side-menu .menu-section a:visited,
+.side-menu .menu-section a:hover,
+.side-menu .menu-section a:active {
+    display: block;
+
     padding-left: 15px;
 
     color: #000;
+    background: transparent;
+
     text-decoration: none;
 
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.12em;
     line-height: 1.4;
 }
 
-.menu-section a:hover {
+.side-menu .menu-section a:hover {
     text-decoration: underline;
 }
 
@@ -148,7 +163,7 @@ main {
 
 
 /* =========================
-   TEXTOS
+   ARTIGOS
    ========================= */
 
 article {
@@ -156,6 +171,8 @@ article {
     max-width: 650px;
 
     margin: 0 auto;
+
+    color: #000;
 
     text-align: justify;
 
@@ -169,18 +186,24 @@ article p {
 
 
 /* =========================
-   TÍTULOS
+   TÍTULOS DOS TEXTOS
    ========================= */
 
-article h1 {
+article h1,
+article h1 a {
     margin: 0 0 45px;
 
+    color: #000;
+
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: 700;
 
     letter-spacing: 0.18em;
 
     text-align: left;
+
+    text-decoration: none;
 }
 
 
@@ -205,6 +228,8 @@ article h1 {
    ========================= */
 
 @media (max-width: 700px) {
+
+    /* BOTÃO */
 
     .menu-toggle {
         top: 25px;
@@ -231,8 +256,14 @@ article h1 {
         gap: 11px;
     }
 
-    .menu-section a {
+    .side-menu .menu-section a,
+    .side-menu .menu-section a:link,
+    .side-menu .menu-section a:visited,
+    .side-menu .menu-section a:hover,
+    .side-menu .menu-section a:active {
         padding-left: 15px;
+
+        color: #000;
 
         font-size: 11px;
         letter-spacing: 0.1em;
@@ -259,14 +290,21 @@ article h1 {
     article {
         max-width: 100%;
 
+        color: #000;
+
         font-size: 16px;
         line-height: 1.55;
     }
 
-    article h1 {
+    article h1,
+    article h1 a {
+        color: #000;
+
         font-size: 17px;
         margin-bottom: 35px;
         letter-spacing: 0.14em;
+
+        text-decoration: none;
     }
 
 

@@ -43,6 +43,15 @@ article p {
     margin: 0 0 25px;
 }
 
+/* SEPARADOR */
+.separator {
+    width: 100%;
+    max-width: 650px;
+    height: 1px;
+    background: #000;
+    margin: 70px 0;
+}
+
 .signature {
     display: none;
 }
@@ -59,10 +68,10 @@ article p {
 
     article {
         max-width: 100%;
+    }
 
-.separator {
-  width: 100%;
-  height: 1px;
-  background: #000;
-  margin: 70px 0;
+    .separator {
+        width: 100%;
+        margin: 55px 0;
+    }
 }

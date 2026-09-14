@@ -30,7 +30,8 @@ body {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
 
     background: #fff;
     padding: 0 20px;
@@ -45,6 +46,7 @@ body {
     height: 24px;
 
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .home-button img {
@@ -73,7 +75,7 @@ body {
     font-weight: 400;
     letter-spacing: 0.12em;
 
-    text-align: right;
+    text-align: left;
 
     cursor: pointer;
     appearance: none;
@@ -247,6 +249,7 @@ hr {
     .site-header {
         height: 50px;
         padding: 0 18px;
+        gap: 10px;
     }
 
     .home-button {

@@ -26,7 +26,7 @@ body {
     position: fixed;
     top: 35px;
     left: 35px;
-    z-index: 1000;
+    z-index: 1001;
 
     border: 0;
     padding: 0;
@@ -48,14 +48,19 @@ body {
 
 .side-menu {
     position: fixed;
-    top: 70px;
-    left: 35px;
+    top: 0;
+    left: 0;
+
+    width: 300px;
+    min-height: 180px;
+
+    padding: 70px 35px 35px;
 
     display: flex;
     flex-direction: column;
     gap: 14px;
 
-    max-width: 250px;
+    background: #fff;
 
     opacity: 0;
     visibility: hidden;
@@ -66,7 +71,7 @@ body {
         transform 0.2s ease,
         visibility 0.2s ease;
 
-    z-index: 999;
+    z-index: 1000;
 }
 
 .side-menu.open {
@@ -168,7 +173,7 @@ article h1 {
 }
 
 /* =========================
-   ECRÃS MAIS PEQUENOS
+   TELEMÓVEL
    ========================= */
 
 @media (max-width: 700px) {
@@ -179,13 +184,10 @@ article h1 {
     }
 
     .side-menu {
-        top: 60px;
-        left: 25px;
-        right: 25px;
+        width: 100%;
+        min-height: 150px;
 
-        max-width: none;
-
-        padding: 0;
+        padding: 60px 25px 30px;
     }
 
     .side-menu a {

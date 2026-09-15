@@ -48,6 +48,26 @@ fetch("menu.html")
         });
 
       });
+
+      sideMenu.querySelectorAll(".collapsible-title").forEach(title => {
+
+        const toggleSection = () => {
+          const section = title.closest(".collapsible-section");
+          const isOpen = section.classList.toggle("expanded");
+
+          title.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        };
+
+        title.addEventListener("click", toggleSection);
+
+        title.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleSection();
+          }
+        });
+
+      });
     }
 
     const backToTop = document.createElement("button");

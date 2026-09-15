@@ -208,12 +208,14 @@ hr {
 
 .musas-text article h1 {
     max-width: 650px;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
 }
 
 .musas-recording {
     display: flex;
-    justify-content: space-between;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 18px;
     font-family: "Courier New", Courier, monospace;
     font-size: 10px;
     letter-spacing: 0.1em;
@@ -309,17 +311,17 @@ hr {
 .musas-live-timer {
     flex-shrink: 0;
     font-family: "Courier New", Courier, monospace;
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.04em;
     color: #E3BC7D;
     white-space: nowrap;
 }
 
 .musas-live-timer::before {
     content: "●";
-    margin-right: 6px;
-    font-size: 7px;
+    margin-right: 7px;
+    font-size: 10px;
 }
 
 @media (max-width: 700px) {
@@ -350,5 +352,5 @@ hr {
     .musas-time { font-size: 9px; }
     .musas-time::before { width: 9px; margin-right: 5px; }
     .musas-title-row { gap: 14px; }
-    .musas-live-timer { font-size: 9px; }
+    .musas-live-timer { font-size: 17px; }
 }

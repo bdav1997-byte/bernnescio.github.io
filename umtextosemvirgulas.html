@@ -16,7 +16,7 @@
 
         <article>
             <div class="musas-meta"><span>REC</span><span>03</span></div>
-            <h1>UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</h1>
+            <div class="musas-title-row"><h1>UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</h1><span class="musas-live-timer" data-timer>00:00</span></div>
             <div class="musas-recording"><span>REC 03</span><span>00:36</span></div>
 
             <div class="musas-entry"><div class="musas-time">00:00</div><p>Este conforto em abraçar quem nos destrói e chamar amor àquilo que nos desespera.</p></div>
@@ -32,5 +32,19 @@
     </main>
 
     <script src="menu.js"></script>
+    <script>
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>

@@ -188,6 +188,10 @@ hr {
 .back-link:hover { text-decoration: underline; }
 
 /* Estética exclusiva de ATÉ OS AMIGOS SÃO MUSAS */
+.musas-text .logo {
+    width: 84px;
+}
+
 .musas-text article { max-width: 650px; }
 
 .musas-meta {
@@ -311,6 +315,7 @@ hr {
     article h1 { font-size: 19px; margin-bottom: 35px; }
     article p { font-size: 17px; font-weight: 500; text-align: justify; }
     .back-link { margin-bottom: 30px; font-size: 11px; }
+    .musas-text .logo { width: 70px; }
     .musas-entry { grid-template-columns: 55px minmax(0, 1fr); column-gap: 14px; padding-bottom: 45px; }
     .musas-entry p { font-size: 17px; line-height: 1.75; }
     .musas-time { font-size: 9px; }

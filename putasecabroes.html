@@ -16,7 +16,7 @@
 
         <article>
             <div class="musas-meta"><span>REC</span><span>04</span></div>
-            <h1>PUTAS E CABRÕES</h1>
+            <div class="musas-title-row"><h1>PUTAS E CABRÕES</h1><span class="musas-live-timer" data-timer>00:00</span></div>
             <div class="musas-recording"><span>REC 04</span><span>00:41</span></div>
 
             <p>Todos putas e cabrões,<br>erguidos por ego que nunca tiveram.<br>Assim começa uma bela história,<br>no mesmo chão onde tanto cuspiram.</p></div>
@@ -34,5 +34,19 @@
     </main>
 
     <script src="menu.js"></script>
+    <script>
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>

@@ -73,13 +73,18 @@ body {
     left: 0;
     z-index: 1000;
     width: 300px;
+    height: calc(100vh - 55px);
     min-height: 210px;
+    max-height: calc(100vh - 55px);
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px 35px 35px;
     background: #fff;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.2s ease, visibility 0.2s ease;
+    -webkit-overflow-scrolling: touch;
 }
 
 .side-menu.open {
@@ -295,7 +300,14 @@ hr {
     }
     .home-button, .home-button img { width: 22px; height: 22px; }
     .menu-toggle { height: 50px; font-size: 11px; }
-    .side-menu { top: 50px; width: 100%; min-height: 230px; padding: 20px 25px 30px; }
+    .side-menu {
+        top: 50px;
+        width: 100%;
+        height: calc(100vh - 50px);
+        max-height: calc(100vh - 50px);
+        min-height: 230px;
+        padding: 20px 25px 30px;
+    }
     main { padding: 100px 20px 80px; }
     .logo { width: 100px; margin-bottom: 60px; }
     .landing-logo { width: 180px; margin-bottom: 60px; }

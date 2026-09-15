@@ -101,6 +101,30 @@ body {
     color: #000;
 }
 
+.collapsible-title {
+    cursor: pointer;
+    user-select: none;
+}
+
+.collapsible-title::after {
+    content: "+";
+    display: inline-block;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+.collapsible-section.expanded .collapsible-title::after {
+    content: "−";
+}
+
+.menu-section-content {
+    display: none;
+}
+
+.collapsible-section.expanded .menu-section-content {
+    display: block;
+}
+
 .side-menu .menu-section a,
 .side-menu .menu-section a:link,
 .side-menu .menu-section a:visited {

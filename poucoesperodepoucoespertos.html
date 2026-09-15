@@ -16,7 +16,7 @@
 
         <article>
             <div class="musas-meta"><span>REC</span><span>05</span></div>
-            <h1>POUCO ESPERO DE POUCO ESPERTOS</h1>
+            <div class="musas-title-row"><h1>POUCO ESPERO DE POUCO ESPERTOS</h1><span class="musas-live-timer" data-timer>00:00</span></div>
             <div class="musas-recording"><span>REC 05</span><span>00:55</span></div>
 
             <div class="musas-entry"><div class="musas-time">00:00</div><p>Larguei o que não me prendia. Estou cheio de fome, daquela de quem precisa de que o outro lhe dê trabalho, que discuta, que contradiga, que cite alguém às duas da manhã com convicção suficiente para perder o sono. Não é demais pedir. É o mínimo que se deve para alguém tão mínimo quanto eu.</p></div>
@@ -36,5 +36,19 @@
     </main>
 
     <script src="menu.js"></script>
+    <script>
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>

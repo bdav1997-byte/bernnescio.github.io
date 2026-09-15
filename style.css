@@ -293,6 +293,35 @@ hr {
 
 .musas-end span:last-child { color: #E3BC7D; }
 
+.musas-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+
+.musas-title-row h1 {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.musas-live-timer {
+    flex-shrink: 0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: #E3BC7D;
+    white-space: nowrap;
+}
+
+.musas-live-timer::before {
+    content: "●";
+    margin-right: 6px;
+    font-size: 7px;
+}
+
 @media (max-width: 700px) {
     .site-header {
         height: 50px;
@@ -320,4 +349,6 @@ hr {
     .musas-entry p { font-size: 17px; line-height: 1.75; }
     .musas-time { font-size: 9px; }
     .musas-time::before { width: 9px; margin-right: 5px; }
+    .musas-title-row { gap: 14px; }
+    .musas-live-timer { font-size: 9px; }
 }

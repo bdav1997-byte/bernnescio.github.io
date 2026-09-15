@@ -104,17 +104,31 @@ body {
 .collapsible-title {
     cursor: pointer;
     user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.collapsible-title::before {
+    content: "›";
+    display: inline-block;
+    width: 10px;
+    flex-shrink: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1;
+    color: #777;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+}
+
+.collapsible-section.expanded .collapsible-title::before {
+    transform: rotate(90deg);
 }
 
 .collapsible-title::after {
-    content: "+";
-    display: inline-block;
-    margin-left: 8px;
-    font-weight: 400;
-}
-
-.collapsible-section.expanded .collapsible-title::after {
-    content: "−";
+    content: none;
 }
 
 .menu-section-content {

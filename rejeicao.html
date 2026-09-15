@@ -16,7 +16,7 @@
 
         <article>
             <div class="musas-meta"><span>REC</span><span>02</span></div>
-            <h1>REJEIÇÃO</h1>
+            <div class="musas-title-row"><h1>REJEIÇÃO</h1><span class="musas-live-timer" data-timer>00:00</span></div>
             <div class="musas-recording"><span>REC 02</span><span>01:19</span></div>
 
             <div class="musas-entry"><div class="musas-time">00:00</div><p>Gostava de puder dizer-te tudo, sem o risco de te perder. Prometi a mim mesmo que a única linha que vamos atravessar será as que trazes contigo para uma longa noite de conversa. Uma toxicidade mútua, daquela que só quem tem medo de gostar de alguém tem. Mútua na minha cabeça, pois sei perfeitamente que nunca me verás da mesma forma.</p></div>
@@ -44,5 +44,19 @@
     </main>
 
     <script src="menu.js"></script>
+    <script>
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>

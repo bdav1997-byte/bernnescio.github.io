@@ -75,24 +75,40 @@ function setupReadingProgress() {
   progress.appendChild(fill);
   document.body.appendChild(progress);
 
-  let ticking = false;
+  let targetProgress = 0;
+  let displayedProgress = 0;
+  let animationFrame = null;
 
-  const updateProgress = () => {
+  const getProgress = () => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const percentage = scrollHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100)) : 0;
-    fill.style.width = percentage + "%";
-    ticking = false;
+    return scrollHeight > 0
+      ? Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100))
+      : 0;
   };
 
-  const requestUpdate = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateProgress);
-      ticking = true;
+  const animateProgress = () => {
+    const difference = targetProgress - displayedProgress;
+    displayedProgress += difference * 0.16;
+
+    if (Math.abs(difference) < 0.05) {
+      displayedProgress = targetProgress;
+      animationFrame = null;
+    } else {
+      animationFrame = window.requestAnimationFrame(animateProgress);
+    }
+
+    fill.style.width = displayedProgress + "%";
+  };
+
+  const updateProgress = () => {
+    targetProgress = getProgress();
+    if (animationFrame === null) {
+      animationFrame = window.requestAnimationFrame(animateProgress);
     }
   };
 
-  window.addEventListener("scroll", requestUpdate, { passive: true });
-  window.addEventListener("resize", requestUpdate, { passive: true });
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress, { passive: true });
   updateProgress();
 }
 

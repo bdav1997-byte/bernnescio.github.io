@@ -8,6 +8,13 @@
   <title>Canto do Cisne — NESCIO</title>
 
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
 </head>
 
 <body>

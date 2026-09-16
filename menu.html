@@ -156,10 +156,10 @@ body.dark-mode .menu-search-input-wrap {
 
 <div class="site-header">
     <a href="index.html" class="home-button" aria-label="Início">
-        <img src="LOGO.png" alt="NESCIO">
+        <img src="LOGO.png" alt="NESCIO" onload="if(localStorage.getItem('nescio-theme')==='dark'){document.body.classList.add('dark-mode');var t=document.getElementById('themeToggle');if(t){t.textContent='LIGHT MODE';t.setAttribute('aria-label','Ativar modo claro');t.setAttribute('aria-pressed','true');}}">
     </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">MENU</button>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar dark mode" aria-pressed="false">DARK MODE</button>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar dark mode" aria-pressed="false" onclick="event.preventDefault();event.stopPropagation();var dark=!document.body.classList.contains('dark-mode');document.body.classList.toggle('dark-mode',dark);localStorage.setItem('nescio-theme',dark?'dark':'light');this.textContent=dark?'LIGHT MODE':'DARK MODE';this.setAttribute('aria-label',dark?'Ativar modo claro':'Ativar dark mode');this.setAttribute('aria-pressed',dark?'true':'false');">DARK MODE</button>
 </div>
 
 <nav class="side-menu" id="sideMenu">

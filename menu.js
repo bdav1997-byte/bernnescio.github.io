@@ -66,10 +66,9 @@ fetch("menu.html")
 function setupMenuSearch(sideMenu) {
   const search = sideMenu.querySelector("#menuSearch");
   const trigger = sideMenu.querySelector("#menuSearchTrigger");
-  const box = sideMenu.querySelector("#menuSearchBox");
   const input = sideMenu.querySelector("#menuSearchInput");
   const results = sideMenu.querySelector("#menuSearchResults");
-  if (!search || !trigger || !box || !input || !results) return;
+  if (!search || !trigger || !input || !results) return;
 
   const entries = Array.from(sideMenu.querySelectorAll(".menu-section a"))
     .filter(link => {
@@ -148,9 +147,8 @@ function setupMenuSearch(sideMenu) {
   };
 
   const closeSearch = () => {
-    if (!box.classList.contains("active")) return;
-    box.classList.remove("active");
-    trigger.hidden = false;
+    if (!search.classList.contains("active")) return;
+    search.classList.remove("active");
     input.value = "";
     results.innerHTML = "";
   };
@@ -158,8 +156,7 @@ function setupMenuSearch(sideMenu) {
   trigger.addEventListener("click", event => {
     event.preventDefault();
     event.stopPropagation();
-    trigger.hidden = true;
-    box.classList.add("active");
+    search.classList.add("active");
     input.value = "";
     results.innerHTML = "";
     window.requestAnimationFrame(() => {
@@ -185,14 +182,14 @@ function setupMenuSearch(sideMenu) {
     results.appendChild(loading);
 
     getSearchIndex().then(indexedEntries => {
-      if (box.classList.contains("active") && input.value.trim() === query) {
+      if (search.classList.contains("active") && input.value.trim() === query) {
         renderResults(query, indexedEntries);
       }
     });
   });
 
   document.addEventListener("click", event => {
-    if (box.classList.contains("active") && !search.contains(event.target)) closeSearch();
+    if (search.classList.contains("active") && !search.contains(event.target)) closeSearch();
   });
 }
 

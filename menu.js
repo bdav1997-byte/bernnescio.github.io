@@ -64,11 +64,9 @@ fetch("menu.html")
   .catch(error => console.error("Erro no menu:", error));
 
 function setupMenuSearch(sideMenu) {
-  const trigger = sideMenu.querySelector("#menuSearchTrigger");
-  const box = sideMenu.querySelector("#menuSearchBox");
-  const input = sideMenu.querySelector("#menuSearchInput");
+  const input = sideMenu.querySelector("#menuSearchTrigger");
   const results = sideMenu.querySelector("#menuSearchResults");
-  if (!trigger || !box || !input || !results) return;
+  if (!input || !results) return;
 
   const entries = Array.from(sideMenu.querySelectorAll(".menu-section a"))
     .filter(link => {
@@ -102,43 +100,21 @@ function setupMenuSearch(sideMenu) {
           const article = doc.querySelector("article");
           const text = article ? article.textContent.replace(/\s+/g, " ").trim() : "";
           const title = doc.querySelector("article h1")?.textContent.trim() || entry.title;
-          const sectionLink = Array.from(sideMenu.querySelectorAll(".menu-section a"))
-            .find(link => link.getAttribute("href") === entry.href);
-          const section = sectionLink?.closest(".menu-section");
-          const category = section?.querySelector(".menu-title")?.textContent.trim() || "";
           return {
             ...entry,
             title,
-            category,
-            text,
             normalizedText: normalise(text),
             normalizedTitle: normalise(title)
           };
         })
         .catch(() => ({
           ...entry,
-          title: entry.title,
-          category: "",
-          text: "",
           normalizedText: "",
           normalizedTitle: normalise(entry.title)
         }))
     ));
 
     return indexPromise;
-  };
-
-  const makeSnippet = (text, query) => {
-    const normalizedQuery = normalise(query);
-    const normalizedText = normalise(text);
-    const position = normalizedText.indexOf(normalizedQuery);
-    if (position === -1) return "";
-
-    const start = Math.max(0, position - 48);
-    const end = Math.min(text.length, position + query.length + 72);
-    const prefix = start > 0 ? "…" : "";
-    const suffix = end < text.length ? "…" : "";
-    return prefix + text.slice(start, end).trim() + suffix;
   };
 
   const renderResults = (query, indexedEntries) => {
@@ -159,71 +135,33 @@ function setupMenuSearch(sideMenu) {
       return;
     }
 
-    const count = document.createElement("div");
-    count.className = "menu-search-count";
-    count.textContent = `${matches.length} ${matches.length === 1 ? "RESULTADO" : "RESULTADOS"}`;
-    results.appendChild(count);
-
     matches.forEach(entry => {
       const link = document.createElement("a");
       link.className = "menu-search-result";
       link.href = entry.href;
-
-      const title = document.createElement("span");
-      title.className = "menu-search-result-title";
-      title.textContent = entry.title;
-      link.appendChild(title);
-
-      if (entry.category) {
-        const category = document.createElement("span");
-        category.className = "menu-search-result-category";
-        category.textContent = entry.category;
-        link.appendChild(category);
-      }
-
-      const snippet = makeSnippet(entry.text, cleanQuery);
-      if (snippet) {
-        const excerpt = document.createElement("span");
-        excerpt.className = "menu-search-result-snippet";
-        excerpt.textContent = snippet;
-        link.appendChild(excerpt);
-      }
-
+      link.textContent = entry.title;
       results.appendChild(link);
     });
   };
 
-  const openSearch = event => {
-    if (event) event.preventDefault();
-    const willOpen = !sideMenu.classList.contains("search-open");
-    sideMenu.classList.toggle("search-open", willOpen);
-    box.hidden = !willOpen;
-    trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
-
-    if (willOpen) {
-      window.setTimeout(() => input.focus(), 50);
-    } else {
-      input.value = "";
-      results.innerHTML = "";
-    }
-  };
-
-  trigger.addEventListener("click", openSearch);
-
   input.addEventListener("input", () => {
     const query = input.value.trim();
     if (!query) {
+      input.classList.remove("searching");
       results.innerHTML = "";
       return;
     }
 
+    input.classList.add("searching");
     results.innerHTML = "";
     const loading = document.createElement("div");
     loading.className = "menu-search-empty";
     loading.textContent = "A procurar…";
     results.appendChild(loading);
 
-    getSearchIndex().then(indexedEntries => renderResults(query, indexedEntries));
+    getSearchIndex().then(indexedEntries => {
+      if (input.value.trim() === query) renderResults(query, indexedEntries);
+    });
   });
 }
 

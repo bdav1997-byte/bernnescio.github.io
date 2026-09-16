@@ -13,6 +13,30 @@ body {
     line-height: 1.7;
 }
 
+/* TRANSIÇÃO SUAVE ENTRE PÁGINAS */
+body.page-enter {
+    animation: pageFadeIn 0.35s ease both;
+}
+
+body.page-exit {
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.page-enter,
+    body.page-exit {
+        animation: none;
+        transition: none;
+        opacity: 1;
+    }
+}
+
 .site-header {
     position: fixed;
     top: 0;

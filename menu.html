@@ -1,20 +1,13 @@
 <style>
 .menu-search{margin:0 0 30px;padding:0;}
-.menu-search-trigger{display:block;width:100%;border:0;padding:0;margin:0;background:none;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:400;letter-spacing:.10em;line-height:1.4;text-align:left;cursor:pointer;appearance:none;-webkit-appearance:none;}
-.menu-search-trigger:hover{text-decoration:underline;}
-.menu-search-input-wrap{display:none;align-items:center;border-bottom:1px solid #000;padding:0 0 5px;}
-.menu-search.active .menu-search-trigger{display:none;}
-.menu-search.active .menu-search-input-wrap{display:flex;}
+.menu-search-input-wrap{display:flex;align-items:center;border-bottom:1px solid #000;padding:0 0 5px;}
 #menuSearchInput{display:block;width:100%;min-width:0;border:0;outline:0;padding:0;margin:0;background:transparent;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:400;letter-spacing:.06em;line-height:1.4;appearance:none;-webkit-appearance:none;-webkit-user-select:text;user-select:text;cursor:text;}
-#menuSearchInput::placeholder{color:#777;opacity:1;}
+#menuSearchInput::placeholder{color:#000;opacity:1;}
 .menu-search-results{margin-top:13px;}
 .menu-search-result{display:block;margin-bottom:12px;color:#000;text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:400;letter-spacing:.06em;line-height:1.45;}
 .menu-search-result:hover{text-decoration:underline;}
 .menu-search-empty{color:#777;font-family:Arial,Helvetica,sans-serif;font-size:9px;letter-spacing:.06em;line-height:1.5;}
-
-a, button, input {
-    -webkit-tap-highlight-color: transparent;
-}
+a,button,input{-webkit-tap-highlight-color:transparent;}
 </style>
 
 <div class="site-header">
@@ -26,9 +19,8 @@ a, button, input {
 
 <nav class="side-menu" id="sideMenu">
     <div class="menu-search" id="menuSearch">
-        <button class="menu-search-trigger" id="menuSearchTrigger" type="button">⌕ PROCURAR</button>
         <div class="menu-search-input-wrap">
-            <input id="menuSearchInput" type="text" autocomplete="off" placeholder="procurar" aria-label="Procurar nos textos">
+            <input id="menuSearchInput" type="text" autocomplete="off" placeholder="⌕ PROCURAR" aria-label="Procurar nos textos">
         </div>
         <div class="menu-search-results" id="menuSearchResults"></div>
     </div>

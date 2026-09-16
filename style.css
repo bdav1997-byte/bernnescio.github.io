@@ -14,66 +14,17 @@ body {
 }
 
 /* INDICADOR DE LEITURA */
-.reading-progress {
-    position: fixed;
-    top: 55px;
-    left: 0;
-    z-index: 1002;
-    width: 100%;
-    height: 2px;
-    background: #E5E5E5;
-    pointer-events: none;
-}
-
-.reading-progress-fill {
-    width: 0;
-    height: 100%;
-    background: #000;
-}
-
-.musas-text .reading-progress-fill {
-    background: #E3BC7D;
-}
+.reading-progress { position:fixed; top:55px; left:0; z-index:1002; width:100%; height:2px; background:#E5E5E5; pointer-events:none; }
+.reading-progress-fill { width:0; height:100%; background:#000; }
+.musas-text .reading-progress-fill { background:#E3BC7D; }
 
 /* TRANSIÇÃO SUAVE ENTRE PÁGINAS */
-body.page-enter {
-    animation: pageFadeIn 0.35s ease both;
-}
+body.page-enter { animation:pageFadeIn .35s ease both; }
+body.page-exit { opacity:0; transition:opacity .22s ease; }
+@keyframes pageFadeIn { from{opacity:0;} to{opacity:1;} }
+@media (prefers-reduced-motion:reduce){body.page-enter,body.page-exit{animation:none;transition:none;opacity:1;}}
 
-body.page-exit {
-    opacity: 0;
-    transition: opacity 0.22s ease;
-}
-
-@keyframes pageFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body.page-enter,
-    body.page-exit {
-        animation: none;
-        transition: none;
-        opacity: 1;
-    }
-}
-
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1001;
-    width: 100%;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    background: #FAFAFA;
-    padding: 0 20px;
-}
-
+.site-header { position:fixed; top:0; left:0; z-index:1001; width:100%; height:55px; display:flex; align-items:center; justify-content:flex-start; gap:12px; background:#FAFAFA; padding:0 20px; }
 .home-button { display:flex; align-items:center; justify-content:center; width:24px; height:24px; text-decoration:none; flex-shrink:0; }
 .home-button img { display:block; width:24px; height:24px; object-fit:contain; }
 .menu-toggle { position:static; width:auto; height:55px; border:0; outline:0; background:#FAFAFA; color:#000; padding:0; margin:0; font-family:Arial,Helvetica,sans-serif; font-size:12px; font-weight:400; letter-spacing:.12em; text-align:left; cursor:pointer; appearance:none; -webkit-appearance:none; }
@@ -108,22 +59,12 @@ body.page-exit {
 .collapsible-title::before { content:"›"; position:absolute; left:0; top:50%; width:10px; font-family:Arial,Helvetica,sans-serif; font-size:16px; font-weight:400; line-height:1; color:#777; transform:translateY(-50%); transform-origin:50% 50%; transition:transform .2s ease; }
 .collapsible-section.expanded .collapsible-title::before { transform:translateY(-50%) rotate(90deg); }
 .collapsible-title::after { content:none; }
-
-.menu-section-content {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
-}
-
-.collapsible-section.expanded .menu-section-content {
-    max-height: 2000px;
-    opacity: 1;
-}
-
+.menu-section-content { max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .25s ease; }
+.collapsible-section.expanded .menu-section-content { max-height:2000px; opacity:1; }
 .side-menu .menu-section a,.side-menu .menu-section a:link,.side-menu .menu-section a:visited { display:block; margin-left:15px; margin-bottom:3px; color:#000; background:transparent; font-family:Arial,Helvetica,sans-serif; font-size:12px; font-weight:400; letter-spacing:.08em; text-decoration:none; }
 .side-menu .menu-section a:hover { text-decoration:underline; }
 .side-menu .menu-section a:active { color:#000; }
+
 main { width:100%; max-width:650px; margin:0 auto; padding:110px 25px 100px; }
 .logo { display:block; width:120px; height:auto; margin:0 auto 80px; }
 .landing-logo { display:block; width:240px; height:auto; margin:0 auto 80px; }
@@ -193,70 +134,45 @@ hr { margin:100px 0; border:0; border-top:1px solid #000; }
     .musas-recording { margin-bottom:60px; }
 }
 
-/* ADAPTAÇÃO APENAS PARA ECRÃS MUITO GRANDES
-   Até 1400px o site mantém exactamente a escala desktop actual. */
-@media (min-width: 1401px) {
-    main {
-        max-width: 700px;
-        padding-top: 125px;
-        padding-bottom: 115px;
-    }
-
-    article h1 {
-        font-size: 23px;
-    }
-
-    article p {
-        font-size: 19px;
-    }
-
-    .logo {
-        width: 128px;
-        margin-bottom: 88px;
-    }
-
-    .musas-text article h1 {
-        font-size: 23px;
-    }
-
-    .musas-entry p {
-        font-size: 19px;
-    }
-
-    .musas-text .logo {
-        width: 90px;
-    }
+/* MONITORES GRANDES: escala progressiva sem alterar desktop normal ou mobile */
+@media (min-width:1401px) {
+    main { max-width:760px; padding-top:130px; padding-bottom:120px; }
+    .back-link { max-width:760px; }
+    article h1 { font-size:24px; margin-bottom:48px; }
+    article p { font-size:20px; line-height:1.78; margin-bottom:30px; }
+    article + article { margin-top:115px; }
+    .logo { width:140px; margin-bottom:90px; }
+    .category-navigation { margin-top:100px; }
+    .musas-text article { max-width:760px; }
+    .musas-text article h1 { max-width:760px; font-size:24px; }
+    .musas-entry p { font-size:20px; line-height:1.82; }
+    .musas-text .logo { width:98px; }
 }
 
-@media (min-width: 1800px) {
-    main {
-        max-width: 750px;
-        padding-top: 135px;
-        padding-bottom: 125px;
-    }
+@media (min-width:1800px) {
+    main { max-width:840px; padding-top:145px; padding-bottom:135px; }
+    .back-link { max-width:840px; }
+    article h1 { font-size:27px; margin-bottom:52px; }
+    article p { font-size:21px; line-height:1.82; margin-bottom:32px; }
+    article + article { margin-top:125px; }
+    .logo { width:155px; margin-bottom:100px; }
+    .category-navigation { margin-top:110px; }
+    .musas-text article { max-width:840px; }
+    .musas-text article h1 { max-width:840px; font-size:27px; }
+    .musas-entry p { font-size:21px; line-height:1.85; }
+    .musas-text .logo { width:108px; }
+}
 
-    article h1 {
-        font-size: 24px;
-    }
-
-    article p {
-        font-size: 20px;
-    }
-
-    .logo {
-        width: 138px;
-        margin-bottom: 96px;
-    }
-
-    .musas-text article h1 {
-        font-size: 24px;
-    }
-
-    .musas-entry p {
-        font-size: 20px;
-    }
-
-    .musas-text .logo {
-        width: 96px;
-    }
+@media (min-width:2400px) {
+    main { max-width:920px; padding-top:160px; padding-bottom:150px; }
+    .back-link { max-width:920px; }
+    article h1 { font-size:29px; margin-bottom:56px; }
+    article p { font-size:22px; line-height:1.84; margin-bottom:34px; }
+    article + article { margin-top:135px; }
+    .logo { width:170px; margin-bottom:110px; }
+    .category-navigation { margin-top:120px; }
+    .musas-text article { max-width:920px; }
+    .musas-text article h1 { max-width:920px; font-size:29px; }
+    .musas-entry p { font-size:22px; line-height:1.86; }
+    .musas-text .logo { width:118px; }
 }

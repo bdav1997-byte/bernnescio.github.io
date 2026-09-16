@@ -1,11 +1,14 @@
 <style>
 a,button,input{-webkit-tap-highlight-color:transparent;}
-
 .theme-toggle{position:absolute;top:0;right:20px;height:55px;border:0;outline:0;padding:0;margin:0;background:transparent;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:400;letter-spacing:.12em;cursor:pointer;appearance:none;-webkit-appearance:none;}
 .theme-toggle:hover{text-decoration:underline;}
 body{transition:background-color .25s ease,color .25s ease;}
-.side-menu{background:#FAFAFA !important;}
-body.dark-mode,body.dark-mode .site-header,body.dark-mode .side-menu{background:#111;color:#F5F5F5;}
+
+/* O menu acompanha SEMPRE o tema escolhido */
+.side-menu{background:#FAFAFA !important;color:#000;}
+.site-header{background:#FAFAFA;}
+body.dark-mode .site-header,
+body.dark-mode .side-menu{background:#111 !important;color:#F5F5F5;}
 body.dark-mode .site-header,body.dark-mode .side-menu{border-color:#333;}
 body.dark-mode .menu-toggle,body.dark-mode .menu-title,body.dark-mode .side-menu .menu-section a,body.dark-mode .side-menu .menu-section a:link,body.dark-mode .side-menu .menu-section a:visited,body.dark-mode .theme-toggle,body.dark-mode .back-link,body.dark-mode article h1,body.dark-mode article p,body.dark-mode .category-nav-link,body.dark-mode .category-nav-index,body.dark-mode .category-index-title,body.dark-mode .category-index-item,body.dark-mode .landing-motto,body.dark-mode .landing-year{color:#F5F5F5;}
 body.dark-mode .collapsible-title::before{color:#999;}

@@ -139,18 +139,18 @@ function setupCategoryNavigation(sideMenu) {
 
     const previous = document.createElement("a");
     previous.className = "category-nav-link category-nav-previous";
-    previous.textContent = "anterior";
+    previous.textContent = "← anterior";
 
     const indexButton = document.createElement("button");
     indexButton.className = "category-nav-index";
     indexButton.type = "button";
-    indexButton.textContent = "O";
+    indexButton.textContent = "índice";
     indexButton.setAttribute("aria-expanded", "false");
-    indexButton.setAttribute("aria-label", "Ver outros textos desta categoria");
+    indexButton.setAttribute("aria-label", "Ver índice desta categoria");
 
     const next = document.createElement("a");
     next.className = "category-nav-link category-nav-next";
-    next.textContent = currentIndex === links.length - 1 ? "Regressar" : "seguinte";
+    next.textContent = currentIndex === links.length - 1 ? "Regressar" : "seguinte →";
 
     if (currentIndex > 0) {
       previous.href = links[currentIndex - 1].getAttribute("href");
@@ -170,6 +170,11 @@ function setupCategoryNavigation(sideMenu) {
     const indexPanel = document.createElement("div");
     indexPanel.className = "category-index-panel";
     indexPanel.hidden = true;
+
+    const categoryTitle = document.createElement("div");
+    categoryTitle.className = "category-index-title";
+    categoryTitle.textContent = section.querySelector(".menu-title")?.textContent.trim() || "Categoria";
+    indexPanel.appendChild(categoryTitle);
 
     links.forEach((link, index) => {
       const item = document.createElement("a");
@@ -244,8 +249,6 @@ function menuToggleAndSectionOpen(sideMenu, section) {
 }
 
 // TRANSIÇÃO SUAVE ENTRE PÁGINAS
-// Interceta apenas links internos do próprio site, sem alterar o comportamento
-// de links externos, âncoras, downloads ou abertura de novas janelas.
 document.addEventListener("click", event => {
   const link = event.target.closest("a");
 

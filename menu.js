@@ -8,6 +8,8 @@ fetch("menu.html", { cache: "no-store" })
     if (!container) return;
     container.innerHTML = data;
 
+    setupTheme();
+
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
 
@@ -63,6 +65,34 @@ fetch("menu.html", { cache: "no-store" })
     document.body.classList.add("page-enter");
   })
   .catch(error => console.error("Erro no menu:", error));
+
+function setupTheme() {
+  const themeToggle = document.getElementById("themeToggle");
+  if (!themeToggle) return;
+
+  const savedTheme = localStorage.getItem("nescio-theme");
+  const isDark = savedTheme === "dark";
+  applyTheme(isDark);
+
+  themeToggle.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    const nextIsDark = !document.body.classList.contains("dark-mode");
+    applyTheme(nextIsDark);
+    localStorage.setItem("nescio-theme", nextIsDark ? "dark" : "light");
+  });
+}
+
+function applyTheme(isDark) {
+  document.body.classList.toggle("dark-mode", isDark);
+
+  const themeToggle = document.getElementById("themeToggle");
+  if (!themeToggle) return;
+
+  themeToggle.textContent = isDark ? "LIGHT MODE" : "DARK MODE";
+  themeToggle.setAttribute("aria-label", isDark ? "Ativar modo claro" : "Ativar dark mode");
+  themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+}
 
 function setupReadingProgress() {
   if (window.location.pathname.split("/").pop() === "index.html" || window.location.pathname.endsWith("/")) return;

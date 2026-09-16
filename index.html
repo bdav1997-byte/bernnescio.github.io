@@ -5,40 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NESCIO</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .landing-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 90px 25px 45px;
+      text-align: center;
+    }
+    .landing-logo {
+      width: 210px;
+      height: auto;
+      margin: 0 0 65px;
+    }
+    .landing-motto {
+      max-width: 850px;
+      margin: 0;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: .025em;
+      line-height: 1.25;
+    }
+    .landing-year {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      width: 100%;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .14em;
+    }
+    @media (max-width: 700px) {
+      .landing-page { padding: 75px 25px 45px; }
+      .landing-logo { width: 175px; margin-bottom: 50px; }
+      .landing-motto { max-width: 340px; font-size: 24px; line-height: 1.3; }
+      .landing-year { bottom: 20px; font-size: 9px; }
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="menu-container"></div>
 
-  <main>
-
+  <main class="landing-page">
     <img src="NESCIOnLOGO.png" class="landing-logo" alt="NESCIO">
-
-    <article>
-
-      <h1>SOBERANIA DA FUTILIDADE</h1>
-
-      <p>O sofrimento é a soberania única com que cada um de nós insiste em martirizar as bases da existência.</p>
-
-      <p>Terias a mesma força para te matares por uma ideia que não te pertence? Sabemos como engolir em seco as palavras que proferimos e que acreditamos não terem peso? Os meus pêsames.</p>
-
-      <p>Não és melhor por seres contido e modesto. Não és melhor por seres alto e revolucionário. Se não acaricias a calçada com a tua testa de ferro, és igualmente fútil. Bate com mais força, ainda não se ouve o cair do pano. A performance tem de continuar porque ganha quem falar mais alto em nome dos restantes.</p>
-
-      <p>Resta saber do pouco que sabes tu. Gasta a raiva que tens de ti mesmo nos outros. É melhor se fores igual a todos os outros atores. O pano ainda não caiu, só tu podes continuar.</p>
-
-      <p>Que amor próprio supérfluo, que falta de coragem temos para acordar todos os dias. Porque é que todos temos medo de admitir o que nos define? A cobardia coletiva é a doença operária, já não são atores, são peças de betão. Fábricas de papel miudinho onde a única leveza está nos crânios que coabitam em pares que só refletem e ampliam aquilo que eles próprios são. Magoa os teus amigos, serás melhor amanhã se ferires as suas fraquezas, pois elas são as tuas também.</p>
-
-      <p>Se te escapa a compreensão, sê cruel, destrói o próximo pois é bem mais fácil discutir com um morto as opiniões ainda trémulas dos vivos. Estamos cada vez mais perto de ser deuses à medida que nos afundamos numa solidão absoluta. Ninguém cede coisa alguma, expecto do amor que se tem por corpos alheios: ai de alguém seja ousado a amar o seu.</p>
-
-      <p>Mais um leilão. O próximo lance é um coração vazio. O leiloeiro elucida os licitantes de que está partido porque o seu proprietário investiu no soberbo ato de amar alguém quando não se amava a si próprio. Quantos mais, melhor. Quanto mais se vê disto, maior valor se tem. Quem dá mais?</p>
-
-      <p>Podíamos estar a noite toda, aqui mesmo, sentados no escuro dos nossos ecrãs a dar exemplos ou calúnias do que manda o estado único desta triste realeza, porém, o pano caiu e o espetáculo tem de continuar.</p>
-
-      <p>Não compreendes? Claro que não: que futilidade seria ser-se inteligente e ainda assim saber de que tanta gente se perde por não saber no que se deve perder.</p>
-
-    </article>
-
+    <h1 class="landing-motto">O fim é apenas outra forma de permanecer</h1>
+    <div class="landing-year">NESCIO - 2026</div>
   </main>
 
   <script src="menu.js"></script>

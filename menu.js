@@ -64,9 +64,12 @@ fetch("menu.html")
   .catch(error => console.error("Erro no menu:", error));
 
 function setupMenuSearch(sideMenu) {
-  const input = sideMenu.querySelector("#menuSearchTrigger");
+  const search = sideMenu.querySelector("#menuSearch");
+  const trigger = sideMenu.querySelector("#menuSearchTrigger");
+  const box = sideMenu.querySelector("#menuSearchBox");
+  const input = sideMenu.querySelector("#menuSearchInput");
   const results = sideMenu.querySelector("#menuSearchResults");
-  if (!input || !results) return;
+  if (!search || !trigger || !box || !input || !results) return;
 
   const entries = Array.from(sideMenu.querySelectorAll(".menu-section a"))
     .filter(link => {
@@ -144,15 +147,30 @@ function setupMenuSearch(sideMenu) {
     });
   };
 
+  const closeSearch = () => {
+    if (box.hidden) return;
+    box.hidden = true;
+    trigger.hidden = false;
+    input.value = "";
+    results.innerHTML = "";
+  };
+
+  trigger.addEventListener("click", event => {
+    event.preventDefault();
+    trigger.hidden = true;
+    box.hidden = false;
+    input.value = "";
+    results.innerHTML = "";
+    window.setTimeout(() => input.focus(), 0);
+  });
+
   input.addEventListener("input", () => {
     const query = input.value.trim();
     if (!query) {
-      input.classList.remove("searching");
       results.innerHTML = "";
       return;
     }
 
-    input.classList.add("searching");
     results.innerHTML = "";
     const loading = document.createElement("div");
     loading.className = "menu-search-empty";
@@ -160,8 +178,12 @@ function setupMenuSearch(sideMenu) {
     results.appendChild(loading);
 
     getSearchIndex().then(indexedEntries => {
-      if (input.value.trim() === query) renderResults(query, indexedEntries);
+      if (!box.hidden && input.value.trim() === query) renderResults(query, indexedEntries);
     });
+  });
+
+  document.addEventListener("click", event => {
+    if (!box.hidden && !search.contains(event.target)) closeSearch();
   });
 }
 

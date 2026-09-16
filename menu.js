@@ -44,7 +44,6 @@ fetch("menu.html", { cache: "no-store" })
       });
 
       setupCategoryNavigation(sideMenu);
-      setupMenuSearch(sideMenu);
     }
 
     setupReadingProgress();
@@ -64,102 +63,6 @@ fetch("menu.html", { cache: "no-store" })
     document.body.classList.add("page-enter");
   })
   .catch(error => console.error("Erro no menu:", error));
-
-function setupMenuSearch(sideMenu) {
-  const search = sideMenu.querySelector("#menuSearch");
-  const input = sideMenu.querySelector("#menuSearchInput");
-  const results = sideMenu.querySelector("#menuSearchResults");
-  if (!search || !input || !results) return;
-
-  const entries = Array.from(sideMenu.querySelectorAll(".menu-section a"))
-    .filter(link => {
-      const href = link.getAttribute("href");
-      return href && !href.startsWith("http") && !href.startsWith("#");
-    })
-    .map(link => ({ title: link.textContent.trim(), href: link.getAttribute("href") }));
-
-  let indexPromise = null;
-
-  const normalise = text => String(text || "")
-    .toLocaleLowerCase("pt-PT")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-  const getSearchIndex = () => {
-    if (indexPromise) return indexPromise;
-    indexPromise = Promise.all(entries.map(entry =>
-      fetch(entry.href, { cache: "no-store" })
-        .then(response => {
-          if (!response.ok) throw new Error("Página indisponível");
-          return response.text();
-        })
-        .then(html => {
-          const doc = new DOMParser().parseFromString(html, "text/html");
-          const article = doc.querySelector("article");
-          const text = article ? article.textContent.replace(/\s+/g, " ").trim() : "";
-          const title = doc.querySelector("article h1")?.textContent.trim() || entry.title;
-          return { ...entry, title, normalizedText: normalise(text), normalizedTitle: normalise(title) };
-        })
-        .catch(() => ({ ...entry, normalizedText: "", normalizedTitle: normalise(entry.title) }))
-    ));
-    return indexPromise;
-  };
-
-  const renderResults = query => {
-    results.innerHTML = "";
-    const normalizedQuery = normalise(query.trim());
-    if (!normalizedQuery) return;
-
-    getSearchIndex().then(indexedEntries => {
-      if (input.value.trim() !== query.trim()) return;
-      const matches = indexedEntries.filter(entry =>
-        entry.normalizedText.includes(normalizedQuery) || entry.normalizedTitle.includes(normalizedQuery)
-      );
-
-      if (!matches.length) {
-        const empty = document.createElement("div");
-        empty.className = "menu-search-empty";
-        empty.textContent = "Nenhum texto encontrado.";
-        results.appendChild(empty);
-        return;
-      }
-
-      matches.forEach(entry => {
-        const link = document.createElement("a");
-        link.className = "menu-search-result";
-        link.href = entry.href;
-        link.textContent = entry.title;
-        results.appendChild(link);
-      });
-    });
-  };
-
-  input.addEventListener("focus", () => {
-    input.placeholder = "procurar";
-  });
-
-  input.addEventListener("input", () => {
-    const query = input.value.trim();
-    if (!query) {
-      results.innerHTML = "";
-      return;
-    }
-    renderResults(query);
-  });
-
-  input.addEventListener("blur", () => {
-    window.setTimeout(() => {
-      if (document.activeElement !== input) {
-        if (!input.value.trim()) input.placeholder = "⌕ PROCURAR";
-        if (!search.contains(document.activeElement)) {
-          input.value = "";
-          results.innerHTML = "";
-          input.placeholder = "⌕ PROCURAR";
-        }
-      }
-    }, 80);
-  });
-}
 
 function setupReadingProgress() {
   if (window.location.pathname.split("/").pop() === "index.html" || window.location.pathname.endsWith("/")) return;

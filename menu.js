@@ -67,16 +67,28 @@ fetch("menu.html", { cache: "no-store" })
   .catch(error => console.error("Erro no menu:", error));
 
 function setupTheme() {
+  const themeToggle = document.getElementById("themeToggle");
+  if (!themeToggle) return;
+
+  const applyTheme = theme => {
+    const isDark = theme === "dark";
+    document.body.classList.toggle("dark-mode", isDark);
+    themeToggle.textContent = isDark ? "LIGHT MODE" : "DARK MODE";
+    themeToggle.setAttribute("aria-label", isDark ? "Ativar modo claro" : "Ativar dark mode");
+    themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+  };
+
   const savedTheme = localStorage.getItem("nescio-theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-    const themeToggle = document.getElementById("themeToggle");
-    if (themeToggle) {
-      themeToggle.textContent = "LIGHT MODE";
-      themeToggle.setAttribute("aria-label", "Ativar modo claro");
-      themeToggle.setAttribute("aria-pressed", "true");
-    }
-  }
+  applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+  themeToggle.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+    localStorage.setItem("nescio-theme", nextTheme);
+    applyTheme(nextTheme);
+  });
 }
 
 function setupReadingProgress() {

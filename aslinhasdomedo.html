@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AS LINHAS DO MEDO — NESCIO</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try {
+                document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+            } catch (error) {}
+        })();
+    </script>
 </head>
 <body>
 

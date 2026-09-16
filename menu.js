@@ -41,23 +41,30 @@ fetch("menu.html", { cache: "no-store" })
 function setupTheme() {
   const themeToggle = document.getElementById("themeToggle");
   if (!themeToggle) return;
+
   const applyTheme = theme => {
     const isDark = theme === "dark";
+    document.documentElement.classList.toggle("dark-mode", isDark);
     document.body.classList.toggle("dark-mode", isDark);
     themeToggle.textContent = isDark ? "LIGHT MODE" : "DARK MODE";
     themeToggle.setAttribute("aria-label", isDark ? "Ativar modo claro" : "Ativar dark mode");
     themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
   };
+
   let savedTheme = "light";
-  try { savedTheme = localStorage.getItem("nescio-theme") === "dark" ? "dark" : "light"; } catch (error) {}
+  try {
+    savedTheme = localStorage.getItem("nescio-theme") === "dark" ? "dark" : "light";
+  } catch (error) {}
+
   applyTheme(savedTheme);
+
   themeToggle.addEventListener("click", event => {
     event.preventDefault();
-    event.stopImmediatePropagation();
-    const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+    event.stopPropagation();
+    const nextTheme = document.documentElement.classList.contains("dark-mode") ? "light" : "dark";
     try { localStorage.setItem("nescio-theme", nextTheme); } catch (error) {}
     applyTheme(nextTheme);
-  }, true);
+  });
 }
 
 function setupReadingProgress() {

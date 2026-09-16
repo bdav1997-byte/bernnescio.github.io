@@ -82,7 +82,7 @@ function setupMenuSearch(sideMenu) {
 
   let indexPromise = null;
 
-  const normalise = text => text
+  const normalise = text => String(text || "")
     .toLocaleLowerCase("pt-PT")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
@@ -91,21 +91,38 @@ function setupMenuSearch(sideMenu) {
     if (indexPromise) return indexPromise;
 
     indexPromise = Promise.all(entries.map(entry =>
-      fetch(entry.href)
-        .then(response => response.ok ? response.text() : "")
+      fetch(entry.href, { cache: "no-store" })
+        .then(response => {
+          if (!response.ok) throw new Error("Página indisponível");
+          return response.text();
+        })
         .then(html => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, "text/html");
           const article = doc.querySelector("article");
-          const text = article ? article.innerText.replace(/\s+/g, " ").trim() : "";
+          const text = article ? article.textContent.replace(/\s+/g, " ").trim() : "";
           const title = doc.querySelector("article h1")?.textContent.trim() || entry.title;
-          const section = Array.from(sideMenu.querySelectorAll(".menu-section")).find(section =>
-            section.contains(Array.from(section.querySelectorAll("a")).find(link => link.getAttribute("href") === entry.href))
-          );
+          const sectionLink = Array.from(sideMenu.querySelectorAll(".menu-section a"))
+            .find(link => link.getAttribute("href") === entry.href);
+          const section = sectionLink?.closest(".menu-section");
           const category = section?.querySelector(".menu-title")?.textContent.trim() || "";
-          return { ...entry, title, category, text, normalizedText: normalise(text), normalizedTitle: normalise(title) };
+          return {
+            ...entry,
+            title,
+            category,
+            text,
+            normalizedText: normalise(text),
+            normalizedTitle: normalise(title)
+          };
         })
-        .catch(() => ({ ...entry, title: entry.title, category: "", text: "", normalizedText: "", normalizedTitle: normalise(entry.title) }))
+        .catch(() => ({
+          ...entry,
+          title: entry.title,
+          category: "",
+          text: "",
+          normalizedText: "",
+          normalizedTitle: normalise(entry.title)
+        }))
     ));
 
     return indexPromise;
@@ -176,11 +193,13 @@ function setupMenuSearch(sideMenu) {
     });
   };
 
-  const openSearch = () => {
-    const willOpen = box.hidden;
+  const openSearch = event => {
+    if (event) event.preventDefault();
+    const willOpen = !sideMenu.classList.contains("search-open");
+    sideMenu.classList.toggle("search-open", willOpen);
     box.hidden = !willOpen;
     trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
-    sideMenu.classList.toggle("search-open", willOpen);
+
     if (willOpen) {
       window.setTimeout(() => input.focus(), 50);
     } else {
@@ -189,10 +208,7 @@ function setupMenuSearch(sideMenu) {
     }
   };
 
-  trigger.addEventListener("click", event => {
-    event.preventDefault();
-    openSearch();
-  });
+  trigger.addEventListener("click", openSearch);
 
   input.addEventListener("input", () => {
     const query = input.value.trim();

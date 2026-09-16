@@ -67,31 +67,16 @@ fetch("menu.html", { cache: "no-store" })
   .catch(error => console.error("Erro no menu:", error));
 
 function setupTheme() {
-  const themeToggle = document.getElementById("themeToggle");
-  if (!themeToggle) return;
-
   const savedTheme = localStorage.getItem("nescio-theme");
-  const isDark = savedTheme === "dark";
-  applyTheme(isDark);
-
-  themeToggle.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
-    const nextIsDark = !document.body.classList.contains("dark-mode");
-    applyTheme(nextIsDark);
-    localStorage.setItem("nescio-theme", nextIsDark ? "dark" : "light");
-  });
-}
-
-function applyTheme(isDark) {
-  document.body.classList.toggle("dark-mode", isDark);
-
-  const themeToggle = document.getElementById("themeToggle");
-  if (!themeToggle) return;
-
-  themeToggle.textContent = isDark ? "LIGHT MODE" : "DARK MODE";
-  themeToggle.setAttribute("aria-label", isDark ? "Ativar modo claro" : "Ativar dark mode");
-  themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+      themeToggle.textContent = "LIGHT MODE";
+      themeToggle.setAttribute("aria-label", "Ativar modo claro");
+      themeToggle.setAttribute("aria-pressed", "true");
+    }
+  }
 }
 
 function setupReadingProgress() {

@@ -33,7 +33,24 @@ fetch("menu.html", { cache: "no-store" })
         sideMenu.classList.remove("open"); menuToggle.textContent = "MENU"; menuToggle.setAttribute("aria-expanded", "false");
       }));
       sideMenu.querySelectorAll(".collapsible-title").forEach(title => {
-        const toggleSection = () => { const section = title.closest(".collapsible-section"); const isOpen = section.classList.toggle("expanded"); title.setAttribute("aria-expanded", isOpen ? "true" : "false"); };
+        const toggleSection = () => {
+          const section = title.closest(".collapsible-section");
+          const content = section.querySelector(".menu-section-content");
+          const isOpen = !section.classList.contains("expanded");
+
+          if (isOpen) {
+            section.classList.add("expanded");
+            title.setAttribute("aria-expanded", "true");
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            requestAnimationFrame(() => {
+              section.classList.remove("expanded");
+              title.setAttribute("aria-expanded", "false");
+              content.style.maxHeight = "0px";
+            });
+          }
+        };
         title.addEventListener("click", toggleSection);
         title.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggleSection(); } });
       });

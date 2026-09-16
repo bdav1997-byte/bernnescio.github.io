@@ -148,8 +148,8 @@ function setupMenuSearch(sideMenu) {
   };
 
   const closeSearch = () => {
-    if (box.hidden) return;
-    box.hidden = true;
+    if (!box.classList.contains("active")) return;
+    box.classList.remove("active");
     trigger.hidden = false;
     input.value = "";
     results.innerHTML = "";
@@ -157,12 +157,19 @@ function setupMenuSearch(sideMenu) {
 
   trigger.addEventListener("click", event => {
     event.preventDefault();
+    event.stopPropagation();
     trigger.hidden = true;
-    box.hidden = false;
+    box.classList.add("active");
     input.value = "";
     results.innerHTML = "";
-    window.setTimeout(() => input.focus(), 0);
+    window.requestAnimationFrame(() => {
+      input.focus();
+      input.select();
+    });
   });
+
+  input.addEventListener("click", event => event.stopPropagation());
+  input.addEventListener("keydown", event => event.stopPropagation());
 
   input.addEventListener("input", () => {
     const query = input.value.trim();
@@ -178,12 +185,14 @@ function setupMenuSearch(sideMenu) {
     results.appendChild(loading);
 
     getSearchIndex().then(indexedEntries => {
-      if (!box.hidden && input.value.trim() === query) renderResults(query, indexedEntries);
+      if (box.classList.contains("active") && input.value.trim() === query) {
+        renderResults(query, indexedEntries);
+      }
     });
   });
 
   document.addEventListener("click", event => {
-    if (!box.hidden && !search.contains(event.target)) closeSearch();
+    if (box.classList.contains("active") && !search.contains(event.target)) closeSearch();
   });
 }
 

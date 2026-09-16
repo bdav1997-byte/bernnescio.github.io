@@ -1,215 +1,48 @@
 <style>
 a,button,input{-webkit-tap-highlight-color:transparent;}
 
-.theme-toggle {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    height: 55px;
-    border: 0;
-    outline: 0;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    color: #000;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: .12em;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-.theme-toggle:hover { text-decoration: underline; }
-
-body {
-    transition: background-color .25s ease, color .25s ease;
-}
-
-/* LIGHT MODE: o menu deve integrar-se no fundo da página */
-.side-menu,
-.site-header,
-.menu-toggle {
-    background: transparent;
-}
-
-body.dark-mode,
-body.dark-mode .site-header,
-body.dark-mode .side-menu {
-    background: #111;
-    color: #F5F5F5;
-}
-
-body.dark-mode .site-header,
-body.dark-mode .side-menu {
-    border-color: #333;
-}
-
-body.dark-mode .menu-toggle,
-body.dark-mode .menu-title,
-body.dark-mode .side-menu .menu-section a,
-body.dark-mode .side-menu .menu-section a:link,
-body.dark-mode .side-menu .menu-section a:visited,
-body.dark-mode .theme-toggle,
-body.dark-mode .back-link,
-body.dark-mode article h1,
-body.dark-mode article p,
-body.dark-mode .category-nav-link,
-body.dark-mode .category-nav-index,
-body.dark-mode .category-index-title,
-body.dark-mode .category-index-item,
-body.dark-mode .landing-motto,
-body.dark-mode .landing-year {
-    color: #F5F5F5;
-}
-
-body.dark-mode .collapsible-title::before {
-    color: #999;
-}
-
-body.dark-mode .reading-progress {
-    background: #333;
-}
-
-body.dark-mode .reading-progress-fill {
-    background: #F5F5F5;
-}
-
-/* Nas páginas Musas, a linha deve ser sempre dourada */
-.musas-text .reading-progress-fill {
-    background: #E3BC7D !important;
-}
-
-body.dark-mode .separator,
-body.dark-mode hr,
-body.dark-mode .category-navigation {
-    border-color: #F5F5F5;
-    background-color: transparent;
-}
-
-body.dark-mode .category-navigation {
-    border-top-color: #F5F5F5;
-}
-
-body.dark-mode .category-index-panel {
-    background: #111;
-    border-color: #F5F5F5;
-    box-shadow: 0 8px 24px rgba(0,0,0,.35);
-}
-
-body.dark-mode .category-index-title {
-    border-bottom-color: #333;
-}
-
-body.dark-mode .back-to-top {
-    background: #F5F5F5;
-    color: #111;
-    border-color: #F5F5F5;
-}
-
-body.dark-mode .back-to-top:hover {
-    background: #111;
-    color: #F5F5F5;
-}
-
-body.dark-mode .home-button img,
-body.dark-mode .logo,
-body.dark-mode .landing-logo {
-    filter: invert(1);
-}
-
-body.dark-mode .musas-meta {
-    border-bottom-color: #333;
-}
-
-body.dark-mode .musas-entry::before {
-    background: #444;
-}
-
-body.dark-mode .musas-time {
-    background: #111;
-}
-
-body.dark-mode .musas-recording {
-    color: #999;
-}
-
-body.dark-mode .menu-search-icon,
-body.dark-mode .menu-search-count,
-body.dark-mode .menu-search-result-category,
-body.dark-mode .menu-search-empty {
-    color: #999;
-}
-
-body.dark-mode #menuSearchInput {
-    color: #F5F5F5;
-}
-
-body.dark-mode #menuSearchInput::placeholder {
-    color: #777;
-}
-
-body.dark-mode .menu-search-input-wrap {
-    border-bottom-color: #F5F5F5;
-}
-
-@media (max-width: 700px) {
-    .theme-toggle {
-        right: 16px;
-        font-size: 9px;
-    }
-}
+.theme-toggle{position:absolute;top:0;right:20px;height:55px;border:0;outline:0;padding:0;margin:0;background:transparent;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:400;letter-spacing:.12em;cursor:pointer;appearance:none;-webkit-appearance:none;}
+.theme-toggle:hover{text-decoration:underline;}
+body{transition:background-color .25s ease,color .25s ease;}
+.side-menu{background:#FAFAFA !important;}
+body.dark-mode,body.dark-mode .site-header,body.dark-mode .side-menu{background:#111;color:#F5F5F5;}
+body.dark-mode .site-header,body.dark-mode .side-menu{border-color:#333;}
+body.dark-mode .menu-toggle,body.dark-mode .menu-title,body.dark-mode .side-menu .menu-section a,body.dark-mode .side-menu .menu-section a:link,body.dark-mode .side-menu .menu-section a:visited,body.dark-mode .theme-toggle,body.dark-mode .back-link,body.dark-mode article h1,body.dark-mode article p,body.dark-mode .category-nav-link,body.dark-mode .category-nav-index,body.dark-mode .category-index-title,body.dark-mode .category-index-item,body.dark-mode .landing-motto,body.dark-mode .landing-year{color:#F5F5F5;}
+body.dark-mode .collapsible-title::before{color:#999;}
+body.dark-mode .reading-progress{background:#333;}
+body.dark-mode .reading-progress-fill{background:#F5F5F5;}
+.musas-text .reading-progress-fill{background:#E3BC7D !important;}
+body.dark-mode .separator,body.dark-mode hr,body.dark-mode .category-navigation{border-color:#F5F5F5;background-color:transparent;}
+body.dark-mode .category-navigation{border-top-color:#F5F5F5;}
+body.dark-mode .category-index-panel{background:#111;border-color:#F5F5F5;box-shadow:0 8px 24px rgba(0,0,0,.35);}
+body.dark-mode .category-index-title{border-bottom-color:#333;}
+body.dark-mode .back-to-top{background:#F5F5F5;color:#111;border-color:#F5F5F5;}
+body.dark-mode .back-to-top:hover{background:#111;color:#F5F5F5;}
+body.dark-mode .home-button img,body.dark-mode .logo,body.dark-mode .landing-logo{filter:invert(1);}
+body.dark-mode .musas-meta{border-bottom-color:#333;}
+body.dark-mode .musas-entry::before{background:#444;}
+body.dark-mode .musas-time{background:#111;}
+body.dark-mode .musas-recording{color:#999;}
+body.dark-mode .menu-search-icon,body.dark-mode .menu-search-count,body.dark-mode .menu-search-result-category,body.dark-mode .menu-search-empty{color:#999;}
+body.dark-mode #menuSearchInput{color:#F5F5F5;}
+body.dark-mode #menuSearchInput::placeholder{color:#777;}
+body.dark-mode .menu-search-input-wrap{border-bottom-color:#F5F5F5;}
+@media(max-width:700px){.theme-toggle{right:16px;font-size:9px;}}
 </style>
 
 <div class="site-header">
-    <a href="index.html" class="home-button" aria-label="Início">
-        <img src="LOGO.png" alt="NESCIO">
-    </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">MENU</button>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar dark mode" aria-pressed="false">DARK MODE</button>
+<a href="index.html" class="home-button" aria-label="Início"><img src="LOGO.png" alt="NESCIO"></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">MENU</button>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar dark mode" aria-pressed="false">DARK MODE</button>
 </div>
 
 <nav class="side-menu" id="sideMenu">
-    <div class="menu-section">
-        <div class="menu-title">TEXTOS</div>
-        <a href="soberaniadafutilidade.html">SOBERANIA DA FUTILIDADE</a>
-    </div>
-
-    <div class="menu-section collapsible-section">
-        <div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">ATÉ OS AMIGOS SÃO MUSAS</div>
-        <div class="menu-section-content">
-            <a href="manifestodoinssatisfeito.html">MANIFESTO DO INSATISFEITO</a>
-            <a href="rejeicao.html">REJEIÇÃO</a>
-            <a href="umtextosemvirgulas.html">UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a>
-            <a href="putasecabroes.html">PUTAS E CABRÕES</a>
-            <a href="poucoesperodepoucoespertos.html">POUCO ESPERO DE POUCO ESPERTOS</a>
-        </div>
-    </div>
-
-    <div class="menu-section collapsible-section">
-        <div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">REISSUE</div>
-        <div class="menu-section-content">
-            <a href="sofia.html">SOFIA</a>
-            <a href="grito.html">GRITO</a>
-            <a href="musa.html">MUSA</a>
-            <a href="pandora.html">PANDORA</a>
-            <a href="cantodocisne.html">CANTO DO CISNE</a>
-            <a href="umtextoqueescrevicomfrio.html">UM TEXTO QUE ESCREVI COM FRIO</a>
-            <a href="sosemorretresvezes.html">SÓ SE MORRE TRÊS VEZES</a>
-            <a href="joker.html">JOKER</a>
-            <a href="anarquiadelemures.html">ANARQUIA DE LEMURES</a>
-            <a href="medusadecal.html">MEDUSA DE CAL</a>
-            <a href="utopiadelemures.html">UTOPIA DE LEMURES</a>
-            <a href="aslinhasdomedo.html">AS LINHAS DO MEDO</a>
-            <a href="racionalizacaodamaquina.html">RACIONALIZAÇÃO DA MÁQUINA</a>
-        </div>
-    </div>
-
-    <div class="menu-section collapsible-section">
-        <div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">OUTROS PROJECTOS</div>
-        <div class="menu-section-content">
-            <a href="https://bernnescio.wixstudio.com/n-e-s-c-i-o" target="_blank" rel="noopener noreferrer">NA ESSÊNCIA, SONHOS CONSTROEM IMENSIDÕES OCULTAS</a>
-        </div>
-    </div>
+<div class="menu-section"><div class="menu-title">TEXTOS</div><a href="soberaniadafutilidade.html">SOBERANIA DA FUTILIDADE</a></div>
+<div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">ATÉ OS AMIGOS SÃO MUSAS</div><div class="menu-section-content">
+<a href="manifestodoinssatisfeito.html">MANIFESTO DO INSATISFEITO</a><a href="rejeicao.html">REJEIÇÃO</a><a href="umtextosemvirgulas.html">UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a><a href="putasecabroes.html">PUTAS E CABRÕES</a><a href="poucoesperodepoucoespertos.html">POUCO ESPERO DE POUCO ESPERTOS</a>
+</div></div>
+<div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">REISSUE</div><div class="menu-section-content">
+<a href="sofia.html">SOFIA</a><a href="grito.html">GRITO</a><a href="musa.html">MUSA</a><a href="pandora.html">PANDORA</a><a href="cantodocisne.html">CANTO DO CISNE</a><a href="umtextoqueescrevicomfrio.html">UM TEXTO QUE ESCREVI COM FRIO</a><a href="sosemorretresvezes.html">SÓ SE MORRE TRÊS VEZES</a><a href="joker.html">JOKER</a><a href="anarquiadelemures.html">ANARQUIA DE LEMURES</a><a href="medusadecal.html">MEDUSA DE CAL</a><a href="utopiadelemures.html">UTOPIA DE LEMURES</a><a href="aslinhasdomedo.html">AS LINHAS DO MEDO</a><a href="racionalizacaodamaquina.html">RACIONALIZAÇÃO DA MÁQUINA</a>
+</div></div>
+<div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">OUTROS PROJECTOS</div><div class="menu-section-content"><a href="https://bernnescio.wixstudio.com/n-e-s-c-i-o" target="_blank" rel="noopener noreferrer">NA ESSÊNCIA, SONHOS CONSTROEM IMENSIDÕES OCULTAS</a></div></div>
 </nav>

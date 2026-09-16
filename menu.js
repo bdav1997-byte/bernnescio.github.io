@@ -1,18 +1,11 @@
 fetch("menu.html")
   .then(response => {
-    if (!response.ok) {
-      throw new Error("Não foi possível carregar o menu.");
-    }
+    if (!response.ok) throw new Error("Não foi possível carregar o menu.");
     return response.text();
   })
   .then(data => {
-
     const container = document.getElementById("menu-container");
-
-    if (!container) {
-      return;
-    }
-
+    if (!container) return;
     container.innerHTML = data;
 
     const menuToggle = document.getElementById("menuToggle");
@@ -20,53 +13,32 @@ fetch("menu.html")
 
     if (menuToggle && sideMenu) {
       menuToggle.addEventListener("click", () => {
-
         const isOpen = sideMenu.classList.toggle("open");
-
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          isOpen ? "true" : "false"
-        );
-
+        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       });
 
       sideMenu.querySelectorAll("a").forEach(link => {
-
         link.addEventListener("click", () => {
-
           sideMenu.classList.remove("open");
-
           menuToggle.textContent = "MENU";
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
+          menuToggle.setAttribute("aria-expanded", "false");
         });
-
       });
 
       sideMenu.querySelectorAll(".collapsible-title").forEach(title => {
-
         const toggleSection = () => {
           const section = title.closest(".collapsible-section");
           const isOpen = section.classList.toggle("expanded");
-
           title.setAttribute("aria-expanded", isOpen ? "true" : "false");
         };
-
         title.addEventListener("click", toggleSection);
-
         title.addEventListener("keydown", event => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             toggleSection();
           }
         });
-
       });
 
       setupCategoryNavigation(sideMenu);
@@ -80,27 +52,13 @@ fetch("menu.html")
     backToTop.innerHTML = "↑";
     document.body.appendChild(backToTop);
 
-    const updateBackToTop = () => {
-      backToTop.classList.toggle("visible", window.scrollY > 250);
-    };
-
+    const updateBackToTop = () => backToTop.classList.toggle("visible", window.scrollY > 250);
     window.addEventListener("scroll", updateBackToTop, { passive: true });
-
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
     updateBackToTop();
-
     document.body.classList.add("page-enter");
-
   })
-  .catch(error => {
-    console.error("Erro no menu:", error);
-  });
+  .catch(error => console.error("Erro no menu:", error));
 
 function setupCategoryNavigation(sideMenu) {
   const currentFile = window.location.pathname.split("/").pop() || "index.html";
@@ -113,25 +71,18 @@ function setupCategoryNavigation(sideMenu) {
         return href && !href.startsWith("http") && !href.startsWith("#");
       });
 
-    if (!links.length) {
-      return;
-    }
+    if (!links.length) return;
 
     const currentIndex = links.findIndex(link => {
       const href = link.getAttribute("href");
       return href && href.split("/").pop() === currentFile;
     });
 
-    if (currentIndex === -1) {
-      return;
-    }
+    if (currentIndex === -1) return;
 
     const main = document.querySelector("main");
     const article = main && main.querySelector("article");
-
-    if (!article || document.querySelector(".category-navigation")) {
-      return;
-    }
+    if (!article || document.querySelector(".category-navigation")) return;
 
     const navigation = document.createElement("nav");
     navigation.className = "category-navigation";
@@ -150,7 +101,8 @@ function setupCategoryNavigation(sideMenu) {
 
     const next = document.createElement("a");
     next.className = "category-nav-link category-nav-next";
-    next.textContent = currentIndex === links.length - 1 ? "Regressar" : "seguinte →";
+    const isLast = currentIndex === links.length - 1;
+    next.textContent = isLast ? "Regressar →" : "seguinte →";
 
     if (currentIndex > 0) {
       previous.href = links[currentIndex - 1].getAttribute("href");
@@ -160,11 +112,11 @@ function setupCategoryNavigation(sideMenu) {
       previous.tabIndex = -1;
     }
 
-    if (currentIndex < links.length - 1) {
+    if (!isLast) {
       next.href = links[currentIndex + 1].getAttribute("href");
     } else {
-      next.href = "#";
-      next.classList.add("category-nav-return");
+      // No último texto de qualquer categoria, "Regressar" leva sempre à landing page.
+      next.href = "index.html";
     }
 
     const indexPanel = document.createElement("div");
@@ -181,12 +133,10 @@ function setupCategoryNavigation(sideMenu) {
       item.href = link.getAttribute("href");
       item.textContent = link.textContent.trim();
       item.className = "category-index-item";
-
       if (index === currentIndex) {
         item.classList.add("current");
         item.setAttribute("aria-current", "page");
       }
-
       indexPanel.appendChild(item);
     });
 
@@ -204,97 +154,31 @@ function setupCategoryNavigation(sideMenu) {
       navigation.classList.toggle("index-open", willOpen);
     });
 
-    indexPanel.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", closeIndex);
-    });
-
-    if (currentIndex === links.length - 1) {
-      next.addEventListener("click", event => {
-        event.preventDefault();
-
-        if (menuToggleAndSectionOpen(sideMenu, section)) {
-          closeIndex();
-        }
-      });
-    }
+    indexPanel.querySelectorAll("a").forEach(link => link.addEventListener("click", closeIndex));
 
     navigation.appendChild(previous);
     navigation.appendChild(indexButton);
     navigation.appendChild(next);
     navigation.appendChild(indexPanel);
-
     article.insertAdjacentElement("afterend", navigation);
   });
-}
-
-function menuToggleAndSectionOpen(sideMenu, section) {
-  const menuToggle = document.getElementById("menuToggle");
-  const title = section.querySelector(".collapsible-title");
-
-  if (title && !section.classList.contains("expanded")) {
-    section.classList.add("expanded");
-    title.setAttribute("aria-expanded", "true");
-  }
-
-  if (sideMenu && !sideMenu.classList.contains("open")) {
-    sideMenu.classList.add("open");
-
-    if (menuToggle) {
-      menuToggle.textContent = "FECHAR";
-      menuToggle.setAttribute("aria-expanded", "true");
-    }
-  }
-
-  return true;
 }
 
 // TRANSIÇÃO SUAVE ENTRE PÁGINAS
 document.addEventListener("click", event => {
   const link = event.target.closest("a");
+  if (!link) return;
 
-  if (!link) {
-    return;
-  }
-
-  if (
-    event.defaultPrevented ||
-    event.button !== 0 ||
-    event.metaKey ||
-    event.ctrlKey ||
-    event.shiftKey ||
-    event.altKey ||
-    link.target === "_blank" ||
-    link.hasAttribute("download")
-  ) {
-    return;
-  }
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === "_blank" || link.hasAttribute("download")) return;
 
   const href = link.getAttribute("href");
-
-  if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
-    return;
-  }
+  if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
 
   let destination;
-
-  try {
-    destination = new URL(href, window.location.href);
-  } catch {
-    return;
-  }
-
-  if (destination.origin !== window.location.origin) {
-    return;
-  }
-
-  if (destination.href === window.location.href) {
-    return;
-  }
+  try { destination = new URL(href, window.location.href); } catch { return; }
+  if (destination.origin !== window.location.origin || destination.href === window.location.href) return;
 
   event.preventDefault();
   document.body.classList.add("page-exit");
-
-  window.setTimeout(() => {
-    window.location.href = destination.href;
-  }, 220);
+  window.setTimeout(() => { window.location.href = destination.href; }, 220);
 });

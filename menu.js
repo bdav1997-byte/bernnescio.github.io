@@ -1,3 +1,15 @@
+/* APLICA O TEMA GUARDADO IMEDIATAMENTE, ANTES DO MENU SER CARREGADO */
+(function applySavedThemeEarly() {
+  let savedTheme = "light";
+  try {
+    savedTheme = localStorage.getItem("nescio-theme") === "dark" ? "dark" : "light";
+  } catch (error) {}
+
+  const isDark = savedTheme === "dark";
+  document.documentElement.classList.toggle("dark-mode", isDark);
+  if (document.body) document.body.classList.toggle("dark-mode", isDark);
+})();
+
 fetch("menu.html", { cache: "no-store" })
   .then(response => {
     if (!response.ok) throw new Error("Não foi possível carregar o menu.");

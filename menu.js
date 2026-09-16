@@ -110,6 +110,7 @@ function setupReadingProgress() {
 
 function setupCategoryNavigation(sideMenu) {
   const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  if (currentFile === "cicatrizesdocomum.html") return;
   const sections = sideMenu.querySelectorAll(".menu-section");
   sections.forEach(section => {
     const links = Array.from(section.querySelectorAll(":scope > a, .menu-section-content > a")).filter(link => { const href = link.getAttribute("href"); return href && !href.startsWith("http") && !href.startsWith("#"); });

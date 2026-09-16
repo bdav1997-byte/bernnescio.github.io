@@ -93,7 +93,62 @@ fetch("menu.html")
 
     updateBackToTop();
 
+    document.body.classList.add("page-enter");
+
   })
   .catch(error => {
     console.error("Erro no menu:", error);
   });
+
+// TRANSIÇÃO SUAVE ENTRE PÁGINAS
+// Interceta apenas links internos do próprio site, sem alterar o comportamento
+// de links externos, âncoras, downloads ou abertura de novas janelas.
+document.addEventListener("click", event => {
+  const link = event.target.closest("a");
+
+  if (!link) {
+    return;
+  }
+
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    link.target === "_blank" ||
+    link.hasAttribute("download")
+  ) {
+    return;
+  }
+
+  const href = link.getAttribute("href");
+
+  if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return;
+  }
+
+  let destination;
+
+  try {
+    destination = new URL(href, window.location.href);
+  } catch {
+    return;
+  }
+
+  if (destination.origin !== window.location.origin) {
+    return;
+  }
+
+  if (destination.href === window.location.href) {
+    return;
+  }
+
+  event.preventDefault();
+  document.body.classList.add("page-exit");
+
+  window.setTimeout(() => {
+    window.location.href = destination.href;
+  }, 220);
+});

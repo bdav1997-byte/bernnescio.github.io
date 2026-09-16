@@ -44,6 +44,8 @@ fetch("menu.html")
       setupCategoryNavigation(sideMenu);
     }
 
+    setupReadingProgress();
+
     const backToTop = document.createElement("button");
     backToTop.className = "back-to-top";
     backToTop.type = "button";
@@ -59,6 +61,40 @@ fetch("menu.html")
     document.body.classList.add("page-enter");
   })
   .catch(error => console.error("Erro no menu:", error));
+
+function setupReadingProgress() {
+  if (window.location.pathname.split("/").pop() === "index.html" || window.location.pathname.endsWith("/")) return;
+  if (document.querySelector(".reading-progress")) return;
+
+  const progress = document.createElement("div");
+  progress.className = "reading-progress";
+  progress.setAttribute("aria-hidden", "true");
+
+  const fill = document.createElement("div");
+  fill.className = "reading-progress-fill";
+  progress.appendChild(fill);
+  document.body.appendChild(progress);
+
+  let ticking = false;
+
+  const updateProgress = () => {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percentage = scrollHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100)) : 0;
+    fill.style.width = percentage + "%";
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate, { passive: true });
+  updateProgress();
+}
 
 function setupCategoryNavigation(sideMenu) {
   const currentFile = window.location.pathname.split("/").pop() || "index.html";
@@ -115,7 +151,6 @@ function setupCategoryNavigation(sideMenu) {
     if (!isLast) {
       next.href = links[currentIndex + 1].getAttribute("href");
     } else {
-      // No último texto de qualquer categoria, "Regressar" leva sempre à landing page.
       next.href = "index.html";
     }
 
@@ -164,7 +199,6 @@ function setupCategoryNavigation(sideMenu) {
   });
 }
 
-// TRANSIÇÃO SUAVE ENTRE PÁGINAS
 document.addEventListener("click", event => {
   const link = event.target.closest("a");
   if (!link) return;

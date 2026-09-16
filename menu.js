@@ -1,4 +1,4 @@
-fetch("menu.html")
+fetch("menu.html", { cache: "no-store" })
   .then(response => {
     if (!response.ok) throw new Error("Não foi possível carregar o menu.");
     return response.text();
@@ -12,7 +12,9 @@ fetch("menu.html")
     const sideMenu = document.getElementById("sideMenu");
 
     if (menuToggle && sideMenu) {
-      menuToggle.addEventListener("click", () => {
+      menuToggle.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
         const isOpen = sideMenu.classList.toggle("open");
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
         menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
@@ -65,20 +67,16 @@ fetch("menu.html")
 
 function setupMenuSearch(sideMenu) {
   const search = sideMenu.querySelector("#menuSearch");
-  const trigger = sideMenu.querySelector("#menuSearchTrigger");
   const input = sideMenu.querySelector("#menuSearchInput");
   const results = sideMenu.querySelector("#menuSearchResults");
-  if (!search || !trigger || !input || !results) return;
+  if (!search || !input || !results) return;
 
   const entries = Array.from(sideMenu.querySelectorAll(".menu-section a"))
     .filter(link => {
       const href = link.getAttribute("href");
       return href && !href.startsWith("http") && !href.startsWith("#");
     })
-    .map(link => ({
-      title: link.textContent.trim(),
-      href: link.getAttribute("href")
-    }));
+    .map(link => ({ title: link.textContent.trim(), href: link.getAttribute("href") }));
 
   let indexPromise = null;
 
@@ -89,7 +87,6 @@ function setupMenuSearch(sideMenu) {
 
   const getSearchIndex = () => {
     if (indexPromise) return indexPromise;
-
     indexPromise = Promise.all(entries.map(entry =>
       fetch(entry.href, { cache: "no-store" })
         .then(response => {
@@ -97,76 +94,49 @@ function setupMenuSearch(sideMenu) {
           return response.text();
         })
         .then(html => {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, "text/html");
+          const doc = new DOMParser().parseFromString(html, "text/html");
           const article = doc.querySelector("article");
           const text = article ? article.textContent.replace(/\s+/g, " ").trim() : "";
           const title = doc.querySelector("article h1")?.textContent.trim() || entry.title;
-          return {
-            ...entry,
-            title,
-            normalizedText: normalise(text),
-            normalizedTitle: normalise(title)
-          };
+          return { ...entry, title, normalizedText: normalise(text), normalizedTitle: normalise(title) };
         })
-        .catch(() => ({
-          ...entry,
-          normalizedText: "",
-          normalizedTitle: normalise(entry.title)
-        }))
+        .catch(() => ({ ...entry, normalizedText: "", normalizedTitle: normalise(entry.title) }))
     ));
-
     return indexPromise;
   };
 
-  const renderResults = (query, indexedEntries) => {
+  const renderResults = query => {
     results.innerHTML = "";
-    const cleanQuery = query.trim();
-    if (!cleanQuery) return;
+    const normalizedQuery = normalise(query.trim());
+    if (!normalizedQuery) return;
 
-    const normalizedQuery = normalise(cleanQuery);
-    const matches = indexedEntries.filter(entry =>
-      entry.normalizedText.includes(normalizedQuery) || entry.normalizedTitle.includes(normalizedQuery)
-    );
+    getSearchIndex().then(indexedEntries => {
+      if (input.value.trim() !== query.trim()) return;
+      const matches = indexedEntries.filter(entry =>
+        entry.normalizedText.includes(normalizedQuery) || entry.normalizedTitle.includes(normalizedQuery)
+      );
 
-    if (!matches.length) {
-      const empty = document.createElement("div");
-      empty.className = "menu-search-empty";
-      empty.textContent = "Nenhum texto encontrado.";
-      results.appendChild(empty);
-      return;
-    }
+      if (!matches.length) {
+        const empty = document.createElement("div");
+        empty.className = "menu-search-empty";
+        empty.textContent = "Nenhum texto encontrado.";
+        results.appendChild(empty);
+        return;
+      }
 
-    matches.forEach(entry => {
-      const link = document.createElement("a");
-      link.className = "menu-search-result";
-      link.href = entry.href;
-      link.textContent = entry.title;
-      results.appendChild(link);
+      matches.forEach(entry => {
+        const link = document.createElement("a");
+        link.className = "menu-search-result";
+        link.href = entry.href;
+        link.textContent = entry.title;
+        results.appendChild(link);
+      });
     });
   };
 
-  const closeSearch = () => {
-    if (!search.classList.contains("active")) return;
-    search.classList.remove("active");
-    input.value = "";
-    results.innerHTML = "";
-  };
-
-  trigger.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
-    search.classList.add("active");
-    input.value = "";
-    results.innerHTML = "";
-    window.requestAnimationFrame(() => {
-      input.focus();
-      input.select();
-    });
+  input.addEventListener("focus", () => {
+    input.placeholder = "procurar";
   });
-
-  input.addEventListener("click", event => event.stopPropagation());
-  input.addEventListener("keydown", event => event.stopPropagation());
 
   input.addEventListener("input", () => {
     const query = input.value.trim();
@@ -174,22 +144,20 @@ function setupMenuSearch(sideMenu) {
       results.innerHTML = "";
       return;
     }
-
-    results.innerHTML = "";
-    const loading = document.createElement("div");
-    loading.className = "menu-search-empty";
-    loading.textContent = "A procurar…";
-    results.appendChild(loading);
-
-    getSearchIndex().then(indexedEntries => {
-      if (search.classList.contains("active") && input.value.trim() === query) {
-        renderResults(query, indexedEntries);
-      }
-    });
+    renderResults(query);
   });
 
-  document.addEventListener("click", event => {
-    if (search.classList.contains("active") && !search.contains(event.target)) closeSearch();
+  input.addEventListener("blur", () => {
+    window.setTimeout(() => {
+      if (document.activeElement !== input) {
+        if (!input.value.trim()) input.placeholder = "⌕ PROCURAR";
+        if (!search.contains(document.activeElement)) {
+          input.value = "";
+          results.innerHTML = "";
+          input.placeholder = "⌕ PROCURAR";
+        }
+      }
+    }, 80);
   });
 }
 
@@ -200,7 +168,6 @@ function setupReadingProgress() {
   const progress = document.createElement("div");
   progress.className = "reading-progress";
   progress.setAttribute("aria-hidden", "true");
-
   const fill = document.createElement("div");
   fill.className = "reading-progress-fill";
   progress.appendChild(fill);
@@ -212,30 +179,24 @@ function setupReadingProgress() {
 
   const getProgress = () => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    return scrollHeight > 0
-      ? Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100))
-      : 0;
+    return scrollHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100)) : 0;
   };
 
   const animateProgress = () => {
     const difference = targetProgress - displayedProgress;
     displayedProgress += difference * 0.16;
-
     if (Math.abs(difference) < 0.05) {
       displayedProgress = targetProgress;
       animationFrame = null;
     } else {
       animationFrame = window.requestAnimationFrame(animateProgress);
     }
-
     fill.style.width = displayedProgress + "%";
   };
 
   const updateProgress = () => {
     targetProgress = getProgress();
-    if (animationFrame === null) {
-      animationFrame = window.requestAnimationFrame(animateProgress);
-    }
+    if (animationFrame === null) animationFrame = window.requestAnimationFrame(animateProgress);
   };
 
   window.addEventListener("scroll", updateProgress, { passive: true });
@@ -253,14 +214,12 @@ function setupCategoryNavigation(sideMenu) {
         const href = link.getAttribute("href");
         return href && !href.startsWith("http") && !href.startsWith("#");
       });
-
     if (!links.length) return;
 
     const currentIndex = links.findIndex(link => {
       const href = link.getAttribute("href");
       return href && href.split("/").pop() === currentFile;
     });
-
     if (currentIndex === -1) return;
 
     const main = document.querySelector("main");
@@ -287,19 +246,14 @@ function setupCategoryNavigation(sideMenu) {
     const isLast = currentIndex === links.length - 1;
     next.textContent = isLast ? "Regressar →" : "seguinte →";
 
-    if (currentIndex > 0) {
-      previous.href = links[currentIndex - 1].getAttribute("href");
-    } else {
+    if (currentIndex > 0) previous.href = links[currentIndex - 1].getAttribute("href");
+    else {
       previous.classList.add("is-hidden");
       previous.setAttribute("aria-hidden", "true");
       previous.tabIndex = -1;
     }
 
-    if (!isLast) {
-      next.href = links[currentIndex + 1].getAttribute("href");
-    } else {
-      next.href = "index.html";
-    }
+    next.href = isLast ? "index.html" : links[currentIndex + 1].getAttribute("href");
 
     const indexPanel = document.createElement("div");
     indexPanel.className = "category-index-panel";
@@ -337,7 +291,6 @@ function setupCategoryNavigation(sideMenu) {
     });
 
     indexPanel.querySelectorAll("a").forEach(link => link.addEventListener("click", closeIndex));
-
     navigation.appendChild(previous);
     navigation.appendChild(indexButton);
     navigation.appendChild(next);
@@ -349,7 +302,6 @@ function setupCategoryNavigation(sideMenu) {
 document.addEventListener("click", event => {
   const link = event.target.closest("a");
   if (!link) return;
-
   if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === "_blank" || link.hasAttribute("download")) return;
 
   const href = link.getAttribute("href");

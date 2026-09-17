@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeria Teste 2 — NESCIO</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="galeriateste.css">
+<script>(function(){try{document.documentElement.classList.toggle("dark-mode",localStorage.getItem("nescio-theme")==="dark")}catch(e){}})();</script>
+</head>
+<body>
+<div id="menu-container"></div>
+<main class="gallery-test-page">
+<img src="LOGO.png" class="logo" alt="NESCIO">
+<header class="gallery-test-header"><p class="gallery-test-label">CICATRIZES DO COMUM · GALERIA</p><h1>GALERIA TESTE 2</h1><p>Opção 4 — mosaico com visualização em fullscreen</p></header>
+<section class="gallery-mosaic" aria-label="Galeria em mosaico"><div class="gallery-item" data-index="0"><img src="caesenraivecidos.JPEG" alt="Cicatrizes do Comum — fotografia 1"><span class="gallery-number">01</span></div>
+<div class="gallery-item" data-index="1"><img src="naosou.PNG" alt="Cicatrizes do Comum — fotografia 2"><span class="gallery-number">02</span></div>
+<div class="gallery-item" data-index="2"><img src="pelecompele.JPEG" alt="Cicatrizes do Comum — fotografia 3"><span class="gallery-number">03</span></div>
+<div class="gallery-item" data-index="3"><img src="cicatrizesdocomum.JPEG" alt="Cicatrizes do Comum — fotografia 4"><span class="gallery-number">04</span></div>
+<div class="gallery-item" data-index="4"><img src="desabafodefome.JPEG" alt="Cicatrizes do Comum — fotografia 5"><span class="gallery-number">05</span></div>
+<div class="gallery-item" data-index="5"><img src="denuncia.PNG" alt="Cicatrizes do Comum — fotografia 6"><span class="gallery-number">06</span></div>
+<div class="gallery-item" data-index="6"><img src="quemdissequenaoposso.PNG" alt="Cicatrizes do Comum — fotografia 7"><span class="gallery-number">07</span></div>
+<div class="gallery-item" data-index="7"><img src="incomodo.png" alt="Cicatrizes do Comum — fotografia 8"><span class="gallery-number">08</span></div>
+<div class="gallery-item" data-index="8"><img src="entredois.JPEG" alt="Cicatrizes do Comum — fotografia 9"><span class="gallery-number">09</span></div><div class="gallery-item" data-index="9"><div class="gallery-placeholder">FOTO 10 — A AGUARDAR</div><span class="gallery-number">10</span></div><div class="gallery-item" data-index="10"><div class="gallery-placeholder">FOTO 11 — A AGUARDAR</div><span class="gallery-number">11</span></div></section>
+</main>
+<div class="gallery-lightbox" aria-hidden="true">
+<button class="gallery-lightbox-close" type="button">FECHAR</button><button class="gallery-lightbox-prev" type="button" aria-label="Fotografia anterior">←</button><img src="" alt=""><button class="gallery-lightbox-next" type="button" aria-label="Fotografia seguinte">→</button><div class="gallery-lightbox-count"></div>
+</div>
+<script>
+(function(){
+var items=Array.from(document.querySelectorAll(".gallery-mosaic .gallery-item")),box=document.querySelector(".gallery-lightbox"),image=box.querySelector("img"),count=box.querySelector(".gallery-lightbox-count"),current=0;
+function open(i){var img=items[i].querySelector("img");if(!img)return;current=i;image.src=img.src;image.alt=img.alt;count.textContent=String(i+1).padStart(2,"0")+" / "+String(items.length).padStart(2,"0");box.classList.add("open");box.setAttribute("aria-hidden","false");}
+function close(){box.classList.remove("open");box.setAttribute("aria-hidden","true");image.src="";}
+function move(step){open((current+step+items.length)%items.length);}
+items.forEach(function(item,i){if(item.querySelector("img"))item.addEventListener("click",function(){open(i);});});
+box.querySelector(".gallery-lightbox-close").addEventListener("click",close);
+box.querySelector(".gallery-lightbox-prev").addEventListener("click",function(){move(-1);});
+box.querySelector(".gallery-lightbox-next").addEventListener("click",function(){move(1);});
+box.addEventListener("click",function(e){if(e.target===box)close();});
+document.addEventListener("keydown",function(e){if(!box.classList.contains("open"))return;if(e.key==="Escape")close();if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1);});
+})();
+</script>
+<script src="menu.js"></script>
+</body>
+</html>

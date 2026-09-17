@@ -168,37 +168,60 @@ function setupReadingSpeedWarning() {
     subtitle.className = "reading-speed-warning-subtitle";
     subtitle.textContent = "Lê com calma.";
 
+    const understood = document.createElement("button");
+    understood.className = "reading-speed-warning-action";
+    understood.type = "button";
+    understood.textContent = "compreendi";
+    understood.setAttribute("aria-label", "Compreendi");
+    understood.hidden = true;
+
+    const freckles = document.createElement("button");
+    freckles.className = "reading-speed-warning-easter-egg";
+    freckles.type = "button";
+    freckles.textContent = "Ou és o Freckles?";
+    freckles.setAttribute("aria-label", "Ou és o Freckles?");
+    freckles.hidden = true;
+
     message.appendChild(headline);
     message.appendChild(subtitle);
-
-    const close = document.createElement("button");
-    close.className = "reading-speed-warning-close";
-    close.type = "button";
-    close.setAttribute("aria-label", "Fechar aviso");
-    close.textContent = "×";
-    close.hidden = true;
-
+    message.appendChild(understood);
+    message.appendChild(freckles);
     overlay.appendChild(message);
-    overlay.appendChild(close);
     document.body.appendChild(overlay);
 
     requestAnimationFrame(() => overlay.classList.add("is-visible"));
 
-    const closeTimer = window.setTimeout(() => {
-      close.hidden = false;
-      requestAnimationFrame(() => close.classList.add("is-visible"));
+    const understoodTimer = window.setTimeout(() => {
+      understood.hidden = false;
+      requestAnimationFrame(() => understood.classList.add("is-visible"));
     }, 2000);
 
-    overlay.addEventListener("click", event => {
-      if (event.target === close) return;
-      window.clearTimeout(closeTimer);
+    const frecklesTimer = window.setTimeout(() => {
+      freckles.hidden = false;
+      requestAnimationFrame(() => freckles.classList.add("is-visible"));
+    }, 20000);
+
+    const dismiss = () => {
+      window.clearTimeout(understoodTimer);
+      window.clearTimeout(frecklesTimer);
       closeWarning();
+    };
+
+    understood.addEventListener("click", event => {
+      event.stopPropagation();
+      dismiss();
     });
 
-    close.addEventListener("click", event => {
+    freckles.addEventListener("click", event => {
       event.stopPropagation();
-      window.clearTimeout(closeTimer);
-      closeWarning();
+      window.clearTimeout(understoodTimer);
+      window.clearTimeout(frecklesTimer);
+      headline.textContent = "Girl, you can’t read";
+      subtitle.hidden = true;
+      freckles.classList.remove("is-visible");
+      freckles.hidden = true;
+      understood.classList.remove("is-visible");
+      understood.hidden = true;
     });
   };
 
@@ -241,7 +264,7 @@ function setupReadingSpeedWarning() {
         backdrop-filter: blur(11px);
         -webkit-backdrop-filter: blur(11px);
         opacity: 0;
-        cursor: pointer;
+        cursor: default;
         transition: opacity .26s ease;
       }
       #reading-speed-warning.is-visible { opacity: 1; }
@@ -251,7 +274,6 @@ function setupReadingSpeedWarning() {
         font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
         text-align: center;
         user-select: none;
-        pointer-events: none;
       }
       .reading-speed-warning-headline {
         font-size: clamp(30px, 4vw, 54px);
@@ -267,43 +289,65 @@ function setupReadingSpeedWarning() {
         font-weight: 400;
         line-height: 1.25;
       }
-      .reading-speed-warning-close {
-        position: absolute;
-        top: 18px;
-        right: 22px;
-        width: 38px;
-        height: 38px;
-        border: 0;
-        padding: 0;
+      .reading-speed-warning-action,
+      .reading-speed-warning-easter-egg {
+        display: block;
+        margin: 24px auto 0;
+        min-width: 150px;
+        border: 1px solid #DC143C;
+        padding: 10px 18px;
         background: transparent;
         color: #DC143C;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 30px;
-        font-weight: 300;
-        line-height: 38px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: .08em;
+        line-height: 1.2;
         text-align: center;
         cursor: pointer;
         opacity: 0;
-        transition: opacity .2s ease;
+        transition: opacity .2s ease, background .2s ease, color .2s ease;
         appearance: none;
         -webkit-appearance: none;
       }
-      .reading-speed-warning-close.is-visible { opacity: 1; }
-      .reading-speed-warning-close:hover { opacity: .55; }
+      .reading-speed-warning-action.is-visible,
+      .reading-speed-warning-easter-egg.is-visible { opacity: 1; }
+      .reading-speed-warning-action:hover,
+      .reading-speed-warning-easter-egg:hover {
+        background: #DC143C;
+        color: #FAFAFA;
+      }
+      .reading-speed-warning-easter-egg {
+        margin-top: 12px;
+        min-width: 165px;
+        font-size: 12px;
+        letter-spacing: .04em;
+        text-transform: none;
+      }
       html.dark-mode #reading-speed-warning { background: rgba(17,17,17,.48); }
       html.dark-mode .reading-speed-warning-message,
       html.dark-mode .reading-speed-warning-subtitle,
-      html.dark-mode .reading-speed-warning-close { color: #DC143C; }
+      html.dark-mode .reading-speed-warning-action,
+      html.dark-mode .reading-speed-warning-easter-egg { color: #DC143C; }
+      html.dark-mode .reading-speed-warning-action,
+      html.dark-mode .reading-speed-warning-easter-egg { border-color: #DC143C; }
+      html.dark-mode .reading-speed-warning-action:hover,
+      html.dark-mode .reading-speed-warning-easter-egg:hover {
+        background: #DC143C;
+        color: #111;
+      }
       @media (max-width:700px) {
         #reading-speed-warning { padding: 30px 22px; }
         .reading-speed-warning-message { max-width: 88vw; }
         .reading-speed-warning-headline { font-size: 32px; }
         .reading-speed-warning-subtitle { font-size: 19px; margin-top: 12px; }
-        .reading-speed-warning-close { top: 14px; right: 14px; }
+        .reading-speed-warning-action,
+        .reading-speed-warning-easter-egg { font-size: 12px; }
       }
       @media (prefers-reduced-motion: reduce) {
         #reading-speed-warning { transition: none; }
-        .reading-speed-warning-close { transition: none; }
+        .reading-speed-warning-action,
+        .reading-speed-warning-easter-egg { transition: none; }
       }
     `;
     document.head.appendChild(style);

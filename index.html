@@ -38,8 +38,6 @@
       letter-spacing: .04em;
       line-height: 1.3;
       opacity: 0;
-      animation: landingFadeIn 1.8s ease forwards;
-      animation-delay: 1s;
     }
     .landing-year {
       position: absolute;
@@ -52,8 +50,6 @@
       font-weight: 400;
       letter-spacing: .14em;
       opacity: 0;
-      animation: landingFadeIn 1.8s ease forwards;
-      animation-delay: 2.5s;
     }
     .landing-author {
       display: block;
@@ -67,11 +63,23 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    .landing-page.landing-animate .landing-motto {
+      animation: landingFadeIn 1.8s ease forwards;
+      animation-delay: 1s;
+    }
+    .landing-page.landing-animate .landing-year {
+      animation: landingFadeIn 1.8s ease forwards;
+      animation-delay: 2.5s;
+    }
+    .landing-page:not(.landing-animate) .landing-motto,
+    .landing-page:not(.landing-animate) .landing-year {
+      opacity: 1;
+    }
     @media (prefers-reduced-motion: reduce) {
       .landing-motto,
       .landing-year {
-        opacity: 1;
-        animation: none;
+        opacity: 1 !important;
+        animation: none !important;
       }
     }
     html.dark-mode .landing-motto,
@@ -98,6 +106,27 @@
     <div class="landing-year">NESCIO - 2026<span class="landing-author">Bernardo de Almeida Valentim</span></div>
   </main>
 
+  <script>
+    (function () {
+      var page = document.querySelector('.landing-page');
+      if (!page) return;
+
+      var storageKey = 'nescio-landing-last-visit';
+      var now = Date.now();
+      var fiveMinutes = 5 * 60 * 1000;
+      var shouldAnimate = true;
+
+      try {
+        var lastVisit = Number(localStorage.getItem(storageKey));
+        shouldAnimate = !lastVisit || (now - lastVisit >= fiveMinutes);
+        localStorage.setItem(storageKey, String(now));
+      } catch (error) {}
+
+      if (shouldAnimate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        page.classList.add('landing-animate');
+      }
+    })();
+  </script>
   <script src="menu.js"></script>
 
 </body>

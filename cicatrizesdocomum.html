@@ -40,7 +40,7 @@
 <section class="cicatrizes-entries expansion" aria-label="Expansão Pele com Pele">
 <article class="cicatriz-entry" id="cicatriz-06"><div class="cicatriz-image image-06"><span>IMAGEM 06</span></div><div class="cicatriz-copy"><span class="cicatriz-number">06</span><h2>DENÚNCIA</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-07"><div class="cicatriz-image image-07"><span>IMAGEM 07</span></div><div class="cicatriz-copy"><span class="cicatriz-number">07</span><h2>QUEM DISSE QUE NÃO POSSO?</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
-<article class="cicatriz-entry" id="cicatriz-08"><div class="cicatriz-image image-08"><span>IMAGEM 08</span></div><div class="cicatriz-copy"><span>08</span><h2>INCÔMODO</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
+<article class="cicatriz-entry" id="cicatriz-08"><div class="cicatriz-image image-08"><span>IMAGEM 08</span></div><div class="cicatriz-copy"><span class="cicatriz-number">08</span><h2>INCÔMODO</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-09"><div class="cicatriz-image image-09"><span>IMAGEM 09</span></div><div class="cicatriz-copy"><span class="cicatriz-number">09</span><h2>ENTRE DOIS</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 </section></main>
 <nav class="cicatrizes-index" aria-label="Índice de Cicatrizes do Comum"><div class="cicatrizes-index-inner">
@@ -59,8 +59,9 @@
     var bestDistance = Infinity;
 
     entries.forEach(function(entry, index){
-      var distance = Math.abs(entry.getBoundingClientRect().top - marker);
-      if (entry.getBoundingClientRect().top <= marker + 40 && distance < bestDistance) {
+      var top = entry.getBoundingClientRect().top;
+      var distance = Math.abs(top - marker);
+      if (top <= marker + 40 && distance < bestDistance) {
         bestDistance = distance;
         current = index;
       }

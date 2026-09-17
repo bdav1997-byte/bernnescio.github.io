@@ -57,6 +57,7 @@ fetch("menu.html", { cache: "no-store" })
       setupCategoryNavigation(sideMenu);
     }
     setupReadingProgress();
+    setupReadingSpeedWarning();
     const backToTop = document.createElement("button");
     backToTop.className = "back-to-top"; backToTop.type = "button"; backToTop.setAttribute("aria-label", "Voltar ao topo"); backToTop.setAttribute("title", "Voltar ao topo"); backToTop.innerHTML = "↑";
     document.body.appendChild(backToTop);
@@ -106,6 +107,186 @@ function setupReadingProgress() {
   const animateProgress = () => { const difference = targetProgress - displayedProgress; displayedProgress += difference * 0.16; if (Math.abs(difference) < 0.05) { displayedProgress = targetProgress; animationFrame = null; } else animationFrame = window.requestAnimationFrame(animateProgress); fill.style.width = displayedProgress + "%"; };
   const updateProgress = () => { targetProgress = getProgress(); if (animationFrame === null) animationFrame = window.requestAnimationFrame(animateProgress); };
   window.addEventListener("scroll", updateProgress, { passive: true }); window.addEventListener("resize", updateProgress, { passive: true }); updateProgress();
+}
+
+function setupReadingSpeedWarning() {
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  const isLanding = currentFile === "index.html" || window.location.pathname.endsWith("/");
+  const article = document.querySelector("main article");
+
+  if (isLanding || !article || document.getElementById("reading-speed-warning")) return;
+
+  const storageKey = "nescio-reading-warning-last-shown";
+  const cooldown = 15 * 60 * 1000;
+  const threshold = 2.0;
+  const sustainedFastTime = 220;
+  let lastY = window.scrollY;
+  let lastTime = performance.now();
+  let fastSince = null;
+  let triggered = false;
+
+  const canShow = () => {
+    try {
+      const lastShown = Number(localStorage.getItem(storageKey));
+      return !lastShown || Date.now() - lastShown >= cooldown;
+    } catch (error) {
+      return true;
+    }
+  };
+
+  const rememberShown = () => {
+    try { localStorage.setItem(storageKey, String(Date.now())); } catch (error) {}
+  };
+
+  const closeWarning = () => {
+    const overlay = document.getElementById("reading-speed-warning");
+    if (!overlay) return;
+    overlay.classList.remove("is-visible");
+    window.setTimeout(() => {
+      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }, 260);
+  };
+
+  const showWarning = () => {
+    if (triggered || !canShow()) return;
+    triggered = true;
+    rememberShown();
+
+    const overlay = document.createElement("div");
+    overlay.id = "reading-speed-warning";
+    overlay.setAttribute("role", "alertdialog");
+    overlay.setAttribute("aria-label", "Aviso de leitura");
+
+    const message = document.createElement("div");
+    message.className = "reading-speed-warning-message";
+    message.textContent = "Tem calma. Aproveita a leitura.";
+
+    const close = document.createElement("button");
+    close.className = "reading-speed-warning-close";
+    close.type = "button";
+    close.setAttribute("aria-label", "Fechar aviso");
+    close.textContent = "×";
+    close.hidden = true;
+
+    overlay.appendChild(message);
+    overlay.appendChild(close);
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => overlay.classList.add("is-visible"));
+
+    const closeTimer = window.setTimeout(() => {
+      close.hidden = false;
+      requestAnimationFrame(() => close.classList.add("is-visible"));
+    }, 2000);
+
+    overlay.addEventListener("click", event => {
+      if (event.target === close) return;
+      window.clearTimeout(closeTimer);
+      closeWarning();
+    });
+
+    close.addEventListener("click", event => {
+      event.stopPropagation();
+      window.clearTimeout(closeTimer);
+      closeWarning();
+    });
+  };
+
+  const handleScroll = () => {
+    if (triggered || !canShow()) return;
+
+    const now = performance.now();
+    const y = window.scrollY;
+    const deltaY = Math.abs(y - lastY);
+    const deltaTime = now - lastTime;
+
+    if (deltaTime <= 0) return;
+
+    const speed = deltaY / deltaTime;
+
+    if (deltaY >= 80 && speed >= threshold) {
+      if (fastSince === null) fastSince = now;
+      if (now - fastSince >= sustainedFastTime) showWarning();
+    } else if (speed < threshold * 0.65) {
+      fastSince = null;
+    }
+
+    lastY = y;
+    lastTime = now;
+  };
+
+  if (!document.getElementById("reading-speed-warning-style")) {
+    const style = document.createElement("style");
+    style.id = "reading-speed-warning-style";
+    style.textContent = `
+      #reading-speed-warning {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        background: rgba(250,250,250,.42);
+        backdrop-filter: blur(11px);
+        -webkit-backdrop-filter: blur(11px);
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity .26s ease;
+      }
+      #reading-speed-warning.is-visible { opacity: 1; }
+      .reading-speed-warning-message {
+        max-width: min(720px, 90vw);
+        color: #C00000;
+        font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+        font-size: clamp(30px, 4vw, 54px);
+        font-weight: 500;
+        line-height: 1.15;
+        text-align: center;
+        letter-spacing: .01em;
+        user-select: none;
+        pointer-events: none;
+      }
+      .reading-speed-warning-close {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: #C00000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 38px;
+        text-align: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity .2s ease;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      .reading-speed-warning-close.is-visible { opacity: 1; }
+      .reading-speed-warning-close:hover { opacity: .55; }
+      html.dark-mode #reading-speed-warning { background: rgba(17,17,17,.48); }
+      html.dark-mode .reading-speed-warning-message,
+      html.dark-mode .reading-speed-warning-close { color: #E00000; }
+      @media (max-width:700px) {
+        #reading-speed-warning { padding: 30px 22px; }
+        .reading-speed-warning-message { font-size: 32px; max-width: 88vw; }
+        .reading-speed-warning-close { top: 14px; right: 14px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #reading-speed-warning { transition: none; }
+        .reading-speed-warning-close { transition: none; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
 }
 
 function setupCategoryNavigation(sideMenu) {

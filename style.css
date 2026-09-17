@@ -39,7 +39,8 @@ body.index-open > *:not(#menu-container):not(.category-navigation) {
     filter: blur(4px);
     transition: filter .2s ease;
 }
-body.index-open .category-navigation {
+body.index-open .category-navigation,
+body.index-open .category-navigation * {
     filter: none;
 }
 #menu-container {

@@ -26,6 +26,7 @@ fetch("menu.html", { cache: "no-store" })
       menuToggle.addEventListener("click", event => {
         event.preventDefault(); event.stopPropagation();
         const isOpen = sideMenu.classList.toggle("open");
+        document.body.classList.toggle("menu-open", isOpen);
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
         menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       });

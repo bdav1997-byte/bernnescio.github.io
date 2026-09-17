@@ -20,9 +20,7 @@
   }
   window.addEventListener("load", function(){
     restoreHashPosition();
-    requestAnimationFrame(function(){
-      requestAnimationFrame(restoreHashPosition);
-    });
+    requestAnimationFrame(function(){ requestAnimationFrame(restoreHashPosition); });
   });
 })();
 </script>
@@ -31,7 +29,7 @@
 <header class="cicatrizes-header"><p class="cicatrizes-label">09 TEXTOS · CICATRIZES DO COMUM</p><h1>CICATRIZES DO COMUM</h1><p class="cicatrizes-intro">Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></header>
 <section class="cicatrizes-entries" aria-label="Textos de Cicatrizes do Comum">
 <article class="cicatriz-entry" id="cicatriz-01"><div class="cicatriz-image image-01"><span>IMAGEM 01</span></div><div class="cicatriz-copy"><span class="cicatriz-number">01</span><h2>CÃES ENRAIVECIDOS</h2><p>Uma tradução na pele. A agulha perfura a sentença, e o corpo oferece-se ao castigo com uma estranha dignidade. As costas, por agora vazias, são um eco de tudo o que ficou por dizer — um murmúrio de raiva que será disciplinada.</p><p>Entre o ardor e o silêncio, que o desprezo encontra forma. Cada linha de tinta é uma confissão, uma sentença que reflete o cansaço.</p><p>Enquanto me crava as costas, o tatuador pergunta se existem arrependimentos a considerar. O silêncio parecia a resposta, mas porque não contar só dessa vez. “Há dores que não se explicam, apenas se inscrevem”. E quando a pele começa a latejar, há um alívio perverso: finalmente, o corpo disse que a tinta lhe fica bem.</p><p>O traço é rude, perfeito e verdadeiro. Uma lembrança de que a dor, tal como os cães, também pode ser domesticada, por mais neura que tenha. Quando cicatrizar, saber-se-á: o amor, por vezes, só se liberta quando aprende a morder de volta.</p><p>Que a fúria grave a sua vontade nesta tatuagem de cães enraivecidos.</p></div></article>
-<article class="cicatriz-entry" id="cicatriz-02"><div class="cicatriz-image image-02"><span>IMAGEM 02</span></div><div class="cicatriz-copy"><span class="cicatriz-number">02</span><h2>NÃO SOU</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
+<article class="cicatriz-entry" id="cicatriz-02"><div class="cicatriz-image image-02"><span>IMAGEM 02</span></div><div class="cicatriz-copy"><span class="cicatriz-number">02</span><h2>NÃO SOU</h2><p><strong>Não</strong> sou forte o suficiente para fingir que não sinto.</p><p><strong>Não</strong> sou estável, nem constante, nem imune ao desassossego.</p><p><strong>Não</strong> sou quem planeia.</p><p><strong>Não</strong> sou o exemplo que se mostra — sou o erro que se repete.</p><p><strong>Não</strong> sou quem disfarça o orgulho mesmo quando se perde.</p><p><strong>Não</strong> sou quem perdoa depressa, muito menos quem esquece com elegância.</p><p><strong>Não</strong> sou o ideal que se espera, nem a promessa que se cumpre.</p><p><strong>Não</strong> sou o que desiste.</p><p><strong>Não</strong> sou o que se rende ao vazio, nem o que morre preso a memória.</p><p><strong>Não</strong> sou perfeito — e por isso continuo.</p><p><strong>Não</strong> sou um fracasso irremediável.</p><p><strong>Não</strong> sou domável e isso fascina-me.</p><p><strong>Não</strong> sou o que ficou sozinho.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-03"><div class="cicatriz-image image-03"><span>IMAGEM 03</span></div><div class="cicatriz-copy"><span class="cicatriz-number">03</span><h2>PELE COM PELE</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-04"><div class="cicatriz-image image-04"><span>IMAGEM 04</span></div><div class="cicatriz-copy"><span class="cicatriz-number">04</span><h2>CICATRIZES DO COMUM</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-05"><div class="cicatriz-image image-05"><span>IMAGEM 05</span></div><div class="cicatriz-copy"><span class="cicatriz-number">05</span><h2>DESABAFO DE FOME</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
@@ -52,52 +50,30 @@
   var links = Array.from(document.querySelectorAll(".cicatrizes-index a"));
   var ticking = false;
   var activeIndex = -1;
-
   function updateCicatrizesIndex(){
-    var marker = 120;
-    var current = 0;
-    var bestDistance = Infinity;
-
+    var marker = 120, current = 0, bestDistance = Infinity;
     entries.forEach(function(entry, index){
-      var top = entry.getBoundingClientRect().top;
-      var distance = Math.abs(top - marker);
-      if (top <= marker + 40 && distance < bestDistance) {
-        bestDistance = distance;
-        current = index;
-      }
+      var top = entry.getBoundingClientRect().top, distance = Math.abs(top - marker);
+      if (top <= marker + 40 && distance < bestDistance) { bestDistance = distance; current = index; }
     });
-
     if (current === activeIndex) return;
     activeIndex = current;
-
     var link = links[current];
     if (!link) return;
-
     links.forEach(function(item){ item.removeAttribute("aria-current"); });
     link.setAttribute("aria-current", "true");
-
     var container = document.querySelector(".cicatrizes-index-inner");
     if (!container) return;
-
     var targetLeft = link.offsetLeft;
     var maxScroll = container.scrollWidth - container.clientWidth;
     var desiredLeft = Math.min(Math.max(0, targetLeft), Math.max(0, maxScroll));
-
-    container.scrollTo({
-      left: desiredLeft,
-      behavior: "smooth"
-    });
+    container.scrollTo({left: desiredLeft, behavior: "smooth"});
   }
-
   function requestUpdate(){
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function(){
-      ticking = false;
-      updateCicatrizesIndex();
-    });
+    requestAnimationFrame(function(){ ticking = false; updateCicatrizesIndex(); });
   }
-
   window.addEventListener("scroll", requestUpdate, {passive:true});
   window.addEventListener("resize", requestUpdate);
   window.addEventListener("load", requestUpdate);

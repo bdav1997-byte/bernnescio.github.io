@@ -159,7 +159,17 @@ function setupReadingSpeedWarning() {
 
     const message = document.createElement("div");
     message.className = "reading-speed-warning-message";
-    message.textContent = "Tem calma. Aproveita a leitura.";
+
+    const headline = document.createElement("div");
+    headline.className = "reading-speed-warning-headline";
+    headline.textContent = "NÃO ESTÁS A LER. ESTÁS A FUGIR";
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "reading-speed-warning-subtitle";
+    subtitle.textContent = "Lê com calma.";
+
+    message.appendChild(headline);
+    message.appendChild(subtitle);
 
     const close = document.createElement("button");
     close.className = "reading-speed-warning-close";
@@ -237,15 +247,25 @@ function setupReadingSpeedWarning() {
       #reading-speed-warning.is-visible { opacity: 1; }
       .reading-speed-warning-message {
         max-width: min(720px, 90vw);
-        color: #C00000;
+        color: #DC143C;
         font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+        text-align: center;
+        user-select: none;
+        pointer-events: none;
+      }
+      .reading-speed-warning-headline {
         font-size: clamp(30px, 4vw, 54px);
         font-weight: 500;
         line-height: 1.15;
-        text-align: center;
         letter-spacing: .01em;
-        user-select: none;
-        pointer-events: none;
+      }
+      .reading-speed-warning-subtitle {
+        margin: 14px 0 0;
+        color: #DC143C;
+        font-family: inherit;
+        font-size: clamp(18px, 2vw, 25px);
+        font-weight: 400;
+        line-height: 1.25;
       }
       .reading-speed-warning-close {
         position: absolute;
@@ -256,7 +276,7 @@ function setupReadingSpeedWarning() {
         border: 0;
         padding: 0;
         background: transparent;
-        color: #C00000;
+        color: #DC143C;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 30px;
         font-weight: 300;
@@ -272,10 +292,13 @@ function setupReadingSpeedWarning() {
       .reading-speed-warning-close:hover { opacity: .55; }
       html.dark-mode #reading-speed-warning { background: rgba(17,17,17,.48); }
       html.dark-mode .reading-speed-warning-message,
-      html.dark-mode .reading-speed-warning-close { color: #E00000; }
+      html.dark-mode .reading-speed-warning-subtitle,
+      html.dark-mode .reading-speed-warning-close { color: #DC143C; }
       @media (max-width:700px) {
         #reading-speed-warning { padding: 30px 22px; }
-        .reading-speed-warning-message { font-size: 32px; max-width: 88vw; }
+        .reading-speed-warning-message { max-width: 88vw; }
+        .reading-speed-warning-headline { font-size: 32px; }
+        .reading-speed-warning-subtitle { font-size: 19px; margin-top: 12px; }
         .reading-speed-warning-close { top: 14px; right: 14px; }
       }
       @media (prefers-reduced-motion: reduce) {

@@ -14,6 +14,7 @@
 .cicatriz-number{display:block;font-family:"Courier New",Courier,monospace;font-size:11px;letter-spacing:.1em;color:#777;margin-bottom:15px;}
 .cicatriz-copy h2{font-family:Arial,Helvetica,sans-serif;font-size:21px;letter-spacing:.04em;line-height:1.25;color:#000;margin-bottom:25px;}
 .cicatriz-copy p{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:18px;line-height:1.75;text-align:justify;color:#000;margin-bottom:25px;}
+.cicatriz-copy p:last-child{margin-bottom:0;}
 .cicatrizes-expansion{margin:150px 0 105px;padding:30px 0;border-top:1px solid #000;border-bottom:1px solid #000;display:flex;align-items:baseline;gap:22px;}
 .cicatrizes-expansion span{font-family:Arial,Helvetica,sans-serif;font-size:18px;letter-spacing:.12em;font-weight:700;color:#000;}.cicatrizes-expansion strong{font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:.08em;font-weight:700;color:#000;}.cicatrizes-expansion small{font-family:"Courier New",Courier,monospace;font-size:9px;letter-spacing:.12em;color:#777;}
 .cicatrizes-index{position:fixed !important;left:0 !important;right:0 !important;bottom:0 !important;top:auto !important;z-index:2005 !important;width:100% !important;height:58px !important;display:block !important;margin:0 !important;padding:0 !important;background:#FAFAFA !important;border-top:1px solid #000 !important;overflow:hidden !important;}

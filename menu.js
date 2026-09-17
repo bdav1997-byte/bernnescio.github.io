@@ -136,6 +136,30 @@ function setupCategoryNavigation(sideMenu) {
 }
 
 document.addEventListener("click", event => {
+  const menu = document.getElementById("sideMenu");
+  const menuToggle = document.getElementById("menuToggle");
+  const categoryNavigation = document.querySelector(".category-navigation");
+  const indexPanel = document.querySelector(".category-index-panel");
+
+  if (document.body.classList.contains("menu-open") &&
+      menu && !menu.contains(event.target) &&
+      menuToggle && !menuToggle.contains(event.target)) {
+    menu.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    menuToggle.textContent = "MENU";
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+
+  if (document.body.classList.contains("index-open") &&
+      categoryNavigation && !categoryNavigation.contains(event.target)) {
+    if (indexPanel) indexPanel.hidden = true;
+    categoryNavigation.classList.remove("index-open");
+    document.body.classList.remove("index-open");
+    const indexButton = categoryNavigation.querySelector(".category-nav-index");
+    if (indexButton) indexButton.setAttribute("aria-expanded", "false");
+  }
+
+
   if (event.target.closest("#themeToggle")) return;
   const link = event.target.closest("a"); if (!link) return;
   if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === "_blank" || link.hasAttribute("download")) return;

@@ -37,6 +37,9 @@
       font-weight: 700;
       letter-spacing: .04em;
       line-height: 1.3;
+      opacity: 0;
+      animation: landingFadeIn 1.8s ease forwards;
+      animation-delay: 2s;
     }
     .landing-year {
       position: absolute;
@@ -48,6 +51,9 @@
       font-size: 10px;
       font-weight: 400;
       letter-spacing: .14em;
+      opacity: 0;
+      animation: landingFadeIn 1.8s ease forwards;
+      animation-delay: 4.2s;
     }
     .landing-author {
       display: block;
@@ -56,6 +62,21 @@
       font-size: 10px;
       font-weight: 400;
       letter-spacing: .14em;
+    }
+    @keyframes landingFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .landing-motto,
+      .landing-year {
+        opacity: 1;
+        animation: none;
+      }
+    }
+    html.dark-mode .landing-motto,
+    html.dark-mode .landing-year {
+      color: #F5F5F5;
     }
     @media (max-width: 700px) {
       .landing-page { padding: 20px 25px 45px; }

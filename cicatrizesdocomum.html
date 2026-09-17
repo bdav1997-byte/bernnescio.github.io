@@ -2,7 +2,7 @@
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cicatrizes do Comum — NESCIO</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="cicatrizes.css?v=20260917-4">
+<title>Cicatrizes do Comum — NESCIO</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="cicatrizes.css?v=20260917-5">
 <script>(function(){try{document.documentElement.classList.toggle("dark-mode",localStorage.getItem("nescio-theme")==="dark")}catch(e){}})();</script>
 <script>
 (function(){
@@ -40,9 +40,67 @@
 <section class="cicatrizes-entries expansion" aria-label="Expansão Pele com Pele">
 <article class="cicatriz-entry" id="cicatriz-06"><div class="cicatriz-image image-06"><span>IMAGEM 06</span></div><div class="cicatriz-copy"><span class="cicatriz-number">06</span><h2>DENÚNCIA</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-07"><div class="cicatriz-image image-07"><span>IMAGEM 07</span></div><div class="cicatriz-copy"><span class="cicatriz-number">07</span><h2>QUEM DISSE QUE NÃO POSSO?</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
-<article class="cicatriz-entry" id="cicatriz-08"><div class="cicatriz-image image-08"><span>IMAGEM 08</span></div><div class="cicatriz-copy"><span class="cicatriz-number">08</span><h2>INCÔMODO</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
+<article class="cicatriz-entry" id="cicatriz-08"><div class="cicatriz-image image-08"><span>IMAGEM 08</span></div><div class="cicatriz-copy"><span>08</span><h2>INCÔMODO</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 <article class="cicatriz-entry" id="cicatriz-09"><div class="cicatriz-image image-09"><span>IMAGEM 09</span></div><div class="cicatriz-copy"><span class="cicatriz-number">09</span><h2>ENTRE DOIS</h2><p>Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto. Isto é um teste. Isto é um texto.</p></div></article>
 </section></main>
 <nav class="cicatrizes-index" aria-label="Índice de Cicatrizes do Comum"><div class="cicatrizes-index-inner">
 <a href="#cicatriz-01"><span>01</span><strong>CÃES ENRAIVEZADOS</strong></a><a href="#cicatriz-02"><span>02</span><strong>NÃO SOU</strong></a><a href="#cicatriz-03"><span>03</span><strong>PELE COM PELE</strong></a><a href="#cicatriz-04"><span>04</span><strong>CICATRIZES DO COMUM</strong></a><a href="#cicatriz-05"><span>05</span><strong>DESABAFO DE FOME</strong></a><i aria-hidden="true"></i><a href="#cicatriz-06"><span>06</span><strong>DENÚNCIA</strong></a><a href="#cicatriz-07"><span>07</span><strong>QUEM DISSE QUE NÃO POSSO?</strong></a><a href="#cicatriz-08"><span>08</span><strong>INCÔMODO</strong></a><a href="#cicatriz-09"><span>09</span><strong>ENTRE DOIS</strong></a>
-</div></nav><script src="menu.js"></script></body></html>
+</div></nav>
+<script>
+(function(){
+  var entries = Array.from(document.querySelectorAll(".cicatriz-entry"));
+  var links = Array.from(document.querySelectorAll(".cicatrizes-index a"));
+  var ticking = false;
+  var activeIndex = -1;
+
+  function updateCicatrizesIndex(){
+    var marker = 120;
+    var current = 0;
+    var bestDistance = Infinity;
+
+    entries.forEach(function(entry, index){
+      var distance = Math.abs(entry.getBoundingClientRect().top - marker);
+      if (entry.getBoundingClientRect().top <= marker + 40 && distance < bestDistance) {
+        bestDistance = distance;
+        current = index;
+      }
+    });
+
+    if (current === activeIndex) return;
+    activeIndex = current;
+
+    var link = links[current];
+    if (!link) return;
+
+    links.forEach(function(item){ item.removeAttribute("aria-current"); });
+    link.setAttribute("aria-current", "true");
+
+    var container = document.querySelector(".cicatrizes-index-inner");
+    if (!container) return;
+
+    var targetLeft = link.offsetLeft;
+    var maxScroll = container.scrollWidth - container.clientWidth;
+    var desiredLeft = Math.min(Math.max(0, targetLeft), Math.max(0, maxScroll));
+
+    container.scrollTo({
+      left: desiredLeft,
+      behavior: "smooth"
+    });
+  }
+
+  function requestUpdate(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      ticking = false;
+      updateCicatrizesIndex();
+    });
+  }
+
+  window.addEventListener("scroll", requestUpdate, {passive:true});
+  window.addEventListener("resize", requestUpdate);
+  window.addEventListener("load", requestUpdate);
+  requestUpdate();
+})();
+</script>
+<script src="menu.js"></script></body></html>

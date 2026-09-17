@@ -129,8 +129,8 @@ function setupCategoryNavigation(sideMenu) {
     const indexPanel = document.createElement("div"); indexPanel.className = "category-index-panel"; indexPanel.hidden = true;
     const categoryTitle = document.createElement("div"); categoryTitle.className = "category-index-title"; categoryTitle.textContent = section.querySelector(".menu-title")?.textContent.trim() || "Categoria"; indexPanel.appendChild(categoryTitle);
     links.forEach((link, index) => { const item = document.createElement("a"); item.href = link.getAttribute("href"); item.textContent = link.textContent.trim(); item.className = "category-index-item"; if (index === currentIndex) { item.classList.add("current"); item.setAttribute("aria-current", "page"); } indexPanel.appendChild(item); });
-    const closeIndex = () => { indexPanel.hidden = true; indexButton.setAttribute("aria-expanded", "false"); navigation.classList.remove("index-open"); };
-    indexButton.addEventListener("click", event => { event.preventDefault(); const willOpen = indexPanel.hidden; indexPanel.hidden = !willOpen; indexButton.setAttribute("aria-expanded", willOpen ? "true" : "false"); navigation.classList.toggle("index-open", willOpen); });
+    const closeIndex = () => { indexPanel.hidden = true; indexButton.setAttribute("aria-expanded", "false"); navigation.classList.remove("index-open"); document.body.classList.remove("index-open"); };
+    indexButton.addEventListener("click", event => { event.preventDefault(); const willOpen = indexPanel.hidden; indexPanel.hidden = !willOpen; indexButton.setAttribute("aria-expanded", willOpen ? "true" : "false"); navigation.classList.toggle("index-open", willOpen); document.body.classList.toggle("index-open", willOpen); });
     indexPanel.querySelectorAll("a").forEach(link => link.addEventListener("click", closeIndex)); navigation.appendChild(previous); navigation.appendChild(indexButton); navigation.appendChild(next); navigation.appendChild(indexPanel); article.insertAdjacentElement("afterend", navigation);
   });
 }

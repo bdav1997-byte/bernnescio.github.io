@@ -203,6 +203,45 @@
       height: auto;
     }
 
+    /* Entrada muito suave dos elementos da página */
+    @keyframes almeidaFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .book-page article > .book-kicker,
+    .book-page article > h1,
+    .book-page article > .book-cover-wrap,
+    .book-page article > .book-section,
+    .book-page article > .book-preface,
+    .book-page article > .book-edition {
+      opacity: 0;
+      animation: almeidaFadeIn 1.6s ease-out forwards;
+    }
+
+    .book-page article > .book-kicker { animation-delay: .08s; }
+    .book-page article > h1 { animation-delay: .18s; }
+    .book-page article > .book-cover-wrap { animation-delay: .30s; }
+    .book-page article > .book-section { animation-delay: .44s; }
+    .book-page article > .book-preface { animation-delay: .58s; }
+    .book-page article > .book-edition { animation-delay: .72s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .book-page article > .book-kicker,
+      .book-page article > h1,
+      .book-page article > .book-cover-wrap,
+      .book-page article > .book-section,
+      .book-page article > .book-preface,
+      .book-page article > .book-edition {
+        opacity: 1;
+        animation: none;
+      }
+    }
+
     html.dark-mode,
     html.dark-mode body,
     body.dark-mode {

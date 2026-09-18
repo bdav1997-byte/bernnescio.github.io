@@ -11,6 +11,7 @@
 })();
 
 let menuNewPublicationHighlighted = false;
+let menuCategoriesRevealShown = false;
 
 fetch("menu.html", { cache: "no-store" })
   .then(response => {
@@ -28,10 +29,15 @@ fetch("menu.html", { cache: "no-store" })
       menuToggle.addEventListener("click", event => {
         event.preventDefault(); event.stopPropagation();
         const isOpen = sideMenu.classList.toggle("open");
-        sideMenu.classList.toggle("menu-focus-open", isOpen);
+        const shouldRevealCategories = isOpen && !menuCategoriesRevealShown;
+        sideMenu.classList.toggle("menu-focus-open", shouldRevealCategories);
         document.body.classList.toggle("menu-open", isOpen);
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
         menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+        if (shouldRevealCategories) {
+          menuCategoriesRevealShown = true;
+        }
 
         if (isOpen && !menuNewPublicationHighlighted) {
           const featured = sideMenu.querySelector(".menu-new-publication");

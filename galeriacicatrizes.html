@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeria — NESCIO</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="galeriateste.css">
+<script>(function(){try{document.documentElement.classList.toggle("dark-mode",localStorage.getItem("nescio-theme")==="dark")}catch(e){}})();</script>
+</head>
+<body>
+<div id="menu-container"></div>
+
+<main class="gallery-test-page">
+  <header class="gallery-test-header">
+    <p class="gallery-test-label">11 FOTOGRAFIAS · CICATRIZES DO COMUM</p>
+    <h1>GALERIA</h1>
+  </header>
+
+  <section class="gallery-editorial" aria-label="Galeria editorial">
+    
+    <button class="gallery-item" type="button" data-index="0" aria-label="Abrir fotografia 01">
+      <img src="galeria-teste-01.svg" alt="Cicatrizes do Comum — fotografia 1">
+      <span class="gallery-number">01</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="1" aria-label="Abrir fotografia 02">
+      <img src="galeria-teste-02.svg" alt="Cicatrizes do Comum — fotografia 2">
+      <span class="gallery-number">02</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="2" aria-label="Abrir fotografia 03">
+      <img src="galeria-teste-03.svg" alt="Cicatrizes do Comum — fotografia 3">
+      <span class="gallery-number">03</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="3" aria-label="Abrir fotografia 04">
+      <img src="galeria-teste-04.svg" alt="Cicatrizes do Comum — fotografia 4">
+      <span class="gallery-number">04</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="4" aria-label="Abrir fotografia 05">
+      <img src="galeria-teste-05.svg" alt="Cicatrizes do Comum — fotografia 5">
+      <span class="gallery-number">05</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="5" aria-label="Abrir fotografia 06">
+      <img src="galeria-teste-06.svg" alt="Cicatrizes do Comum — fotografia 6">
+      <span class="gallery-number">06</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="6" aria-label="Abrir fotografia 07">
+      <img src="galeria-teste-07.svg" alt="Cicatrizes do Comum — fotografia 7">
+      <span class="gallery-number">07</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="7" aria-label="Abrir fotografia 08">
+      <img src="galeria-teste-08.svg" alt="Cicatrizes do Comum — fotografia 8">
+      <span class="gallery-number">08</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="8" aria-label="Abrir fotografia 09">
+      <img src="galeria-teste-09.svg" alt="Cicatrizes do Comum — fotografia 9">
+      <span class="gallery-number">09</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="9" aria-label="Abrir fotografia 10">
+      <img src="galeria-teste-10.svg" alt="Cicatrizes do Comum — fotografia 10">
+      <span class="gallery-number">10</span>
+    </button>
+    <button class="gallery-item" type="button" data-index="10" aria-label="Abrir fotografia 11">
+      <img src="galeria-teste-11.svg" alt="Cicatrizes do Comum — fotografia 11">
+      <span class="gallery-number">11</span>
+    </button>
+  </section>
+</main>
+
+<div class="gallery-lightbox" aria-hidden="true">
+  <button class="gallery-lightbox-close" type="button">FECHAR</button>
+  <button class="gallery-lightbox-prev" type="button" aria-label="Fotografia anterior">←</button>
+  <div class="gallery-lightbox-stage">
+    <div class="gallery-lightbox-track">
+      <div class="gallery-lightbox-slide"><img src="" alt=""></div>
+      <div class="gallery-lightbox-slide"><img src="" alt=""></div>
+      <div class="gallery-lightbox-slide"><img src="" alt=""></div>
+    </div>
+  </div>
+  <button class="gallery-lightbox-next" type="button" aria-label="Fotografia seguinte">→</button>
+  <div class="gallery-lightbox-count"></div>
+</div>
+
+<script>
+(function(){
+  var items = Array.from(document.querySelectorAll(".gallery-editorial .gallery-item"));
+  var box = document.querySelector(".gallery-lightbox");
+  var stage = box.querySelector(".gallery-lightbox-stage");
+  var track = box.querySelector(".gallery-lightbox-track");
+  var slides = Array.from(box.querySelectorAll(".gallery-lightbox-slide"));
+  var count = box.querySelector(".gallery-lightbox-count");
+  var prevButton = box.querySelector(".gallery-lightbox-prev");
+  var nextButton = box.querySelector(".gallery-lightbox-next");
+  var current = 0;
+  var dragStartX = null;
+  var dragStartY = null;
+  var dragX = 0;
+  var dragging = false;
+
+  function pad(value){ return String(value).padStart(2,"0"); }
+
+  function setSlide(slide, index){
+    var img = slide.querySelector("img");
+    if(index < 0 || index >= items.length){
+      img.removeAttribute("src");
+      img.alt = "";
+      return;
+    }
+    var source = items[index].querySelector("img");
+    img.src = source.src;
+    img.alt = source.alt;
+  }
+
+  function updateUI(){
+    count.textContent = pad(current + 1) + " / " + pad(items.length);
+    prevButton.disabled = current === 0;
+    nextButton.disabled = current === items.length - 1;
+  }
+
+  function centerTrack(animate){
+    track.classList.toggle("is-animating", animate);
+    dragX = 0;
+    track.style.transform = "translate3d(-33.333333%,0,0)";
+  }
+
+  function render(index, animate){
+    current = index;
+    setSlide(slides[0], current - 1);
+    setSlide(slides[1], current);
+    setSlide(slides[2], current + 1);
+    updateUI();
+    centerTrack(animate);
+  }
+
+  function open(index){
+    render(index, false);
+    box.classList.add("open");
+    box.setAttribute("aria-hidden","false");
+    document.body.classList.add("gallery-lightbox-open");
+  }
+
+  function close(){
+    box.classList.remove("open");
+    box.setAttribute("aria-hidden","true");
+    document.body.classList.remove("gallery-lightbox-open");
+    centerTrack(false);
+  }
+
+  function completeMove(direction){
+    var target = current + direction;
+    if(target < 0 || target >= items.length){
+      track.classList.add("is-animating");
+      centerTrack(true);
+      return;
+    }
+
+    track.classList.add("is-animating");
+    track.style.transform = direction > 0
+      ? "translate3d(-66.666666%,0,0)"
+      : "translate3d(0%,0,0)";
+
+    var done = function(){
+      track.removeEventListener("transitionend", done);
+      render(target, false);
+    };
+    track.addEventListener("transitionend", done);
+  }
+
+  function move(direction){
+    if(direction < 0 && current === 0) return;
+    if(direction > 0 && current === items.length - 1) return;
+    completeMove(direction);
+  }
+
+  items.forEach(function(item,index){
+    item.addEventListener("click", function(){ open(index); });
+  });
+
+  box.querySelector(".gallery-lightbox-close").addEventListener("click", close);
+  prevButton.addEventListener("click", function(){ move(-1); });
+  nextButton.addEventListener("click", function(){ move(1); });
+
+  box.addEventListener("click", function(event){
+    if(event.target === box) close();
+  });
+
+  stage.addEventListener("touchstart", function(event){
+    if(!box.classList.contains("open") || event.touches.length !== 1) return;
+    dragStartX = event.touches[0].clientX;
+    dragStartY = event.touches[0].clientY;
+    dragX = 0;
+    dragging = false;
+    track.classList.remove("is-animating");
+  }, {passive:true});
+
+  stage.addEventListener("touchmove", function(event){
+    if(dragStartX === null || !event.touches.length) return;
+    var dx = event.touches[0].clientX - dragStartX;
+    var dy = event.touches[0].clientY - dragStartY;
+
+    if(!dragging){
+      if(Math.abs(dx) < 8) return;
+      if(Math.abs(dy) > Math.abs(dx)) {
+        dragStartX = null;
+        return;
+      }
+      dragging = true;
+    }
+
+    var atStart = current === 0 && dx > 0;
+    var atEnd = current === items.length - 1 && dx < 0;
+    dragX = (atStart || atEnd) ? dx * 0.22 : dx;
+    track.style.transform = "translate3d(calc(-33.333333% + " + dragX + "px),0,0)";
+    event.preventDefault();
+  }, {passive:false});
+
+  stage.addEventListener("touchend", function(){
+    if(dragStartX === null) return;
+    var wasDragging = dragging;
+    dragStartX = null;
+    dragStartY = null;
+    dragging = false;
+
+    if(!wasDragging){
+      centerTrack(false);
+      return;
+    }
+
+    var threshold = Math.min(120, stage.clientWidth * 0.18);
+    if(Math.abs(dragX) >= threshold){
+      move(dragX < 0 ? 1 : -1);
+    } else {
+      track.classList.add("is-animating");
+      centerTrack(true);
+    }
+  }, {passive:true});
+
+  document.addEventListener("keydown", function(event){
+    if(!box.classList.contains("open")) return;
+    if(event.key === "Escape") close();
+    if(event.key === "ArrowLeft") move(-1);
+    if(event.key === "ArrowRight") move(1);
+  });
+
+  updateUI();
+})();
+</script>
+<script src="menu.js"></script>
+</body>
+</html>

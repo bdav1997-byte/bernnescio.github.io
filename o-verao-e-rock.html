@@ -113,8 +113,8 @@
                         <span class="verao-audio-label">DEMON</span>
                         <button type="button" class="verao-audio-button" id="verao-audio-button" aria-label="Reproduzir áudio">▶</button>
                     </div>
-                    <audio id="verao-audio-element" preload="metadata">
-                        <source src="Demon%20%28Max%29.flac" type="audio/flac">
+                    <audio id="verao-audio-element" preload="metadata" playsinline crossorigin="anonymous">
+                        <source src="https://raw.githubusercontent.com/bdav1997-byte/bernnescio.github.io/main/Demon%20%28Max%29.flac" type="audio/flac">
                     </audio>
                     <div class="verao-audio-progress" id="verao-audio-progress" role="slider" aria-label="Progresso do áudio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
                         <div class="verao-audio-progress-fill" id="verao-audio-progress-fill"></div>
@@ -255,14 +255,22 @@
             }
 
             function toggleAudio() {
-                if (audio.paused) audio.play().catch(function(){});
-                else audio.pause();
+                if (audio.paused) {
+                    audio.play().catch(function () {
+                        playButton.textContent = "×";
+                        playButton.setAttribute("aria-label","Áudio indisponível");
+                    });
+                } else audio.pause();
             }
 
             endTrigger.addEventListener("click",showAudio);
             playButton.addEventListener("click",toggleAudio);
 
             audio.addEventListener("loadedmetadata",updateAudio);
+            audio.addEventListener("error",function(){
+                playButton.textContent = "×";
+                playButton.setAttribute("aria-label","Áudio indisponível");
+            });
             audio.addEventListener("timeupdate",updateAudio);
             audio.addEventListener("play",function(){ playButton.textContent="Ⅱ"; playButton.setAttribute("aria-label","Pausar áudio"); });
             audio.addEventListener("pause",function(){ playButton.textContent="▶"; playButton.setAttribute("aria-label","Reproduzir áudio"); });

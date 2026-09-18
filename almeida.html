@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ALMEIDA — NESCIO</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem("nescio-almeida-arrival") === "1") {
+          document.documentElement.classList.add("almeida-arrival");
+          sessionStorage.removeItem("nescio-almeida-arrival");
+        }
+      } catch (error) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">

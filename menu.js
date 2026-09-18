@@ -180,7 +180,18 @@ function setupCategoryNavigation(sideMenu) {
   if (currentFile === "cicatrizesdocomum.html") return;
   const sections = sideMenu.querySelectorAll(".menu-section");
   sections.forEach(section => {
-    const links = Array.from(section.querySelectorAll(":scope > a, .menu-section-content > a")).filter(link => { const href = link.getAttribute("href"); return href && !href.startsWith("http") && !href.startsWith("#"); });
+    // O índice pertence apenas a esta secção. Não recolhe links de subcategorias.
+    // Ex.: MISCELÂNEA não deve misturar TEXTOS AVULSOS com REISSUE.
+    const directContent = Array.from(section.children).find(
+      child => child.classList && child.classList.contains("menu-section-content")
+    );
+    if (!directContent) return;
+    const links = Array.from(directContent.children)
+      .filter(child => child.tagName === "A")
+      .filter(link => {
+        const href = link.getAttribute("href");
+        return href && !href.startsWith("http") && !href.startsWith("#");
+      });
     if (!links.length) return;
     const currentIndex = links.findIndex(link => { const href = link.getAttribute("href"); return href && href.split("/").pop() === currentFile; });
     if (currentIndex === -1) return;

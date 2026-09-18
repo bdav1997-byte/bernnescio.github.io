@@ -175,9 +175,24 @@
     item.addEventListener("click", function(){ open(index); });
   });
 
-  box.querySelector(".gallery-lightbox-close").addEventListener("click", close);
-  prevButton.addEventListener("click", function(){ move(-1); });
-  nextButton.addEventListener("click", function(){ move(1); });
+  var closeButton = box.querySelector(".gallery-lightbox-close");
+
+  function bindControl(button, handler){
+    button.addEventListener("click", function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      handler();
+    });
+    button.addEventListener("touchend", function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      handler();
+    }, {passive:false});
+  }
+
+  bindControl(closeButton, close);
+  bindControl(prevButton, function(){ move(-1); });
+  bindControl(nextButton, function(){ move(1); });
 
   box.addEventListener("click", function(event){
     if(event.target === box) close();

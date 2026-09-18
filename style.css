@@ -114,64 +114,39 @@ body.page-enter { animation:pageFadeIn .35s ease both; }
 body.page-exit { opacity:0; transition:opacity .22s ease; }
 @keyframes pageFadeIn { from{opacity:0;} to{opacity:1;} }
 
-/* TRANSIÇÃO TIPO MORPH ENTRE O MENU E O LIVRO ALMEIDA */
+/* TRANSIÇÃO SUAVE ENTRE PÁGINAS */
 @view-transition { navigation:auto; }
 
-.menu-new-publication[href="almeida.html"] {
-    view-transition-name: almeida-book;
+/* A página inteira faz um crossfade muito subtil, com um pequeno movimento vertical.
+   Não usamos morph entre páginas porque as estruturas variam demasiado entre textos. */
+::view-transition-group(root) {
+    animation-duration:.52s;
+    animation-timing-function:cubic-bezier(.22,1,.36,1);
 }
 
-.book-cover-wrap {
-    view-transition-name: almeida-book;
+::view-transition-old(root) {
+    animation:nescioPageOld .26s ease-out both;
 }
 
-/* TRANSIÇÃO MORPH GLOBAL ENTRE AS PÁGINAS */
-main {
-    view-transition-name: nescio-page;
+::view-transition-new(root) {
+    animation:nescioPageNew .52s cubic-bezier(.22,1,.36,1) both;
 }
 
-::view-transition-group(nescio-page) {
-    animation-duration: .72s;
-    animation-timing-function: cubic-bezier(.22,1,.36,1);
+@keyframes nescioPageOld {
+    from { opacity:1; transform:translateY(0); }
+    to { opacity:0; transform:translateY(-6px); }
 }
 
-::view-transition-image-pair(nescio-page) {
-    animation-duration: .72s;
-}
-
-::view-transition-old(nescio-page),
-::view-transition-new(nescio-page) {
-    animation-duration: .72s;
-    animation-timing-function: cubic-bezier(.22,1,.36,1);
-}
-
-
-::view-transition-group(almeida-book) {
-    animation-duration: .9s;
-    animation-timing-function: cubic-bezier(.22,1,.36,1);
-}
-
-::view-transition-image-pair(almeida-book) {
-    animation-duration: .9s;
-}
-
-::view-transition-old(almeida-book),
-::view-transition-new(almeida-book) {
-    animation-duration: .9s;
-    animation-timing-function: cubic-bezier(.22,1,.36,1);
+@keyframes nescioPageNew {
+    from { opacity:0; transform:translateY(8px); }
+    to { opacity:1; transform:translateY(0); }
 }
 
 @media (prefers-reduced-motion:reduce){
-    body.page-enter,body.page-exit{animation:none;transition:none;opacity:1;}
-    ::view-transition-group(nescio-page),
-    ::view-transition-image-pair(nescio-page),
-    ::view-transition-old(nescio-page),
-    ::view-transition-new(nescio-page),
-    ::view-transition-group(almeida-book),
-    ::view-transition-image-pair(almeida-book),
-    ::view-transition-old(almeida-book),
-    ::view-transition-new(almeida-book) {
-        animation-duration: 0s;
+    ::view-transition-group(root),
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration:0s;
     }
 }
 

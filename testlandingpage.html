@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NESCIO</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
+  <style>
+    .landing-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 25px 45px;
+      text-align: center;
+    }
+    .landing-logo {
+      width: 380px;
+      height: auto;
+      margin: 0 0 58px;
+    }
+    .landing-motto {
+      width: 380px;
+      max-width: 100%;
+      margin: 0;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 27px;
+      font-weight: 400;
+      letter-spacing: .04em;
+      line-height: 1.3;
+      opacity: 0;
+    }
+    .landing-latest {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      margin-top: 62px;
+      color: #000;
+      text-decoration: none;
+      opacity: 0;
+    }
+    .landing-latest-label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+    .landing-latest-title {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .1em;
+    }
+    .landing-latest:hover .landing-latest-title {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .landing-year {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      width: 100%;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      opacity: 0;
+    }
+    .landing-author {
+      display: block;
+      margin-top: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .14em;
+    }
+    @keyframes landingFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .landing-page.landing-animate .landing-motto {
+      animation: landingFadeIn 1.8s ease forwards;
+      animation-delay: 1s;
+    }
+    .landing-page.landing-animate .landing-latest {
+      animation: landingFadeIn 1.4s ease forwards;
+      animation-delay: 2.4s;
+    }
+    .landing-page.landing-animate .landing-year {
+      animation: landingFadeIn 1.8s ease forwards;
+      animation-delay: 3.1s;
+    }
+    .landing-page:not(.landing-animate) .landing-motto,
+    .landing-page:not(.landing-animate) .landing-latest,
+    .landing-page:not(.landing-animate) .landing-year {
+      opacity: 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .landing-motto,
+      .landing-latest,
+      .landing-year {
+        opacity: 1 !important;
+        animation: none !important;
+      }
+    }
+    html.dark-mode .landing-motto,
+    html.dark-mode .landing-year,
+    html.dark-mode .landing-latest {
+      color: #F5F5F5;
+    }
+    @media (max-width: 700px) {
+      .landing-page { padding: 20px 25px 45px; }
+      .landing-logo { width: 280px; margin-bottom: 45px; }
+      .landing-motto { width: 280px; max-width: 100%; font-size: 20px; line-height: 1.35; letter-spacing: .04em; }
+      .landing-latest { margin-top: 48px; gap: 8px; }
+      .landing-latest-label { font-size: 8px; }
+      .landing-latest-title { font-size: 10px; letter-spacing: .08em; }
+      .landing-year { bottom: 20px; font-size: 9px; }
+      .landing-author { margin-top: 4px; font-size: 9px; letter-spacing: .14em; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="menu-container"></div>
+
+  <main class="landing-page">
+    <img src="NESCIOnLOGO.png" class="landing-logo" alt="NESCIO">
+    <h1 class="landing-motto">O FIM É APENAS OUTRA FORMA DE PERMANECER</h1>
+    <a class="landing-latest" href="soberaniadafutilidade.html" aria-label="Última publicação: Soberania da Futilidade">
+      <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
+      <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
+    </a>
+    <div class="landing-year">NESCIO - 2026<span class="landing-author">Bernardo de Almeida Valentim</span></div>
+  </main>
+
+  <script>
+    (function () {
+      var page = document.querySelector('.landing-page');
+      if (!page) return;
+
+      var storageKey = 'nescio-landing-last-visit';
+      var now = Date.now();
+      var fiveMinutes = 5 * 60 * 1000;
+      var shouldAnimate = true;
+
+      try {
+        var lastVisit = Number(localStorage.getItem(storageKey));
+        shouldAnimate = !lastVisit || (now - lastVisit >= fiveMinutes);
+        localStorage.setItem(storageKey, String(now));
+      } catch (error) {}
+
+      if (shouldAnimate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        page.classList.add('landing-animate');
+      }
+    })();
+  </script>
+  <script src="menu.js"></script>
+
+</body>
+</html>

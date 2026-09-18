@@ -114,13 +114,24 @@ main { width:100%; max-width:650px; margin:0 auto; padding:110px 25px 100px; }
 .sofia-secret-link:hover { text-decoration:underline; }
 
 #sofia-title {
-    touch-action:pan-y;
+    touch-action:none;
     user-select:none;
     -webkit-user-select:none;
     cursor:grab;
+    transform:translateX(0);
+    transition:transform .35s cubic-bezier(.22,1,.36,1);
+    will-change:transform;
 }
 
-#sofia-title:active { cursor:grabbing; }
+#sofia-title.is-dragging {
+    transition:none;
+    cursor:grabbing;
+}
+
+#sofia-title.is-dragged {
+    cursor:default;
+    transition:transform .35s cubic-bezier(.22,1,.36,1);
+}
 
 html.dark-mode .sofia-secret-link,
 body.dark-mode .sofia-secret-link { color:#F5F5F5; }

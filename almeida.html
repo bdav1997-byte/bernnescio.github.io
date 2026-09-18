@@ -6,22 +6,45 @@
   <title>ALMEIDA — NESCIO</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    body {
+      background: #F3EBDD;
+      color: #272321;
+    }
+
     .book-page article { max-width: 760px; }
+
     .book-kicker {
       margin: 0 0 18px;
+      color: #756B61;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
     }
-     .book-section {
+
+    .book-section {
       margin-top: 42px;
     }
+
+    .book-section h2 {
+      margin: 0 0 24px;
+      color: #6F4935;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+    }
+
+    .book-section p {
+      margin-bottom: 22px;
+    }
+
     .book-preface,
     .book-edition {
       margin-top: 42px;
     }
+
     .book-preface summary,
     .book-edition summary {
       list-style: none;
@@ -30,30 +53,36 @@
       justify-content: space-between;
       gap: 20px;
       padding: 16px 0;
-      border-top: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
+      border-top: 1px solid #CDBFA9;
+      border-bottom: 1px solid #CDBFA9;
+      color: #8A6248;
       cursor: pointer;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .14em;
     }
+
     .book-preface summary::-webkit-details-marker,
     .book-edition summary::-webkit-details-marker {
       display: none;
     }
+
     .book-preface summary::after,
     .book-edition summary::after {
       content: "+";
+      color: #B58A52;
       font-size: 16px;
       font-weight: 400;
       line-height: 1;
       transition: transform .25s ease;
     }
+
     .book-preface[open] summary::after,
     .book-edition[open] summary::after {
       transform: rotate(45deg);
     }
+
     .book-preface-content,
     .book-edition-content {
       max-height: 0;
@@ -62,61 +91,67 @@
       opacity: 0;
       transition: max-height .45s cubic-bezier(.4,0,.2,1), opacity .25s ease, padding-top .45s cubic-bezier(.4,0,.2,1);
     }
+
     .book-preface-content > *,
     .book-edition-content > * {
       min-height: 0;
     }
+
     .book-preface-content.is-open,
     .book-edition-content.is-open {
       opacity: 1;
       padding-top: 28px;
     }
-    .book-preface-warning {
-      margin: 0 0 22px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: .08em;
-      line-height: 1.6;
-      opacity: .65;
+
+    .book-section p,
+    .book-preface-content p {
+      color: #272321;
     }
-    .book-section h2 {
-      margin: 0 0 24px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .14em;
-    }
-    .book-section p {
-      margin-bottom: 22px;
-    }
-    .book-excerpt {
-      padding: 28px 0;
-      border-top: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
-      font-style: italic;
-    }
+
     .book-details {
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
+      padding: 22px 20px;
+      background: #E9DFC9;
+      border: 1px solid #CDBFA9;
+      color: #272321;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       letter-spacing: .06em;
       line-height: 1.6;
     }
+
     .book-detail-label {
       display: block;
       margin-bottom: 3px;
+      color: #8A6248;
       font-weight: 700;
       letter-spacing: .1em;
     }
+
+    .book-detail-edition .book-detail-name {
+      display: block !important;
+      margin: 0;
+    }
+
+    .book-detail-edition .book-detail-name + .book-detail-name {
+      margin-top: 4px;
+    }
+
+    .book-excerpt {
+      padding: 28px 0;
+      border-top: 1px solid #CDBFA9;
+      border-bottom: 1px solid #CDBFA9;
+      font-style: italic;
+    }
+
     .book-buy {
       display: inline-block;
       margin-top: 8px;
       padding: 13px 18px;
-      border: 1px solid currentColor;
-      color: inherit;
+      border: 1px solid #8A6248;
+      color: #8A6248;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       font-weight: 700;
@@ -124,32 +159,99 @@
       text-decoration: none;
       transition: background .2s ease, color .2s ease;
     }
+
     .book-buy:hover {
-      background: #000;
-      color: #FAFAFA;
+      background: #6F4935;
+      color: #F3EBDD;
     }
-    html.dark-mode .book-buy:hover,
-    body.dark-mode .book-buy:hover {
-      background: #F5F5F5;
-      color: #111;
-    }
+
     .book-cover-wrap {
       display: flex;
       justify-content: center;
       margin: 0 auto 58px;
     }
+
     .book-cover {
       display: block;
       width: min(360px, 68vw);
       max-width: 100%;
       height: auto;
     }
+
+    html.dark-mode body,
+    body.dark-mode {
+      background: #171412;
+      color: #E9DFD2;
+    }
+
+    html.dark-mode .book-kicker,
+    body.dark-mode .book-kicker {
+      color: #A99A89;
+    }
+
+    html.dark-mode .book-section h2,
+    body.dark-mode .book-section h2 {
+      color: #B17A56;
+    }
+
+    html.dark-mode .book-section p,
+    body.dark-mode .book-section p,
+    html.dark-mode .book-preface-content p,
+    body.dark-mode .book-preface-content p {
+      color: #E9DFD2;
+    }
+
+    html.dark-mode .book-preface summary,
+    body.dark-mode .book-preface summary,
+    html.dark-mode .book-edition summary,
+    body.dark-mode .book-edition summary {
+      border-color: #4A3D32;
+      color: #B17A56;
+    }
+
+    html.dark-mode .book-preface summary::after,
+    body.dark-mode .book-preface summary::after,
+    html.dark-mode .book-edition summary::after,
+    body.dark-mode .book-edition summary::after {
+      color: #9B7848;
+    }
+
+    html.dark-mode .book-details,
+    body.dark-mode .book-details {
+      background: #211B17;
+      border-color: #4A3D32;
+      color: #E9DFD2;
+    }
+
+    html.dark-mode .book-detail-label,
+    body.dark-mode .book-detail-label {
+      color: #B17A56;
+    }
+
+    html.dark-mode .book-excerpt,
+    body.dark-mode .book-excerpt {
+      border-color: #4A3D32;
+    }
+
+    html.dark-mode .book-buy,
+    body.dark-mode .book-buy {
+      border-color: #8A5D43;
+      color: #B17A56;
+    }
+
+    html.dark-mode .book-buy:hover,
+    body.dark-mode .book-buy:hover {
+      background: #B17A56;
+      color: #171412;
+    }
+
     @media (max-width: 700px) {
       .book-cover-wrap { margin-bottom: 42px; }
       .book-cover { width: min(280px, 72vw); }
       .book-section { margin-top: 34px; }
       .book-preface,
       .book-edition { margin-top: 34px; }
+      .book-details { padding: 20px 16px; }
     }
   </style>
   <script>
@@ -208,7 +310,6 @@
           </div>
         </div>
       </details>
-
     </article>
   </main>
 
@@ -273,12 +374,4 @@
   </script>
   <script src="menu.js"></script>
 </body>
-</html
-.book-detail-edition .book-detail-name {
-  display:block !important;
-  margin:0;
-}
-.book-detail-edition .book-detail-name + .book-detail-name {
-  margin-top:4px;
-}
->
+</html>

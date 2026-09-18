@@ -6,6 +6,57 @@
 
 html { scroll-behavior: smooth; }
 
+/* TRANSIÇÃO SUAVE ENTRE LIGHT / DARK MODE */
+html,
+body,
+.site-header,
+.side-menu,
+.menu-toggle,
+.menu-title,
+.side-menu .menu-section a,
+.menu-search-trigger,
+.menu-search-input-wrap,
+.category-navigation,
+.category-nav-link,
+.category-nav-index,
+.category-index-panel,
+.category-index-title,
+.category-index-item,
+article h1,
+article p,
+.separator,
+hr,
+.back-to-top {
+    transition-property: background-color, color, border-color, box-shadow, filter;
+    transition-duration: .55s;
+    transition-timing-function: cubic-bezier(.22,1,.36,1);
+}
+
+@media (prefers-reduced-motion:reduce) {
+    html,
+    body,
+    .site-header,
+    .side-menu,
+    .menu-toggle,
+    .menu-title,
+    .side-menu .menu-section a,
+    .menu-search-trigger,
+    .menu-search-input-wrap,
+    .category-navigation,
+    .category-nav-link,
+    .category-nav-index,
+    .category-index-panel,
+    .category-index-title,
+    .category-index-item,
+    article h1,
+    article p,
+    .separator,
+    hr,
+    .back-to-top {
+        transition-duration: 0s;
+    }
+}
+
 body {
     background: #FAFAFA;
     color: #000;

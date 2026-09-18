@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FALECIDOS — NESCIO</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
+</head>
+<body>
+  <div id="menu-container"></div>
+  <main>
+    <a href="index.html" class="back-link">← VOLTAR</a>
+    <img src="LOGO.png" class="logo" alt="NESCIO">
+    <article>
+      <h1>FALECIDOS</h1>
+      <p>Textos descartados da primeira era.</p>
+      <p>Um pequeno arquivo de coisas que chegaram a existir antes de deixarem de existir.</p>
+    </article>
+  </main>
+  <script src="menu.js"></script>
+</body>
+</html>

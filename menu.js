@@ -61,7 +61,16 @@ fetch("menu.html", { cache: "no-store" })
       sideMenu.querySelectorAll(".collapsible-title").forEach(title => {
         const toggleSection = () => {
           const section = title.closest(".collapsible-section");
-          const content = section.querySelector(".menu-section-content");
+          if (!section) return;
+
+          // Só o conteúdo imediatamente pertencente a esta secção é controlado.
+          // Isto é importante para as subcategorias da MISCELÂNEA:
+          // ao abrir MISCELÂNEA, TEXTOS AVULSOS e REISSUE continuam fechados.
+          const content = Array.from(section.children).find(
+            child => child.classList && child.classList.contains("menu-section-content")
+          );
+          if (!content) return;
+
           const isOpen = !section.classList.contains("expanded");
 
           if (isOpen) {
@@ -76,9 +85,36 @@ fetch("menu.html", { cache: "no-store" })
               content.style.maxHeight = "0px";
             });
           }
+
+          // Se esta for uma subcategoria, atualiza a altura dos pais abertos
+          // para que OUTROS PROJECTOS seja sempre empurrado para baixo.
+          let parent = section.parentElement;
+          while (parent) {
+            if (parent.classList && parent.classList.contains("menu-section-content")) {
+              const parentSection = parent.parentElement;
+              if (parentSection && parentSection.classList.contains("expanded")) {
+                requestAnimationFrame(() => {
+                  parent.style.maxHeight = parent.scrollHeight + "px";
+                });
+              }
+            }
+            parent = parent.parentElement;
+          }
         };
-        title.addEventListener("click", toggleSection);
-        title.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggleSection(); } });
+
+        title.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          toggleSection();
+        });
+
+        title.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            event.stopPropagation();
+            toggleSection();
+          }
+        });
       });
       setupCategoryNavigation(sideMenu);
     }

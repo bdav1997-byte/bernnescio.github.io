@@ -120,11 +120,11 @@ body {
 }
 
 ::view-transition-old(root) {
-    animation:nescioPageOld .30s ease-out both;
+    animation:nescioPageOld var(--nescio-old-duration,.30s) ease-out both;
 }
 
 ::view-transition-new(root) {
-    animation:nescioPageNew .58s cubic-bezier(.22,1,.36,1) both;
+    animation:nescioPageNew var(--nescio-new-duration,.58s) cubic-bezier(.22,1,.36,1) both;
 }
 
 @keyframes nescioPageOld {
@@ -139,11 +139,11 @@ body {
 
 @media (max-width:700px) {
     ::view-transition-old(root) {
-        animation:nescioPageOldMobile .34s ease-out both;
+        animation:nescioPageOldMobile var(--nescio-old-duration,.34s) ease-out both;
     }
 
     ::view-transition-new(root) {
-        animation:nescioPageNewMobile .64s cubic-bezier(.22,1,.36,1) both;
+        animation:nescioPageNewMobile var(--nescio-new-duration,.64s) cubic-bezier(.22,1,.36,1) both;
     }
 
     @keyframes nescioPageOldMobile {
@@ -154,6 +154,19 @@ body {
     @keyframes nescioPageNewMobile {
         from { opacity:0; transform:translateY(2px); }
         to { opacity:1; transform:translateY(0); }
+    }
+}
+
+/* ALMEIDA: chegada deliberadamente mais lenta para dar maior peso à entrada do livro. */
+html.almeida-arrival {
+    --nescio-old-duration:.52s;
+    --nescio-new-duration:1.35s;
+}
+
+@media (max-width:700px) {
+    html.almeida-arrival {
+        --nescio-old-duration:.58s;
+        --nescio-new-duration:1.65s;
     }
 }
 

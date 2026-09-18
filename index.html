@@ -372,9 +372,10 @@
         var popup = document.createElement('div');
         popup.className = 'landing-easter-egg';
         popup.textContent = 'E a contar…';
-        var counterRect = counter.getBoundingClientRect();
-        popup.style.width = counterRect.width + 'px';
-        popup.style.left = (counterRect.left + counterRect.width / 2) + 'px';
+        var text = counter.querySelector('#landing-archive-count');
+        var textRect = (text || counter).getBoundingClientRect();
+        popup.style.width = textRect.width + 'px';
+        popup.style.left = (textRect.left + textRect.width / 2) + 'px';
         document.body.appendChild(popup);
 
         requestAnimationFrame(function () {

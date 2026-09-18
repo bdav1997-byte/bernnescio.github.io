@@ -56,28 +56,20 @@
     }
     .book-preface-content,
     .book-edition-content {
-      display: grid;
-      grid-template-rows: 0fr;
+      max-height: 0;
+      overflow: hidden;
+      padding-top: 0;
       opacity: 0;
-      transition: grid-template-rows .45s cubic-bezier(.4,0,.2,1), opacity .25s ease;
+      transition: max-height .45s cubic-bezier(.4,0,.2,1), opacity .25s ease, padding-top .45s cubic-bezier(.4,0,.2,1);
     }
     .book-preface-content > *,
     .book-edition-content > * {
       min-height: 0;
-      overflow: hidden;
     }
-    .book-preface[open] .book-preface-content,
-    .book-edition[open] .book-edition-content {
-      grid-template-rows: 1fr;
-      padding-top: 28px;
+    .book-preface-content.is-open,
+    .book-edition-content.is-open {
       opacity: 1;
-      transition: grid-template-rows .45s cubic-bezier(.4,0,.2,1), opacity .25s ease, padding-top .45s cubic-bezier(.4,0,.2,1);
-    }
-    .book-preface-content {
-      padding-top: 0;
-    }
-    .book-edition-content {
-      padding-top: 0;
+      padding-top: 28px;
     }
     .book-preface-warning {
       margin: 0 0 22px;
@@ -221,6 +213,65 @@
     </article>
   </main>
 
+  <script>
+    (function () {
+      var details = document.querySelectorAll(".book-preface, .book-edition");
+
+      details.forEach(function (section) {
+        var summary = section.querySelector("summary");
+        var content = section.querySelector(".book-preface-content, .book-edition-content");
+        if (!summary || !content) return;
+
+        summary.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          var isOpen = section.open;
+          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          var currentHeight = content.getBoundingClientRect().height;
+
+          if (!isOpen) {
+            section.open = true;
+            content.classList.add("is-open");
+            content.style.maxHeight = Math.max(0, currentHeight) + "px";
+
+            requestAnimationFrame(function () {
+              var targetHeight = content.scrollHeight;
+              var distance = Math.abs(targetHeight - currentHeight);
+              var duration = reduceMotion ? 0 : Math.min(520, Math.max(220, distance * 0.32));
+              content.style.transitionDuration = duration + "ms";
+              content.style.maxHeight = targetHeight + "px";
+
+              if (!reduceMotion && duration > 0) {
+                window.setTimeout(function () {
+                  content.style.maxHeight = "none";
+                }, duration + 20);
+              } else {
+                content.style.maxHeight = "none";
+              }
+            });
+          } else {
+            var targetHeight = 0;
+            var distance = Math.abs(currentHeight - targetHeight);
+            var duration = reduceMotion ? 0 : Math.min(520, Math.max(220, distance * 0.32));
+            content.style.transitionDuration = duration + "ms";
+            content.style.maxHeight = currentHeight + "px";
+
+            requestAnimationFrame(function () {
+              content.style.maxHeight = "0px";
+              content.style.opacity = "0";
+
+              window.setTimeout(function () {
+                section.open = false;
+                content.classList.remove("is-open");
+                content.style.maxHeight = "0px";
+                content.style.opacity = "";
+              }, duration + 20);
+            });
+          }
+        });
+      });
+    })();
+  </script>
   <script src="menu.js"></script>
 </body>
 </html

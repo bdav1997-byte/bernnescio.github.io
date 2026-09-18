@@ -40,17 +40,22 @@ fetch("menu.html", { cache: "no-store" })
         }
 
         if (isOpen && !menuNewPublicationHighlighted) {
-          const featured = sideMenu.querySelector(".menu-new-publication");
+          const highlightedPublications = sideMenu.querySelectorAll(".menu-new-publication");
           menuNewPublicationHighlighted = true;
 
-          if (featured && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            featured.classList.remove("menu-new-publication-animate");
-            void featured.offsetWidth;
+          if (highlightedPublications.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            highlightedPublications.forEach(publication => {
+              publication.classList.remove("menu-new-publication-animate");
+              void publication.offsetWidth;
+            });
+
             requestAnimationFrame(() => {
-              featured.classList.add("menu-new-publication-animate");
-              featured.addEventListener("animationend", () => {
-                featured.classList.remove("menu-new-publication-animate");
-              }, { once: true });
+              highlightedPublications.forEach(publication => {
+                publication.classList.add("menu-new-publication-animate");
+                publication.addEventListener("animationend", () => {
+                  publication.classList.remove("menu-new-publication-animate");
+                }, { once: true });
+              });
             });
           }
         }

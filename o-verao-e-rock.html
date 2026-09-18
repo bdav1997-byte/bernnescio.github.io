@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O VERÃO É ROCK — NESCIO</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try { document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark"); } catch (error) {}
+        })();
+    </script>
+    <style>
+        html.password-gate-locked,
+        body.password-gate-locked {
+            overflow: hidden !important;
+        }
+
+        .verao-gate {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2147483647;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FAFAFA;
+            color: #000;
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .verao-gate-inner {
+            width: min(620px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .verao-gate-logo {
+            width: min(300px, 68vw);
+            height: auto;
+            margin-bottom: 58px;
+        }
+
+        .verao-gate-label {
+            margin: 0 0 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .verao-gate-title {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: .065em;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        .verao-gate-rule {
+            width: 42px;
+            height: 1px;
+            margin: 28px auto 34px;
+            background: #000;
+        }
+
+        .verao-countdown {
+            margin: 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .verao-countdown-label {
+            margin-top: 9px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .verao-password-form {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            width: min(360px, 100%);
+            margin-top: 42px;
+        }
+
+        .verao-password {
+            flex: 1 1 auto;
+            width: 0;
+            min-width: 0;
+            border: 1px solid #000;
+            border-right: 0;
+            border-radius: 0;
+            outline: none;
+            background: transparent;
+            color: #000;
+            padding: 11px 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.2;
+            letter-spacing: .12em;
+            text-align: center;
+            text-transform: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .verao-password::placeholder {
+            color: #777;
+            opacity: 1;
+        }
+
+        .verao-password:focus {
+            box-shadow: inset 0 0 0 1px #000;
+        }
+
+        .verao-password-button {
+            flex: 0 0 auto;
+            border: 1px solid #000;
+            border-radius: 0;
+            background: #000;
+            color: #FAFAFA;
+            padding: 0 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            cursor: pointer;
+        }
+
+        .verao-password-button:hover {
+            background: #FAFAFA;
+            color: #000;
+        }
+
+        .verao-password-message {
+            min-height: 16px;
+            margin-top: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .verao-password-message.error {
+            color: #777;
+        }
+
+        .verao-gate.is-unlocked {
+            display: none;
+        }
+
+        html.dark-mode .verao-gate,
+        body.dark-mode .verao-gate {
+            background: #111;
+            color: #F5F5F5;
+        }
+
+        html.dark-mode .verao-gate-logo,
+        body.dark-mode .verao-gate-logo {
+            filter: invert(1);
+        }
+
+        html.dark-mode .verao-gate-rule,
+        body.dark-mode .verao-gate-rule {
+            background: #F5F5F5;
+        }
+
+        html.dark-mode .verao-password,
+        body.dark-mode .verao-password {
+            border-color: #F5F5F5;
+            color: #F5F5F5;
+        }
+
+        html.dark-mode .verao-password:focus,
+        body.dark-mode .verao-password:focus {
+            box-shadow: inset 0 0 0 1px #F5F5F5;
+        }
+
+        html.dark-mode .verao-password-button,
+        body.dark-mode .verao-password-button {
+            border-color: #F5F5F5;
+            background: #F5F5F5;
+            color: #111;
+        }
+
+        html.dark-mode .verao-password-button:hover,
+        body.dark-mode .verao-password-button:hover {
+            background: #111;
+            color: #F5F5F5;
+        }
+
+        @media (max-width: 700px) {
+            .verao-gate {
+                padding: 25px 20px;
+            }
+
+            .verao-gate-logo {
+                width: min(240px, 62vw);
+                margin-bottom: 48px;
+            }
+
+            .verao-gate-title {
+                font-size: 18px;
+            }
+
+            .verao-gate-rule {
+                margin-top: 24px;
+                margin-bottom: 28px;
+            }
+
+            .verao-countdown {
+                font-size: 18px;
+                letter-spacing: .08em;
+            }
+
+            .verao-password-form {
+                width: min(360px, 100%);
+                margin-top: 34px;
+                display: flex;
+            }
+
+            .verao-password {
+                flex: 1 1 auto;
+                width: 0;
+                min-width: 0;
+                font-size: 16px;
+                line-height: 1.2;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .verao-password-button {
+                min-height: 40px;
+                padding: 0 14px;
+            }
+        }
+    </style>
+</head>
+<body class="musas-text password-gate-locked">
+
+    <div id="menu-container"></div>
+
+    <div class="verao-gate" id="verao-gate" role="dialog" aria-modal="true" aria-label="O VERÃO É ROCK ainda não publicado">
+        <div class="verao-gate-inner">
+            <img src="LOGO.png" class="verao-gate-logo" alt="NESCIO">
+            <p class="verao-gate-label">ATÉ OS AMIGOS SÃO MUSAS</p>
+            <h1 class="verao-gate-title">O VERÃO É ROCK</h1>
+            <div class="verao-gate-rule" aria-hidden="true"></div>
+
+            <div class="verao-countdown" id="verao-countdown" aria-live="polite">00:00:00</div>
+            <div class="verao-countdown-label">25 | 09 | 2026 · 15:00</div>
+
+            <form class="verao-password-form" id="verao-password-form">
+                <input class="verao-password" id="verao-password" type="password" placeholder="PASSWORD" aria-label="Password" autocomplete="off">
+                <button class="verao-password-button" type="submit">ENTRAR</button>
+            </form>
+            <div class="verao-password-message" id="verao-password-message" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <main>
+        <a href="index.html" class="back-link">← VOLTAR</a>
+        <img src="LOGO.png" class="logo" alt="NESCIO">
+
+        <article>
+            <div class="musas-meta"><span>REC</span><span>08</span></div>
+            <div class="musas-title-row"><h1>O VERÃO É ROCK</h1><span class="musas-live-timer" data-timer>00:00</span></div>
+            <div class="musas-recording"><span>REC 08</span><span>01:38</span></div>
+
+            <div class="musas-entry"><div class="musas-time">00:00</div><p>Nasce antes do calor. Antes de despir a roupa que está a mais com este sol. Qualquer desculpa que o corpo inventa para sermos mais ousados, eu aceito. Já que vivemos em caos, sejamos caóticos para bom proveito.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:18</div><p>O verão chega e com ele vem a permissão de sermos irracionais. Assim justificasse cada loucura e pretexto que precisávamos para abandonar a seriedade que nos sufoca durante os outros meses. A morte está mais longe assim como pensar se as coisas são assim tão erradas.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:39</div><p>O bom comportamento não garante nada. Guarda o que sabes para chorar depois, aqui é para viver como os hedonistas que queremos ser. Não há pudor, somente uma honestidade rara de quem não pede desculpa porque quer ser vivido. A obediência só serve para que as coisas nos custem mais do que deveriam.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:03</div><p>Que venha então o ruído, a distorção, o acorde que rasga. Haja contacto físico proibido e pecador. Que venha sem melodia fácil. Que as guitarras sejam tão altas como a nossa vontade e desejo de sentir o calor que temos para dar - e o dos outros também. Há que dançar até cair e tocar no corpo e nas cordas que equilibram esta gente que tem medo de se apoiar uns nos outros.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:29</div><p>Os domingos em família são para fingir que somos novamente anormais.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:38</div><p>O verão é rock.</p></div>
+
+            <div class="musas-end"><span>END OF RECORDING</span><span>01:38</span></div>
+        </article>
+
+        <nav class="category-navigation" aria-label="Navegação entre textos da categoria">
+            <a href="oamornuncasalvouninguem.html" class="category-nav-link category-nav-previous">← anterior</a>
+            <button type="button" class="category-nav-index" aria-expanded="false" aria-label="Ver índice desta categoria">índice</button>
+            <a href="poucoesperodepoucoespertos.html" class="category-nav-link category-nav-next">seguinte →</a>
+
+            <div class="category-index-panel category-featured-panel" hidden>
+                <div class="category-index-title">EM DESTAQUE</div>
+                <a href="soberaniadafutilidade.html" class="category-index-item">SOBERANIA DA FUTILIDADE</a>
+                <a href="almeida.html" class="category-index-item">ALMEIDA • LIVRO</a>
+            </div>
+
+            <div class="category-index-panel" hidden>
+                <div class="category-index-title">ATÉ OS AMIGOS SÃO MUSAS</div>
+                <a href="manifestodoinssatisfeito.html" class="category-index-item">MANIFESTO DO INSATISFEITO</a>
+                <a href="rejeicao.html" class="category-index-item">REJEIÇÃO</a>
+                <a href="umtextosemvirgulas.html" class="category-index-item">UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a>
+                <a href="chuva.html" class="category-index-item">CHUVA</a>
+                <a href="putasecabroes.html" class="category-index-item">PUTAS E CABRÕES</a>
+                <a href="oamornuncasalvouninguem.html" class="category-index-item">O AMOR NUNCA SALVOU NINGUÉM</a>
+                <a href="o-verao-e-rock.html" class="category-index-item current" aria-current="page"><span class="category-index-current-marker" aria-hidden="true"></span>O VERÃO É ROCK</a>
+                <a href="poucoesperodepoucoespertos.html" class="category-index-item">POUCO ESPERO DE POUCO ESPERTOS</a>
+            </div>
+        </nav>
+    </main>
+
+    <script src="menu.js"></script>
+    <script>
+        (function () {
+            const gate = document.getElementById("verao-gate");
+            document.documentElement.classList.add("password-gate-locked");
+            const form = document.getElementById("verao-password-form");
+            const password = document.getElementById("verao-password");
+            const message = document.getElementById("verao-password-message");
+            const countdown = document.getElementById("verao-countdown");
+            const target = new Date("2026-09-25T15:00:00+01:00").getTime();
+
+            function unlock() {
+                gate.classList.add("is-unlocked");
+                document.documentElement.classList.remove("password-gate-locked");
+                document.body.classList.remove("password-gate-locked");
+                password.value = "";
+            }
+
+            function updateCountdown() {
+                const remaining = Math.max(0, target - Date.now());
+                const totalSeconds = Math.floor(remaining / 1000);
+                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+                const seconds = String(totalSeconds % 60).padStart(2, "0");
+                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (remaining <= 0) {
+                    unlock();
+                    return;
+                }
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                if (password.value === "RIFTS") {
+                    unlock();
+                } else {
+                    message.textContent = "PASSWORD INCORRETA";
+                    message.className = "verao-password-message error";
+                    password.select();
+                }
+            });
+
+            updateCountdown();
+            window.setInterval(updateCountdown, 1000);
+        })();
+
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
+</body>
+</html>

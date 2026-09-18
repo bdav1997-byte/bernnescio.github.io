@@ -209,9 +209,10 @@
       left: 50%;
       bottom: 32px;
       z-index: 4000;
+      box-sizing: content-box;
       width: max-content;
-      max-width: calc(100vw - 32px);
-      padding: 18px 1px;
+      max-width: calc(100vw - 72px);
+      padding: 18px 20px;
       border: 1px solid #000;
       background: #FAFAFA;
       box-shadow: 0 8px 24px rgba(0,0,0,.08);
@@ -376,9 +377,6 @@
         popup.textContent = 'E a contar…';
         document.body.appendChild(popup);
 
-        var popupRect = popup.getBoundingClientRect();
-        var popupWidth = Math.min(popupRect.width, window.innerWidth - 32);
-        popup.style.width = popupWidth + 'px';
         popup.style.left = (window.innerWidth / 2) + 'px';
         var counterRect = counter.getBoundingClientRect();
         popup.style.bottom = (window.innerHeight - counterRect.top + 18) + 'px';

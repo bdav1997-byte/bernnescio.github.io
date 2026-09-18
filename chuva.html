@@ -38,10 +38,82 @@
 
             <div class="musas-end"><span>END OF RECORDING</span><span>01:11</span></div>
         </article>
+
+        <nav class="category-navigation" aria-label="Navegação entre textos da categoria">
+            <a href="putasecabroes.html" class="category-nav-link category-nav-previous">← anterior</a>
+            <button type="button" class="category-nav-index" aria-expanded="false" aria-label="Ver índice desta categoria">índice</button>
+            <a href="index.html" class="category-nav-link category-nav-next">Regressar</a>
+
+            <div class="category-index-panel category-featured-panel" hidden>
+                <div class="category-index-title">EM DESTAQUE</div>
+                <a href="soberaniadafutilidade.html" class="category-index-item">SOBERANIA DA FUTILIDADE</a>
+                <a href="almeida.html" class="category-index-item">ALMEIDA • LIVRO</a>
+            </div>
+
+            <div class="category-index-panel" hidden>
+                <div class="category-index-title">ATÉ OS AMIGOS SÃO MUSAS</div>
+                <a href="manifestodoinssatisfeito.html" class="category-index-item">MANIFESTO DO INSATISFEITO</a>
+                <a href="rejeicao.html" class="category-index-item">REJEIÇÃO</a>
+                <a href="umtextosemvirgulas.html" class="category-index-item">UM TEXTO SEM VÍRGULAS</a>
+                <a href="chuva.html" class="category-index-item current" aria-current="page"><span class="category-index-current-marker" aria-hidden="true"></span>CHUVA</a>
+                <a href="putasecabroes.html" class="category-index-item">PUTAS E CABRÕES</a>
+                <a href="poucoespero.html" class="category-index-item">POUCO ESPERO DE POUCO ESPERTOS</a>
+            </div>
+        </nav>
     </main>
 
     <script src="menu.js"></script>
     <script>
+        (function () {
+            const navigation = document.querySelector(".category-navigation");
+            const indexButton = navigation.querySelector(".category-nav-index");
+            const panels = navigation.querySelectorAll(".category-index-panel");
+            const featuredPanel = navigation.querySelector(".category-featured-panel");
+            const indexPanel = Array.from(panels).find(panel => !panel.classList.contains("category-featured-panel"));
+
+            function closeIndex() {
+                indexPanel.hidden = true;
+                featuredPanel.hidden = true;
+                featuredPanel.style.bottom = "";
+                navigation.classList.remove("index-open", "featured-open");
+                indexButton.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("index-open");
+            }
+
+            indexButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (!indexPanel.hidden) {
+                    closeIndex();
+                    return;
+                }
+
+                indexPanel.hidden = false;
+                featuredPanel.hidden = true;
+                indexButton.setAttribute("aria-expanded", "true");
+                navigation.classList.add("index-open");
+                navigation.classList.remove("featured-open");
+                document.body.classList.add("index-open");
+
+                window.setTimeout(function () {
+                    if (!indexPanel.hidden && indexButton.getAttribute("aria-expanded") === "true") {
+                        featuredPanel.hidden = false;
+                        featuredPanel.style.bottom = `calc(100% + ${indexPanel.offsetHeight + 36}px)`;
+                        navigation.classList.add("featured-open");
+                    }
+                }, 1000);
+            });
+
+            navigation.querySelectorAll(".category-index-panel a").forEach(function (link) {
+                link.addEventListener("click", closeIndex);
+            });
+
+            document.addEventListener("click", function (event) {
+                if (document.body.classList.contains("index-open") && !navigation.contains(event.target)) {
+                    closeIndex();
+                }
+            });
+        })();
+
         (function () {
             const timer = document.querySelector('[data-timer]');
             const startedAt = Date.now();

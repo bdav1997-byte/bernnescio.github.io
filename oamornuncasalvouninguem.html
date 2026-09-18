@@ -48,7 +48,7 @@
         }
     </style>
 </head>
-<body class="musas-text">
+<body class="musas-text password-gate-locked">
 
     <div id="menu-container"></div>
 
@@ -151,6 +151,7 @@
     <script>
         (function () {
             const gate = document.getElementById("amor-gate");
+            document.documentElement.classList.add("password-gate-locked");
             const form = document.getElementById("amor-password-form");
             const password = document.getElementById("amor-password");
             const message = document.getElementById("amor-password-message");
@@ -159,8 +160,8 @@
 
             function unlock() {
                 gate.classList.add("is-unlocked");
-                document.documentElement.style.overflow = "";
-                document.body.style.overflow = "";
+                document.documentElement.classList.remove("password-gate-locked");
+                document.body.classList.remove("password-gate-locked");
                 password.value = "";
             }
 
@@ -184,7 +185,7 @@
                     unlock();
                 } else {
                     message.textContent = "PASSWORD INCORRETA";
-                    message.className = "chuva-password-message error";
+                    message.className = "amor-password-message error";
                     password.select();
                 }
             });

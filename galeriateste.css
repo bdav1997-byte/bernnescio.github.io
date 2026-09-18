@@ -236,3 +236,13 @@ body.gallery-lightbox-open{overflow:hidden;}
     height:calc(100vh - 110px);
   }
 }
+
+.gallery-lightbox button{
+  z-index:3;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.gallery-lightbox-close{
+  top:max(25px, env(safe-area-inset-top));
+  right:max(25px, env(safe-area-inset-right));
+}

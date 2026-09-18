@@ -380,8 +380,8 @@
         var popupWidth = Math.min(popupRect.width, window.innerWidth - 32);
         popup.style.width = popupWidth + 'px';
         popup.style.left = (window.innerWidth / 2) + 'px';
-        popup.style.bottom = 'calc(14px + 1.5em + 18px)';
-        document.body.appendChild(popup);
+        var counterRect = counter.getBoundingClientRect();
+        popup.style.bottom = (window.innerHeight - counterRect.top + 18) + 'px';
 
         requestAnimationFrame(function () {
           popup.classList.add('is-visible');

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERDE O COMBOIO — NESCIO</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try { document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark"); } catch (error) {}
+        })();
+    </script>
+    <style>
+        html.password-gate-locked,
+        body.password-gate-locked {
+            overflow: hidden !important;
+        }
+
+        .comboio-gate {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2147483647;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FAFAFA;
+            color: #000;
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .comboio-gate-inner {
+            width: min(620px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .comboio-gate-logo {
+            width: min(300px, 68vw);
+            height: auto;
+            margin-bottom: 58px;
+        }
+
+        .comboio-gate-label {
+            margin: 0 0 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .comboio-gate-title {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: .065em;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        .comboio-gate-rule {
+            width: 42px;
+            height: 1px;
+            margin: 28px auto 34px;
+            background: #000;
+        }
+
+        .comboio-countdown {
+            margin: 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .comboio-countdown-label {
+            margin-top: 9px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .comboio-password-form {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            width: min(360px, 100%);
+            margin-top: 42px;
+        }
+
+        .comboio-password {
+            flex: 1 1 auto;
+            width: 0;
+            min-width: 0;
+            border: 1px solid #000;
+            border-right: 0;
+            border-radius: 0;
+            outline: none;
+            background: transparent;
+            color: #000;
+            padding: 11px 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.2;
+            letter-spacing: .12em;
+            text-align: center;
+            text-transform: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .comboio-password::placeholder {
+            color: #777;
+            opacity: 1;
+        }
+
+        .comboio-password:focus {
+            box-shadow: inset 0 0 0 1px #000;
+        }
+
+        .comboio-password-button {
+            flex: 0 0 auto;
+            border: 1px solid #000;
+            border-radius: 0;
+            background: #000;
+            color: #FAFAFA;
+            padding: 0 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            cursor: pointer;
+        }
+
+        .comboio-password-button:hover {
+            background: #FAFAFA;
+            color: #000;
+        }
+
+        .comboio-password-message {
+            min-height: 16px;
+            margin-top: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .comboio-password-message.error {
+            color: #777;
+        }
+
+        .comboio-gate.is-unlocked {
+            display: none;
+        }
+
+        html.dark-mode .comboio-gate,
+        body.dark-mode .comboio-gate {
+            background: #111;
+            color: #F5F5F5;
+        }
+
+        html.dark-mode .comboio-gate-logo,
+        body.dark-mode .comboio-gate-logo {
+            filter: invert(1);
+        }
+
+        html.dark-mode .comboio-gate-rule,
+        body.dark-mode .comboio-gate-rule {
+            background: #F5F5F5;
+        }
+
+        html.dark-mode .comboio-password,
+        body.dark-mode .comboio-password {
+            border-color: #F5F5F5;
+            color: #F5F5F5;
+        }
+
+        html.dark-mode .comboio-password:focus,
+        body.dark-mode .comboio-password:focus {
+            box-shadow: inset 0 0 0 1px #F5F5F5;
+        }
+
+        html.dark-mode .comboio-password-button,
+        body.dark-mode .comboio-password-button {
+            border-color: #F5F5F5;
+            background: #F5F5F5;
+            color: #111;
+        }
+
+        html.dark-mode .comboio-password-button:hover,
+        body.dark-mode .comboio-password-button:hover {
+            background: #111;
+            color: #F5F5F5;
+        }
+
+        @media (max-width: 700px) {
+            .comboio-gate {
+                padding: 25px 20px;
+            }
+
+            .comboio-gate-logo {
+                width: min(240px, 62vw);
+                margin-bottom: 48px;
+            }
+
+            .comboio-gate-title {
+                font-size: 18px;
+            }
+
+            .comboio-gate-rule {
+                margin-top: 24px;
+                margin-bottom: 28px;
+            }
+
+            .comboio-countdown {
+                font-size: 18px;
+                letter-spacing: .08em;
+            }
+
+            .comboio-password-form {
+                width: min(360px, 100%);
+                margin-top: 34px;
+                display: flex;
+            }
+
+            .comboio-password {
+                flex: 1 1 auto;
+                width: 0;
+                min-width: 0;
+                font-size: 16px;
+                line-height: 1.2;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .comboio-password-button {
+                min-height: 40px;
+                padding: 0 14px;
+            }
+        }
+    </style>
+</head>
+<body class="musas-text password-gate-locked">
+
+    <div id="menu-container"></div>
+
+    <div class="comboio-gate" id="comboio-gate" role="dialog" aria-modal="true" aria-label="PERDE O COMBOIO ainda não publicado">
+        <div class="comboio-gate-inner">
+            <img src="LOGO.png" class="comboio-gate-logo" alt="NESCIO">
+            <p class="comboio-gate-label">ATÉ OS AMIGOS SÃO MUSAS</p>
+            <h1 class="comboio-gate-title">PERDE O COMBOIO</h1>
+            <div class="comboio-gate-rule" aria-hidden="true"></div>
+
+            <div class="comboio-countdown" id="comboio-countdown" aria-live="polite">00:00:00</div>
+            <div class="comboio-countdown-label">21 | 09 | 2026 · 18:00</div>
+
+            <form class="comboio-password-form" id="comboio-password-form">
+                <input class="comboio-password" id="comboio-password" type="password" placeholder="PASSWORD" aria-label="Password" autocomplete="off">
+                <button class="comboio-password-button" type="submit">ENTRAR</button>
+            </form>
+            <div class="comboio-password-message" id="comboio-password-message" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <main>
+        <a href="index.html" class="back-link">← VOLTAR</a>
+        <img src="LOGO.png" class="logo" alt="NESCIO">
+
+        <article>
+            <div class="musas-meta"><span>REC</span><span>09</span></div>
+            <div class="musas-title-row"><h1>PERDE O COMBOIO</h1><span class="musas-live-timer" data-timer>00:00</span></div>
+            <div class="musas-recording"><span>REC 09</span><span>01:34</span></div>
+
+            <div class="musas-entry"><div class="musas-time">00:00</div><p>Durante a composição de uma nova ordem de tatuagens, nasce uma nova reflexão. Brutalmente honesto, há que encher os pulmões e dizer: estamos cansados de estar inertes ao tédio. Devíamos ser mais criativos, porém, somos preguiçosos. Como é que ninguém tem vontade de se mexer e ser algo diferente todos os dias? Queremos ficar sentados, aqui, para sempre?</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:22</div><p>Será que não vale mesmo a pena tentar? Eu diria que sim, pois como sempre, a inovação é progresso. Exige trabalho, porém, faremos por isso. Estamos todos distantes porque cada vez mais nos distanciamos de nós próprios. Se não há amor próprio que exista pelo próximos - só assim se cura esta doença social onde tudo é banal. Hora de estalar os dedos e criar.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:43</div><p>O que te custa sair de casa para fazer um amigo sorrir? O que te custa apanhar o último comboio se não tens nada melhor para fazer? Tenho esta ansiedade de nunca estar longe dos meus por mais custoso que isto seja, só assim me sinto criativo. Vale a pena marcar o corpo com agulhas quando não se criaram novas memórias? Será tudo porque sim? Eu digo que isso não ser. Porquê? Porque não. Se estás infeliz também, sê infeliz com os teus amigos também.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:05</div><p>Que se faça pelo fazer. Que seja uma história engraçada, uma música divertida, um desenho irrisório ou um texto lamentável. O que não se pode fazer é parar de gostar de se gostar daqueles que nos fazem bem.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:24</div><p>Quero aproveitar o máximo: todos vão desaparecer das suas poltronas um dia, mas não se preocupem, como sempre, guardarei o vosso lugar.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:29</div><p>Percam o último comboio para mostrar a vossa primeira tatuagem ao som de The Veronicas.</p></div>
+
+            <div class="musas-end"><span>END OF RECORDING</span><span>01:34</span></div>
+        </article>
+
+        <nav class="category-navigation" aria-label="Navegação entre textos da categoria">
+            <a href="poucoesperodepoucoespertos.html" class="category-nav-link category-nav-previous">← anterior</a>
+            <button type="button" class="category-nav-index" aria-expanded="false" aria-label="Ver índice desta categoria">índice</button>
+
+            <div class="category-index-panel category-featured-panel" hidden>
+                <div class="category-index-title">EM DESTAQUE</div>
+                <a href="soberaniadafutilidade.html" class="category-index-item">SOBERANIA DA FUTILIDADE</a>
+                <a href="almeida.html" class="category-index-item">ALMEIDA • LIVRO</a>
+            </div>
+
+            <div class="category-index-panel" hidden>
+                <div class="category-index-title">ATÉ OS AMIGOS SÃO MUSAS</div>
+                <a href="manifestodoinssatisfeito.html" class="category-index-item">MANIFESTO DO INSATISFEITO</a>
+                <a href="rejeicao.html" class="category-index-item">REJEIÇÃO</a>
+                <a href="umtextosemvirgulas.html" class="category-index-item">UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a>
+                <a href="chuva.html" class="category-index-item">CHUVA</a>
+                <a href="putasecabroes.html" class="category-index-item">PUTAS E CABRÕES</a>
+                <a href="oamornuncasalvouninguem.html" class="category-index-item">O AMOR NUNCA SALVOU NINGUÉM</a>
+                <a href="o-verao-e-rock.html" class="category-index-item">O VERÃO É ROCK</a>
+                <a href="poucoesperodepoucoespertos.html" class="category-index-item">POUCO ESPERO DE POUCO ESPERTOS</a>
+                <a href="perdeocomboio.html" class="category-index-item current" aria-current="page"><span class="category-index-current-marker" aria-hidden="true"></span>PERDE O COMBOIO</a>
+            </div>
+        </nav>
+    </main>
+
+    <script src="menu.js"></script>
+    <script>
+        (function () {
+            const navigation = document.querySelector(".category-navigation");
+            const indexButton = navigation.querySelector(".category-nav-index");
+            const panels = navigation.querySelectorAll(".category-index-panel");
+            const featuredPanel = navigation.querySelector(".category-featured-panel");
+            const indexPanel = Array.from(panels).find(panel => !panel.classList.contains("category-featured-panel"));
+
+            function closeIndex() {
+                indexPanel.hidden = true;
+                featuredPanel.hidden = true;
+                featuredPanel.style.bottom = "";
+                navigation.classList.remove("index-open", "featured-open");
+                indexButton.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("index-open");
+            }
+
+            indexButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (!indexPanel.hidden) {
+                    closeIndex();
+                    return;
+                }
+                indexPanel.hidden = false;
+                featuredPanel.hidden = true;
+                indexButton.setAttribute("aria-expanded", "true");
+                navigation.classList.add("index-open");
+                navigation.classList.remove("featured-open");
+                document.body.classList.add("index-open");
+                window.setTimeout(function () {
+                    if (!indexPanel.hidden && indexButton.getAttribute("aria-expanded") === "true") {
+                        featuredPanel.hidden = false;
+                        featuredPanel.style.bottom = `calc(100% + ${indexPanel.offsetHeight + 36}px)`;
+                        navigation.classList.add("featured-open");
+                    }
+                }, 1000);
+            });
+            navigation.querySelectorAll(".category-index-panel a").forEach(function (link) { link.addEventListener("click", closeIndex); });
+            document.addEventListener("click", function (event) {
+                if (document.body.classList.contains("index-open") && !navigation.contains(event.target)) closeIndex();
+            });
+        })();
+
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
+</body>
+</html>

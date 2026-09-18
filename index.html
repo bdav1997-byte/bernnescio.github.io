@@ -209,7 +209,7 @@
       bottom: 32px;
       z-index: 4000;
       width: 100%;
-      padding: 18px 0;
+      padding: 0;
       border: 1px solid #000;
       background: #FAFAFA;
       box-shadow: 0 8px 24px rgba(0,0,0,.08);
@@ -374,7 +374,8 @@
         popup.textContent = 'E a contar…';
         var text = counter.querySelector('#landing-archive-count');
         var textRect = (text || counter).getBoundingClientRect();
-        popup.style.width = textRect.width + 'px';
+        popup.style.width = Math.ceil(textRect.width) + 'px';
+        popup.style.height = Math.ceil(textRect.height) + 'px';
         popup.style.left = (textRect.left + textRect.width / 2) + 'px';
         popup.style.bottom = (window.innerHeight - textRect.top + 18) + 'px';
         document.body.appendChild(popup);

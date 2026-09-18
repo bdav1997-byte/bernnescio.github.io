@@ -163,6 +163,14 @@
                 document.documentElement.classList.remove("password-gate-locked");
                 document.body.classList.remove("password-gate-locked");
                 password.value = "";
+
+                // Depois de desbloquear, a leitura começa sempre no topo.
+                window.requestAnimationFrame(function () {
+                    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+                    window.setTimeout(function () {
+                        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+                    }, 50);
+                });
             }
 
             function updateCountdown() {

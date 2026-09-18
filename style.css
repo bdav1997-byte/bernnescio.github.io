@@ -110,7 +110,8 @@ hr { margin:100px 0; border:0; border-top:1px solid #000; }
 .category-index-item { display:block; margin:0 0 10px; color:#000; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:400; letter-spacing:.08em; line-height:1.5; text-decoration:none; }
 .category-index-item:last-child { margin-bottom:0; }
 .category-index-item:hover { text-decoration:underline; }
-.category-index-item.current { font-weight:700; text-decoration:none; }
+.category-index-item.current { font-weight:700; text-decoration:none; position:relative; padding-left:14px; }
+.category-index-current-marker { position:absolute; left:0; top:50%; width:6px; height:6px; border-radius:50%; background:#000; transform:translateY(-50%); }
 
 /* BOTÃO VOLTAR AO TOPO */
 .back-to-top { position:fixed; right:24px; bottom:24px; z-index:999; width:42px; height:42px; display:flex; align-items:center; justify-content:center; border:1px solid #000; border-radius:50%; background:#000; color:#FAFAFA; font-family:Arial,Helvetica,sans-serif; font-size:18px; font-weight:400; line-height:1; cursor:pointer; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(8px); transition:opacity .25s ease,visibility .25s ease,transform .25s ease; appearance:none; -webkit-appearance:none; }

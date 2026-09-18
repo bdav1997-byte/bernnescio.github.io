@@ -29,6 +29,25 @@ fetch("menu.html", { cache: "no-store" })
         document.body.classList.toggle("menu-open", isOpen);
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
         menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+        if (isOpen) {
+          const featured = sideMenu.querySelector(".menu-new-publication");
+          const seenKey = "nescio-new-publication-highlight-seen";
+          let seen = false;
+          try { seen = localStorage.getItem(seenKey) === "1"; } catch (error) {}
+
+          if (featured && !seen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            requestAnimationFrame(() => {
+              featured.classList.add("menu-new-publication-animate");
+              try { localStorage.setItem(seenKey, "1"); } catch (error) {}
+              featured.addEventListener("animationend", () => {
+                featured.classList.remove("menu-new-publication-animate");
+              }, { once: true });
+            });
+          } else if (isOpen && featured && !seen) {
+            try { localStorage.setItem(seenKey, "1"); } catch (error) {}
+          }
+        }
       });
       sideMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
         sideMenu.classList.remove("open"); menuToggle.textContent = "MENU"; menuToggle.setAttribute("aria-expanded", "false");

@@ -56,9 +56,16 @@
         dragging = true;
       }
 
+      function hasCompletedLeftToRight(clientX) {
+        var rect = title.getBoundingClientRect();
+        var startLimit = rect.left + rect.width * 0.25;
+        var endLimit = rect.left + rect.width * 0.75;
+        return startX <= startLimit && clientX >= endLimit && clientX > startX;
+      }
+
       function move(clientX) {
         if (!dragging) return;
-        if (clientX - startX >= 20) {
+        if (hasCompletedLeftToRight(clientX)) {
           revealSecret();
           dragging = false;
         }
@@ -66,7 +73,7 @@
 
       function end(clientX) {
         if (!dragging) return;
-        if (clientX - startX >= 20) revealSecret();
+        if (hasCompletedLeftToRight(clientX)) revealSecret();
         dragging = false;
       }
 

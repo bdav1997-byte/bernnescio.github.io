@@ -173,6 +173,32 @@ fetch("menu.html", { cache: "no-store" })
   })
   .catch(error => console.error("Erro no menu:", error));
 
+/* LIMPA O ESTADO VISUAL AO VOLTAR/AVANÇAR NO BROWSER (BFCache) */
+window.addEventListener("pageshow", () => {
+  document.body.classList.remove("menu-open", "index-open", "page-exit");
+
+  const sideMenu = document.getElementById("sideMenu");
+  const menuToggle = document.getElementById("menuToggle");
+  if (sideMenu) sideMenu.classList.remove("open", "menu-focus-open");
+  if (menuToggle) {
+    menuToggle.textContent = "MENU";
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+
+  document.querySelectorAll(".category-navigation").forEach(navigation => {
+    navigation.classList.remove("index-open", "featured-open");
+    const indexPanel = navigation.querySelector(".category-index-panel");
+    const featuredPanel = navigation.querySelector(".category-featured-panel");
+    const indexButton = navigation.querySelector(".category-nav-index");
+    if (indexPanel) indexPanel.hidden = true;
+    if (featuredPanel) {
+      featuredPanel.hidden = true;
+      featuredPanel.style.bottom = "";
+    }
+    if (indexButton) indexButton.setAttribute("aria-expanded", "false");
+  });
+});
+
 function setupTheme() {
   const themeToggle = document.getElementById("themeToggle");
   if (!themeToggle) return;

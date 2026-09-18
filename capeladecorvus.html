@@ -29,24 +29,53 @@
       color: #fff !important;
     }
 
-    html.corvus-mode article h1,
-    html.corvus-mode article p,
-    html.corvus-mode article em,
-    html.corvus-mode .back-link,
-    html.corvus-mode .menu-toggle,
-    html.corvus-mode .menu-title,
-    html.corvus-mode .side-menu .menu-section a,
-    html.corvus-mode .theme-toggle,
-    html.corvus-mode .category-nav-link,
-    html.corvus-mode .category-nav-index,
-    html.corvus-mode .category-index-title,
-    html.corvus-mode .category-index-item {
+    html.corvus-mode .site-header,
+    body.corvus-mode .site-header,
+    html.corvus-mode .side-menu,
+    body.corvus-mode .side-menu {
+      background: #bb0706 !important;
       color: #fff !important;
     }
 
-    html.corvus-mode .logo,
-    html.corvus-mode .reading-progress-fill {
-      filter: none;
+    html.corvus-mode .menu-toggle,
+    body.corvus-mode .menu-toggle,
+    html.corvus-mode .menu-title,
+    body.corvus-mode .menu-title,
+    html.corvus-mode .side-menu .menu-section a,
+    body.corvus-mode .side-menu .menu-section a,
+    html.corvus-mode .side-menu .menu-section a:link,
+    html.corvus-mode .side-menu .menu-section a:visited,
+    body.corvus-mode .side-menu .menu-section a:link,
+    body.corvus-mode .side-menu .menu-section a:visited,
+    html.corvus-mode .menu-coming-soon,
+    body.corvus-mode .menu-coming-soon,
+    html.corvus-mode .back-link,
+    body.corvus-mode .back-link,
+    html.corvus-mode article h1,
+    body.corvus-mode article h1,
+    html.corvus-mode article p,
+    body.corvus-mode article p,
+    html.corvus-mode article em,
+    body.corvus-mode article em,
+    html.corvus-mode .category-nav-link,
+    body.corvus-mode .category-nav-link,
+    html.corvus-mode .category-nav-index,
+    body.corvus-mode .category-nav-index,
+    html.corvus-mode .category-index-title,
+    body.corvus-mode .category-index-title,
+    html.corvus-mode .category-index-item,
+    body.corvus-mode .category-index-item {
+      color: #fff !important;
+    }
+
+    html.corvus-mode .site-header,
+    body.corvus-mode .site-header {
+      border-color: #fff !important;
+    }
+
+    html.corvus-mode .theme-toggle {
+      color: #fff !important;
+      background: transparent !important;
     }
 
     html.corvus-mode .logo {
@@ -61,26 +90,6 @@
       color: #fff !important;
     }
 
-    .corvus-mode-indicator {
-      position: fixed;
-      top: 24px;
-      right: 28px;
-      z-index: 10000;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .3s ease;
-    }
-
-    body.corvus-mode .corvus-mode-indicator {
-      opacity: 1;
-    }
-
     #corvus-mode-trigger {
       cursor: pointer;
       user-select: none;
@@ -88,9 +97,8 @@
     }
 
     @media (max-width: 700px) {
-      .corvus-mode-indicator {
-        top: 18px;
-        right: 18px;
+      .theme-toggle.corvus-mode-toggle {
+        right: 16px;
         font-size: 9px;
       }
     }
@@ -98,8 +106,6 @@
 </head>
 <body>
   <div id="menu-container"></div>
-
-  <div class="corvus-mode-indicator" aria-hidden="true">CORVUS MODE &gt;&gt;</div>
 
   <main>
     <a href="index.html" class="back-link">← VOLTAR</a>
@@ -132,22 +138,54 @@
   <script>
     (function () {
       const trigger = document.getElementById("corvus-mode-trigger");
+      const menuContainer = document.getElementById("menu-container");
       if (!trigger) return;
 
+      let corvusMode = false;
+      let modeToggle = null;
+
       const setCorvusMode = enabled => {
+        corvusMode = enabled;
         document.documentElement.classList.toggle("corvus-mode", enabled);
         document.body.classList.toggle("corvus-mode", enabled);
+
+        if (enabled) {
+          document.documentElement.classList.remove("dark-mode");
+          document.body.classList.remove("dark-mode");
+        }
+
+        if (modeToggle) {
+          modeToggle.textContent = enabled ? "CORVUS MODE >>" : "LIGHT MODE";
+          modeToggle.setAttribute("aria-label", enabled ? "Voltar ao light mode" : "Ativar Corvus Mode");
+          modeToggle.setAttribute("aria-pressed", enabled ? "true" : "false");
+          modeToggle.classList.toggle("corvus-mode-toggle", enabled);
+        }
       };
+
+      const installModeToggle = () => {
+        const themeToggle = document.getElementById("themeToggle");
+        if (!themeToggle || modeToggle === themeToggle) return;
+
+        modeToggle = themeToggle;
+        modeToggle.addEventListener("click", event => {
+          if (!corvusMode) return;
+          event.preventDefault();
+          event.stopPropagation();
+          setCorvusMode(false);
+        });
+      };
+
+      installModeToggle();
+
+      if (menuContainer) {
+        const observer = new MutationObserver(installModeToggle);
+        observer.observe(menuContainer, { childList: true, subtree: true });
+      }
 
       trigger.addEventListener("dblclick", event => {
         event.preventDefault();
-        setCorvusMode(true);
-      });
-
-      trigger.addEventListener("click", () => {
-        if (document.body.classList.contains("corvus-mode")) {
-          setCorvusMode(false);
-        }
+        event.stopPropagation();
+        if (!corvusMode) setCorvusMode(true);
       });
     })();
   </script>

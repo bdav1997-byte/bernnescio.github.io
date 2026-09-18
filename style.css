@@ -85,6 +85,27 @@ body.page-exit { opacity:0; transition:opacity .22s ease; }
     view-transition-name: almeida-book;
 }
 
+/* TRANSIÇÃO MORPH GLOBAL ENTRE AS PÁGINAS */
+main {
+    view-transition-name: nescio-page;
+}
+
+::view-transition-group(nescio-page) {
+    animation-duration: .72s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+}
+
+::view-transition-image-pair(nescio-page) {
+    animation-duration: .72s;
+}
+
+::view-transition-old(nescio-page),
+::view-transition-new(nescio-page) {
+    animation-duration: .72s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+}
+
+
 ::view-transition-group(almeida-book) {
     animation-duration: .9s;
     animation-timing-function: cubic-bezier(.22,1,.36,1);
@@ -102,6 +123,10 @@ body.page-exit { opacity:0; transition:opacity .22s ease; }
 
 @media (prefers-reduced-motion:reduce){
     body.page-enter,body.page-exit{animation:none;transition:none;opacity:1;}
+    ::view-transition-group(nescio-page),
+    ::view-transition-image-pair(nescio-page),
+    ::view-transition-old(nescio-page),
+    ::view-transition-new(nescio-page),
     ::view-transition-group(almeida-book),
     ::view-transition-image-pair(almeida-book),
     ::view-transition-old(almeida-book),

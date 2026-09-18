@@ -99,7 +99,8 @@
         }
 
         .chuva-password {
-            width: 100%;
+            flex: 1 1 auto;
+            width: 0;
             min-width: 0;
             border: 1px solid #000;
             border-right: 0;
@@ -109,7 +110,8 @@
             color: #000;
             padding: 11px 13px;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 10px;
+            font-size: 16px;
+            line-height: 1.2;
             letter-spacing: .12em;
             text-align: center;
             text-transform: none;
@@ -225,7 +227,24 @@
             }
 
             .chuva-password-form {
+                width: min(360px, 100%);
                 margin-top: 34px;
+                display: flex;
+            }
+
+            .chuva-password {
+                flex: 1 1 auto;
+                width: 0;
+                min-width: 0;
+                font-size: 16px;
+                line-height: 1.2;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .chuva-password-button {
+                min-height: 40px;
+                padding: 0 14px;
             }
         }
     </style>

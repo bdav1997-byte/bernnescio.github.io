@@ -200,10 +200,12 @@
             <div><span class="book-detail-label">TÍTULO</span>ALMEIDA</div>
             <div><span class="book-detail-label">AUTOR</span>Bernardo de Almeida Valentim</div>
             <div><span class="book-detail-label">PUBLICAÇÃO</span>Novembro de 2026</div>
-            <div>
+            <div class="book-detail-edition">
               <span class="book-detail-label">EDIÇÃO</span>
-              <span>Lucas Castor da Silva</span>
-              <span>Bernardo de Almeida Valentim</span>
+              <div class="book-detail-names">
+                <span>Lucas Castor da Silva</span>
+                <span>Bernardo de Almeida Valentim</span>
+              </div>
             </div>
             <div><span class="book-detail-label">FOTOGRAFIA</span>Bernardo de Almeida Valentim</div>
             <div><span class="book-detail-label">REVISÃO</span>Bruno Miguel Cadinha Marques</div>
@@ -219,4 +221,10 @@
 
   <script src="menu.js"></script>
 </body>
-</html>
+</html
+.book-detail-edition .book-detail-names {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+>

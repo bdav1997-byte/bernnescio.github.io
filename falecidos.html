@@ -7,50 +7,34 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .reading-progress { display:none !important; }
-    .falecidos-entry {
-      margin-top: 42px;
-    }
+    .falecidos-entry { margin-top:42px; }
     .falecidos-entry summary {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px 0;
-      border-top: 1px solid rgba(0,0,0,.14);
-      border-bottom: 1px solid rgba(0,0,0,.14);
-      color: #111;
-      cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      list-style:none; display:flex; align-items:center; justify-content:space-between; gap:20px;
+      padding:16px 0; border-top:1px solid rgba(0,0,0,.14); border-bottom:1px solid rgba(0,0,0,.14);
+      color:#111; cursor:pointer; font-family:Arial,Helvetica,sans-serif; font-size:11px;
+      font-weight:700; letter-spacing:.14em; text-transform:uppercase;
     }
     .falecidos-entry summary::-webkit-details-marker { display:none; }
     .falecidos-entry summary::after {
-      content:"+";
-      flex:0 0 auto;
-      color:#111;
-      font-size:16px;
-      font-weight:400;
-      line-height:1;
+      content:"+"; flex:0 0 auto; color:#111; font-size:16px; font-weight:400; line-height:1;
       transition:transform .25s ease;
     }
     .falecidos-entry[open] summary::after { transform:rotate(45deg); }
     .falecidos-entry-content {
-      max-height:0;
-      overflow:hidden;
-      padding-top:0;
-      opacity:0;
+      max-height:0; overflow:hidden; padding-top:0; opacity:0;
       transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .25s ease,padding-top .45s cubic-bezier(.4,0,.2,1);
     }
     .falecidos-entry-content.is-open { opacity:1; padding-top:28px; }
     .falecidos-entry-content p { color:#111; margin-top:0; margin-bottom:1.15em; }
     .falecidos-entry-content p:last-child { margin-bottom:0; }
-    html.dark-mode .falecidos-entry summary, body.dark-mode .falecidos-entry summary {
-      border-color:rgba(255,255,255,.18); color:#fff;
+    .falecidos-logo {
+      transform:rotate(0deg);
+      transform-origin:center center;
+      transition:transform 3.5s cubic-bezier(.22,1,.36,1);
+      will-change:transform;
     }
+    .falecidos-logo.is-inverted { transform:rotate(180deg); }
+    html.dark-mode .falecidos-entry summary, body.dark-mode .falecidos-entry summary { border-color:rgba(255,255,255,.18); color:#fff; }
     html.dark-mode .falecidos-entry summary::after, body.dark-mode .falecidos-entry summary::after { color:#fff; }
     html.dark-mode .falecidos-entry-content p, body.dark-mode .falecidos-entry-content p { color:#fff; }
     @media (max-width:700px) { .falecidos-entry { margin-top:34px; } }
@@ -63,7 +47,7 @@
   <div id="menu-container"></div>
   <main>
     <a href="index.html" class="back-link">← VOLTAR</a>
-    <img src="LOGO.png" class="logo" alt="NESCIO">
+    <img src="LOGO.png" class="logo falecidos-logo" alt="NESCIO">
     <article>
       <h1>FALECIDOS</h1>
       <p>Textos descartados da primeira era.</p>
@@ -96,6 +80,14 @@
   </main>
   <script>
     (function(){
+      var logo=document.querySelector(".falecidos-logo");
+      if(logo){
+        window.setTimeout(function(){ logo.classList.add("is-inverted"); },1500);
+      }
+    })();
+  </script>
+  <script>
+    (function(){
       var details=document.querySelectorAll(".falecidos-entry");
       details.forEach(function(section){
         var summary=section.querySelector("summary"),content=section.querySelector(".falecidos-entry-content");
@@ -111,7 +103,7 @@
               if(!reduceMotion&&duration>0)window.setTimeout(function(){content.style.maxHeight="none";},duration+20);else content.style.maxHeight="none";
             });
           }else{
-            var distance=Math.abs(currentHeight),duration=reduceMotion?0:Math.min(520,Math.max(220,distance*.32));
+            var duration=reduceMotion?0:Math.min(520,Math.max(220,currentHeight*.32));
             content.style.transitionDuration=duration+"ms";content.style.maxHeight=currentHeight+"px";
             requestAnimationFrame(function(){
               content.style.maxHeight="0px";content.style.opacity="0";

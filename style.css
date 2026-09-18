@@ -110,36 +110,51 @@ body {
 .musas-text .reading-progress-fill { background:#E3BC7D; }
 
 /* TRANSIÇÃO SUAVE ENTRE PÁGINAS */
-body.page-enter { animation:pageFadeIn .35s ease both; }
-body.page-exit { opacity:0; transition:opacity .22s ease; }
-@keyframes pageFadeIn { from{opacity:0;} to{opacity:1;} }
-
-/* TRANSIÇÃO SUAVE ENTRE PÁGINAS */
 @view-transition { navigation:auto; }
 
-/* A página inteira faz um crossfade muito subtil, com um pequeno movimento vertical.
-   Não usamos morph entre páginas porque as estruturas variam demasiado entre textos. */
+/* Crossfade muito leve entre páginas.
+   No mobile eliminamos o movimento vertical para evitar uma sensação de salto. */
 ::view-transition-group(root) {
-    animation-duration:.52s;
+    animation-duration:.58s;
     animation-timing-function:cubic-bezier(.22,1,.36,1);
 }
 
 ::view-transition-old(root) {
-    animation:nescioPageOld .26s ease-out both;
+    animation:nescioPageOld .30s ease-out both;
 }
 
 ::view-transition-new(root) {
-    animation:nescioPageNew .52s cubic-bezier(.22,1,.36,1) both;
+    animation:nescioPageNew .58s cubic-bezier(.22,1,.36,1) both;
 }
 
 @keyframes nescioPageOld {
     from { opacity:1; transform:translateY(0); }
-    to { opacity:0; transform:translateY(-6px); }
+    to { opacity:0; transform:translateY(-3px); }
 }
 
 @keyframes nescioPageNew {
-    from { opacity:0; transform:translateY(8px); }
+    from { opacity:0; transform:translateY(4px); }
     to { opacity:1; transform:translateY(0); }
+}
+
+@media (max-width:700px) {
+    ::view-transition-old(root) {
+        animation:nescioPageOldMobile .34s ease-out both;
+    }
+
+    ::view-transition-new(root) {
+        animation:nescioPageNewMobile .64s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes nescioPageOldMobile {
+        from { opacity:1; transform:translateY(0); }
+        to { opacity:0; transform:translateY(-1px); }
+    }
+
+    @keyframes nescioPageNewMobile {
+        from { opacity:0; transform:translateY(2px); }
+        to { opacity:1; transform:translateY(0); }
+    }
 }
 
 @media (prefers-reduced-motion:reduce){

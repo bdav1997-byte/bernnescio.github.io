@@ -546,15 +546,21 @@
                 const elapsed = Math.floor((Date.now() - startedAt) / 1000);
                 timer.textContent = formatTime(elapsed);
 
-                if (elapsed > 45) {
+                if (elapsed >= 45) {
                     unlocked = true;
                     endTrigger.disabled = false;
                 }
             }
 
             function showAudio() {
-                if (!unlocked || audioWrap.classList.contains('is-visible')) return;
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
 
+                // Verifica diretamente o tempo no momento do clique,
+                // para que o Easter Egg não dependa do intervalo do timer.
+                if (elapsed < 45 || audioWrap.classList.contains('is-visible')) return;
+
+                unlocked = true;
+                endTrigger.disabled = false;
                 endTrigger.textContent = 'OR THE BEGINNING...?';
                 audioWrap.classList.add('is-visible');
                 audioWrap.setAttribute('aria-hidden', 'false');

@@ -32,20 +32,15 @@ fetch("menu.html", { cache: "no-store" })
 
         if (isOpen) {
           const featured = sideMenu.querySelector(".menu-new-publication");
-          const seenKey = "nescio-new-publication-highlight-seen-v2";
-          let seen = false;
-          try { seen = localStorage.getItem(seenKey) === "1"; } catch (error) {}
-
-          if (featured && !seen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          if (featured && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            featured.classList.remove("menu-new-publication-animate");
+            void featured.offsetWidth;
             requestAnimationFrame(() => {
               featured.classList.add("menu-new-publication-animate");
-              try { localStorage.setItem(seenKey, "1"); } catch (error) {}
               featured.addEventListener("animationend", () => {
                 featured.classList.remove("menu-new-publication-animate");
               }, { once: true });
             });
-          } else if (isOpen && featured && !seen) {
-            try { localStorage.setItem(seenKey, "1"); } catch (error) {}
           }
         }
       });

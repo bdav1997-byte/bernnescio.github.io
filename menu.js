@@ -86,20 +86,25 @@ fetch("menu.html", { cache: "no-store" })
             });
           }
 
-          // Se esta for uma subcategoria, atualiza a altura dos pais abertos
-          // para que OUTROS PROJECTOS seja sempre empurrado para baixo.
-          let parent = section.parentElement;
-          while (parent) {
-            if (parent.classList && parent.classList.contains("menu-section-content")) {
-              const parentSection = parent.parentElement;
-              if (parentSection && parentSection.classList.contains("expanded")) {
-                requestAnimationFrame(() => {
+          // Se esta for uma subcategoria, recalcula imediatamente a altura
+          // de todas as secções-pai abertas. Assim, o conteúdo do REISSUE
+          // nunca fica cortado pelo max-height da MISCELÂNEA.
+          const updateOpenParents = () => {
+            let parent = section.parentElement;
+            while (parent) {
+              if (parent.classList && parent.classList.contains("menu-section-content")) {
+                const parentSection = parent.parentElement;
+                if (parentSection && parentSection.classList.contains("expanded")) {
                   parent.style.maxHeight = parent.scrollHeight + "px";
-                });
+                }
               }
+              parent = parent.parentElement;
             }
-            parent = parent.parentElement;
-          }
+          };
+
+          updateOpenParents();
+          requestAnimationFrame(updateOpenParents);
+          window.setTimeout(updateOpenParents, 480);
         };
 
         title.addEventListener("click", event => {

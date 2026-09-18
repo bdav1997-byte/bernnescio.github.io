@@ -6,9 +6,34 @@
   <title>ALMEIDA — NESCIO</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    html,
     body {
-      background: #F3EBDD;
-      color: #272321;
+      background: #F3EBDD !important;
+      color: #272321 !important;
+    }
+
+    #menu-container,
+    #menu-container .site-header,
+    #menu-container .side-menu {
+      background: #F3EBDD !important;
+    }
+
+    #menu-container .menu-toggle,
+    #menu-container .menu-title,
+    #menu-container .menu-section a,
+    #menu-container .menu-section a:link,
+    #menu-container .menu-section a:visited,
+    #menu-container .menu-search-trigger,
+    #menu-container #menuSearchInput {
+      color: #272321 !important;
+    }
+
+    article h1 {
+      color: #272321 !important;
+    }
+
+    .back-link {
+      color: #8A6248 !important;
     }
 
     .book-page article { max-width: 760px; }
@@ -178,10 +203,48 @@
       height: auto;
     }
 
+    html.dark-mode,
     html.dark-mode body,
     body.dark-mode {
-      background: #171412;
-      color: #E9DFD2;
+      background: #171412 !important;
+      color: #E9DFD2 !important;
+    }
+
+    html.dark-mode #menu-container,
+    html.dark-mode #menu-container .site-header,
+    html.dark-mode #menu-container .side-menu,
+    body.dark-mode #menu-container,
+    body.dark-mode #menu-container .site-header,
+    body.dark-mode #menu-container .side-menu {
+      background: #171412 !important;
+      color: #E9DFD2 !important;
+    }
+
+    html.dark-mode #menu-container .menu-toggle,
+    html.dark-mode #menu-container .menu-title,
+    html.dark-mode #menu-container .menu-section a,
+    html.dark-mode #menu-container .menu-section a:link,
+    html.dark-mode #menu-container .menu-section a:visited,
+    html.dark-mode #menu-container .menu-search-trigger,
+    html.dark-mode #menu-container #menuSearchInput,
+    body.dark-mode #menu-container .menu-toggle,
+    body.dark-mode #menu-container .menu-title,
+    body.dark-mode #menu-container .menu-section a,
+    body.dark-mode #menu-container .menu-section a:link,
+    body.dark-mode #menu-container .menu-section a:visited,
+    body.dark-mode #menu-container .menu-search-trigger,
+    body.dark-mode #menu-container #menuSearchInput {
+      color: #E9DFD2 !important;
+    }
+
+    html.dark-mode article h1,
+    body.dark-mode article h1 {
+      color: #E9DFD2 !important;
+    }
+
+    html.dark-mode .back-link,
+    body.dark-mode .back-link {
+      color: #B17A56 !important;
     }
 
     html.dark-mode .book-kicker,

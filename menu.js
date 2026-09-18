@@ -213,7 +213,7 @@ function setupCategoryNavigation(sideMenu) {
     next.href = isLast ? "index.html" : links[currentIndex + 1].getAttribute("href");
     const indexPanel = document.createElement("div"); indexPanel.className = "category-index-panel"; indexPanel.hidden = true;
     const categoryTitle = document.createElement("div"); categoryTitle.className = "category-index-title"; categoryTitle.textContent = section.querySelector(".menu-title")?.textContent.trim() || "Categoria"; indexPanel.appendChild(categoryTitle);
-    links.forEach((link, index) => { const item = document.createElement("a"); item.href = link.getAttribute("href"); item.textContent = link.textContent.trim(); item.className = "category-index-item"; if (index === currentIndex) { item.classList.add("current"); item.setAttribute("aria-current", "page"); } indexPanel.appendChild(item); });
+    links.forEach((link, index) => { const item = document.createElement("a"); item.href = link.getAttribute("href"); item.textContent = link.textContent.trim(); item.className = "category-index-item"; if (index === currentIndex) { item.classList.add("current"); item.setAttribute("aria-current", "page"); const marker = document.createElement("span"); marker.className = "category-index-current-marker"; marker.setAttribute("aria-hidden", "true"); item.prepend(marker); } indexPanel.appendChild(item); });
     // Índice especial "EM DESTAQUE": usa sempre a secção EM DESTAQUE
     // do menu principal, independentemente da categoria/subcategoria atual.
     const featuredSection = Array.from(sideMenu.children).find(section => {

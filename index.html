@@ -261,8 +261,11 @@
         localStorage.setItem(storageKey, String(now));
       } catch (error) {}
 
-      if (shouldAnimate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         page.classList.add('landing-animate');
+        if (lastVisit && (now - lastVisit < fiveMinutes)) {
+          page.classList.add('landing-animate-fast');
+        }
       }
     })();
   </script>

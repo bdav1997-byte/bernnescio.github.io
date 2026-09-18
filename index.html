@@ -208,7 +208,7 @@
       left: 50%;
       bottom: 32px;
       z-index: 4000;
-      width: min(360px, calc(100vw - 40px));
+      width: 100%;
       padding: 18px 20px;
       border: 1px solid #000;
       background: #FAFAFA;
@@ -372,6 +372,9 @@
         var popup = document.createElement('div');
         popup.className = 'landing-easter-egg';
         popup.textContent = 'E a contar…';
+        var counterRect = counter.getBoundingClientRect();
+        popup.style.width = counterRect.width + 'px';
+        popup.style.left = (counterRect.left + counterRect.width / 2) + 'px';
         document.body.appendChild(popup);
 
         requestAnimationFrame(function () {

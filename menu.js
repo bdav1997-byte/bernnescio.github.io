@@ -10,6 +10,8 @@
   if (document.body) document.body.classList.toggle("dark-mode", isDark);
 })();
 
+let menuNewPublicationHighlighted = false;
+
 fetch("menu.html", { cache: "no-store" })
   .then(response => {
     if (!response.ok) throw new Error("Não foi possível carregar o menu.");
@@ -30,8 +32,10 @@ fetch("menu.html", { cache: "no-store" })
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
         menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-        if (isOpen) {
+        if (isOpen && !menuNewPublicationHighlighted) {
           const featured = sideMenu.querySelector(".menu-new-publication");
+          menuNewPublicationHighlighted = true;
+
           if (featured && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             featured.classList.remove("menu-new-publication-animate");
             void featured.offsetWidth;

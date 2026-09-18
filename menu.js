@@ -58,14 +58,39 @@ fetch("menu.html", { cache: "no-store" })
       sideMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
         sideMenu.classList.remove("open", "menu-focus-open"); menuToggle.textContent = "MENU"; menuToggle.setAttribute("aria-expanded", "false");
       }));
+      // Controlador de altura das secções.
+      // O ResizeObserver actualiza apenas quando o conteúdo muda realmente
+      // de tamanho. Assim evitamos o loop de requestAnimationFrame que fazia
+      // o menu parecer "puxado" ou irregular nas subcategorias.
+      const menuResizeObserver = new ResizeObserver(entries => {
+        entries.forEach(entry => {
+          const content = entry.target;
+          const section = content.parentElement;
+
+          if (!section || !section.classList.contains("collapsible-section")) return;
+          if (!section.classList.contains("expanded")) return;
+
+          // Se uma subcategoria abriu/fechou, a altura do pai muda.
+          // O pai acompanha essa alteração sem reiniciar a sua animação.
+          const currentMax = parseFloat(getComputedStyle(content).maxHeight) || 0;
+          const newHeight = content.scrollHeight;
+
+          if (Math.abs(currentMax - newHeight) > 1) {
+            content.style.maxHeight = newHeight + "px";
+          }
+        });
+      });
+
+      sideMenu.querySelectorAll(".collapsible-section > .menu-section-content").forEach(content => {
+        menuResizeObserver.observe(content);
+      });
+
       sideMenu.querySelectorAll(".collapsible-title").forEach(title => {
         const toggleSection = () => {
           const section = title.closest(".collapsible-section");
           if (!section) return;
 
           // Só o conteúdo imediatamente pertencente a esta secção é controlado.
-          // Isto é importante para as subcategorias da MISCELÂNEA:
-          // ao abrir MISCELÂNEA, TEXTOS AVULSOS e REISSUE continuam fechados.
           const content = Array.from(section.children).find(
             child => child.classList && child.classList.contains("menu-section-content")
           );
@@ -74,35 +99,21 @@ fetch("menu.html", { cache: "no-store" })
           const isOpen = !section.classList.contains("expanded");
           const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-          // A animação é feita a partir da altura real do conteúdo.
-          // Ao contrário do antigo sistema baseado em tempos fixos, os pais
-          // são actualizados continuamente enquanto uma subcategoria cresce
-          // ou encolhe. Isto evita saltos, cortes e "empurrões" no menu.
-          const updateOpenParents = () => {
-            let parent = section.parentElement;
-
-            while (parent) {
-              if (parent.classList && parent.classList.contains("menu-section-content")) {
-                const parentSection = parent.parentElement;
-
-                if (parentSection && parentSection.classList.contains("expanded")) {
-                  parent.style.maxHeight = parent.scrollHeight + "px";
-                }
-              }
-
-              parent = parent.parentElement;
-            }
-          };
-
-          const targetHeight = isOpen ? content.scrollHeight : 0;
+          // Medimos a altura que está efectivamente visível neste instante.
+          // Isto permite interromper uma animação a meio sem qualquer salto.
           const currentHeight = content.getBoundingClientRect().height;
-
-          // A velocidade é proporcional à distância percorrida, com limites
-          // suficientes para textos curtos e listas longas.
+          const targetHeight = isOpen ? content.scrollHeight : 0;
           const distance = Math.abs(targetHeight - currentHeight);
-          const duration = reduceMotion ? 0 : Math.min(520, Math.max(220, distance * 0.32));
+
+          // Curta e consistente, mas proporcional à distância.
+          const duration = reduceMotion ? 0 : Math.min(500, Math.max(240, distance * 0.30));
 
           content.style.transitionDuration = duration + "ms";
+          content.style.maxHeight = currentHeight + "px";
+
+          // Forçamos o browser a registar o ponto de partida antes de alterar
+          // o estado. Isto torna a transição muito mais previsível.
+          void content.offsetHeight;
 
           if (isOpen) {
             section.classList.add("expanded");
@@ -112,32 +123,8 @@ fetch("menu.html", { cache: "no-store" })
             title.setAttribute("aria-expanded", "false");
           }
 
-          // Começamos sempre na altura actualmente visível e só depois
-          // mudamos para a altura final. Isto elimina o salto inicial.
-          content.style.maxHeight = Math.max(0, currentHeight) + "px";
-
           requestAnimationFrame(() => {
             content.style.maxHeight = targetHeight + "px";
-            updateOpenParents();
-
-            if (!reduceMotion && duration > 0) {
-              const start = performance.now();
-
-              const keepParentsInSync = now => {
-                updateOpenParents();
-
-                if (now - start < duration + 40) {
-                  requestAnimationFrame(keepParentsInSync);
-                } else {
-                  // Depois da animação, limpa apenas a altura dos pais que
-                  // continuam abertos para que o conteúdo possa crescer
-                  // naturalmente sem ficar preso a um valor antigo.
-                  updateOpenParents();
-                }
-              };
-
-              requestAnimationFrame(keepParentsInSync);
-            }
           });
         };
 

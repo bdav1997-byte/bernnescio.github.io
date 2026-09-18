@@ -10,10 +10,243 @@
             try { document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark"); } catch (error) {}
         })();
     </script>
+    <style>
+        html, body {
+            overflow: hidden !important;
+        }
+
+        .chuva-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FAFAFA;
+            color: #000;
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .chuva-gate-inner {
+            width: min(620px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chuva-gate-logo {
+            width: min(300px, 68vw);
+            height: auto;
+            margin-bottom: 58px;
+        }
+
+        .chuva-gate-label {
+            margin: 0 0 18px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .chuva-gate-title {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: .065em;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        .chuva-gate-rule {
+            width: 42px;
+            height: 1px;
+            margin: 28px auto 34px;
+            background: #000;
+        }
+
+        .chuva-countdown {
+            margin: 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .chuva-countdown-label {
+            margin-top: 9px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .chuva-password-form {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            width: min(360px, 100%);
+            margin-top: 42px;
+        }
+
+        .chuva-password {
+            width: 100%;
+            min-width: 0;
+            border: 1px solid #000;
+            border-right: 0;
+            border-radius: 0;
+            outline: none;
+            background: transparent;
+            color: #000;
+            padding: 11px 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-align: center;
+            text-transform: none;
+        }
+
+        .chuva-password::placeholder {
+            color: #777;
+            opacity: 1;
+        }
+
+        .chuva-password:focus {
+            box-shadow: inset 0 0 0 1px #000;
+        }
+
+        .chuva-password-button {
+            flex: 0 0 auto;
+            border: 1px solid #000;
+            border-radius: 0;
+            background: #000;
+            color: #FAFAFA;
+            padding: 0 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            cursor: pointer;
+        }
+
+        .chuva-password-button:hover {
+            background: #FAFAFA;
+            color: #000;
+        }
+
+        .chuva-password-message {
+            min-height: 16px;
+            margin-top: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .chuva-password-message.error {
+            color: #777;
+        }
+
+        .chuva-gate.is-unlocked {
+            display: none;
+        }
+
+        html.dark-mode .chuva-gate,
+        body.dark-mode .chuva-gate {
+            background: #111;
+            color: #F5F5F5;
+        }
+
+        html.dark-mode .chuva-gate-logo,
+        body.dark-mode .chuva-gate-logo {
+            filter: invert(1);
+        }
+
+        html.dark-mode .chuva-gate-rule,
+        body.dark-mode .chuva-gate-rule {
+            background: #F5F5F5;
+        }
+
+        html.dark-mode .chuva-password,
+        body.dark-mode .chuva-password {
+            border-color: #F5F5F5;
+            color: #F5F5F5;
+        }
+
+        html.dark-mode .chuva-password:focus,
+        body.dark-mode .chuva-password:focus {
+            box-shadow: inset 0 0 0 1px #F5F5F5;
+        }
+
+        html.dark-mode .chuva-password-button,
+        body.dark-mode .chuva-password-button {
+            border-color: #F5F5F5;
+            background: #F5F5F5;
+            color: #111;
+        }
+
+        html.dark-mode .chuva-password-button:hover,
+        body.dark-mode .chuva-password-button:hover {
+            background: #111;
+            color: #F5F5F5;
+        }
+
+        @media (max-width: 700px) {
+            .chuva-gate {
+                padding: 25px 20px;
+            }
+
+            .chuva-gate-logo {
+                width: min(240px, 62vw);
+                margin-bottom: 48px;
+            }
+
+            .chuva-gate-title {
+                font-size: 18px;
+            }
+
+            .chuva-gate-rule {
+                margin-top: 24px;
+                margin-bottom: 28px;
+            }
+
+            .chuva-countdown {
+                font-size: 18px;
+                letter-spacing: .08em;
+            }
+
+            .chuva-password-form {
+                margin-top: 34px;
+            }
+        }
+    </style>
 </head>
 <body class="musas-text">
 
     <div id="menu-container"></div>
+
+    <div class="chuva-gate" id="chuva-gate" role="dialog" aria-modal="true" aria-label="CHUVA ainda não publicada">
+        <div class="chuva-gate-inner">
+            <img src="LOGO.png" class="chuva-gate-logo" alt="NESCIO">
+            <p class="chuva-gate-label">ATÉ OS AMIGOS SÃO MUSAS</p>
+            <h1 class="chuva-gate-title">CHUVA</h1>
+            <div class="chuva-gate-rule" aria-hidden="true"></div>
+
+            <div class="chuva-countdown" id="chuva-countdown" aria-live="polite">00:00:00</div>
+            <div class="chuva-countdown-label">19 | 09 | 2026 · 19:00</div>
+
+            <form class="chuva-password-form" id="chuva-password-form">
+                <input class="chuva-password" id="chuva-password" type="password" placeholder="PASSWORD" aria-label="Password" autocomplete="off">
+                <button class="chuva-password-button" type="submit">ENTRAR</button>
+            </form>
+            <div class="chuva-password-message" id="chuva-password-message" aria-live="polite"></div>
+        </div>
+    </div>
 
     <main>
         <a href="index.html" class="back-link">← VOLTAR</a>
@@ -64,6 +297,50 @@
 
     <script src="menu.js"></script>
     <script>
+        (function () {
+            const gate = document.getElementById("chuva-gate");
+            const form = document.getElementById("chuva-password-form");
+            const password = document.getElementById("chuva-password");
+            const message = document.getElementById("chuva-password-message");
+            const countdown = document.getElementById("chuva-countdown");
+            const target = new Date("2026-09-19T19:00:00+01:00").getTime();
+
+            function unlock() {
+                gate.classList.add("is-unlocked");
+                document.documentElement.style.overflow = "";
+                document.body.style.overflow = "";
+                password.value = "";
+            }
+
+            function updateCountdown() {
+                const remaining = Math.max(0, target - Date.now());
+                const totalSeconds = Math.floor(remaining / 1000);
+                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+                const seconds = String(totalSeconds % 60).padStart(2, "0");
+                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (remaining <= 0) {
+                    unlock();
+                    return;
+                }
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                if (password.value === "David") {
+                    unlock();
+                } else {
+                    message.textContent = "PASSWORD INCORRETA";
+                    message.className = "chuva-password-message error";
+                    password.select();
+                }
+            });
+
+            updateCountdown();
+            window.setInterval(updateCountdown, 1000);
+        })();
+
         (function () {
             const navigation = document.querySelector(".category-navigation");
             const indexButton = navigation.querySelector(".category-nav-index");

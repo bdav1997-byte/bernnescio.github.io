@@ -77,8 +77,21 @@
       background: #F5F5F5;
       color: #111;
     }
+    .book-cover-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto 58px;
+    }
+    .book-cover {
+      display: block;
+      width: min(360px, 68vw);
+      max-width: 100%;
+      height: auto;
+    }
     @media (max-width: 700px) {
-      .book-cover-wrap {\n      display: flex;\n      justify-content: center;\n      margin: 0 auto 58px;\n    }\n    .book-cover {\n      display: block;\n      width: min(360px, 68vw);\n      height: auto;\n    }\n    .book-lead { font-size: 16px; margin-bottom: 48px; }
+      .book-cover-wrap { margin-bottom: 42px; }
+      .book-cover { width: min(280px, 72vw); }
+      .book-lead { font-size: 16px; margin-bottom: 48px; }
       .book-section { margin-top: 55px; }
       .book-details { grid-template-columns: 1fr; gap: 18px; }
     }
@@ -102,7 +115,9 @@
       <p class="book-kicker">NESCIO · LIVRO · BREVEMENTE</p>
       <h1>ALMEIDA</h1>
 
-      <div class="book-cover-wrap"><img src="almeida-capa-teste.svg" class="book-cover" alt="Capa de teste de ALMEIDA"></div>\n\n      <p class="book-lead">Um livro a chegar. Por agora, fica aqui o princípio.</p>
+      <div class="book-cover-wrap"><img src="almeida-capa-teste.svg" class="book-cover" alt="Capa de teste de ALMEIDA"></div>
+
+      <p class="book-lead">Um livro a chegar. Por agora, fica aqui o princípio.</p>
 
       <section class="book-section" id="prefacio">
         <h2>PREFÁCIO</h2>
@@ -127,7 +142,9 @@
           <div><span class="book-detail-label">PUBLICAÇÃO</span>Novembro de 2026</div>
           <div><span class="book-detail-label">EDIÇÃO</span>Bernardo de Almeida Valentim, Lucas Castor da Silva</div>
           <div><span class="book-detail-label">REVISÃO</span>Bruno Miguel Cadinha Marques</div>
-          <div><span class="book-detail-label">FORMATO</span>A5</div>\n          <div><span class="book-detail-label">PÁGINAS</span>72</div>\n          <div><span class="book-detail-label">EDIÇÃO</span>Independente</div>
+          <div><span class="book-detail-label">FORMATO</span>A5</div>
+          <div><span class="book-detail-label">PÁGINAS</span>72</div>
+          <div><span class="book-detail-label">EDIÇÃO</span>Independente</div>
         </div>
       </section>
 

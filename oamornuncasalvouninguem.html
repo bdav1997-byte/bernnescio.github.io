@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O AMOR NUNCA SALVOU NINGUÉM — NESCIO</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try { document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark"); } catch (error) {}
+        })();
+    </script>
+    <style>
+        html, body { overflow: hidden !important; }
+        .amor-gate { position:fixed; top:55px; right:0; bottom:0; left:0; z-index:10000; display:flex; align-items:center; justify-content:center; background:#FAFAFA; color:#000; padding:30px 25px; text-align:center; }
+        .amor-gate-inner { width:min(620px,100%); display:flex; flex-direction:column; align-items:center; }
+        .amor-gate-logo { width:min(300px,68vw); height:auto; margin-bottom:58px; }
+        .amor-gate-label { margin:0 0 18px; font-family:Arial,Helvetica,sans-serif; font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+        .amor-gate-title { margin:0; font-family:Arial,Helvetica,sans-serif; font-size:24px; font-weight:400; letter-spacing:.065em; line-height:1.35; text-transform:uppercase; }
+        .amor-gate-rule { width:42px; height:1px; margin:28px auto 34px; background:#000; }
+        .amor-countdown { margin:0; font-family:"Courier New",Courier,monospace; font-size:22px; font-weight:400; letter-spacing:.12em; line-height:1.4; font-variant-numeric:tabular-nums; }
+        .amor-countdown-label { margin-top:9px; font-family:Arial,Helvetica,sans-serif; font-size:8px; font-weight:400; letter-spacing:.18em; text-transform:uppercase; }
+        .amor-password-form { display:flex; align-items:stretch; justify-content:center; width:min(360px,100%); margin-top:42px; }
+        .amor-password { width:100%; min-width:0; border:1px solid #000; border-right:0; border-radius:0; outline:none; background:transparent; color:#000; padding:11px 13px; font-family:Arial,Helvetica,sans-serif; font-size:10px; letter-spacing:.12em; text-align:center; text-transform:none; }
+        .amor-password::placeholder { color:#777; opacity:1; }
+        .amor-password:focus { box-shadow:inset 0 0 0 1px #000; }
+        .amor-password-button { flex:0 0 auto; border:1px solid #000; border-radius:0; background:#000; color:#FAFAFA; padding:0 15px; font-family:Arial,Helvetica,sans-serif; font-size:9px; font-weight:700; letter-spacing:.12em; cursor:pointer; }
+        .amor-password-button:hover { background:#FAFAFA; color:#000; }
+        .amor-password-message { min-height:16px; margin-top:12px; font-family:Arial,Helvetica,sans-serif; font-size:8px; letter-spacing:.1em; text-transform:uppercase; }
+        .amor-password-message.error { color:#777; }
+        .amor-gate.is-unlocked { display:none; }
+        html.dark-mode .amor-gate, body.dark-mode .amor-gate { background:#111; color:#F5F5F5; }
+        html.dark-mode .amor-gate-logo, body.dark-mode .amor-gate-logo { filter:invert(1); }
+        html.dark-mode .amor-gate-rule, body.dark-mode .amor-gate-rule { background:#F5F5F5; }
+        html.dark-mode .amor-password, body.dark-mode .amor-password { border-color:#F5F5F5; color:#F5F5F5; }
+        html.dark-mode .amor-password:focus, body.dark-mode .amor-password:focus { box-shadow:inset 0 0 0 1px #F5F5F5; }
+        html.dark-mode .amor-password-button, body.dark-mode .amor-password-button { border-color:#F5F5F5; background:#F5F5F5; color:#111; }
+        html.dark-mode .amor-password-button:hover, body.dark-mode .amor-password-button:hover { background:#111; color:#F5F5F5; }
+        @media (max-width:700px) {
+          .amor-gate { padding:25px 20px; }
+          .amor-gate-logo { width:min(240px,62vw); margin-bottom:48px; }
+          .amor-gate-title { font-size:18px; }
+          .amor-gate-rule { margin-top:24px; margin-bottom:28px; }
+          .amor-countdown { font-size:18px; letter-spacing:.08em; }
+          .amor-password-form { margin-top:34px; }
+        }
+    </style>
+</head>
+<body class="musas-text">
+
+    <div id="menu-container"></div>
+
+
+</head>
+<body class="musas-text">
+
+    <div id="menu-container"></div>
+
+    <div class="amor-gate" id="amor-gate" role="dialog" aria-modal="true" aria-label="O AMOR NUNCA SALVOU NINGUÉM ainda não publicado">
+        <div class="amor-gate-inner">
+            <img src="LOGO.png" class="amor-gate-logo" alt="NESCIO">
+            <p class="amor-gate-label">ATÉ OS AMIGOS SÃO MUSAS</p>
+            <h1 class="amor-gate-title">O AMOR NUNCA SALVOU NINGUÉM</h1>
+            <div class="amor-gate-rule" aria-hidden="true"></div>
+
+            <div class="amor-countdown" id="amor-countdown" aria-live="polite">00:00:00</div>
+            <div class="amor-countdown-label">19 | 09 | 2026 · 19:00</div>
+
+            <form class="amor-password-form" id="amor-password-form">
+                <input class="amor-password" id="amor-password" type="password" placeholder="PASSWORD" aria-label="Password" autocomplete="off">
+                <button class="amor-password-button" type="submit">ENTRAR</button>
+            </form>
+            <div class="amor-password-message" id="amor-password-message" aria-live="polite"></div>
+        </div>
+    </
+
+    <main>
+        <a href="index.html" class="back-link">← VOLTAR</a>
+        <img src="LOGO.png" class="logo" alt="NESCIO">
+
+        <article>
+            <div class="musas-meta"><span>REC</span><span>06</span></div>
+            <div class="musas-title-row"><h1>CHUVA</h1><span class="musas-live-timer" data-timer>00:00</span></div>
+            <div class="musas-recording"><span>REC 06</span><span>01:11</span></div>
+
+            <div class="musas-entry"><div class="musas-time">00:00</div><p>A força é uma constante. Precisa de prática, disciplina, perseverança e, sobretudo, vontade. Nem sempre a tenho. Preciso de discutir menos como tu.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:13</div><p>Mesmo nesta redoma de vitórias e conquistas, há poeira e aperto. Insatisfações que não se aconchegam em lençóis alheios.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:24</div><p>E é por isso que ando à chuva e tu não.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:32</div><p>Falta propósito para locomover a máquina que nunca ninguém questionou porque se move. Falta sorrir, de cabeça voltada para o sol e sem grande medo de cair. Falta fazer as coisas porque sim e não porque não. Falta fazer as malas porque tenho amigos que vão casar.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:52</div><p>Há que publicar um livro que começa com esta mesma sensação de andar à chuva porque não se quer voltar para casa.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:03</div><p>Gostava de ser mais parecido contigo, pareces mais feliz do que eu alguma vez serei.</p></div>
+
+            <div class="musas-end"><span>END OF RECORDING</span><span>01:11</span></div>
+        </article>
+
+        <nav class="category-navigation" aria-label="Navegação entre textos da categoria">
+            <a href="umtextosemvirgulas.html" class="category-nav-link category-nav-previous">← anterior</a>
+            <button type="button" class="category-nav-index" aria-expanded="false" aria-label="Ver índice desta categoria">índice</button>
+            <a href="putasecabroes.html" class="category-nav-link category-nav-next">seguinte →</a>
+
+            <div class="category-index-panel category-featured-panel" hidden>
+                <div class="category-index-title">EM DESTAQUE</div>
+                <a href="soberaniadafutilidade.html" class="category-index-item">SOBERANIA DA FUTILIDADE</a>
+                <a href="almeida.html" class="category-index-item">ALMEIDA • LIVRO</a>
+            </div>
+
+            <div class="category-index-panel" hidden>
+                <div class="category-index-title">ATÉ OS AMIGOS SÃO MUSAS</div>
+                <a href="manifestodoinssatisfeito.html" class="category-index-item">MANIFESTO DO INSATISFEITO</a>
+                <a href="rejeicao.html" class="category-index-item">REJEIÇÃO</a>
+                <a href="umtextosemvirgulas.html" class="category-index-item">UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a>
+                <a href="chuva.html" class="category-index-item current" aria-current="page"><span class="category-index-current-marker" aria-hidden="true"></span>CHUVA</a>
+                <a href="putasecabroes.html" class="category-index-item">PUTAS E CABRÕES</a>
+                <a href="poucoesperodepoucoespertos.html" class="category-index-item">POUCO ESPERO DE POUCO ESPERTOS</a>
+            </div>
+        </nav>
+    </main>
+
+    <script src="menu.js"></script>
+    <script>
+        (function () {
+            const gate = document.getElementById("amor-gate");
+            const form = document.getElementById("amor-password-form");
+            const password = document.getElementById("amor-password");
+            const message = document.getElementById("amor-password-message");
+            const countdown = document.getElementById("amor-countdown");
+            const target = new Date("2026-09-21T18:00:00+01:00").getTime();
+
+            function unlock() {
+                gate.classList.add("is-unlocked");
+                document.documentElement.style.overflow = "";
+                document.body.style.overflow = "";
+                password.value = "";
+            }
+
+            function updateCountdown() {
+                const remaining = Math.max(0, target - Date.now());
+                const totalSeconds = Math.floor(remaining / 1000);
+                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+                const seconds = String(totalSeconds % 60).padStart(2, "0");
+                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (remaining <= 0) {
+                    unlock();
+                    return;
+                }
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                if (password.value === "DADA") {
+                    unlock();
+                } else {
+                    message.textContent = "PASSWORD INCORRETA";
+                    message.className = "chuva-password-message error";
+                    password.select();
+                }
+            });
+
+            updateCountdown();
+            window.setInterval(updateCountdown, 1000);
+        })();
+
+        (function () {
+            const navigation = document.querySelector(".category-navigation");
+            const indexButton = navigation.querySelector(".category-nav-index");
+            const panels = navigation.querySelectorAll(".category-index-panel");
+            const featuredPanel = navigation.querySelector(".category-featured-panel");
+            const indexPanel = Array.from(panels).find(panel => !panel.classList.contains("category-featured-panel"));
+
+            function closeIndex() {
+                indexPanel.hidden = true;
+                featuredPanel.hidden = true;
+                featuredPanel.style.bottom = "";
+                navigation.classList.remove("index-open", "featured-open");
+                indexButton.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("index-open");
+            }
+
+            indexButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (!indexPanel.hidden) {
+                    closeIndex();
+                    return;
+                }
+
+                indexPanel.hidden = false;
+                featuredPanel.hidden = true;
+                indexButton.setAttribute("aria-expanded", "true");
+                navigation.classList.add("index-open");
+                navigation.classList.remove("featured-open");
+                document.body.classList.add("index-open");
+
+                window.setTimeout(function () {
+                    if (!indexPanel.hidden && indexButton.getAttribute("aria-expanded") === "true") {
+                        featuredPanel.hidden = false;
+                        featuredPanel.style.bottom = `calc(100% + ${indexPanel.offsetHeight + 36}px)`;
+                        navigation.classList.add("featured-open");
+                    }
+                }, 1000);
+            });
+
+            navigation.querySelectorAll(".category-index-panel a").forEach(function (link) {
+                link.addEventListener("click", closeIndex);
+            });
+
+            document.addEventListener("click", function (event) {
+                if (document.body.classList.contains("index-open") && !navigation.contains(event.target)) {
+                    closeIndex();
+                }
+            });
+        })();
+
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
+</body>
+</html>

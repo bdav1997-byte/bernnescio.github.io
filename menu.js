@@ -28,6 +28,7 @@ fetch("menu.html", { cache: "no-store" })
       menuToggle.addEventListener("click", event => {
         event.preventDefault(); event.stopPropagation();
         const isOpen = sideMenu.classList.toggle("open");
+        sideMenu.classList.toggle("menu-focus-open", isOpen);
         document.body.classList.toggle("menu-open", isOpen);
         menuToggle.textContent = isOpen ? "FECHAR" : "MENU";
         menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
@@ -49,7 +50,7 @@ fetch("menu.html", { cache: "no-store" })
         }
       });
       sideMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-        sideMenu.classList.remove("open"); menuToggle.textContent = "MENU"; menuToggle.setAttribute("aria-expanded", "false");
+        sideMenu.classList.remove("open", "menu-focus-open"); menuToggle.textContent = "MENU"; menuToggle.setAttribute("aria-expanded", "false");
       }));
       sideMenu.querySelectorAll(".collapsible-title").forEach(title => {
         const toggleSection = () => {

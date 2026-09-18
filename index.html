@@ -201,6 +201,40 @@
     html.dark-mode .landing-rule {
       background: #F5F5F5;
     }
+
+    /* Easter egg: cinco cliques no contador */
+    .landing-easter-egg {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      z-index: 4000;
+      width: min(360px, calc(100vw - 40px));
+      padding: 18px 20px;
+      border: 1px solid #000;
+      background: #FAFAFA;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: #000;
+      opacity: 0;
+      transform: translate(-50%, 8px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .landing-easter-egg.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    html.dark-mode .landing-easter-egg {
+      border-color: #F5F5F5;
+      background: #111;
+      color: #F5F5F5;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+
     @media (max-width: 700px) {
       .landing-page {
         min-height: 100svh;
@@ -263,7 +297,7 @@
       <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
       <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
     </a>
-    <div class="landing-archive" aria-label="33 textos publicados" aria-hidden="true">
+    <div class="landing-archive" aria-label="33 textos publicados" aria-hidden="true" role="button" tabindex="0">
       <span id="landing-archive-count">NESCIO • 2026 • 33 TEXTOS</span>
     </div>
     </div>
@@ -310,6 +344,67 @@
           countElement.textContent = 'NESCIO • 2026 • ' + publications.length + (publications.length === 1 ? ' TEXTO' : ' TEXTOS');
         })
         .catch(function () {});
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var counter = document.querySelector('.landing-archive');
+      if (!counter) return;
+
+      var cooldownKey = 'nescio-easter-egg-cooldown';
+      var clicks = 0;
+      var resetTimer = null;
+      var cooldown = 15 * 60 * 1000;
+
+      function isOnCooldown() {
+        try {
+          var until = Number(localStorage.getItem(cooldownKey));
+          return until && Date.now() < until;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function showEasterEgg() {
+        if (isOnCooldown()) return;
+
+        var popup = document.createElement('div');
+        popup.className = 'landing-easter-egg';
+        popup.textContent = 'E a contar…';
+        document.body.appendChild(popup);
+
+        requestAnimationFrame(function () {
+          popup.classList.add('is-visible');
+        });
+
+        try {
+          localStorage.setItem(cooldownKey, String(Date.now() + cooldown));
+        } catch (error) {}
+
+        window.setTimeout(function () {
+          popup.classList.remove('is-visible');
+          window.setTimeout(function () {
+            popup.remove();
+          }, 300);
+        }, 2000);
+      }
+
+      counter.addEventListener('click', function () {
+        if (isOnCooldown()) return;
+        clicks += 1;
+        window.clearTimeout(resetTimer);
+
+        if (clicks >= 5) {
+          clicks = 0;
+          showEasterEgg();
+          return;
+        }
+
+        resetTimer = window.setTimeout(function () {
+          clicks = 0;
+        }, 1000);
+      });
     })();
   </script>
   <script src="menu.js"></script>

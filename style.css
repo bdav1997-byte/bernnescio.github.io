@@ -22,7 +22,42 @@ body {
 body.page-enter { animation:pageFadeIn .35s ease both; }
 body.page-exit { opacity:0; transition:opacity .22s ease; }
 @keyframes pageFadeIn { from{opacity:0;} to{opacity:1;} }
-@media (prefers-reduced-motion:reduce){body.page-enter,body.page-exit{animation:none;transition:none;opacity:1;}}
+
+/* TRANSIÇÃO TIPO MORPH ENTRE O MENU E O LIVRO ALMEIDA */
+@view-transition { navigation:auto; }
+
+.menu-new-publication[href="almeida.html"] {
+    view-transition-name: almeida-book;
+}
+
+.book-cover-wrap {
+    view-transition-name: almeida-book;
+}
+
+::view-transition-group(almeida-book) {
+    animation-duration: .9s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+}
+
+::view-transition-image-pair(almeida-book) {
+    animation-duration: .9s;
+}
+
+::view-transition-old(almeida-book),
+::view-transition-new(almeida-book) {
+    animation-duration: .9s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+}
+
+@media (prefers-reduced-motion:reduce){
+    body.page-enter,body.page-exit{animation:none;transition:none;opacity:1;}
+    ::view-transition-group(almeida-book),
+    ::view-transition-image-pair(almeida-book),
+    ::view-transition-old(almeida-book),
+    ::view-transition-new(almeida-book) {
+        animation-duration: 0s;
+    }
+}
 
 .site-header { position:fixed; top:0; left:0; z-index:1001; width:100%; height:55px; display:flex; align-items:center; justify-content:flex-start; gap:12px; background:#FAFAFA; padding:0 20px; }
 .home-button { display:flex; align-items:center; justify-content:center; width:24px; height:24px; text-decoration:none; flex-shrink:0; }

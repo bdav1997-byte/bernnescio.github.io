@@ -8,8 +8,9 @@
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;min-height:100%;background:#FAFAFA;color:#000;font-family:Arial,Helvetica,sans-serif}
 body{display:flex;align-items:center;justify-content:center}
-main{width:min(760px,calc(100% - 48px));padding:60px 0;text-align:center}
-h1{margin:0 0 52px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;line-height:1.5;text-transform:uppercase}
+main{width:min(760px,calc(100% - 48px));padding:60px 0;text-align:left}
+.logo{display:block;width:72px;height:auto;margin:0 0 48px}
+h1{margin:0 0 52px;padding-left:36px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;line-height:1.5;text-transform:uppercase}
 .category{margin:0;font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
 .release-list{margin:42px 0 0;padding:0;list-style:none}
 .release-item{font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
@@ -18,7 +19,8 @@ html.dark-mode,body.dark-mode{background:#111;color:#F5F5F5}
 html.dark-mode .release-date,body.dark-mode .release-date{color:#F5F5F5}
 @media(max-width:700px){
 main{width:calc(100% - 40px);padding:40px 0}
-h1{margin-bottom:42px;font-size:11px}
+.logo{width:64px;margin-bottom:38px}
+h1{margin-bottom:42px;padding-left:24px;font-size:11px}
 .category,.release-item{font-size:10px}
 .release-list{margin-top:36px}
 .release-date{margin:20px 0;font-size:9px}

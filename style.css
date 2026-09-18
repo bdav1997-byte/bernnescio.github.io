@@ -96,7 +96,7 @@ hr { margin:100px 0; border:0; border-top:1px solid #000; }
 
 /* NAVEGAÇÃO ENTRE TEXTOS DA MESMA CATEGORIA */
 .category-navigation { position:relative; z-index:2000; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; width:100%; margin-top:85px; padding-top:18px; border-top:1px solid #000; font-family:Arial,Helvetica,sans-serif; font-size:11px; letter-spacing:.1em; }
-.category-nav-link,.category-nav-index { color:#000; background:transparent; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:400; letter-spacing:.1em; line-height:1.4; text-decoration:none; text-transform:lowercase; }
+.category-nav-link,.category-nav-index { color:#000; background:transparent; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:400; letter-spacing:.1em; line-height:1.4; text-decoration:none; text-transform:uppercase; }
 .category-nav-link:hover,.category-nav-index:hover { text-decoration:underline; }
 .category-nav-previous { justify-self:start; }
 .category-nav-next { justify-self:end; }

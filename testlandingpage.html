@@ -22,29 +22,42 @@
       padding: 15px 25px 45px;
       text-align: center;
     }
+    .landing-main-content {
+      width: min(720px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .landing-rule {
+      width: 42px;
+      height: 1px;
+      margin: 0 auto;
+      background: #000;
+      opacity: 0;
+    }
     .landing-logo {
-      width: 380px;
+      width: min(460px, 82vw);
       height: auto;
-      margin: 0 0 58px;
+      margin: 0 0 64px;
     }
     .landing-motto {
-      width: 380px;
+      width: min(620px, 92vw);
       max-width: 100%;
       margin: 0;
       color: #000;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 27px;
+      font-size: 24px;
       font-weight: 400;
-      letter-spacing: .04em;
-      line-height: 1.3;
+      letter-spacing: .065em;
+      line-height: 1.35;
       opacity: 0;
     }
     .landing-latest {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 9px;
-      margin-top: 62px;
+      gap: 10px;
+      margin-top: 34px;
       color: #000;
       text-decoration: none;
       opacity: 0;
@@ -69,7 +82,7 @@
       display: flex;
       align-items: baseline;
       gap: 10px;
-      margin-top: 28px;
+      margin-top: 24px;
       color: #000;
       font-family: Arial, Helvetica, sans-serif;
       text-decoration: none;
@@ -117,9 +130,13 @@
       animation: landingFadeIn 1.8s ease forwards;
       animation-delay: 1s;
     }
+    .landing-page.landing-animate .landing-rule {
+      animation: landingFadeIn 1s ease forwards;
+      animation-delay: 2.05s;
+    }
     .landing-page.landing-animate .landing-latest {
       animation: landingFadeIn 1.4s ease forwards;
-      animation-delay: 2.4s;
+      animation-delay: 2.35s;
     }
     .landing-page.landing-animate .landing-archive {
       animation: landingFadeIn 1.2s ease forwards;
@@ -130,6 +147,7 @@
       animation-delay: 3.5s;
     }
     .landing-page:not(.landing-animate) .landing-motto,
+    .landing-page:not(.landing-animate) .landing-rule,
     .landing-page:not(.landing-animate) .landing-latest,
     .landing-page:not(.landing-animate) .landing-archive,
     .landing-page:not(.landing-animate) .landing-year {
@@ -137,6 +155,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .landing-motto,
+      .landing-rule,
       .landing-latest,
       .landing-archive,
       .landing-year {
@@ -146,18 +165,19 @@
     }
     html.dark-mode .landing-motto,
     html.dark-mode .landing-year,
+    html.dark-mode .landing-rule,
     html.dark-mode .landing-latest,
     html.dark-mode .landing-archive {
       color: #F5F5F5;
     }
     @media (max-width: 700px) {
       .landing-page { padding: 20px 25px 45px; }
-      .landing-logo { width: 280px; margin-bottom: 45px; }
-      .landing-motto { width: 280px; max-width: 100%; font-size: 20px; line-height: 1.35; letter-spacing: .04em; }
-      .landing-latest { margin-top: 48px; gap: 8px; }
+      .landing-logo { width: min(330px, 82vw); margin-bottom: 48px; }
+      .landing-motto { width: 300px; max-width: 92vw; font-size: 18px; line-height: 1.4; letter-spacing: .06em; }
+      .landing-latest { margin-top: 28px; gap: 8px; }
       .landing-latest-label { font-size: 8px; }
       .landing-latest-title { font-size: 10px; letter-spacing: .08em; }
-      .landing-archive { margin-top: 22px; gap: 8px; }
+      .landing-archive { margin-top: 20px; gap: 8px; }
       .landing-archive-label, .landing-archive-count { font-size: 8px; }
       .landing-year { bottom: 20px; font-size: 9px; }
       .landing-author { margin-top: 4px; font-size: 9px; letter-spacing: .14em; }
@@ -170,16 +190,19 @@
   <div id="menu-container"></div>
 
   <main class="landing-page">
-    <img src="NESCIOnLOGO.png" class="landing-logo" alt="NESCIO">
-    <h1 class="landing-motto">O FIM É APENAS OUTRA FORMA DE PERMANECER</h1>
+    <div class="landing-main-content">
+      <img src="NESCIOnLOGO.png" class="landing-logo" alt="NESCIO">
+      <h1 class="landing-motto">O FIM É APENAS OUTRA FORMA DE PERMANECER</h1>
     <a class="landing-latest" href="soberaniadafutilidade.html" aria-label="Última publicação: Soberania da Futilidade">
       <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
       <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
     </a>
+    <div class="landing-rule" aria-hidden="true"></div>
     <a class="landing-archive" href="arquivo.html" aria-label="Arquivo: 33 textos publicados">
       <span class="landing-archive-label">ARQUIVO</span>
       <span class="landing-archive-count" id="landing-archive-count">33 TEXTOS</span>
     </a>
+    </div>
     <div class="landing-year">NESCIO - 2026<span class="landing-author">Bernardo de Almeida Valentim</span></div>
   </main>
 

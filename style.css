@@ -75,7 +75,7 @@ body.dark-mode.menu-open > *:not(#menu-container) {
 
 .collapsible-title { position:relative; cursor:pointer; user-select:none; padding-left:18px; }
 .collapsible-title::before { content:"›"; position:absolute; left:0; top:50%; width:10px; font-family:Arial,Helvetica,sans-serif; font-size:16px; font-weight:400; line-height:1; color:#777; transform:translateY(-50%); transform-origin:50% 50%; transition:transform .2s ease; }
-.collapsible-section.expanded .collapsible-title::before { transform:translateY(-50%) rotate(90deg); }
+.collapsible-section.expanded > .collapsible-title::before { transform:translateY(-50%) rotate(90deg); }
 .collapsible-title::after { content:none; }
 .menu-section-content { max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .25s ease; }
 .collapsible-section.expanded > .menu-section-content { max-height:2000px; opacity:1; }

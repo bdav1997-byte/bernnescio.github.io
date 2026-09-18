@@ -310,8 +310,8 @@
       <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
       <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
     </a>
-    <div class="landing-archive" aria-label="33 textos publicados" aria-hidden="true" role="button" tabindex="0">
-      <span id="landing-archive-count">NESCIO • 2026 • 33 TEXTOS</span>
+    <div class="landing-archive" aria-label="36 textos publicados" aria-hidden="true" role="button" tabindex="0">
+      <span id="landing-archive-count">NESCIO • 2026 • 36 TEXTOS</span>
     </div>
     </div>
     </main>
@@ -351,10 +351,17 @@
           return response.json();
         })
         .then(function (data) {
-          var publications = Array.isArray(data) ? data : data.publicacoes;
-          if (!Array.isArray(publications)) return;
+          var total = 0;
+          if (data && Array.isArray(data.categorias)) {
+            data.categorias.forEach(function (categoria) {
+              total += Number(categoria.textos) || 0;
+            });
+          } else if (Array.isArray(data)) {
+            total = data.length;
+          }
+          if (!total) return;
 
-          countElement.textContent = 'NESCIO • 2026 • ' + publications.length + (publications.length === 1 ? ' TEXTO' : ' TEXTOS');
+          countElement.textContent = 'NESCIO • 2026 • ' + total + (total === 1 ? ' TEXTO' : ' TEXTOS');
         })
         .catch(function () {});
     })();

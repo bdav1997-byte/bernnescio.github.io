@@ -16,11 +16,11 @@
       text-transform: uppercase;
     }
      .book-section {
-      margin-top: 70px;
+      margin-top: 42px;
     }
     .book-preface,
     .book-edition {
-      margin-top: 70px;
+      margin-top: 42px;
     }
     .book-preface summary,
     .book-edition summary {
@@ -56,7 +56,17 @@
     }
     .book-preface-content,
     .book-edition-content {
+      max-height: 0;
+      padding: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height .4s ease, opacity .25s ease, padding .4s ease;
+    }
+    .book-preface[open] .book-preface-content,
+    .book-edition[open] .book-edition-content {
+      max-height: 1000px;
       padding: 28px 0 4px;
+      opacity: 1;
     }
     .book-preface-warning {
       margin: 0 0 22px;
@@ -134,9 +144,9 @@
     @media (max-width: 700px) {
       .book-cover-wrap { margin-bottom: 42px; }
       .book-cover { width: min(280px, 72vw); }
-      .book-section { margin-top: 55px; }
+      .book-section { margin-top: 34px; }
       .book-preface,
-      .book-edition { margin-top: 55px; }
+      .book-edition { margin-top: 34px; }
       .book-details { grid-template-columns: 1fr; gap: 18px; }
     }
   </style>

@@ -72,47 +72,73 @@ fetch("menu.html", { cache: "no-store" })
           if (!content) return;
 
           const isOpen = !section.classList.contains("expanded");
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-          if (isOpen) {
-            section.classList.add("expanded");
-            title.setAttribute("aria-expanded", "true");
-
-            // Mantém a mesma velocidade visual para todas as secções:
-            // a duração cresce ligeiramente com a altura, mas fica limitada.
-            const targetHeight = content.scrollHeight;
-            const duration = Math.min(620, Math.max(360, targetHeight * 0.28));
-            content.style.transitionDuration = duration + "ms";
-            content.style.maxHeight = targetHeight + "px";
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            requestAnimationFrame(() => {
-              section.classList.remove("expanded");
-              title.setAttribute("aria-expanded", "false");
-              const duration = Math.min(620, Math.max(360, content.scrollHeight * 0.28));
-              content.style.transitionDuration = duration + "ms";
-              content.style.maxHeight = "0px";
-            });
-          }
-
-          // Se esta for uma subcategoria, recalcula imediatamente a altura
-          // de todas as secções-pai abertas. Assim, o conteúdo do REISSUE
-          // nunca fica cortado pelo max-height da MISCELÂNEA.
+          // A animação é feita a partir da altura real do conteúdo.
+          // Ao contrário do antigo sistema baseado em tempos fixos, os pais
+          // são actualizados continuamente enquanto uma subcategoria cresce
+          // ou encolhe. Isto evita saltos, cortes e "empurrões" no menu.
           const updateOpenParents = () => {
             let parent = section.parentElement;
+
             while (parent) {
               if (parent.classList && parent.classList.contains("menu-section-content")) {
                 const parentSection = parent.parentElement;
+
                 if (parentSection && parentSection.classList.contains("expanded")) {
                   parent.style.maxHeight = parent.scrollHeight + "px";
                 }
               }
+
               parent = parent.parentElement;
             }
           };
 
-          updateOpenParents();
-          requestAnimationFrame(updateOpenParents);
-          window.setTimeout(updateOpenParents, 480);
+          const targetHeight = isOpen ? content.scrollHeight : 0;
+          const currentHeight = content.getBoundingClientRect().height;
+
+          // A velocidade é proporcional à distância percorrida, com limites
+          // suficientes para textos curtos e listas longas.
+          const distance = Math.abs(targetHeight - currentHeight);
+          const duration = reduceMotion ? 0 : Math.min(520, Math.max(220, distance * 0.32));
+
+          content.style.transitionDuration = duration + "ms";
+
+          if (isOpen) {
+            section.classList.add("expanded");
+            title.setAttribute("aria-expanded", "true");
+          } else {
+            section.classList.remove("expanded");
+            title.setAttribute("aria-expanded", "false");
+          }
+
+          // Começamos sempre na altura actualmente visível e só depois
+          // mudamos para a altura final. Isto elimina o salto inicial.
+          content.style.maxHeight = Math.max(0, currentHeight) + "px";
+
+          requestAnimationFrame(() => {
+            content.style.maxHeight = targetHeight + "px";
+            updateOpenParents();
+
+            if (!reduceMotion && duration > 0) {
+              const start = performance.now();
+
+              const keepParentsInSync = now => {
+                updateOpenParents();
+
+                if (now - start < duration + 40) {
+                  requestAnimationFrame(keepParentsInSync);
+                } else {
+                  // Depois da animação, limpa apenas a altura dos pais que
+                  // continuam abertos para que o conteúdo possa crescer
+                  // naturalmente sem ficar preso a um valor antigo.
+                  updateOpenParents();
+                }
+              };
+
+              requestAnimationFrame(keepParentsInSync);
+            }
+          });
         };
 
         title.addEventListener("click", event => {

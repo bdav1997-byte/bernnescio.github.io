@@ -40,8 +40,8 @@ body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{bo
 .collapsible-section.expanded .menu-section-content{max-height:2000px;}
 @media(max-width:700px){.theme-toggle{right:16px;font-size:9px;}}
 
-<style>
-.menu-new-publication{position:relative;}
+
+.menu-new-publication{position:relative;color:#777;}
 .menu-new-publication::before{
   content:"";
   position:absolute;
@@ -74,8 +74,8 @@ body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{bo
   animation:menuNewPublicationUnderline 2.3s ease both;
 }
 @keyframes menuNewPublicationText{
-  0%, 13%, 82%, 100%{font-weight:400;}
-  20%, 76%{font-weight:700;}
+  0%, 13%, 82%, 100%{font-weight:400;color:#000;}
+  20%, 76%{font-weight:700;color:#000;}
 }
 @keyframes menuNewPublicationDot{
   0%{opacity:0;transform:translateY(-50%) scale(.25);}
@@ -89,16 +89,26 @@ body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{bo
   49%,78%{opacity:1;width:100%;}
   100%{opacity:0;width:0;}
 }
+html.dark-mode .menu-new-publication,
+body.dark-mode .menu-new-publication{color:#999;}
 html.dark-mode .menu-new-publication::before,
 body.dark-mode .menu-new-publication::before,
 html.dark-mode .menu-new-publication::after,
 body.dark-mode .menu-new-publication::after{background:#999;}
+@keyframes menuNewPublicationTextDark{
+  0%, 13%, 82%, 100%{font-weight:400;color:#999;}
+  20%, 76%{font-weight:700;color:#F5F5F5;}
+}
+html.dark-mode .menu-new-publication.menu-new-publication-animate,
+body.dark-mode .menu-new-publication.menu-new-publication-animate{
+  animation-name:menuNewPublicationTextDark;
+}
 @media(prefers-reduced-motion:reduce){
   .menu-new-publication.menu-new-publication-animate,
   .menu-new-publication.menu-new-publication-animate::before,
   .menu-new-publication.menu-new-publication-animate::after{animation:none;}
 }
-</style>
+
 
 </style>
 

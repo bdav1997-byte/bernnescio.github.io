@@ -113,6 +113,15 @@ main { width:100%; max-width:650px; margin:0 auto; padding:110px 25px 100px; }
 }
 .sofia-secret-link:hover { text-decoration:underline; }
 
+#sofia-title {
+    touch-action:pan-y;
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:grab;
+}
+
+#sofia-title:active { cursor:grabbing; }
+
 html.dark-mode .sofia-secret-link,
 body.dark-mode .sofia-secret-link { color:#F5F5F5; }
 

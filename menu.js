@@ -384,5 +384,9 @@ document.addEventListener("click", event => {
   const href = link.getAttribute("href"); if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
   let destination; try { destination = new URL(href, window.location.href); } catch { return; }
   if (destination.origin !== window.location.origin || destination.href === window.location.href) return;
-  event.preventDefault(); document.body.classList.add("page-exit"); window.setTimeout(() => { window.location.href = destination.href; }, 220);
+  /*
+   * Deixamos a navegação normal acontecer para que o View Transition API
+   * consiga capturar a página anterior e a seguinte como uma única transição.
+   * Em browsers sem suporte, a página mantém a navegação normal sem quebrar.
+   */
 });

@@ -32,7 +32,7 @@ fetch("menu.html", { cache: "no-store" })
 
         if (isOpen) {
           const featured = sideMenu.querySelector(".menu-new-publication");
-          const seenKey = "nescio-new-publication-highlight-seen";
+          const seenKey = "nescio-new-publication-highlight-seen-v2";
           let seen = false;
           try { seen = localStorage.getItem(seenKey) === "1"; } catch (error) {}
 

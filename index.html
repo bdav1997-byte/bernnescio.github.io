@@ -30,6 +30,7 @@
       align-items: center;
       padding: 15px 25px 45px;
       text-align: center;
+      white-space: nowrap;
     }
     .landing-main-content {
       width: min(720px, 100%);
@@ -208,8 +209,9 @@
       left: 50%;
       bottom: 32px;
       z-index: 4000;
-      width: 100%;
-      padding: 0;
+      width: max-content;
+      max-width: calc(100vw - 32px);
+      padding: 0 1px;
       border: 1px solid #000;
       background: #FAFAFA;
       box-shadow: 0 8px 24px rgba(0,0,0,.08);
@@ -372,12 +374,13 @@
         var popup = document.createElement('div');
         popup.className = 'landing-easter-egg';
         popup.textContent = 'E a contar…';
-        var text = counter.querySelector('#landing-archive-count');
-        var textRect = (text || counter).getBoundingClientRect();
-        popup.style.width = Math.ceil(textRect.width) + 'px';
-        popup.style.height = Math.ceil(textRect.height) + 'px';
-        popup.style.left = (textRect.left + textRect.width / 2) + 'px';
-        popup.style.bottom = (window.innerHeight - textRect.top + 18) + 'px';
+        document.body.appendChild(popup);
+
+        var popupRect = popup.getBoundingClientRect();
+        var popupWidth = Math.min(popupRect.width, window.innerWidth - 32);
+        popup.style.width = popupWidth + 'px';
+        popup.style.left = (window.innerWidth / 2) + 'px';
+        popup.style.bottom = 'calc(14px + 1.5em + 18px)';
         document.body.appendChild(popup);
 
         requestAnimationFrame(function () {

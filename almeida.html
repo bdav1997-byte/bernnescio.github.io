@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALMEIDA — NESCIO</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .book-page article { max-width: 760px; }
+    .book-kicker {
+      margin: 0 0 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .book-lead {
+      margin: 0 0 60px;
+      font-size: 18px;
+      line-height: 1.7;
+      letter-spacing: .02em;
+    }
+    .book-section {
+      margin-top: 70px;
+    }
+    .book-section h2 {
+      margin: 0 0 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+    }
+    .book-section p {
+      margin-bottom: 22px;
+    }
+    .book-excerpt {
+      padding: 28px 0;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      font-style: italic;
+    }
+    .book-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      letter-spacing: .06em;
+      line-height: 1.6;
+    }
+    .book-detail-label {
+      display: block;
+      margin-bottom: 3px;
+      font-weight: 700;
+      letter-spacing: .1em;
+    }
+    .book-buy {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 13px 18px;
+      border: 1px solid currentColor;
+      color: inherit;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease;
+    }
+    .book-buy:hover {
+      background: #000;
+      color: #FAFAFA;
+    }
+    html.dark-mode .book-buy:hover,
+    body.dark-mode .book-buy:hover {
+      background: #F5F5F5;
+      color: #111;
+    }
+    @media (max-width: 700px) {
+      .book-lead { font-size: 16px; margin-bottom: 48px; }
+      .book-section { margin-top: 55px; }
+      .book-details { grid-template-columns: 1fr; gap: 18px; }
+    }
+  </style>
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
+</head>
+<body>
+  <div id="menu-container"></div>
+
+  <main class="book-page">
+    <a href="index.html" class="back-link">← VOLTAR</a>
+    <img src="LOGO.png" class="logo" alt="NESCIO">
+
+    <article>
+      <p class="book-kicker">NESCIO · LIVRO · NOVEMBRO 2026</p>
+      <h1>ALMEIDA</h1>
+
+      <p class="book-lead">Um livro a chegar. Por agora, fica aqui o princípio.</p>
+
+      <section class="book-section" id="prefacio">
+        <h2>PREFÁCIO</h2>
+        <p>O prefácio de <em>ALMEIDA</em> será publicado aqui.</p>
+      </section>
+
+      <section class="book-section" id="sobre">
+        <h2>SOBRE ALMEIDA</h2>
+        <p>Uma descrição do livro será publicada aqui, juntamente com aquilo que o torna necessário.</p>
+      </section>
+
+      <section class="book-section" id="excerto">
+        <h2>EXCERTO</h2>
+        <p class="book-excerpt">Um excerto de <em>ALMEIDA</em> será publicado aqui.</p>
+      </section>
+
+      <section class="book-section" id="edicao">
+        <h2>EDIÇÃO</h2>
+        <div class="book-details">
+          <div><span class="book-detail-label">TÍTULO</span>ALMEIDA</div>
+          <div><span class="book-detail-label">AUTOR</span>Bernardo Valentim</div>
+          <div><span class="book-detail-label">PUBLICAÇÃO</span>Novembro de 2026</div>
+          <div><span class="book-detail-label">EDITORA</span>A indicar</div>
+          <div><span class="book-detail-label">ISBN</span>A indicar</div>
+          <div><span class="book-detail-label">FORMATO</span>A indicar</div>
+        </div>
+      </section>
+
+      <section class="book-section" id="pre-venda">
+        <h2>PRÉ-VENDA</h2>
+        <p>Em breve.</p>
+        <a href="#" class="book-buy" aria-label="Pré-venda de ALMEIDA">PRÉ-VENDA →</a>
+      </section>
+    </article>
+  </main>
+
+  <script src="menu.js"></script>
+</body>
+</html>

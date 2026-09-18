@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HISTÓRIA — NESCIO</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try {
+                document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+            } catch (error) {}
+        })();
+    </script>
+    <style>
+        .history-intro {
+            margin-bottom: 95px;
+        }
+
+        .history-kicker {
+            margin-bottom: 18px;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:10px;
+            font-weight:700;
+            letter-spacing:.16em;
+            text-transform:uppercase;
+        }
+
+        .history-intro h1 {
+            margin-bottom:30px;
+        }
+
+        .history-intro p,
+        .history-entry p {
+            font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+            font-size:18px;
+            font-weight:500;
+            line-height:1.7;
+            text-align:justify;
+        }
+
+        .history-entry {
+            margin-top:75px;
+            padding-top:28px;
+            border-top:1px solid #000;
+        }
+
+        .history-date {
+            display:flex;
+            justify-content:space-between;
+            gap:20px;
+            margin-bottom:18px;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:10px;
+            font-weight:700;
+            letter-spacing:.13em;
+            text-transform:uppercase;
+        }
+
+        .history-date span:last-child {
+            opacity:.5;
+            text-align:right;
+        }
+
+        .history-entry h2 {
+            margin-bottom:25px;
+            color:#000;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:15px;
+            font-weight:700;
+            letter-spacing:.08em;
+            line-height:1.5;
+            text-transform:uppercase;
+        }
+
+        .history-entry p {
+            margin-bottom:25px;
+        }
+
+        .history-entry p:last-child {
+            margin-bottom:0;
+        }
+
+        .history-link {
+            color:inherit;
+            text-decoration:underline;
+            text-decoration-thickness:1px;
+            text-underline-offset:3px;
+        }
+
+        .history-eras {
+            margin-top:95px;
+        }
+
+        .history-era {
+            display:grid;
+            grid-template-columns:110px 1fr;
+            gap:28px;
+            padding:22px 0;
+            border-top:1px solid rgba(0,0,0,.22);
+        }
+
+        .history-era:last-child {
+            border-bottom:1px solid rgba(0,0,0,.22);
+        }
+
+        .history-era-number {
+            font-family:"Courier New",Courier,monospace;
+            font-size:12px;
+            letter-spacing:.08em;
+        }
+
+        .history-era-content h3 {
+            margin-bottom:9px;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:11px;
+            font-weight:700;
+            letter-spacing:.12em;
+            text-transform:uppercase;
+        }
+
+        .history-era-content p {
+            font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+            font-size:16px;
+            line-height:1.6;
+        }
+
+        .history-closing {
+            margin-top:105px;
+            padding-top:28px;
+            border-top:1px solid #000;
+        }
+
+        .history-closing p {
+            font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+            font-size:20px;
+            line-height:1.65;
+            text-align:left;
+        }
+
+        html.dark-mode .history-entry,
+        body.dark-mode .history-entry,
+        html.dark-mode .history-closing,
+        body.dark-mode .history-closing {
+            border-color:#F5F5F5;
+        }
+
+        html.dark-mode .history-era,
+        body.dark-mode .history-era {
+            border-color:rgba(255,255,255,.22);
+        }
+
+        html.dark-mode .history-entry h2,
+        body.dark-mode .history-entry h2,
+        html.dark-mode .history-era-content h3,
+        body.dark-mode .history-era-content h3 {
+            color:#F5F5F5;
+        }
+
+        @media (max-width:700px) {
+            .history-intro {
+                margin-bottom:70px;
+            }
+
+            .history-entry {
+                margin-top:58px;
+            }
+
+            .history-date {
+                flex-direction:column;
+                gap:7px;
+            }
+
+            .history-date span:last-child {
+                text-align:left;
+            }
+
+            .history-era {
+                grid-template-columns:65px 1fr;
+                gap:18px;
+            }
+
+            .history-closing {
+                margin-top:75px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-container"></div>
+
+    <main>
+        <a href="index.html" class="back-link">← VOLTAR</a>
+        <img src="LOGO.png" class="logo" alt="NESCIO">
+
+        <article>
+            <div class="history-intro">
+                <div class="history-kicker">ARQUIVO · NESCIO</div>
+                <h1>HISTÓRIA</h1>
+                <p>NESCIO não começou como NESCIO. Antes de existir um nome, existiam textos. Antes de existir um arquivo, existiam pessoas para quem se escrevia. Antes da fotografia, da edição e do vídeo, existia apenas a necessidade de escrever.</p>
+            </div>
+
+            <section class="history-entry">
+                <div class="history-date">
+                    <span>23 · 08 · 2016</span>
+                    <span>O primeiro texto</span>
+                </div>
+                <h2>A ERA TUMBLR</h2>
+                <p>O primeiro texto foi publicado no Tumblr <em>Bernisphere</em>, a 23 de Agosto de 2016. Chamava-se <strong>SOFIA</strong>. Era o princípio de uma escrita ainda muito ligada ao outro: cartas, dedicatórias, pessoas transformadas em matéria literária e sentimentos que precisavam de um destinatário para poderem existir.</p>
+                <p>O Tumblr acabou por se tornar uma espécie de arquivo íntimo. Esta primeira era dividiu-se, essencialmente, em duas: a era das <strong>cartas para os outros</strong> e a <strong>era de lemures</strong>. Duas formas diferentes de escrever sobre o que estava fora, mas também duas formas de começar a descobrir aquilo que estava dentro.</p>
+                <p><a class="history-link" href="https://bernisphere.tumblr.com/post/149390490243/sofia" target="_blank" rel="noopener noreferrer">SOFIA · 23 AGOSTO 2016</a></p>
+            </section>
+
+            <section class="history-entry">
+                <div class="history-date">
+                    <span>26 · 10 · 2019</span>
+                    <span>O abandono do Tumblr</span>
+                </div>
+                <h2>O FIM DE BERNISPHERE</h2>
+                <p>A 26 de Outubro de 2019, o Tumblr foi abandonado. O texto <strong>GOODBYE</strong> marcou essa saída. Não significava o fim da escrita, mas o fim de uma casa. A partir desse momento, a escrita deixava de depender de uma plataforma feita para os outros e começava a procurar um espaço próprio.</p>
+                <p>O abandono do Tumblr abriu a passagem para uma nova fase: um website independente, onde os textos já não precisavam de seguir a lógica de cartas, respostas ou destinatários. Começava a possibilidade de construir uma obra em vez de apenas acumular escritos.</p>
+                <p><a class="history-link" href="https://bernisphere.tumblr.com/post/188614115203/goodbye" target="_blank" rel="noopener noreferrer">GOODBYE · 26 OUTUBRO 2019</a></p>
+            </section>
+
+            <section class="history-entry">
+                <div class="history-date">
+                    <span>2019 → 2026</span>
+                    <span>O website independente</span>
+                </div>
+                <h2>AS OUTRAS ERAS</h2>
+                <p>No novo website, a escrita afastou-se progressivamente da lógica do Tumblr. Começaram a surgir os primeiros textos que não eram sobre os outros. A escrita tornou-se mais autónoma, mais interessada no mundo, nas ideias, na raiva, na memória, na cidade e na própria linguagem.</p>
+                <p>Foi também neste período que nasceram a terceira, a quarta e a quinta eras. Não foram apenas mudanças de plataforma ou de aparência: foram mudanças naquilo que os textos procuravam fazer. A escrita passou a existir acompanhada por projetos, séries e experiências que lhe davam outras formas de continuidade.</p>
+            </section>
+
+            <div class="history-eras">
+                <div class="history-era">
+                    <div class="history-era-number">I — II</div>
+                    <div class="history-era-content">
+                        <h3>Era Tumblr</h3>
+                        <p>Cartas para os outros e, depois, a era de lemures. O texto como destinatário, memória e relação.</p>
+                    </div>
+                </div>
+
+                <div class="history-era">
+                    <div class="history-era-number">III</div>
+                    <div class="history-era-content">
+                        <h3>O novo website</h3>
+                        <p>A escrita começa a desprender-se do destinatário e a construir um espaço próprio.</p>
+                    </div>
+                </div>
+
+                <div class="history-era">
+                    <div class="history-era-number">IV</div>
+                    <div class="history-era-content">
+                        <h3>Projetos</h3>
+                        <p>Os textos passam a ser acompanhados por projetos, experiências e outras formas de apresentação.</p>
+                    </div>
+                </div>
+
+                <div class="history-era">
+                    <div class="history-era-number">V</div>
+                    <div class="history-era-content">
+                        <h3>Expansão</h3>
+                        <p>A escrita deixa de existir sozinha. Fotografia, edição e vídeo começam a fazer parte da mesma linguagem.</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="history-entry">
+                <div class="history-date">
+                    <span>2026</span>
+                    <span>NESCIO</span>
+                </div>
+                <h2>UMA NOVA CASA</h2>
+                <p>O website independente é agora abandonado para dar lugar a <strong>nescio.pt</strong>. Não como uma ruptura total, mas como um rebrand que procura juntar aquilo que sempre esteve presente.</p>
+                <p>De um lado, permanece a herança da era Tumblr: o minimalismo, a página branca, a importância do texto e a ideia de que uma publicação não precisa de mais nada para existir. Do outro, permanece aquilo que foi sendo construído no website independente: a fotografia, a edição, o vídeo e a vontade de transformar cada texto numa experiência que ultrapassa a própria página.</p>
+                <p>NESCIO é a tentativa de fazer essas duas coisas coexistirem. O arquivo e o presente. O texto e a imagem. O que foi escrito para alguém e aquilo que passou a ser escrito para ninguém em particular.</p>
+            </section>
+
+            <div class="history-closing">
+                <p>O nome mudou. Os lugares mudaram. As formas mudaram. Os textos ficaram.</p>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

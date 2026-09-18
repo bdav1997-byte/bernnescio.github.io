@@ -176,9 +176,9 @@
       <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
       <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
     </a>
-    <a class="landing-archive" href="menu-completo.html" aria-label="Arquivo: 26 textos publicados">
+    <a class="landing-archive" href="arquivo.html" aria-label="Arquivo: 33 textos publicados">
       <span class="landing-archive-label">ARQUIVO</span>
-      <span class="landing-archive-count">26 TEXTOS</span>
+      <span class="landing-archive-count" id="landing-archive-count">33 TEXTOS</span>
     </a>
     <div class="landing-year">NESCIO - 2026<span class="landing-author">Bernardo de Almeida Valentim</span></div>
   </main>
@@ -202,6 +202,25 @@
       if (shouldAnimate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         page.classList.add('landing-animate');
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var countElement = document.getElementById('landing-archive-count');
+      if (!countElement) return;
+
+      fetch('publicacoes.json', { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Não foi possível carregar o arquivo.');
+          return response.json();
+        })
+        .then(function (data) {
+          var publications = Array.isArray(data) ? data : data.publicacoes;
+          if (!Array.isArray(publications)) return;
+
+          countElement.textContent = publications.length + (publications.length === 1 ? ' TEXTO' : ' TEXTOS');
+        })
+        .catch(function () {});
     })();
   </script>
   <script src="menu.js"></script>

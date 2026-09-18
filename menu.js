@@ -271,7 +271,9 @@ function setupCategoryNavigation(sideMenu) {
       // Surge 1 segundo depois do índice, mantendo exatamente a mesma estrutura visual.
       window.setTimeout(() => {
         if (!indexPanel.hidden && indexButton.getAttribute("aria-expanded") === "true") {
+          // Coloca o segundo pop-up acima do primeiro, sem sobreposição.
           featuredPanel.hidden = false;
+          featuredPanel.style.bottom = `calc(100% + ${indexPanel.offsetHeight + 36}px)`;
           navigation.classList.add("featured-open");
         }
       }, 1000);
@@ -307,7 +309,12 @@ document.addEventListener("click", event => {
   if (document.body.classList.contains("index-open") &&
       categoryNavigation && !categoryNavigation.contains(event.target)) {
     if (indexPanel) indexPanel.hidden = true;
-    categoryNavigation.classList.remove("index-open");
+    const featuredPanel = categoryNavigation.querySelector(".category-featured-panel");
+    if (featuredPanel) {
+      featuredPanel.hidden = true;
+      featuredPanel.style.bottom = "";
+    }
+    categoryNavigation.classList.remove("index-open", "featured-open");
     document.body.classList.remove("index-open");
     const indexButton = categoryNavigation.querySelector(".category-nav-index");
     if (indexButton) indexButton.setAttribute("aria-expanded", "false");

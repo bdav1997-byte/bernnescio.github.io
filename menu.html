@@ -41,7 +41,13 @@ body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{bo
 @media(max-width:700px){.theme-toggle{right:16px;font-size:9px;}}
 
 
-.menu-new-publication{position:relative;color:#777;}
+.menu-new-publication{
+  position:relative;
+  display:block;
+  width:fit-content;
+  max-width:100%;
+  color:#777;
+}
 .menu-new-publication::before{
   content:"";
   position:absolute;
@@ -58,6 +64,7 @@ body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{bo
   content:"";
   position:absolute;
   left:0;
+  right:auto;
   bottom:-2px;
   width:0;
   height:1px;
@@ -65,29 +72,35 @@ body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{bo
   opacity:0;
 }
 .menu-new-publication.menu-new-publication-animate{
-  animation:menuNewPublicationText 2.3s ease both;
+  animation:menuNewPublicationText 4.5s cubic-bezier(.22,1,.36,1) both;
 }
 .menu-new-publication.menu-new-publication-animate::before{
-  animation:menuNewPublicationDot 2.3s ease both;
+  animation:menuNewPublicationDot 4.5s cubic-bezier(.22,1,.36,1) both;
 }
 .menu-new-publication.menu-new-publication-animate::after{
-  animation:menuNewPublicationUnderline 2.3s ease both;
+  animation:menuNewPublicationUnderline 4.5s cubic-bezier(.22,1,.36,1) both;
 }
 @keyframes menuNewPublicationText{
-  0%, 13%, 82%, 100%{font-weight:400;color:#000;}
-  20%, 76%{font-weight:700;color:#000;}
+  0%{font-weight:400;color:#777;}
+  16%{font-weight:400;color:#6e6e6e;}
+  32%{font-weight:500;color:#555;}
+  55%{font-weight:600;color:#3a3a3a;}
+  72%{font-weight:500;color:#555;}
+  86%,100%{font-weight:400;color:#777;}
 }
 @keyframes menuNewPublicationDot{
   0%{opacity:0;transform:translateY(-50%) scale(.25);}
-  9%{opacity:1;transform:translateY(-50%) scale(1.15);}
-  18%,78%{opacity:1;transform:translateY(-50%) scale(1);}
-  100%{opacity:0;transform:translateY(-50%) scale(.25);}
+  10%{opacity:.35;transform:translateY(-50%) scale(.7);}
+  22%{opacity:.8;transform:translateY(-50%) scale(1);}
+  72%{opacity:.8;transform:translateY(-50%) scale(1);}
+  88%,100%{opacity:0;transform:translateY(-50%) scale(.7);}
 }
 @keyframes menuNewPublicationUnderline{
-  0%, 13%{opacity:0;width:0;}
-  32%{opacity:1;width:35%;}
-  49%,78%{opacity:1;width:100%;}
-  100%{opacity:0;width:0;}
+  0%,18%{opacity:0;width:0;}
+  34%{opacity:.45;width:28%;}
+  48%{opacity:.75;width:68%;}
+  61%,72%{opacity:.85;width:100%;}
+  88%,100%{opacity:0;width:0;}
 }
 html.dark-mode .menu-new-publication,
 body.dark-mode .menu-new-publication{color:#999;}
@@ -96,8 +109,12 @@ body.dark-mode .menu-new-publication::before,
 html.dark-mode .menu-new-publication::after,
 body.dark-mode .menu-new-publication::after{background:#999;}
 @keyframes menuNewPublicationTextDark{
-  0%, 13%, 82%, 100%{font-weight:400;color:#999;}
-  20%, 76%{font-weight:700;color:#F5F5F5;}
+  0%{font-weight:400;color:#999;}
+  16%{font-weight:400;color:#a2a2a2;}
+  32%{font-weight:500;color:#b5b5b5;}
+  55%{font-weight:600;color:#dedede;}
+  72%{font-weight:500;color:#b5b5b5;}
+  86%,100%{font-weight:400;color:#999;}
 }
 html.dark-mode .menu-new-publication.menu-new-publication-animate,
 body.dark-mode .menu-new-publication.menu-new-publication-animate{
@@ -107,10 +124,7 @@ body.dark-mode .menu-new-publication.menu-new-publication-animate{
   .menu-new-publication.menu-new-publication-animate,
   .menu-new-publication.menu-new-publication-animate::before,
   .menu-new-publication.menu-new-publication-animate::after{animation:none;}
-}
-
-
-</style>
+}</style>
 
 <div class="site-header">
 <a href="index.html" class="home-button" aria-label="Início"><img src="LOGO.png" alt="NESCIO"></a>

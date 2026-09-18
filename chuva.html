@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHUVA — NESCIO</title>
-<link rel="stylesheet" href="style.css">
-<script>
-(function(){try{document.documentElement.classList.toggle("dark-mode",localStorage.getItem("nescio-theme")==="dark");}catch(e){}})();
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHUVA — NESCIO</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            try { document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark"); } catch (error) {}
+        })();
+    </script>
 </head>
-<body>
-<main>
-<a href="index.html" class="back-link">← VOLTAR</a>
-<img src="LOGO.png" class="logo" alt="NESCIO">
-<article>
-<h1>CHUVA</h1>
-<p>A força é uma constante. Precisa de prática, disciplina, perseverança e, sobretudo, vontade. Nem sempre a tenho. Preciso de discutir menos como tu.</p>
-<p>Mesmo nesta redoma de vitórias e conquistas, há poeira e aperto. Insatisfações que não se aconchegam em lençóis alheios.</p>
-<p>E é por isso que ando à chuva e tu não.</p>
-<p>Falta propósito para locomover a máquina que nunca ninguém questionou porque se move. Falta sorrir, de cabeça voltada para o sol e sem grande medo de cair. Falta fazer as coisas porque sim e não porque não. Falta fazer as malas porque tenho amigos que vão casar.</p>
-<p>Há que publicar um livro que começa com esta mesma sensação de andar à chuva porque não se quer voltar para casa.</p>
-<p>Gostava de ser mais parecido contigo, pareces mais feliz do que eu alguma vez serei.</p>
-</article>
-</main>
-<script src="menu.js"></script>
+<body class="musas-text">
+
+    <div id="menu-container"></div>
+
+    <main>
+        <a href="index.html" class="back-link">← VOLTAR</a>
+        <img src="LOGO.png" class="logo" alt="NESCIO">
+
+        <article>
+            <div class="musas-meta"><span>REC</span><span>06</span></div>
+            <div class="musas-title-row"><h1>CHUVA</h1><span class="musas-live-timer" data-timer>00:00</span></div>
+            <div class="musas-recording"><span>REC 06</span><span>01:11</span></div>
+
+            <div class="musas-entry"><div class="musas-time">00:00</div><p>A força é uma constante. Precisa de prática, disciplina, perseverança e, sobretudo, vontade. Nem sempre a tenho. Preciso de discutir menos como tu.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:13</div><p>Mesmo nesta redoma de vitórias e conquistas, há poeira e aperto. Insatisfações que não se aconchegam em lençóis alheios.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:24</div><p>E é por isso que ando à chuva e tu não.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:32</div><p>Falta propósito para locomover a máquina que nunca ninguém questionou porque se move. Falta sorrir, de cabeça voltada para o sol e sem grande medo de cair. Falta fazer as coisas porque sim e não porque não. Falta fazer as malas porque tenho amigos que vão casar.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:52</div><p>Há que publicar um livro que começa com esta mesma sensação de andar à chuva porque não se quer voltar para casa.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:03</div><p>Gostava de ser mais parecido contigo, pareces mais feliz do que eu alguma vez serei.</p></div>
+
+            <div class="musas-end"><span>END OF RECORDING</span><span>01:11</span></div>
+        </article>
+    </main>
+
+    <script src="menu.js"></script>
+    <script>
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>

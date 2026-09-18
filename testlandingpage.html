@@ -65,6 +65,30 @@
       text-decoration: underline;
       text-underline-offset: 4px;
     }
+    .landing-archive {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 28px;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      text-decoration: none;
+      opacity: 0;
+    }
+    .landing-archive-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+    .landing-archive-count {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .12em;
+    }
+    .landing-archive:hover .landing-archive-count {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
     .landing-year {
       position: absolute;
       bottom: 25px;
@@ -97,18 +121,24 @@
       animation: landingFadeIn 1.4s ease forwards;
       animation-delay: 2.4s;
     }
+    .landing-page.landing-animate .landing-archive {
+      animation: landingFadeIn 1.2s ease forwards;
+      animation-delay: 3.15s;
+    }
     .landing-page.landing-animate .landing-year {
       animation: landingFadeIn 1.8s ease forwards;
-      animation-delay: 3.1s;
+      animation-delay: 3.5s;
     }
     .landing-page:not(.landing-animate) .landing-motto,
     .landing-page:not(.landing-animate) .landing-latest,
+    .landing-page:not(.landing-animate) .landing-archive,
     .landing-page:not(.landing-animate) .landing-year {
       opacity: 1;
     }
     @media (prefers-reduced-motion: reduce) {
       .landing-motto,
       .landing-latest,
+      .landing-archive,
       .landing-year {
         opacity: 1 !important;
         animation: none !important;
@@ -116,7 +146,8 @@
     }
     html.dark-mode .landing-motto,
     html.dark-mode .landing-year,
-    html.dark-mode .landing-latest {
+    html.dark-mode .landing-latest,
+    html.dark-mode .landing-archive {
       color: #F5F5F5;
     }
     @media (max-width: 700px) {
@@ -126,6 +157,8 @@
       .landing-latest { margin-top: 48px; gap: 8px; }
       .landing-latest-label { font-size: 8px; }
       .landing-latest-title { font-size: 10px; letter-spacing: .08em; }
+      .landing-archive { margin-top: 22px; gap: 8px; }
+      .landing-archive-label, .landing-archive-count { font-size: 8px; }
       .landing-year { bottom: 20px; font-size: 9px; }
       .landing-author { margin-top: 4px; font-size: 9px; letter-spacing: .14em; }
     }
@@ -142,6 +175,10 @@
     <a class="landing-latest" href="soberaniadafutilidade.html" aria-label="Última publicação: Soberania da Futilidade">
       <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
       <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
+    </a>
+    <a class="landing-archive" href="menu-completo.html" aria-label="Arquivo: 26 textos publicados">
+      <span class="landing-archive-label">ARQUIVO</span>
+      <span class="landing-archive-count">26 TEXTOS</span>
     </a>
     <div class="landing-year">NESCIO - 2026<span class="landing-author">Bernardo de Almeida Valentim</span></div>
   </main>

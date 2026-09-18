@@ -11,7 +11,8 @@
         })();
     </script>
     <style>
-        html, body {
+        html.password-gate-locked,
+        body.password-gate-locked {
             overflow: hidden !important;
         }
 
@@ -229,7 +230,7 @@
         }
     </style>
 </head>
-<body class="musas-text">
+<body class="musas-text password-gate-locked">
 
     <div id="menu-container"></div>
 
@@ -302,6 +303,7 @@
     <script>
         (function () {
             const gate = document.getElementById("chuva-gate");
+            document.documentElement.classList.add("password-gate-locked");
             const form = document.getElementById("chuva-password-form");
             const password = document.getElementById("chuva-password");
             const message = document.getElementById("chuva-password-message");
@@ -310,8 +312,8 @@
 
             function unlock() {
                 gate.classList.add("is-unlocked");
-                document.documentElement.style.overflow = "";
-                document.body.style.overflow = "";
+                document.documentElement.classList.remove("password-gate-locked");
+                document.body.classList.remove("password-gate-locked");
                 password.value = "";
             }
 

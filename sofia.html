@@ -63,25 +63,44 @@
       var dragging = false;
       var startX = 0;
 
+      title.style.touchAction = 'none';
+      title.style.userSelect = 'none';
+      title.style.webkitUserSelect = 'none';
+
+      function revealSecret() {
+        secretLink.classList.add('is-visible');
+        secretLink.setAttribute('aria-hidden', 'false');
+      }
+
+      function finishDrag(endX) {
+        if (!dragging) return;
+        var draggedLeftToRight = endX - startX > 35;
+        dragging = false;
+
+        if (draggedLeftToRight) revealSecret();
+      }
+
       title.addEventListener('pointerdown', function (event) {
-        if (event.button !== 0 && event.pointerType !== 'touch') return;
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
         dragging = true;
         startX = event.clientX;
-        title.setPointerCapture?.(event.pointerId);
+
+        if (title.setPointerCapture) {
+          try {
+            title.setPointerCapture(event.pointerId);
+          } catch (error) {}
+        }
+      });
+
+      title.addEventListener('pointermove', function (event) {
+        if (!dragging) return;
+        if (event.clientX - startX > 35) {
+          finishDrag(event.clientX);
+        }
       });
 
       title.addEventListener('pointerup', function (event) {
-        if (!dragging) return;
-        dragging = false;
-
-        var draggedLeftToRight = event.clientX - startX > 35;
-        var titleRect = title.getBoundingClientRect();
-        var endedOnTitle = event.clientX >= titleRect.left && event.clientX <= titleRect.right;
-
-        if (draggedLeftToRight && endedOnTitle) {
-          secretLink.classList.add('is-visible');
-          secretLink.setAttribute('aria-hidden', 'false');
-        }
+        finishDrag(event.clientX);
       });
 
       title.addEventListener('pointercancel', function () {

@@ -30,7 +30,7 @@
       align-items: center;
       padding: 15px 25px 45px;
       text-align: center;
-      white-space: nowrap;
+      white-space: normal;
     }
     .landing-main-content {
       width: min(720px, 100%);
@@ -51,7 +51,7 @@
       margin: 0 0 64px;
     }
     .landing-motto {
-      width: min(620px, 92vw);
+      width: min(620px, calc(100vw - 50px));
       max-width: 100%;
       margin: 0;
       color: #000;
@@ -251,8 +251,8 @@
       }
 
       .landing-motto {
-        width: 300px;
-        max-width: 92vw;
+        width: calc(100vw - 50px);
+        max-width: 100%;
         font-size: 18px;
         line-height: 1.4;
         letter-spacing: .06em;

@@ -76,12 +76,20 @@ fetch("menu.html", { cache: "no-store" })
           if (isOpen) {
             section.classList.add("expanded");
             title.setAttribute("aria-expanded", "true");
-            content.style.maxHeight = content.scrollHeight + "px";
+
+            // Mantém a mesma velocidade visual para todas as secções:
+            // a duração cresce ligeiramente com a altura, mas fica limitada.
+            const targetHeight = content.scrollHeight;
+            const duration = Math.min(620, Math.max(360, targetHeight * 0.28));
+            content.style.transitionDuration = duration + "ms";
+            content.style.maxHeight = targetHeight + "px";
           } else {
             content.style.maxHeight = content.scrollHeight + "px";
             requestAnimationFrame(() => {
               section.classList.remove("expanded");
               title.setAttribute("aria-expanded", "false");
+              const duration = Math.min(620, Math.max(360, content.scrollHeight * 0.28));
+              content.style.transitionDuration = duration + "ms";
               content.style.maxHeight = "0px";
             });
           }

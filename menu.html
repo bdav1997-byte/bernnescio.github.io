@@ -120,6 +120,22 @@ body.dark-mode .menu-new-publication.menu-new-publication-animate{
   .menu-new-publication.menu-new-publication-animate,
   .menu-new-publication.menu-new-publication-animate::before,
   .menu-new-publication.menu-new-publication-animate::after{animation:none;}
+}
+@keyframes menuSecondaryReveal{
+  from{opacity:0;transform:translateY(5px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.side-menu.menu-focus-open > .menu-section:not(:first-child){
+  opacity:0;
+  transform:translateY(5px);
+  animation:menuSecondaryReveal .42s ease .9s forwards;
+}
+@media(prefers-reduced-motion:reduce){
+  .side-menu.menu-focus-open > .menu-section:not(:first-child){
+    opacity:1;
+    transform:none;
+    animation:none;
+  }
 }</style>
 
 <div class="site-header">

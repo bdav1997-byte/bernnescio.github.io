@@ -195,7 +195,16 @@
   bindControl(nextButton, function(){ move(1); });
 
   box.addEventListener("click", function(event){
-    if(event.target === box) close();
+    var isMobile = window.matchMedia("(max-width:700px)").matches;
+    if (!isMobile) {
+      if(event.target === box) close();
+      return;
+    }
+
+    var isSwipeArea = stage.contains(event.target);
+    var isControl = event.target.closest("button");
+
+    if (!isSwipeArea && !isControl) close();
   });
 
   stage.addEventListener("touchstart", function(event){

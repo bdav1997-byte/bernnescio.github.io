@@ -6,6 +6,46 @@
 
 html { scroll-behavior: smooth; }
 
+/* BOOTSTRAP VISUAL DO TEMA: impede qualquer flash branco antes do JavaScript do menu.
+   O tema guardado é aplicado ao <html> ainda no <head> de cada página. */
+html.dark-mode {
+    background:#111;
+    color:#F5F5F5;
+    color-scheme:dark;
+}
+
+html:not(.dark-mode) {
+    color-scheme:light;
+}
+
+html.dark-mode body {
+    background:#111 !important;
+    color:#F5F5F5 !important;
+}
+
+html.dark-mode article h1,
+html.dark-mode article p,
+html.dark-mode .menu-toggle,
+html.dark-mode .menu-title,
+html.dark-mode .side-menu .menu-section a,
+html.dark-mode .theme-toggle,
+html.dark-mode .back-link,
+html.dark-mode .category-nav-link,
+html.dark-mode .category-nav-index,
+html.dark-mode .category-index-title,
+html.dark-mode .category-index-item,
+html.dark-mode .landing-motto,
+html.dark-mode .landing-year,
+html.dark-mode .menu-coming-soon {
+    color:#F5F5F5;
+}
+
+html.dark-mode .logo,
+html.dark-mode .landing-logo {
+    filter:invert(1);
+}
+
+
 /* TRANSIÇÃO SUAVE ENTRE LIGHT / DARK MODE */
 html,
 body,

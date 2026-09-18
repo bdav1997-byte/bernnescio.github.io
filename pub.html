@@ -13,9 +13,10 @@ main{width:min(760px,calc(100% - 48px));padding:60px 0;text-align:left}
 h1{margin:0 0 52px;padding-left:36px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;line-height:1.5;text-transform:uppercase}
 .category{margin:0;font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
 .release-list{margin:42px 0 0;padding:0;list-style:none}
-.release-item{font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
-.release-date{display:block;margin:24px 0;font-size:10px;font-weight:700;letter-spacing:.16em}
-.release-status{display:block;margin:24px 0;font-size:10px;font-weight:700;letter-spacing:.16em}
+.release-item{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
+.release-date,.release-status{margin:0;text-align:right;font-size:10px;font-weight:700;letter-spacing:.16em;white-space:nowrap}
+.release-entry{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;margin-bottom:24px}
+.release-entry:last-child{margin-bottom:0}
 html.dark-mode,body.dark-mode{background:#111;color:#F5F5F5}
 html.dark-mode .release-date,body.dark-mode .release-date{color:#F5F5F5}
 html.dark-mode .release-status,body.dark-mode .release-status{color:#F5F5F5}
@@ -23,25 +24,35 @@ html.dark-mode .release-status,body.dark-mode .release-status{color:#F5F5F5}
 main{width:calc(100% - 40px);padding:40px 0}
 .logo{width:64px;margin-bottom:38px}
 h1{margin-bottom:42px;padding-left:24px;font-size:11px}
-.category,.release-item{font-size:10px}
+.category{font-size:10px}
 .release-list{margin-top:36px}
-.release-date,.release-status{margin:20px 0;font-size:9px}
+.release-item{font-size:10px;column-gap:16px}
+.release-date,.release-status{font-size:9px}
+.release-entry{column-gap:16px;margin-bottom:20px}
 }
 </style>
 </head>
 <body>
 <main>
 <h1>Calendário de lançamentos</h1>
-<p class="category">Categoria: ATÉ OS AMIGOS SÃO MUSAS</p>
+<p class="category">ATÉ OS AMIGOS SÃO MUSAS</p>
 <ul class="release-list">
-<li class="release-item">Chuva</li>
-<li class="release-date">19 | 09</li>
-<li class="release-item">Soberania da Futilidade</li>
-<li class="release-status">Lançado</li>
-<li class="release-item">O amor nunca salvou ninguém</li>
-<li class="release-date">21 | 09</li>
-<li class="release-item">O verão é rock</li>
-<li class="release-date">25 | 09</li>
+<li class="release-entry">
+<span class="release-item">CHUVA</span>
+<span class="release-date">19 | 09</span>
+</li>
+<li class="release-entry">
+<span class="release-item">SOBERANIA DA FUTILIDADE</span>
+<span class="release-status">LANÇADO</span>
+</li>
+<li class="release-entry">
+<span class="release-item">O AMOR NUNCA SALVOU NINGUÉM</span>
+<span class="release-date">21 | 09</span>
+</li>
+<li class="release-entry">
+<span class="release-item">O VERÃO É ROCK</span>
+<span class="release-date">25 | 09</span>
+</li>
 </ul>
 </main>
 <script>

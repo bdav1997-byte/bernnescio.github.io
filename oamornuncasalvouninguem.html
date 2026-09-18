@@ -21,7 +21,7 @@
         .amor-countdown { margin:0; font-family:"Courier New",Courier,monospace; font-size:22px; font-weight:400; letter-spacing:.12em; line-height:1.4; font-variant-numeric:tabular-nums; }
         .amor-countdown-label { margin-top:9px; font-family:Arial,Helvetica,sans-serif; font-size:8px; font-weight:400; letter-spacing:.18em; text-transform:uppercase; }
         .amor-password-form { display:flex; align-items:stretch; justify-content:center; width:min(360px,100%); margin-top:42px; }
-        .amor-password { width:100%; min-width:0; border:1px solid #000; border-right:0; border-radius:0; outline:none; background:transparent; color:#000; padding:11px 13px; font-family:Arial,Helvetica,sans-serif; font-size:10px; letter-spacing:.12em; text-align:center; text-transform:none; }
+        .amor-password { width:100%; min-width:0; border:1px solid #000; border-right:0; border-radius:0; outline:none; background:transparent; color:#000; padding:11px 13px; font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:1.2; letter-spacing:.12em; text-align:center; text-transform:none; -webkit-appearance:none; appearance:none; }
         .amor-password::placeholder { color:#777; opacity:1; }
         .amor-password:focus { box-shadow:inset 0 0 0 1px #000; }
         .amor-password-button { flex:0 0 auto; border:1px solid #000; border-radius:0; background:#000; color:#FAFAFA; padding:0 15px; font-family:Arial,Helvetica,sans-serif; font-size:9px; font-weight:700; letter-spacing:.12em; cursor:pointer; }
@@ -42,15 +42,11 @@
           .amor-gate-title { font-size:18px; }
           .amor-gate-rule { margin-top:24px; margin-bottom:28px; }
           .amor-countdown { font-size:18px; letter-spacing:.08em; }
-          .amor-password-form { margin-top:34px; }
+          .amor-password-form { width:min(360px,100%); margin-top:34px; display:flex; }
+          .amor-password { flex:1 1 auto; width:0; min-width:0; }
+          .amor-password-button { min-height:40px; padding:0 14px; }
         }
     </style>
-</head>
-<body class="musas-text">
-
-    <div id="menu-container"></div>
-
-
 </head>
 <body class="musas-text">
 
@@ -64,7 +60,7 @@
             <div class="amor-gate-rule" aria-hidden="true"></div>
 
             <div class="amor-countdown" id="amor-countdown" aria-live="polite">00:00:00</div>
-            <div class="amor-countdown-label">19 | 09 | 2026 · 19:00</div>
+            <div class="amor-countdown-label">21 | 09 | 2026 · 18:00</div>
 
             <form class="amor-password-form" id="amor-password-form">
                 <input class="amor-password" id="amor-password" type="password" placeholder="PASSWORD" aria-label="Password" autocomplete="off">
@@ -123,13 +119,13 @@
 
 <div class="musas-entry"><div class="musas-time">04:30</div><p>Esperem por mim.</p></div>
 
-<div class="musas-end"><span>END OF RECORDING</span><span>01:11</span></div>
+<div class="musas-end"><span>END OF RECORDING</span><span>04:30</span></div>
         </article>
 
         <nav class="category-navigation" aria-label="Navegação entre textos da categoria">
-            <a href="umtextosemvirgulas.html" class="category-nav-link category-nav-previous">← anterior</a>
+            <a href="putasecabroes.html" class="category-nav-link category-nav-previous">← anterior</a>
             <button type="button" class="category-nav-index" aria-expanded="false" aria-label="Ver índice desta categoria">índice</button>
-            <a href="putasecabroes.html" class="category-nav-link category-nav-next">seguinte →</a>
+            <a href="poucoesperodepoucoespertos.html" class="category-nav-link category-nav-next">seguinte →</a>
 
             <div class="category-index-panel category-featured-panel" hidden>
                 <div class="category-index-title">EM DESTAQUE</div>
@@ -141,8 +137,10 @@
                 <div class="category-index-title">ATÉ OS AMIGOS SÃO MUSAS</div>
                 <a href="manifestodoinssatisfeito.html" class="category-index-item">MANIFESTO DO INSATISFEITO</a>
                 <a href="rejeicao.html" class="category-index-item">REJEIÇÃO</a>
-                <a href="chuva.html" class="category-index-item">CHUVA PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a>
-                <a href="chuva.html" class="category-index-item current" aria-current="page"><span class="category-index-current-marker" aria-hidden="true"></span>CHUVA</a>
+                <a href="umtextosemvirgulas.html" class="category-index-item">UM TEXTO SEM VÍRGULAS PORQUE AS PESSOAS NÃO PARAM PARA PENSAR</a>
+                <a href="chuva.html" class="category-index-item">CHUVA</a>
+                <a href="putasecabroes.html" class="category-index-item">PUTAS E CABRÕES</a>
+                <a href="oamornuncasalvouninguem.html" class="category-index-item current" aria-current="page"><span class="category-index-current-marker" aria-hidden="true"></span>O AMOR NUNCA SALVOU NINGUÉM</a>
                 <a href="o-verao-e-rock.html" class="category-index-item">O VERÃO É ROCK</a>
                 <a href="poucoesperodepoucoespertos.html" class="category-index-item">POUCO ESPERO DE POUCO ESPERTOS</a>
             </div>

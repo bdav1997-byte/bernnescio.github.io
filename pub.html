@@ -3,25 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NESCIO</title>
+<title>Calendário de lançamentos — NESCIO</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;background:#FAFAFA;color:#000;font-family:Arial,Helvetica,sans-serif}
+html,body{margin:0;width:100%;min-height:100%;background:#FAFAFA;color:#000;font-family:Arial,Helvetica,sans-serif}
 body{display:flex;align-items:center;justify-content:center}
-main{text-align:center;padding:30px}
-.logo{display:block;width:72px;height:auto;margin:0 auto 24px}
-p{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;line-height:1.5}
-p+p{margin-top:55px}
+main{width:min(760px,calc(100% - 48px));padding:60px 0;text-align:center}
+h1{margin:0 0 52px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;line-height:1.5;text-transform:uppercase}
+.category{margin:0;font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
+.release-list{margin:42px 0 0;padding:0;list-style:none}
+.release-item{font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
+.release-date{display:block;margin:24px 0;font-size:10px;font-weight:700;letter-spacing:.16em}
 html.dark-mode,body.dark-mode{background:#111;color:#F5F5F5}
-html.dark-mode .logo,body.dark-mode .logo{filter:invert(1)}
-@media(max-width:700px){main{padding:24px}.logo{width:64px;margin-bottom:22px}p{font-size:11px}}
+html.dark-mode .release-date,body.dark-mode .release-date{color:#F5F5F5}
+@media(max-width:700px){
+main{width:calc(100% - 40px);padding:40px 0}
+h1{margin-bottom:42px;font-size:11px}
+.category,.release-item{font-size:10px}
+.release-list{margin-top:36px}
+.release-date{margin:20px 0;font-size:9px}
+}
 </style>
 </head>
 <body>
 <main>
-<img src="LOGO.png" alt="NESCIO" class="logo">
-<p>O FIM É APENAS OUTRA FORMA DE PERMANECER</p>
-<p>ACABOU-SE O TEMPO...</p>
+<h1>Calendário de lançamentos</h1>
+<p class="category">Categoria: ATÉ OS AMIGOS SÃO MUSAS</p>
+<ul class="release-list">
+<li class="release-item">Chuva</li>
+<li class="release-date">XX | XX</li>
+<li class="release-item">Soberania da Futilidade</li>
+<li class="release-date">XX | XX</li>
+<li class="release-item">O amor nunca salvou ninguém</li>
+<li class="release-date">XX | XX</li>
+<li class="release-item">O verão é rock</li>
+</ul>
 </main>
 <script>
 (function(){

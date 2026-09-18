@@ -5,6 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FALECIDOS — NESCIO</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .falecidos-entry {
+      margin-top: 42px;
+    }
+
+    .falecidos-entry summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid #CDBFA9;
+      border-bottom: 1px solid #CDBFA9;
+      color: #8A6248;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+    }
+
+    .falecidos-entry summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .falecidos-entry summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      color: #B58A52;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .falecidos-entry[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .falecidos-entry-content {
+      max-height: 0;
+      overflow: hidden;
+      padding-top: 0;
+      opacity: 0;
+      transition:
+        max-height .45s cubic-bezier(.4,0,.2,1),
+        opacity .25s ease,
+        padding-top .45s cubic-bezier(.4,0,.2,1);
+    }
+
+    .falecidos-entry-content.is-open {
+      opacity: 1;
+      padding-top: 28px;
+    }
+
+    .falecidos-entry-content p {
+      color: #272321;
+    }
+
+    html.dark-mode .falecidos-entry summary,
+    body.dark-mode .falecidos-entry summary {
+      border-color: #4A3D32;
+      color: #B17A56;
+    }
+
+    html.dark-mode .falecidos-entry summary::after,
+    body.dark-mode .falecidos-entry summary::after {
+      color: #9B7848;
+    }
+
+    html.dark-mode .falecidos-entry-content p,
+    body.dark-mode .falecidos-entry-content p {
+      color: #E9DFD2;
+    }
+
+    @media (max-width: 700px) {
+      .falecidos-entry {
+        margin-top: 34px;
+      }
+    }
+  </style>
   <script>
     (function () {
       try {
@@ -25,81 +107,168 @@
       <p>Um pequeno arquivo de coisas que chegaram a existir antes de deixarem de existir.</p>
     </article>
 
-    <article class="falecidos-entry">
-      <h2>MINIMALISTA EXCEPCIONAL</h2>
-      <p>Margarida:</p>
-      <p>Sei que não somos as mentes mais próximas do mundo, porém, és um oceano que vale a pena explorar. Acho que nunca senti tanto agrado por conhecer alguém cujos interesses sejam tão delicados, precisos e complexos.</p>
-      <p>Se partilhas comigo ou não esta visão não sei, mas é isso que transpareces – uma inesgotável fonte de surpresas e ideias.</p>
-      <p>Quantas tardes já dei por mim perdido a reflectir sobre o que dizes e sobre a forma como lidas com o mundo. És capaz de observar as coisas mais minuciosas e, como que por magia ou talento, constatar e relevar aos outros o melhor delas. Tudo isto através da tua visão exclusiva. Sinto que nunca serás verdadeiramente compreendida, mas isso até que tem a sua piada não é.</p>
-      <p>Vamos admitir, não és propriamente a pessoa que mais necessita de ser retratada e referida nestas minhas prosas (afinal de contas sempre sabes tomar conta de ti mesma), mas quero marcar e deixar realçado o quão única e heterogênea a minha vida se tornou com as nossas internações – sobretudo graças a ti. Então o verão de 2015, naquelas tardes improvisadas, tão ricas e cobiçadas… isso é que eram tardes.</p>
-      <p>Pode não parecer mas a tua maneira de ser sempre me ajudaram a ver as coisas que tenho de enfrentar. Apesar de reservada - alguém que não se expõem muito perante os seus – auxilias (in)diretamente em tudo aquilo que participas e fazes parte. Não precisas de me contar. Sei que tens história, e sei que muito aprendeste com elas.</p>
-      <p>Pode nem ser a tua vontade a de ajudar esta minha pobre cabeça, mas lá consegues. Na tua companhia percebi que afinal de contas não deveria fazer um mártir por ser quem sou, ser estranho é óptimo, ser diferente é agradável. Apenas de sermos completamente anormais, ao teu lado não me sentia tão anormal de todo.</p>
-      <p>És fascinante, usa tudo tudo isto e, por favor, fascina outros. Mas sobretudo: fascina-te a ti mesma. Perdoa-me se estou errado, mas o teu potencial é demasiado vasto para ser guardado para ti.</p>
-      <p>Uma grande história não merece morrer sem ser contada.</p>
-      <p>Com abraços e barba (sei que não gostas de beijos e grandes afectos, és demasiado para isso), Bern.</p>
-    </article>
+    <details class="falecidos-entry">
+      <summary>MINIMALISTA EXCEPCIONAL</summary>
+      <div class="falecidos-entry-content">
+        <p>Margarida:</p>
+        <p>Sei que não somos as mentes mais próximas do mundo, porém, és um oceano que vale a pena explorar. Acho que nunca senti tanto agrado por conhecer alguém cujos interesses sejam tão delicados, precisos e complexos.</p>
+        <p>Se partilhas comigo ou não esta visão não sei, mas é isso que transpareces – uma inesgotável fonte de surpresas e ideias.</p>
+        <p>Quantas tardes já dei por mim perdido a reflectir sobre o que dizes e sobre a forma como lidas com o mundo. És capaz de observar as coisas mais minuciosas e, como que por magia ou talento, constatar e relevar aos outros o melhor delas. Tudo isto através da tua visão exclusiva. Sinto que nunca serás verdadeiramente compreendida, mas isso até que tem a sua piada não é.</p>
+        <p>Vamos admitir, não és propriamente a pessoa que mais necessita de ser retratada e referida nestas minhas prosas (afinal de contas sempre sabes tomar conta de ti mesma), mas quero marcar e deixar realçado o quão única e heterogênea a minha vida se tornou com as nossas internações – sobretudo graças a ti. Então o verão de 2015, naquelas tardes improvisadas, tão ricas e cobiçadas… isso é que eram tardes.</p>
+        <p>Pode não parecer mas a tua maneira de ser sempre me ajudaram a ver as coisas que tenho de enfrentar. Apesar de reservada - alguém que não se expõem muito perante os seus – auxilias (in)diretamente em tudo aquilo que participas e fazes parte. Não precisas de me contar. Sei que tens história, e sei que muito aprendeste com elas.</p>
+        <p>Pode nem ser a tua vontade a de ajudar esta minha pobre cabeça, mas lá consegues. Na tua companhia percebi que afinal de contas não deveria fazer um mártir por ser quem sou, ser estranho é óptimo, ser diferente é agradável. Apenas de sermos completamente anormais, ao teu lado não me sentia tão anormal de todo.</p>
+        <p>És fascinante, usa tudo tudo isto e, por favor, fascina outros. Mas sobretudo: fascina-te a ti mesma. Perdoa-me se estou errado, mas o teu potencial é demasiado vasto para ser guardado para ti.</p>
+        <p>Uma grande história não merece morrer sem ser contada.</p>
+        <p>Com abraços e barba (sei que não gostas de beijos e grandes afectos, és demasiado para isso), Bern.</p>
+      </div>
+    </details>
 
-    <article class="falecidos-entry">
-      <h2>MARIANA</h2>
-      <p>As aventuras que já vivi ao teu lado são, na minha memória, um pouco estranhas. Somos o produto do acaso que resultou numa óptima combinação de personalidades. Desde bullying, noites inteiras a falar ao telemóvel acerca das nossas vidas cheias de adversidades, aulas que perdemos da nossa querida professora de Espanhol somente para convivermos, as tardes em Odivelas - não trocaria nem alteraria nada disso.</p>
-      <p>Sinto saudades desses tempos tal como tu deves sentir. Dos tempos onde tudo era novo e imprevisível, o tempo onde ainda nos surpreendíamos e nos cativávamos por outros. Recordas essa inocência ? Recordas esses momentos que somente tu me pudeste proporcionar ?</p>
-      <p>Deves recordar para todo o sempre certamente, contudo, há coisas que te esqueces. Coisas bem mais importantes do que todas estas peripécias nossas. Recordaste de quem eras ? Aquela rapariga fria, frontal e completamente indestrutível ? Aquela rapariga que no seu rosto demonstra ter a maior calma do mundo ? Que enfrentou e ultrapassou os seus problemas com uma atitude que pouca ou nenhuma gente tem nos dias de hoje (e que o mundo bem precisa) ? Com uma ousadia que te era exclusiva e, arrisco mesmo a dizer, admirável ?</p>
-      <p>Bom, perdeste isso. Tu própria o sabes. Tu própria tens a noção de que não és a máquina fria que eras dantes. Ou melhor dizendo: tu própria tens noção de que não possuis mais aquela força que te permitia ter uma máscara que dava a entender aos outros de que eras uma máquina fria. Sim, pois tu no fundo, lá bem no fundo, és quente - sentes as coisas à flor da pele, pensas sobre as mesmas vezes e vezes sem fim até achares que estas segura de ti mesma para tomar qualquer tipo de decisão. Não mudaste assim tanto, pois eu continuo a rir-me contigo, a viver contigo. Estamos mais afastados desde que o secundário acabou, é um facto. Mas como tu tantas vezes me dizias, “Isto não é o fim” e, realmente, não era. Eu temia muito nunca mais te voltar a ver, nunca mais puder ser socorrido pelas tuas palavras e atitudes (e vice-versa). Aquele pilar que sempre me sustentou, mesmo quando ninguém o procurou fazer.</p>
-      <p>Precisas de recordar quem eras, e talvez o seguinte ajude: lembraste de uma conversa que tivemos, no nosso 10º ano, nos tempos onde éramos um trio e não um duo? O tema foi sobre as nossas histórias de vida, vivências duras diga-se de passagem. Tu falaste do teu passado negro, eu do problema que durante anos neguei ter. Após as nossas histórias estarem contadas, eu disse-te “Como vês, somos pessoas fortes, e não somos assim tão diferentes”. Tu, confusa como sempre, perguntaste o que tínhamos afinal em comum quanto a isso, uma vez que os nossos rumos tinham sido apresentados como historias muito assimétricas. E eu respondi-te, “Mariana, aquilo ao que chamamos dor é comum em ambos - a matéria é a mesma, apenas a estudados de uma maneira diferente”.</p>
-      <p>E é exactamente disso que tu precisas: precisas de estudar a tua dor novamente, precisas de rever o teu percurso, as tuas prioridades e reorganizar defesas. Estuda quem foste e saberás quem és e o que queres ser. Mas não estudes somente por causa disso, estuda por uma vida melhor, uma vida com um apoio incondicional extremamente resistente, capaz de tratar de tudo como se fosse tudo fácil. Precisas de ti mesma.</p>
-      <p>Lembra-te Mariana, a maior lição de vida que me deste é a que te recordo agora: “A única pessoa com quem podes contar nesta vida és tu, tu e só tu”.</p>
-      <p>Não te esqueças disto, não te esqueças de quem és.</p>
-      <p>Com amor, Bern</p>
-      <p>PS: Quem diria que a lâmina e as pulseiras se dariam tão bem ?</p>
-    </article>
+    <details class="falecidos-entry">
+      <summary>MARIANA</summary>
+      <div class="falecidos-entry-content">
+        <p>As aventuras que já vivi ao teu lado são, na minha memória, um pouco estranhas. Somos o produto do acaso que resultou numa óptima combinação de personalidades. Desde bullying, noites inteiras a falar ao telemóvel acerca das nossas vidas cheias de adversidades, aulas que perdemos da nossa querida professora de Espanhol somente para convivermos, as tardes em Odivelas - não trocaria nem alteraria nada disso.</p>
+        <p>Sinto saudades desses tempos tal como tu deves sentir. Dos tempos onde tudo era novo e imprevisível, o tempo onde ainda nos surpreendíamos e nos cativávamos por outros. Recordas essa inocência ? Recordas esses momentos que somente tu me pudeste proporcionar ?</p>
+        <p>Deves recordar para todo o sempre certamente, contudo, há coisas que te esqueces. Coisas bem mais importantes do que todas estas peripécias nossas. Recordaste de quem eras ? Aquela rapariga fria, frontal e completamente indestrutível ? Aquela rapariga que no seu rosto demonstra ter a maior calma do mundo ? Que enfrentou e ultrapassou os seus problemas com uma atitude que pouca ou nenhuma gente tem nos dias de hoje (e que o mundo bem precisa) ? Com uma ousadia que te era exclusiva e, arrisco mesmo a dizer, admirável ?</p>
+        <p>Bom, perdeste isso. Tu própria o sabes. Tu própria tens a noção de que não és a máquina fria que eras dantes. Ou melhor dizendo: tu própria tens noção de que não possuis mais aquela força que te permitia ter uma máscara que dava a entender aos outros de que eras uma máquina fria. Sim, pois tu no fundo, lá bem no fundo, és quente - sentes as coisas à flor da pele, pensas sobre as mesmas vezes e vezes sem fim até achares que estas segura de ti mesma para tomar qualquer tipo de decisão. Não mudaste assim tanto, pois eu continuo a rir-me contigo, a viver contigo. Estamos mais afastados desde que o secundário acabou, é um facto. Mas como tu tantas vezes me dizias, “Isto não é o fim” e, realmente, não era. Eu temia muito nunca mais te voltar a ver, nunca mais puder ser socorrido pelas tuas palavras e atitudes (e vice-versa). Aquele pilar que sempre me sustentou, mesmo quando ninguém o procurou fazer.</p>
+        <p>Precisas de recordar quem eras, e talvez o seguinte ajude: lembraste de uma conversa que tivemos, no nosso 10º ano, nos tempos onde éramos um trio e não um duo? O tema foi sobre as nossas histórias de vida, vivências duras diga-se de passagem. Tu falaste do teu passado negro, eu do problema que durante anos neguei ter. Após as nossas histórias estarem contadas, eu disse-te “Como vês, somos pessoas fortes, e não somos assim tão diferentes”. Tu, confusa como sempre, perguntaste o que tínhamos afinal em comum quanto a isso, uma vez que os nossos rumos tinham sido apresentados como historias muito assimétricas. E eu respondi-te, “Mariana, aquilo ao que chamamos dor é comum em ambos - a matéria é a mesma, apenas a estudados de uma maneira diferente”.</p>
+        <p>E é exactamente disso que tu precisas: precisas de estudar a tua dor novamente, precisas de rever o teu percurso, as tuas prioridades e reorganizar defesas. Estuda quem foste e saberás quem és e o que queres ser. Mas não estudes somente por causa disso, estuda por uma vida melhor, uma vida com um apoio incondicional extremamente resistente, capaz de tratar de tudo como se fosse tudo fácil. Precisas de ti mesma.</p>
+        <p>Lembra-te Mariana, a maior lição de vida que me deste é a que te recordo agora: “A única pessoa com quem podes contar nesta vida és tu, tu e só tu”.</p>
+        <p>Não te esqueças disto, não te esqueças de quem és.</p>
+        <p>Com amor, Bern</p>
+        <p>PS: Quem diria que a lâmina e as pulseiras se dariam tão bem ?</p>
+      </div>
+    </details>
 
-    <article class="falecidos-entry">
-      <h2>NEMESIS</h2>
-      <p>Filipe:</p>
-      <p>Era óbvio — um dia a tua existência iria ser retratada por aqui. O teu nome iria ser chamado para a história sem rumo. Não prometo nada de bonito desta vez, mas aqui vai.</p>
-      <p>Nunca compreendi ao certo o porquê de termos qualquer tipo de ligação, divergimos e colidimos em tudo e mais num par de botas. Ou talvez sejamos demasiado idênticos, o que provoca um maior choque entre nós, não sei, escolhe tu. Porém não nasceu do acaso, e temos de agradecer as circunstâncias que nos proporcionaram tais feitos. Hoje, os nossos problemas são lendas, todavia, todas elas têm uma origem. Eis a nossa.</p>
-      <p>Foi graças a eles os dois que tudo pode começar: após todas as novelas e melodramas, foi uma questão de tempo para que tudo se estabelecesse. Foi a melhor coisa que poderias ter perdido na vida - nem um nem outro eram almas que compreendessem a tua existência, não te mereciam nem por perto. Após o vosso fim, foi o nosso início, pois uma história nunca vêm só.</p>
-      <p>As conversas intensificaram-se, os sentimentos estavam a metamorfosear-se. Aquilo que apontava ser uma vivência puramente inesquecível, que seria relembrada como algo utópico, acabou por ser um pesadelo que ainda hoje tentamos esquecer. E tu sabes. Nunca tive tanto ódio por ninguém como tive por ti, e já passei por muito. As vendettas eram uma constante, e o caminho parecia cada vez mais agressivo e perpétuo, sem escrúpulos.</p>
-      <p>Mas quando pensamos que não há volta a dar é quando tudo muda. E tudo muda porque apenas tem de mudar. Não poderíamos ser “aquilo” para sempre. E assim mudei. Mudamos. Dei por mim a conviver contigo. Eu, ao lado da pessoa cujo meu único objetivo - e afirmo já, que infeliz objetivo - era magoar e pedir satisfações vazias e sem qualquer tipo de fundamento e propósito. Por mais cólera que possuísse, uma moeda tem dois lado. Eu preocupava-me mesmo assim.</p>
-      <p>Para bom entendedor meia palavra basta, e bastou palavra e meia para entender que toda o sentimento já não existia, que a metamorfose tinha acabado. Sentia empatia por ti, que te devia uma mão amiga mesmo quando eu nem um braço merecia. E assim o fiz, mesmo sabendo que a hipótese de me virares as costas poderia ser, eventualmente, gigante.</p>
-      <p>Conheço bem a situação em que estás agora, e acredita, não vai ser fácil. Mas estás habituado. Nunca foi fácil para ti. Nunca tiveste folgo. Mas isso vai compensar. Não vale a pena um caminho fácil - isso é uma vida perdida. Uma vida sem dificuldade não foi vida, mas sim deixar o tempo passar.</p>
-      <p>Deixo aqui esta mensagem apenas para te recordar o que disse há umas semanas atrás.</p>
-      <p>Eu estou cá independente do quão negro tenha sido o nosso caminho.</p>
-      <p>Vai valer a pena Filipe. Não estás sozinho.</p>
-    </article>
+    <details class="falecidos-entry">
+      <summary>NEMESIS</summary>
+      <div class="falecidos-entry-content">
+        <p>Filipe:</p>
+        <p>Era óbvio — um dia a tua existência iria ser retratada por aqui. O teu nome iria ser chamado para a história sem rumo. Não prometo nada de bonito desta vez, mas aqui vai.</p>
+        <p>Nunca compreendi ao certo o porquê de termos qualquer tipo de ligação, divergimos e colidimos em tudo e mais num par de botas. Ou talvez sejamos demasiado idênticos, o que provoca um maior choque entre nós, não sei, escolhe tu. Porém não nasceu do acaso, e temos de agradecer as circunstâncias que nos proporcionaram tais feitos. Hoje, os nossos problemas são lendas, todavia, todas elas têm uma origem. Eis a nossa.</p>
+        <p>Foi graças a eles os dois que tudo pode começar: após todas as novelas e melodramas, foi uma questão de tempo para que tudo se estabelecesse. Foi a melhor coisa que poderias ter perdido na vida - nem um nem outro eram almas que compreendessem a tua existência, não te mereciam nem por perto. Após o vosso fim, foi o nosso início, pois uma história nunca vêm só.</p>
+        <p>As conversas intensificaram-se, os sentimentos estavam a metamorfosear-se. Aquilo que apontava ser uma vivência puramente inesquecível, que seria relembrada como algo utópico, acabou por ser um pesadelo que ainda hoje tentamos esquecer. E tu sabes. Nunca tive tanto ódio por ninguém como tive por ti, e já passei por muito. As vendettas eram uma constante, e o caminho parecia cada vez mais agressivo e perpétuo, sem escrúpulos.</p>
+        <p>Mas quando pensamos que não há volta a dar é quando tudo muda. E tudo muda porque apenas tem de mudar. Não poderíamos ser “aquilo” para sempre. E assim mudei. Mudamos. Dei por mim a conviver contigo. Eu, ao lado da pessoa cujo meu único objetivo - e afirmo já, que infeliz objetivo - era magoar e pedir satisfações vazias e sem qualquer tipo de fundamento e propósito. Por mais cólera que possuísse, uma moeda tem dois lado. Eu preocupava-me mesmo assim.</p>
+        <p>Para bom entendedor meia palavra basta, e bastou palavra e meia para entender que toda o sentimento já não existia, que a metamorfose tinha acabado. Sentia empatia por ti, que te devia uma mão amiga mesmo quando eu nem um braço merecia. E assim o fiz, mesmo sabendo que a hipótese de me virares as costas poderia ser, eventualmente, gigante.</p>
+        <p>Conheço bem a situação em que estás agora, e acredita, não vai ser fácil. Mas estás habituado. Nunca foi fácil para ti. Nunca tiveste folgo. Mas isso vai compensar. Não vale a pena um caminho fácil - isso é uma vida perdida. Uma vida sem dificuldade não foi vida, mas sim deixar o tempo passar.</p>
+        <p>Deixo aqui esta mensagem apenas para te recordar o que disse há umas semanas atrás.</p>
+        <p>Eu estou cá independente do quão negro tenha sido o nosso caminho.</p>
+        <p>Vai valer a pena Filipe. Não estás sozinho.</p>
+      </div>
+    </details>
 
-    <article class="falecidos-entry">
-      <h2>BONECA IRIDESCENTE</h2>
-      <p>Por onde começar…</p>
-      <p>Maria Amália? A fase de Londres? As tardes de Verão? Os percalços que tivemos devido aos nossos romances? O dia em que te contei o meu maior segredo? Quando revelaste os teus medos como se, de alguma forma, já não fosse possível encobri-los ? Do dia onde tudo desmoronou por um dos teus maiores sonhos não se ter realizado?</p>
-      <p>Não sei por onde principiar, mas sei o que pretendo atingir com este texto. Algo que já devia ter feito há relativamente muito tempo. Sei que não tem sido fácil a tua vida, cheia de contratempos, obstáculos, mentes fechadas e improvisos erróneos. Mas certamente a vida deve ser mais difícil ainda quando os teus amigos não te motivam e cativam da maneira correta. Abordei a questão no plural porém falo apenas da minha atitude perante a tua pessoa.</p>
-      <p>Duro, exigente e intransigente - palavras que me descrevem bem no que toca à atitude que tenho para contigo. Não tolero qualquer tipo de falha nem comportamento que fuja muito à norma. Tu sabes. Entro rapidamente em ebulição quando apenas demonstras que estas perdido. Não está certo.</p>
-      <p>Verdade seja dita: tu não és fácil, tenho o direito de me cansar de vez em quando. Cansaço que é fruto dos meus próprios fantasmas e dilemas. Canso-me de te ver falhar por já ter falhado muito. Canso-me de te ouvir queixar das tuas roupas porque apenas me caracterizo como um sujeito simples. Canso-me dos queixumes acerca dos teus familiares pois eu não sei o que estas a passar. Canso-me de te consolar porque nem eu tenho consolo. As vezes os teus problemas são, de facto, estúpidos. E talvez seja esse o ponto: fartei-me de separar o ridículo do ridiculamente importante. Tornou-se complicado distinguir os teus verdadeiros problemas dos que usas apenas disfarçar a mágoa. Peço desculpa, sou humano.</p>
-      <p>Sabes bem o meu percurso, um trajecto distorcido marcado por uma “característica” minha muito peculiar. Graças a ela, falhei muito, mais do que tu, não tenhas dúvidas pois, independentemente de todos os erros, sempre foste fiel as tuas teorias e ideias loucos. Mas isso agora não importa, interessa apenas que falhei. E por isso, não quero o mesmo para ti.</p>
-      <p>Quantas vezes me vi em aflição por uma resposta, uma solução, por esta mesma não estar ao alcance, muito menos presente na minha imaginação… Perdi a conta, conta tu. Eu sei o que é não ter rumo, ser diferente e sentir que a qualquer momento o jogo pode mudar para algo ainda pior. Mas também sei o que é fazer-me à vida, lutar. Não um oito, não um oitenta - tu quando ouves a expressão “fazeres-te à vida” és muito radical. E muitas falhas tuas provêm disso. Já não fizeste o mesmo no passado? Para quê repetir? Para fracassar novamente? O erro foi suficiente. Basta um para aprender e recordo-me claramente desse. Procura soluções mais viáveis, mais seguras e legítimas. Não vale a pena teres a tua vida marcada por tentativas dramáticas e extravagantes - tu não queres tentativas, queres sucesso, alcançar uma estabilidade concreta. Abdica desse teu capricho típico dos romances literários e dos filmes dramáticos. Não te vai levar a lado algum. Tens potencial para ser feliz, não deixes que o resto de diga o contrário, e muito menos que te leve a fazer o oposto daquilo que deves.</p>
-      <p>E se tudo falhar - e agora sim falo no plural - estamos cá nós. O que mais podes pedir? Muita coisa certamente, mas não somos assim tão maus também.</p>
-      <p>Já estivemos mais longe de nos entendermos. Eu percebo o teu lado.</p>
-      <p>Já estiveste mais longe…</p>
-      <p>Bern.</p>
-    </article>
+    <details class="falecidos-entry">
+      <summary>BONECA IRIDESCENTE</summary>
+      <div class="falecidos-entry-content">
+        <p>Por onde começar…</p>
+        <p>Maria Amália? A fase de Londres? As tardes de Verão? Os percalços que tivemos devido aos nossos romances? O dia em que te contei o meu maior segredo? Quando revelaste os teus medos como se, de alguma forma, já não fosse possível encobri-los ? Do dia onde tudo desmoronou por um dos teus maiores sonhos não se ter realizado?</p>
+        <p>Não sei por onde principiar, mas sei o que pretendo atingir com este texto. Algo que já devia ter feito há relativamente muito tempo. Sei que não tem sido fácil a tua vida, cheia de contratempos, obstáculos, mentes fechadas e improvisos erróneos. Mas certamente a vida deve ser mais difícil ainda quando os teus amigos não te motivam e cativam da maneira correta. Abordei a questão no plural porém falo apenas da minha atitude perante a tua pessoa.</p>
+        <p>Duro, exigente e intransigente - palavras que me descrevem bem no que toca à atitude que tenho para contigo. Não tolero qualquer tipo de falha nem comportamento que fuja muito à norma. Tu sabes. Entro rapidamente em ebulição quando apenas demonstras que estas perdido. Não está certo.</p>
+        <p>Verdade seja dita: tu não és fácil, tenho o direito de me cansar de vez em quando. Cansaço que é fruto dos meus próprios fantasmas e dilemas. Canso-me de te ver falhar por já ter falhado muito. Canso-me de te ouvir queixar das tuas roupas porque apenas me caracterizo como um sujeito simples. Canso-me dos queixumes acerca dos teus familiares pois eu não sei o que estas a passar. Canso-me de te consolar porque nem eu tenho consolo. As vezes os teus problemas são, de facto, estúpidos. E talvez seja esse o ponto: fartei-me de separar o ridículo do ridiculamente importante. Tornou-se complicado distinguir os teus verdadeiros problemas dos que usas apenas disfarçar a mágoa. Peço desculpa, sou humano.</p>
+        <p>Sabes bem o meu percurso, um trajecto distorcido marcado por uma “característica” minha muito peculiar. Graças a ela, falhei muito, mais do que tu, não tenhas dúvidas pois, independentemente de todos os erros, sempre foste fiel as tuas teorias e ideias loucos. Mas isso agora não importa, interessa apenas que falhei. E por isso, não quero o mesmo para ti.</p>
+        <p>Quantas vezes me vi em aflição por uma resposta, uma solução, por esta mesma não estar ao alcance, muito menos presente na minha imaginação… Perdi a conta, conta tu. Eu sei o que é não ter rumo, ser diferente e sentir que a qualquer momento o jogo pode mudar para algo ainda pior. Mas também sei o que é fazer-me à vida, lutar. Não um oito, não um oitenta - tu quando ouves a expressão “fazeres-te à vida” és muito radical. E muitas falhas tuas provêm disso. Já não fizeste o mesmo no passado? Para quê repetir? Para fracassar novamente? O erro foi suficiente. Basta um para aprender e recordo-me claramente desse. Procura soluções mais viáveis, mais seguras e legítimas. Não vale a pena teres a tua vida marcada por tentativas dramáticas e extravagantes - tu não queres tentativas, queres sucesso, alcançar uma estabilidade concreta. Abdica desse teu capricho típico dos romances literários e dos filmes dramáticos. Não te vai levar a lado algum. Tens potencial para ser feliz, não deixes que o resto de diga o contrário, e muito menos que te leve a fazer o oposto daquilo que deves.</p>
+        <p>E se tudo falhar - e agora sim falo no plural - estamos cá nós. O que mais podes pedir? Muita coisa certamente, mas não somos assim tão maus também.</p>
+        <p>Já estivemos mais longe de nos entendermos. Eu percebo o teu lado.</p>
+        <p>Já estiveste mais longe…</p>
+        <p>Bern.</p>
+      </div>
+    </details>
 
-    <article class="falecidos-entry">
-      <h2>WOUNDS OSCailte / WOUNDS CNEASAIGH</h2>
-      <p>Vai doer, aviso já. Mas não a ti, pois sentir é algo que nunca foi muito teu, pelo menos no que remete à minha pessoa. Eu, uma das primeiras pessoas que proclamaste a palavra amor.</p>
-      <p>Não escrevo por nenhuma razão forte e particular, apenas por dois motivos. Primeiramente, isto é o que é, o NESCIO já foi mais que explicado. Por último, apenas escrevo para te contrariar.</p>
-      <p>Aposto que olhas perplexo para as palavras acima escritas. Mas eu explico, tem calma, tu és paciente. Durante meses, partilhamos experiências e emoções, algo raro para ambos. Não nos comportávamos como casal perante outros olhos - sempre preferimos a nossa privacidade, pois quando é nosso e somente nosso é bem melhor. Acima de tudo, éramos amigos contrastantes. Sempre me atraí pelo diverso, pelo distinto. E tu encontravas-te plenamente fora da escala. Contra todos os padrões e formações, tu eras diferente.</p>
-      <p>Durante 8 meses… Quem diria. Parece pouco dito assim. Parece tremendamente escasso e, numa primeira abordagem superficial, o tempo não justifica o meu texto. Todavia, tu sabes, foi intenso. Não que estivéssemos sempre em contacto pois na verdade sempre respeitaste o meu espaço e caprichos. Bastavam aquelas horas, aquelas estadias em minha casa onde durante apenas um ou dois dias a vida era minha e tua. Nem todos os casais tiveram a nossa sorte. Ela esteve sempre perto de nós. Mas tu, e certamente tu, possuíste mais a companhia dela. Mesmo após o que me fizeste, eu continuei a tentar ajudar o rapaz que não tinha rumo, cujo nexo da jornada se havia perdido. A vida como a conheces esteve por um fio, e eu estive lá, mesmo correndo o risco de tudo se repetir outra vez. Ainda hoje reparo nas consequências dos teus atos. Concordas comigo certamente - não era qualquer um que ficaria nos teus braços após o sucedido.</p>
-      <p>Tudo funcionou bem. Essa ferida sarou, como era de esperar. Porém, tens um defeito muito grande - não aprendes com a tua história, nem com os teus erros. Sofreste com eles. Mas isso não basta. Sofreste mais do que eu, e por isso tiveste muita sorte. Eu sei que durante semanas não ficaste bem contigo mesmo. Mesmo depois de eu te perdoar, já não querendo sequer saber do assunto, tu sentias remorsos. Ficaste triste, desapontado contigo mesmo. Tinhas, afinal de contas, estragado tudo com uma das únicas pessoas que se importou e preocupou contigo, que te deu o mundo mesmo quando nem metade dele tinha.</p>
-      <p>Nesta história não fui inocente, mas fui aprendiz e assimilei tudo o que acontecera. Mas ironicamente cometi o mesmo erro que tu. Queria saber qual era a sensação de repulsa, de consolo. Queria saber como era o toque de umas mãos frias que certamente não me amavam, uma pele que não me pertencia.</p>
-      <p>Demorei apenas um dia para te contar. E tudo acabou ali, naquele café. Engraçados, a chuva começou a correr nesse mesmo instante, o puro simbolismo de que algo lesivo estava prestes a ser dito e feito. E assim foi. Ficaste em choque, não esperaste tal coisa de mim. Nunca imaginaste sequer que eu seria o responsável por querer acabar tudo. Tentamos ficar amigos. Amigos para a vida, unidos por um passado que, enquanto durou, foi paradisíaco. Mas não consegui, e não me responsabilizo por isso - falhaste mais uma vez.</p>
-      <p>Ainda hoje estás na mesma situação de quando terminamos. A tua vida não se resolveu. Mas eu tentei ajudar. Eu preocupei-me. Aposto que ainda hoje não pisaste os locais onde te recomendei ir. As minhas palavras foram ocas, não porque assim desejei - apenas tu não sabes interpretar com a melhor das intenções o que eu te digo.</p>
-      <p>E assim te contrario. Porque? Simples. Ainda hoje procuro saber como estas, tenciono saber de ti, sugiro combinar algo contigo, nem que seja somente para olhar nos teus olhos e dizer para mim mesmo “ele ficará bem, está seguro”. Nada disso aconteceu.</p>
-      <p>Parece que não gosto da tua essência, e por favor, tu conheces-me: não confundas isto como uma narrativa de ódio e dor. Pelo contrário. Usa isto. Erra. Corrige. Recorda. Previne.</p>
-      <p>Apenas para terminar, deixo-te uma questão (retórica talvez): As minhas feridas já sararam - mas e as tuas ?</p>
-      <p>Cura.</p>
-      <p>Bern.</p>
-    </article>
+    <details class="falecidos-entry">
+      <summary>Wounds Oscailte / Wounds Cneasaigh</summary>
+      <div class="falecidos-entry-content">
+        <p>Vai doer, aviso já. Mas não a ti, pois sentir é algo que nunca foi muito teu, pelo menos no que remete à minha pessoa. Eu, uma das primeiras pessoas que proclamaste a palavra amor.</p>
+        <p>Não escrevo por nenhuma razão forte e particular, apenas por dois motivos. Primeiramente, isto é o que é, o NESCIO já foi mais que explicado. Por último, apenas escrevo para te contrariar.</p>
+        <p>Aposto que olhas perplexo para as palavras acima escritas. Mas eu explico, tem calma, tu és paciente. Durante meses, partilhamos experiências e emoções, algo raro para ambos. Não nos comportávamos como casal perante outros olhos - sempre preferimos a nossa privacidade, pois quando é nosso e somente nosso é bem melhor. Acima de tudo, éramos amigos contrastantes. Sempre me atraí pelo diverso, pelo distinto. E tu encontravas-te plenamente fora da escala. Contra todos os padrões e formações, tu eras diferente.</p>
+        <p>Durante 8 meses… Quem diria. Parece pouco dito assim. Parece tremendamente escasso e, numa primeira abordagem superficial, o tempo não justifica o meu texto. Todavia, tu sabes, foi intenso. Não que estivéssemos sempre em contacto pois na verdade sempre respeitaste o meu espaço e caprichos. Bastavam aquelas horas, aquelas estadias em minha casa onde durante apenas um ou dois dias a vida era minha e tua. Nem todos os casais tiveram a nossa sorte. Ela esteve sempre perto de nós. Mas tu, e certamente tu, possuíste mais a companhia dela. Mesmo após o que me fizeste, eu continuei a tentar ajudar o rapaz que não tinha rumo, cujo nexo da jornada se havia perdido. A vida como a conheces esteve por um fio, e eu estive lá, mesmo correndo o risco de tudo se repetir outra vez. Ainda hoje reparo nas consequências dos teus atos. Concordas comigo certamente - não era qualquer um que ficaria nos teus braços após o sucedido.</p>
+        <p>Tudo funcionou bem. Essa ferida sarou, como era de esperar. Porém, tens um defeito muito grande - não aprendes com a tua história, nem com os teus erros. Sofreste com eles. Mas isso não basta. Sofreste mais do que eu, e por isso tiveste muita sorte. Eu sei que durante semanas não ficaste bem contigo mesmo. Mesmo depois de eu te perdoar, já não querendo sequer saber do assunto, tu sentias remorsos. Ficaste triste, desapontado contigo mesmo. Tinhas, afinal de contas, estragado tudo com uma das únicas pessoas que se importou e preocupou contigo, que te deu o mundo mesmo quando nem metade dele tinha.</p>
+        <p>Nesta história não fui inocente, mas fui aprendiz e assimilei tudo o que acontecera. Mas ironicamente cometi o mesmo erro que tu. Queria saber qual era a sensação de repulsa, de consolo. Queria saber como era o toque de umas mãos frias que certamente não me amavam, uma pele que não me pertencia.</p>
+        <p>Demorei apenas um dia para te contar. E tudo acabou ali, naquele café. Engraçados, a chuva começou a correr nesse mesmo instante, o puro simbolismo de que algo lesivo estava prestes a ser dito e feito. E assim foi. Ficaste em choque, não esperaste tal coisa de mim. Nunca imaginaste sequer que eu seria o responsável por querer acabar tudo. Tentamos ficar amigos. Amigos para a vida, unidos por um passado que, enquanto durou, foi paradisíaco. Mas não consegui, e não me responsabilizo por isso - falhaste mais uma vez.</p>
+        <p>Ainda hoje estás na mesma situação de quando terminamos. A tua vida não se resolveu. Mas eu tentei ajudar. Eu preocupei-me. Aposto que ainda hoje não pisaste os locais onde te recomendei ir. As minhas palavras foram ocas, não porque assim desejei - apenas tu não sabes interpretar com a melhor das intenções o que eu te digo.</p>
+        <p>E assim te contrario. Porque? Simples. Ainda hoje procuro saber como estas, tenciono saber de ti, sugiro combinar algo contigo, nem que seja somente para olhar nos teus olhos e dizer para mim mesmo “ele ficará bem, está seguro”. Nada disso aconteceu.</p>
+        <p>Parece que não gosto da tua essência, e por favor, tu conheces-me: não confundas isto como uma narrativa de ódio e dor. Pelo contrário. Usa isto. Erra. Corrige. Recorda. Previne.</p>
+        <p>Apenas para terminar, deixo-te uma questão (retórica talvez): As minhas feridas já sararam - mas e as tuas ?</p>
+        <p>Cura.</p>
+        <p>Bern.</p>
+      </div>
+    </details>
+
+    <details class="falecidos-entry">
+      <summary>Um Título Ridiculamente Grande Para Alguém Ridiculamente Novo Na Minha Vida Que, Porém, Fez Algo Ridiculamente Importante</summary>
+      <div class="falecidos-entry-content">
+        <p>Bateste-me. Mas onde andas cólera?</p>
+        <p>Num supermercado, tudo mudou numa questão de segundos. Num instante, damos por nós sem qualquer capacidade de resposta a certas questões dos nosso mártires, noutro, tudo fora respondido e elucidado. Não existem dúvidas. Obrigado.</p>
+        <p>Quem diria que a palma de uma mão contra o meu rosto fosse tão vultuosa. Ninguém percebeu o porquê da minha reação - era costume, em situações idênticas, explodir, sentir tudo à flor da pele e estragar as coisas dando-lhes um valor despropositado. Daquela vez foi diferente, guardei para mim. Mas por pouco tempo. Disse apenas que não ficara ofendido, afinal de contas fora tudo fruto de uma brincadeira. Mas tudo tem consequências. Temi pelas tuas - não me poderia responsabilizar caso algo penoso tivesse ocorrido.</p>
+        <p>Eras inocente, não sabias o que poderia acontecer. Todo aquele acumular de situações vividas naquele dia, foram estressantes para mim. Mesmo após todas elas recordando até os ínfimos pormenores, eu agi normalmente. O problema não tomou conta de mim. Controlei aquilo que julguei indomável. Senti orgulho. Estava feliz - senti que finalmente caminhava para um lugar mais completo.</p>
+        <p>Elas foram buscar o casaco e nós ficamos para trás, sentados, naquele jardim há noite. Estavam apenas três pessoas e um sem abrigo. Passou pouco tempo, mas eu contei-te. O problema, pelo menos para ti, deixou de ser um mistério. Ficaste boquiaberta quando te expus o que poderia ter ocorrido quando a tua mão tocou na minha face, por mais virgem que o gesto fosse vindo de ti. A partir daquele momento senti que nos iriamos dar muito bem, ouviste-me atentamente e compreendeste a situação (pelo menos senti-me ouvido).</p>
+        <p>O resto da noite foi um desastre: cabeças partidas, vómitos e o elevador da Graça provocou-nos um monte de transtornos. Que histórias. Correu mal, mas não devido ao problema - apenas foi adverso porque tinha de acontecer assim. Contudo, foi uma das melhores noites da minha vida, algo para recordar e contar ao próximo, algo que me faz rir quando penso em tremenda noite.</p>
+        <p>Sei que não foi de todo intencional, pois nem estavas à espera, mas ensinaste-me uma grande lição: eu estou no controle. Eu sei quem sou independentemente de quem posso ser.</p>
+        <p>Obrigado Cláudia.</p>
+        <p>Bern.</p>
+        <p>PS: O Ivan disse que Cláudia ficava bem para te irritar.</p>
+      </div>
+    </details>
   </main>
+
+  <script>
+    (function () {
+      var details = document.querySelectorAll(".falecidos-entry");
+
+      details.forEach(function (section) {
+        var summary = section.querySelector("summary");
+        var content = section.querySelector(".falecidos-entry-content");
+        if (!summary || !content) return;
+
+        summary.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          var isOpen = section.open;
+          var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          var currentHeight = content.getBoundingClientRect().height;
+
+          if (!isOpen) {
+            section.open = true;
+            content.classList.add("is-open");
+            content.style.maxHeight = Math.max(0, currentHeight) + "px";
+
+            requestAnimationFrame(function () {
+              var targetHeight = content.scrollHeight;
+              var distance = Math.abs(targetHeight - currentHeight);
+              var duration = reduceMotion ? 0 : Math.min(520, Math.max(220, distance * 0.32));
+              content.style.transitionDuration = duration + "ms";
+              content.style.maxHeight = targetHeight + "px";
+
+              if (!reduceMotion && duration > 0) {
+                window.setTimeout(function () {
+                  content.style.maxHeight = "none";
+                }, duration + 20);
+              } else {
+                content.style.maxHeight = "none";
+              }
+            });
+          } else {
+            var targetHeight = 0;
+            var distance = Math.abs(currentHeight - targetHeight);
+            var duration = reduceMotion ? 0 : Math.min(520, Math.max(220, distance * 0.32));
+            content.style.transitionDuration = duration + "ms";
+            content.style.maxHeight = currentHeight + "px";
+
+            requestAnimationFrame(function () {
+              content.style.maxHeight = "0px";
+              content.style.opacity = "0";
+
+              window.setTimeout(function () {
+                section.open = false;
+                content.classList.remove("is-open");
+                content.style.maxHeight = "0px";
+                content.style.opacity = "";
+              }, duration + 20);
+            });
+          }
+        });
+      });
+    })();
+  </script>
+
   <script src="menu.js"></script>
 </body>
 </html>

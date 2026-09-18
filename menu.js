@@ -169,7 +169,7 @@ fetch("menu.html", { cache: "no-store" })
     const updateBackToTop = () => backToTop.classList.toggle("visible", window.scrollY > 250);
     window.addEventListener("scroll", updateBackToTop, { passive: true });
     backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-    updateBackToTop(); document.body.classList.add("page-enter");
+    updateBackToTop();
   })
   .catch(error => console.error("Erro no menu:", error));
 

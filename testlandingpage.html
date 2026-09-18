@@ -13,8 +13,17 @@
     })();
   </script>
   <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
     .landing-page {
-      min-height: 100vh;
+      min-height: 100svh;
+      height: 100svh;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -142,15 +151,10 @@
       animation-delay: 2.85s;
     }
 
-    .landing-page.landing-animate .landing-year {
-      animation: landingFadeIn 1.2s ease-out forwards;
-      animation-delay: 3.2s;
-    }
     .landing-page:not(.landing-animate) .landing-motto,
     .landing-page:not(.landing-animate) .landing-rule,
     .landing-page:not(.landing-animate) .landing-latest,
-    .landing-page:not(.landing-animate) .landing-archive,
-    .landing-page:not(.landing-animate) .landing-year {
+    .landing-page:not(.landing-animate) .landing-archive {
       opacity: 1;
     }
     @media (prefers-reduced-motion: reduce) {
@@ -164,7 +168,6 @@
       }
     }
     html.dark-mode .landing-motto,
-    html.dark-mode .landing-year,
     html.dark-mode .landing-rule,
     html.dark-mode .landing-latest,
     html.dark-mode .landing-archive {
@@ -172,6 +175,8 @@
     }
     @media (max-width: 700px) {
       .landing-page {
+        min-height: 100svh;
+        height: 100svh;
         padding: 20px 25px 45px;
       }
 
@@ -213,16 +218,6 @@
         letter-spacing: .12em;
       }
 
-      .landing-year {
-        bottom: 20px;
-        font-size: 9px;
-      }
-
-      .landing-author {
-        margin-top: 4px;
-        font-size: 9px;
-        letter-spacing: .14em;
-      }
     }
   </style>
 </head>

@@ -2,7 +2,7 @@
 .gallery-test-page{
   max-width:1100px;
   margin:0 auto;
-  padding:45px 25px 120px;
+  padding:100px 25px 120px;
 }
 .gallery-test-page .logo{
   display:block;
@@ -29,9 +29,6 @@
   color:#000;
 }
 .gallery-test-header p{
-  margin:12px 0 0;
-  font:18px/1.5 "Cormorant Garamond",Georgia,"Times New Roman",serif;
-  color:#000;
 }
 
 /* OPÇÃO 1 — grelha editorial assimétrica */
@@ -165,11 +162,9 @@ body.gallery-lightbox-open{overflow:hidden;}
 .gallery-lightbox img{touch-action:none;user-select:none;-webkit-user-drag:none;}
 
 @media(max-width:700px){
-  .gallery-test-page{padding:25px 25px 100px;}
-  .gallery-test-page .logo{width:180px;margin-bottom:55px;}
-  .gallery-test-header{margin-bottom:35px;padding:16px 0 20px;}
+  .gallery-test-page{padding:95px 25px 100px;}
+  .gallery-test-header{margin-bottom:45px;padding:18px 0 24px;}
   .gallery-test-header h1{font-size:21px;}
-  .gallery-test-header p{font-size:17px;}
 
   .gallery-editorial{
     grid-template-columns:repeat(2,1fr);

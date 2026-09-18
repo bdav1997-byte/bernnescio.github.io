@@ -31,7 +31,7 @@
     .landing-rule {
       width: 42px;
       height: 1px;
-      margin: 0 auto;
+      margin: 28px auto 0;
       background: #000;
       opacity: 0;
     }
@@ -57,7 +57,7 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      margin-top: 34px;
+      margin-top: 24px;
       color: #000;
       text-decoration: none;
       opacity: 0;
@@ -79,26 +79,19 @@
       text-underline-offset: 4px;
     }
     .landing-archive {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
+      display: block;
       margin-top: 24px;
       color: #000;
       font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      line-height: 1.5;
       text-decoration: none;
       opacity: 0;
     }
-    .landing-archive-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .16em;
-    }
-    .landing-archive-count {
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: .12em;
-    }
-    .landing-archive:hover .landing-archive-count {
+    
+    .landing-archive:hover {
       text-decoration: underline;
       text-underline-offset: 4px;
     }
@@ -126,25 +119,32 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    /* Os elementos mantêm o espaço no layout durante a entrada.
+       Assim, a página não salta nem se recentra enquanto a animação decorre. */
     .landing-page.landing-animate .landing-motto {
-      animation: landingFadeIn 1.8s ease forwards;
-      animation-delay: 1s;
+      animation: landingFadeIn 1.2s ease-out forwards;
+      animation-delay: .65s;
     }
+
     .landing-page.landing-animate .landing-rule {
-      animation: landingFadeIn 1s ease forwards;
-      animation-delay: 2.05s;
+      animation: landingFadeIn .7s ease-out forwards;
+      animation-delay: 1.75s;
     }
+
     .landing-page.landing-animate .landing-latest {
-      animation: landingFadeIn 1.4s ease forwards;
-      animation-delay: 2.35s;
+      animation: landingFadeIn 1s ease-out forwards;
+      animation-delay: 2s;
     }
+
     .landing-page.landing-animate .landing-archive {
-      animation: landingFadeIn 1.2s ease forwards;
-      animation-delay: 3.15s;
+      animation: landingFadeIn .9s ease-out forwards;
+      animation-delay: 2.85s;
     }
+
     .landing-page.landing-animate .landing-year {
-      animation: landingFadeIn 1.8s ease forwards;
-      animation-delay: 3.5s;
+      animation: landingFadeIn 1.2s ease-out forwards;
+      animation-delay: 3.2s;
     }
     .landing-page:not(.landing-animate) .landing-motto,
     .landing-page:not(.landing-animate) .landing-rule,
@@ -171,16 +171,58 @@
       color: #F5F5F5;
     }
     @media (max-width: 700px) {
-      .landing-page { padding: 20px 25px 45px; }
-      .landing-logo { width: min(330px, 82vw); margin-bottom: 48px; }
-      .landing-motto { width: 300px; max-width: 92vw; font-size: 18px; line-height: 1.4; letter-spacing: .06em; }
-      .landing-latest { margin-top: 28px; gap: 8px; }
-      .landing-latest-label { font-size: 8px; }
-      .landing-latest-title { font-size: 10px; letter-spacing: .08em; }
-      .landing-archive { margin-top: 20px; gap: 8px; }
-      .landing-archive-label, .landing-archive-count { font-size: 8px; }
-      .landing-year { bottom: 20px; font-size: 9px; }
-      .landing-author { margin-top: 4px; font-size: 9px; letter-spacing: .14em; }
+      .landing-page {
+        padding: 20px 25px 45px;
+      }
+
+      .landing-logo {
+        width: min(330px, 82vw);
+        margin-bottom: 48px;
+      }
+
+      .landing-motto {
+        width: 300px;
+        max-width: 92vw;
+        font-size: 18px;
+        line-height: 1.4;
+        letter-spacing: .06em;
+      }
+
+      .landing-rule {
+        width: 34px;
+        margin-top: 22px;
+      }
+
+      .landing-latest {
+        margin-top: 20px;
+        gap: 8px;
+      }
+
+      .landing-latest-label {
+        font-size: 8px;
+      }
+
+      .landing-latest-title {
+        font-size: 10px;
+        letter-spacing: .08em;
+      }
+
+      .landing-archive {
+        margin-top: 18px;
+        font-size: 8px;
+        letter-spacing: .12em;
+      }
+
+      .landing-year {
+        bottom: 20px;
+        font-size: 9px;
+      }
+
+      .landing-author {
+        margin-top: 4px;
+        font-size: 9px;
+        letter-spacing: .14em;
+      }
     }
   </style>
 </head>
@@ -193,14 +235,13 @@
     <div class="landing-main-content">
       <img src="NESCIOnLOGO.png" class="landing-logo" alt="NESCIO">
       <h1 class="landing-motto">O FIM É APENAS OUTRA FORMA DE PERMANECER</h1>
-    <a class="landing-latest" href="soberaniadafutilidade.html" aria-label="Última publicação: Soberania da Futilidade">
+      <div class="landing-rule" aria-hidden="true"></div>
+      <a class="landing-latest" href="soberaniadafutilidade.html" aria-label="Última publicação: Soberania da Futilidade">
       <span class="landing-latest-label">ÚLTIMA PUBLICAÇÃO</span>
       <span class="landing-latest-title">SOBERANIA DA FUTILIDADE</span>
     </a>
-    <div class="landing-rule" aria-hidden="true"></div>
-    <a class="landing-archive" href="arquivo.html" aria-label="Arquivo: 33 textos publicados">
-      <span class="landing-archive-label">ARQUIVO</span>
-      <span class="landing-archive-count" id="landing-archive-count">33 TEXTOS</span>
+    <a class="landing-archive" href="arquivo.html" aria-label="33 textos publicados">
+      <span id="landing-archive-count">NESCIO • 2026 • 33 TEXTOS</span>
     </a>
     </div>
     <div class="landing-year">NESCIO - 2026<span class="landing-author">Bernardo de Almeida Valentim</span></div>
@@ -241,7 +282,7 @@
           var publications = Array.isArray(data) ? data : data.publicacoes;
           if (!Array.isArray(publications)) return;
 
-          countElement.textContent = publications.length + (publications.length === 1 ? ' TEXTO' : ' TEXTOS');
+          countElement.textContent = 'NESCIO • 2026 • ' + publications.length + (publications.length === 1 ? ' TEXTO' : ' TEXTOS');
         })
         .catch(function () {});
     })();

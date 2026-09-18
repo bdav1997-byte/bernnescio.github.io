@@ -40,70 +40,73 @@
       var secretLink = document.getElementById('sofia-secret-link');
       if (!title || !secretLink) return;
 
-      var startX = 0;
       var dragging = false;
       var revealed = false;
+      var startX = 0;
+      var currentX = 0;
 
       function revealSecret() {
         if (revealed) return;
         revealed = true;
+        title.classList.add('is-dragged');
+        title.style.transform = 'translateX(' + Math.max(0, currentX - startX) + 'px)';
         secretLink.classList.add('is-visible');
         secretLink.setAttribute('aria-hidden', 'false');
       }
 
-      function begin(clientX) {
-        startX = clientX;
-        dragging = true;
+      function resetTitle() {
+        if (revealed) return;
+        title.style.transform = '';
+        title.classList.remove('is-dragging');
       }
 
-      function hasCompletedLeftToRight(clientX) {
-        var rect = title.getBoundingClientRect();
-        var startLimit = rect.left + rect.width * 0.25;
-        var endLimit = rect.left + rect.width * 0.75;
-        return startX <= startLimit && clientX >= endLimit && clientX > startX;
+      function begin(clientX) {
+        if (revealed) return;
+        startX = clientX;
+        currentX = clientX;
+        dragging = true;
+        title.classList.add('is-dragging');
       }
 
       function move(clientX) {
-        if (!dragging) return;
-        if (hasCompletedLeftToRight(clientX)) {
+        if (!dragging || revealed) return;
+
+        currentX = clientX;
+        var distance = Math.max(0, currentX - startX);
+        title.style.transform = 'translateX(' + distance + 'px)';
+
+        var rect = title.getBoundingClientRect();
+        var requiredDistance = Math.max(120, Math.min(window.innerWidth * 0.35, 260));
+
+        if (distance >= requiredDistance) {
           revealSecret();
           dragging = false;
         }
       }
 
-      function end(clientX) {
+      function end() {
         if (!dragging) return;
-        if (hasCompletedLeftToRight(clientX)) revealSecret();
         dragging = false;
+
+        if (!revealed) {
+          title.style.transform = '';
+          title.classList.remove('is-dragging');
+        }
       }
 
-      title.addEventListener('touchstart', function (event) {
-        if (event.touches.length !== 1) return;
-        begin(event.touches[0].clientX);
-      }, { passive: true });
-
-      title.addEventListener('touchmove', function (event) {
-        if (event.touches.length !== 1 || !dragging) return;
-        move(event.touches[0].clientX);
-      }, { passive: true });
-
-      title.addEventListener('touchend', function (event) {
-        var touch = event.changedTouches[0];
-        if (touch) end(touch.clientX);
-      }, { passive: true });
-
-      title.addEventListener('mousedown', function (event) {
-        if (event.button !== 0) return;
+      title.addEventListener('pointerdown', function (event) {
+        if (event.button !== undefined && event.button !== 0) return;
+        title.setPointerCapture?.(event.pointerId);
         begin(event.clientX);
       });
 
-      window.addEventListener('mousemove', function (event) {
+      title.addEventListener('pointermove', function (event) {
         move(event.clientX);
       });
 
-      window.addEventListener('mouseup', function (event) {
-        end(event.clientX);
-      });
+      title.addEventListener('pointerup', end);
+      title.addEventListener('pointercancel', end);
+      title.addEventListener('lostpointercapture', end);
     })();
   </script>
   <script src="menu.js"></script>

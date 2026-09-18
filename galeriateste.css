@@ -137,21 +137,21 @@
 .gallery-lightbox-prev,
 .gallery-lightbox-next{
   top:50%;
-  width:48px;
-  height:48px;
+  width:64px;
+  height:64px;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:0;
   font-family:Arial,Helvetica,sans-serif;
-  font-size:34px;
+  font-size:46px;
   font-weight:300;
   line-height:1;
   letter-spacing:0;
   transform:translateY(-50%);
 }
-.gallery-lightbox-prev{left:12px;}
-.gallery-lightbox-next{right:12px;}
+.gallery-lightbox-prev{left:8px;}
+.gallery-lightbox-next{right:8px;}
 .gallery-lightbox-count{
   position:absolute;
   left:50%;
@@ -204,12 +204,12 @@ body.gallery-lightbox-open{overflow:hidden;}
   .gallery-lightbox img{max-width:calc(100vw - 50px);max-height:calc(100vh - 110px);}
   .gallery-lightbox-prev,
   .gallery-lightbox-next{
-    width:38px;
-    height:38px;
-    font-size:26px;
+    width:46px;
+    height:46px;
+    font-size:32px;
   }
-  .gallery-lightbox-prev{left:4px;}
-  .gallery-lightbox-next{right:4px;}
+  .gallery-lightbox-prev{left:2px;}
+  .gallery-lightbox-next{right:2px;}
 }
 
 .gallery-lightbox-stage{

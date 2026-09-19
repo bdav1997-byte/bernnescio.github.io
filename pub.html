@@ -3,194 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendário de lançamentos — NESCIO</title>
+<title>NESCIO</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;background:#FAFAFA;color:#000;font-family:Arial,Helvetica,sans-serif}
-body{display:flex;align-items:center;justify-content:center}
-main{width:min(760px,calc(100% - 48px));padding:60px 0;text-align:left}
-.logo{display:block;width:72px;height:auto;margin:0 0 48px}
-h1{margin:0 0 52px;padding-left:36px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;line-height:1.5;text-transform:uppercase}
-.category{margin:0;font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
-.release-list{margin:42px 0 0;padding:0;list-style:none}
-.release-item{font-size:11px;font-weight:700;letter-spacing:.12em;line-height:1.5}
-.release-date,.release-status{margin:0;text-align:right;font-size:10px;font-weight:700;letter-spacing:.16em;white-space:nowrap}
-.release-entry{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;margin-bottom:24px}
-.release-entry:last-child{margin-bottom:0}
 
-/* LEITOR NESCIO */
-.nescio-audio{margin:0 0 54px;padding-top:20px;border-top:1px solid #000}
-.audio-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:17px}
-.audio-label{font-size:11px;font-weight:700;letter-spacing:.14em}
-.audio-title{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.audio-button{width:32px;height:32px;flex:0 0 32px;display:flex;align-items:center;justify-content:center;border:1px solid #000;border-radius:50%;background:#000;color:#FAFAFA;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1;cursor:pointer;appearance:none;-webkit-appearance:none}
-.audio-button:hover{background:#FAFAFA;color:#000}
-.audio-button:focus-visible{outline:1px solid #000;outline-offset:4px}
-.audio-main{display:grid;grid-template-columns:32px minmax(0,1fr) auto;column-gap:14px;align-items:center}
-.audio-track{position:relative;width:100%;height:20px;display:flex;align-items:center;cursor:pointer}
-.audio-line{width:100%;height:1px;background:#cfcfcf}
-.audio-progress{position:absolute;left:0;top:50%;width:0;height:1px;background:#000;transform:translateY(-50%);pointer-events:none}
-.audio-dot{position:absolute;left:0;top:50%;width:5px;height:5px;border-radius:50%;background:#000;transform:translate(-50%,-50%);pointer-events:none}
-.audio-time{font-family:"Courier New",Courier,monospace;font-size:9px;letter-spacing:.04em;white-space:nowrap}
-.audio-note{margin:12px 0 0 46px;color:#777;font-family:Arial,Helvetica,sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase}
-.nescio-audio audio{display:none}
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  background:#FAFAFA;
+  color:#000;
+  font-family:Arial,Helvetica,sans-serif;
+}
 
-html.dark-mode,body.dark-mode{background:#111;color:#F5F5F5}
-html.dark-mode .release-date,body.dark-mode .release-date{color:#F5F5F5}
-html.dark-mode .release-status,body.dark-mode .release-status{color:#F5F5F5}
-html.dark-mode .logo,body.dark-mode .logo{filter:invert(1)}
-html.dark-mode .nescio-audio{border-color:#F5F5F5}
-html.dark-mode .audio-button,body.dark-mode .audio-button{border-color:#F5F5F5;background:#F5F5F5;color:#111}
-html.dark-mode .audio-button:hover,body.dark-mode .audio-button:hover{background:#111;color:#F5F5F5}
-html.dark-mode .audio-button:focus-visible,body.dark-mode .audio-button:focus-visible{outline-color:#F5F5F5}
-html.dark-mode .audio-line,body.dark-mode .audio-line{background:#444}
-html.dark-mode .audio-progress,body.dark-mode .audio-progress{background:#F5F5F5}
-html.dark-mode .audio-dot,body.dark-mode .audio-dot{background:#F5F5F5}
-html.dark-mode .audio-note,body.dark-mode .audio-note{color:#888}
+main{
+  width:min(650px,calc(100% - 48px));
+  margin:0 auto;
+  padding:80px 0 100px;
+}
+
+.logo{
+  display:block;
+  width:72px;
+  height:auto;
+  margin:0 auto 70px;
+}
+
+.text{
+  margin:0;
+  font-size:12px;
+  font-weight:400;
+  line-height:1.8;
+  letter-spacing:.02em;
+  text-align:justify;
+}
+
+.text p{
+  margin:0 0 28px;
+}
+
+.text p:last-child{
+  margin-bottom:0;
+}
 
 @media(max-width:700px){
-main{width:calc(100% - 40px);padding:40px 0}
-.logo{width:64px;margin-bottom:38px}
-h1{margin-bottom:42px;padding-left:24px;font-size:11px}
-.category{font-size:10px}
-.release-list{margin-top:36px}
-.release-item{font-size:10px}
-.release-date,.release-status{font-size:9px}
-.release-entry{column-gap:16px;margin-bottom:20px}
-.nescio-audio{margin-bottom:44px;padding-top:17px}
-.audio-title{font-size:16px}
-.audio-main{column-gap:12px}
-.audio-note{margin-left:44px;font-size:7px}
+  main{
+    width:calc(100% - 40px);
+    padding:55px 0 80px;
+  }
+
+  .logo{
+    width:64px;
+    margin-bottom:55px;
+  }
+
+  .text{
+    font-size:11px;
+    line-height:1.8;
+  }
+
+  .text p{
+    margin-bottom:24px;
+  }
 }
 </style>
 </head>
 <body>
 <main>
-<img src="LOGO.png" alt="NESCIO" class="logo">
-<h1>Calendário de lançamentos</h1>
+  <img src="LOGO.png" alt="NESCIO" class="logo">
 
-<section class="nescio-audio" aria-label="Leitor de áudio NESCIO">
-  <div class="audio-head">
-    <div>
-      <div class="audio-label">OUVIR</div>
-      <div class="audio-title">NESCIO · DEMONSTRAÇÃO</div>
-    </div>
+  <div class="text">
+    <p>Quando criei este site, nunca o fiz com a pretensão de ser reconhecido, adorado ou um verdadeiro artista.</p>
+
+    <p>Porém, seria mentira dizer que não gosto do carinho e das mensagens de feedback positivo sobre o mesmo. Estou verdadeiramente grato por todos os que tiraram um pouco para o vasculhar e sentir um pouco desta nova etapa.</p>
+
+    <p>Um agradecimento a quem leu também o texto novo: apenas um de muitos que irão cobrir esta página com tudo o que tenho para dar ao mundo.</p>
+
+    <p>Obrigado. De coração.</p>
   </div>
-
-  <div class="audio-main">
-    <button class="audio-button" id="audioButton" type="button" aria-label="Reproduzir áudio" aria-pressed="false">▶</button>
-    <div class="audio-track" id="audioTrack" role="slider" aria-label="Progresso do áudio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
-      <div class="audio-line"></div>
-      <div class="audio-progress" id="audioProgress"></div>
-      <div class="audio-dot" id="audioDot"></div>
-    </div>
-    <div class="audio-time" id="audioTime">00:00</div>
-  </div>
-
-  <div class="audio-note">Substituir pelo áudio definitivo</div>
-
-  <audio id="nescioAudio" preload="metadata" src="audio/nescio-demo.wav"></audio>
-</section>
-
-<p class="category">ATÉ OS AMIGOS SÃO MUSAS</p>
-<ul class="release-list">
-<li class="release-entry">
-<span class="release-item">CHUVA</span>
-<span class="release-date">19 | 09</span>
-</li>
-<li class="release-entry">
-<span class="release-item">O AMOR NUNCA SALVOU NINGUÉM</span>
-<span class="release-date">21 | 09</span>
-</li>
-<li class="release-entry">
-<span class="release-item">O VERÃO É ROCK</span>
-<span class="release-date">25 | 09</span>
-</li>
-</ul>
 </main>
-
-<script>
-(function(){
-const saved=localStorage.getItem("nescio-theme");
-if(saved==="dark"){
-document.documentElement.classList.add("dark-mode");
-document.body.classList.add("dark-mode");
-}
-
-const audio=document.getElementById("nescioAudio");
-const button=document.getElementById("audioButton");
-const track=document.getElementById("audioTrack");
-const progress=document.getElementById("audioProgress");
-const dot=document.getElementById("audioDot");
-const time=document.getElementById("audioTime");
-
-if(!audio||!button||!track)return;
-
-function formatTime(seconds){
-if(!Number.isFinite(seconds))return "00:00";
-const minutes=Math.floor(seconds/60);
-const secs=Math.floor(seconds%60);
-return String(minutes).padStart(2,"0")+":"+String(secs).padStart(2,"0");
-}
-
-function setProgress(value){
-const percent=Math.max(0,Math.min(1,value));
-progress.style.width=(percent*100)+"%";
-dot.style.left=(percent*100)+"%";
-track.setAttribute("aria-valuenow",String(Math.round(percent*100)));
-}
-
-button.addEventListener("click",function(){
-if(audio.paused){
-audio.play().catch(function(){});
-}else{
-audio.pause();
-}
-});
-
-audio.addEventListener("play",function(){
-button.textContent="Ⅱ";
-button.setAttribute("aria-label","Pausar áudio");
-button.setAttribute("aria-pressed","true");
-});
-
-audio.addEventListener("pause",function(){
-button.textContent="▶";
-button.setAttribute("aria-label","Reproduzir áudio");
-button.setAttribute("aria-pressed","false");
-});
-
-audio.addEventListener("timeupdate",function(){
-const duration=audio.duration||0;
-setProgress(duration?audio.currentTime/duration:0);
-time.textContent=formatTime(audio.currentTime);
-});
-
-audio.addEventListener("loadedmetadata",function(){
-time.textContent=formatTime(audio.duration);
-});
-
-audio.addEventListener("ended",function(){
-setProgress(0);
-time.textContent="00:00";
-});
-
-function seek(clientX){
-const rect=track.getBoundingClientRect();
-const percent=Math.max(0,Math.min(1,(clientX-rect.left)/rect.width));
-if(Number.isFinite(audio.duration))audio.currentTime=percent*audio.duration;
-}
-
-track.addEventListener("click",function(event){seek(event.clientX)});
-
-track.addEventListener("keydown",function(event){
-if(event.key==="ArrowRight"||event.key==="ArrowLeft"){
-event.preventDefault();
-const step=audio.duration?audio.duration*.05:0;
-audio.currentTime=Math.max(0,Math.min(audio.duration||0,audio.currentTime+(event.key==="ArrowRight"?step:-step)));
-}
-});
-})();
-</script>
 </body>
 </html>

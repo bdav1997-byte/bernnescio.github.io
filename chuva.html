@@ -328,8 +328,11 @@
             const message = document.getElementById("chuva-password-message");
             const countdown = document.getElementById("chuva-countdown");
             const target = new Date("2026-09-19T19:00:00+01:00").getTime();
+            let isUnlocked = false;
 
             function unlock() {
+                if (isUnlocked) return;
+                isUnlocked = true;
                 gate.classList.add("is-unlocked");
                 document.documentElement.classList.remove("password-gate-locked");
                 document.body.classList.remove("password-gate-locked");
@@ -353,6 +356,7 @@
                 countdown.textContent = hours + ":" + minutes + ":" + seconds;
 
                 if (remaining <= 0) {
+                    countdown.textContent = "00:00:00";
                     unlock();
                     return;
                 }

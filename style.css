@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }\n\n/* PROTEÇÃO GLOBAL DOS TEXTOS BLOQUEADOS: o conteúdo nunca fica visível por baixo do password gate. */\nhtml.password-gate-locked,\nhtml.password-gate-locked body {\n    overflow: hidden !important;\n}\n\nhtml.password-gate-locked body {\n    position: fixed !important;\n    width: 100% !important;\n    height: 100% !important;\n    inset: 0 !important;\n}\n\nhtml.password-gate-locked [class*="-gate"] {\n    position: fixed !important;\n    inset: 0 !important;\n    width: 100vw !important;\n    height: 100vh !important;\n    min-height: 100dvh !important;\n    max-height: none !important;\n    z-index: 2147483647 !important;\n    overflow: auto !important;\n    isolation: isolate;\n    background: #FAFAFA;\n}\n\nhtml.dark-mode.password-gate-locked [class*="-gate"],\nbody.dark-mode.password-gate-locked [class*="-gate"] {\n    background: #111;\n}
 
 /* BOOTSTRAP VISUAL DO TEMA: impede qualquer flash branco antes do JavaScript do menu.
    O tema guardado é aplicado ao <html> ainda no <head> de cada página. */

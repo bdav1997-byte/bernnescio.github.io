@@ -371,6 +371,7 @@
             const form = document.getElementById("comboio-password-form");
             const password = document.getElementById("comboio-password");
             const message = document.getElementById("comboio-password-message");
+            const countdown = document.getElementById("comboio-countdown");
             const target = new Date("2026-09-21T18:00:00+01:00").getTime();
 
             function unlock() {
@@ -427,7 +428,7 @@
                 const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
                 const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
                 const seconds = String(totalSeconds % 60).padStart(2, "0");
-                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+                timer.textContent = hours + ":" + minutes + ":" + seconds;
 
                 if (remaining <= 0) {
                     window.location.reload();

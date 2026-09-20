@@ -21,6 +21,17 @@
         .verao-gate-title { margin:0; font-family:Arial,Helvetica,sans-serif; font-size:24px; font-weight:400; letter-spacing:.065em; line-height:1.35; text-transform:uppercase; }
         .verao-gate-rule { width:42px; height:1px; margin:28px auto 34px; background:#000; }
         .verao-countdown { margin:0; font-family:"Courier New",Courier,monospace; font-size:22px; font-weight:400; letter-spacing:.12em; line-height:1.4; font-variant-numeric:tabular-nums; }
+        .verao-countdown-units {
+            display: none;
+            margin-top: 9px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
         .verao-countdown-label { margin-top:9px; font-family:Arial,Helvetica,sans-serif; font-size: 15.4px; font-weight:400; letter-spacing:.18em; text-transform:uppercase; }
         .verao-password-form { display:flex; align-items:stretch; justify-content:center; width:min(360px,100%); margin-top:42px; }
         .verao-password { flex:1 1 auto; width:0; min-width:0; border:1px solid #000; border-right:0; border-radius:0; outline:none; background:transparent; color:#000; padding:11px 13px; font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:1.2; letter-spacing:.12em; text-align:center; text-transform:none; -webkit-appearance:none; appearance:none; }
@@ -78,6 +89,7 @@
             <h1 class="verao-gate-title">O VERÃO É ROCK</h1>
             <div class="verao-gate-rule" aria-hidden="true"></div>
             <div class="verao-countdown" id="verao-countdown" aria-live="polite">00:00:00</div>
+            <div class="verao-countdown-units" aria-hidden="true">DIAS | HORAS | MINUTOS | SEGUNDOS</div>
             <div class="verao-countdown-label">25 | 09 | 2026 · 15:00</div>
             <form class="verao-password-form" id="verao-password-form">
                 <input class="verao-password" id="verao-password" type="password" placeholder="PASSWORD" aria-label="Password" autocomplete="off">
@@ -177,10 +189,17 @@
             function updateCountdown() {
                 const remaining = Math.max(0, target - Date.now());
                 const totalSeconds = Math.floor(remaining / 1000);
-                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2,"0");
-                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2,"0");
-                const seconds = String(totalSeconds % 60).padStart(2,"0");
-                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+                const seconds = String(totalSeconds % 60).padStart(2, "0");
+                const days = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+                const longFormat = remaining > (4 * 60 * 60 * 1000);
+
+                countdown.textContent = longFormat
+                    ? days + " | " + String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0") + " | " + minutes + " | " + seconds
+                    : hours + ":" + minutes + ":" + seconds;
+
+                document.querySelector(".verao-countdown-units").style.display = longFormat ? "block" : "none";
                 if (remaining <= 0) unlock();
             }
 

@@ -14,10 +14,8 @@
     </script>
     <style>
         .rejeicao-easter-egg {
-            position: fixed;
-            top: 0;
-            right: 25px;
-            z-index: 1000;
+            position: relative;
+            z-index: 1;
             margin: 0;
             padding: 0;
             border: 0;
@@ -25,9 +23,6 @@
             color: inherit;
             font: inherit;
             cursor: pointer;
-        }
-
-        .rejeicao-easter-egg {
             overflow: visible;
             white-space: nowrap;
         }
@@ -59,7 +54,7 @@
 
         @media (max-width: 600px) {
             .rejeicao-easter-egg {
-                right: 20px;
+                margin-left: auto;
             }
         }
     </style>

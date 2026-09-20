@@ -7,9 +7,118 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="galeriateste.css">
 <script>(function(){try{document.documentElement.classList.toggle("dark-mode",localStorage.getItem("nescio-theme")==="dark")}catch(e){}})();</script>
+<style>
+  .magna-warning{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    background:rgba(250,250,250,.72);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    opacity:1;
+    transition:opacity .45s ease;
+  }
+  .magna-warning.is-hidden{
+    opacity:0;
+    pointer-events:none;
+  }
+  .magna-warning-card{
+    width:min(520px,100%);
+    padding:42px 34px 36px;
+    border:1px solid #000;
+    background:rgba(250,250,250,.88);
+    text-align:center;
+    box-sizing:border-box;
+  }
+  .magna-warning-label{
+    margin:0 0 24px;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.18em;
+    line-height:1.4;
+  }
+  .magna-warning-text{
+    margin:0 auto 32px;
+    max-width:390px;
+    font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    font-size:21px;
+    font-weight:500;
+    line-height:1.5;
+  }
+  .magna-warning-actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+  }
+  .magna-warning-button{
+    min-width:120px;
+    padding:12px 18px;
+    border:1px solid #000;
+    background:transparent;
+    color:#000;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .2s ease,color .2s ease;
+  }
+  .magna-warning-button:hover,
+  .magna-warning-button:focus-visible{
+    background:#000;
+    color:#fff;
+    outline:none;
+  }
+  html.dark-mode .magna-warning{
+    background:rgba(17,17,17,.72);
+  }
+  html.dark-mode .magna-warning-card{
+    border-color:#F5F5F5;
+    background:rgba(17,17,17,.9);
+  }
+  html.dark-mode .magna-warning-label{
+    color:#F5F5F5;
+  }
+  html.dark-mode .magna-warning-text{
+    color:#F5F5F5;
+  }
+  html.dark-mode .magna-warning-button{
+    border-color:#F5F5F5;
+    color:#F5F5F5;
+  }
+  html.dark-mode .magna-warning-button:hover,
+  html.dark-mode .magna-warning-button:focus-visible{
+    background:#F5F5F5;
+    color:#111;
+  }
+  @media(max-width:700px){
+    .magna-warning{padding:22px;}
+    .magna-warning-card{padding:36px 24px 30px;}
+    .magna-warning-text{font-size:20px;margin-bottom:28px;}
+    .magna-warning-actions{flex-direction:column;gap:9px;}
+    .magna-warning-button{width:100%;}
+  }
+</style>
 </head>
 <body>
 <div id="menu-container"></div>
+
+<div class="magna-warning" role="dialog" aria-modal="true" aria-labelledby="magna-warning-title">
+  <div class="magna-warning-card">
+    <p class="magna-warning-label" id="magna-warning-title">NESCIO · MAGNA</p>
+    <p class="magna-warning-text">Esta página apresenta conteúdo de teor erótico e sexual.</p>
+    <div class="magna-warning-actions">
+      <button class="magna-warning-button" type="button" id="magna-continue">Continuar</button>
+      <button class="magna-warning-button" type="button" id="magna-back">Voltar</button>
+    </div>
+  </div>
+</div>
 
 <main class="gallery-test-page">
   <header class="gallery-test-header">
@@ -79,6 +188,27 @@
   <button class="gallery-lightbox-next" type="button" aria-label="Fotografia seguinte">→</button>
   <div class="gallery-lightbox-count"></div>
 </div>
+
+<script>
+(function(){
+  var warning = document.querySelector(".magna-warning");
+  var continueButton = document.getElementById("magna-continue");
+  var backButton = document.getElementById("magna-back");
+
+  continueButton.addEventListener("click", function(){
+    warning.classList.add("is-hidden");
+    setTimeout(function(){ warning.remove(); }, 500);
+  });
+
+  backButton.addEventListener("click", function(){
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+})();
+</script>
 
 <script>
 (function(){

@@ -166,6 +166,7 @@
                 document.documentElement.classList.remove("password-gate-locked");
                 document.body.classList.remove("password-gate-locked");
                 password.value = "";
+                window.dispatchEvent(new Event("nescio:recording-start"));
                 window.requestAnimationFrame(function () {
                     window.scrollTo({ top:0, left:0, behavior:"auto" });
                     window.setTimeout(function () {

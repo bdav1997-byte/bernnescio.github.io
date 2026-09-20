@@ -349,6 +349,15 @@ function setupCategoryNavigation(sideMenu) {
   });
 }
 
+/* LOGO: em qualquer página, clicar no logótipo regressa à landing page. */
+document.addEventListener("click", event => {
+  const logo = event.target.closest('img[src$="LOGO.png"]');
+  if (!logo) return;
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  window.location.href = "index.html";
+});
+
 document.addEventListener("click", event => {
   const menu = document.getElementById("sideMenu");
   const menuToggle = document.getElementById("menuToggle");

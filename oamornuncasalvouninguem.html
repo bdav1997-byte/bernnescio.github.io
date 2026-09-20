@@ -204,10 +204,7 @@
             });
 
             updateCountdown();
-            window.setInterval(updateCountdown, 1000);;
-                }, 250);
-            }
-            scheduleCountdown();
+            window.setInterval(updateCountdown, 1000);
         })();
 
         (function () {
@@ -262,15 +259,26 @@
 
         (function () {
             const timer = document.querySelector('[data-timer]');
-            const startedAt = Date.now();
+            let startedAt = null;
+
             function updateTimer() {
+                if (startedAt === null) {
+                    timer.textContent = '00:00';
+                    return;
+                }
                 const elapsed = Math.floor((Date.now() - startedAt) / 1000);
                 const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
                 const seconds = String(elapsed % 60).padStart(2, '0');
                 timer.textContent = minutes + ':' + seconds;
             }
+
+            window.addEventListener('nescio:recording-start', function () {
+                if (startedAt === null) startedAt = Date.now();
+                updateTimer();
+            });
+
             updateTimer();
-            setInterval(updateTimer, 1000);
+            window.setInterval(updateTimer, 250);
         })();
     </script>
 </body>

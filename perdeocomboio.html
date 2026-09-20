@@ -379,6 +379,7 @@
                 document.documentElement.classList.remove("password-gate-locked");
                 document.body.classList.remove("password-gate-locked");
                 password.value = "";
+                window.dispatchEvent(new Event("nescio:recording-start"));
 
                 // Depois de desbloquear, a leitura começa sempre no topo.
                 window.requestAnimationFrame(function () {

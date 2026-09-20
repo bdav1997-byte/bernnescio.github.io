@@ -379,13 +379,7 @@
             });
 
             updateCountdown();
-            function scheduleCountdown() {
-                if (Date.now() < target) window.setTimeout(function () {
-                    updateCountdown();
-                    scheduleCountdown();
-                }, 250);
-            }
-            scheduleCountdown();
+            window.setInterval(updateCountdown, 1000);
         })();
 
         (function () {

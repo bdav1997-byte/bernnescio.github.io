@@ -371,8 +371,6 @@
                     ? days + " | " + String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0") + " | " + minutes + " | " + seconds
                     : hours + ":" + minutes + ":" + seconds;
 
-                document.querySelector(".chuva-countdown-units").style.display = longFormat ? "block" : "none";
-
                 if (remaining <= 0) {
                     countdown.textContent = "00:00:00";
                     unlock();

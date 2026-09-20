@@ -229,7 +229,8 @@ function setupTheme() {
 }
 
 function setupReadingProgress() {
-  if (window.location.pathname.split("/").pop() === "index.html" || window.location.pathname.endsWith("/")) return;
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  if (currentFile === "index.html" || window.location.pathname.endsWith("/") || currentFile === "calendario.html") return;
   if (document.querySelector(".reading-progress")) return;
   const progress = document.createElement("div"); progress.className = "reading-progress"; progress.setAttribute("aria-hidden", "true");
   const fill = document.createElement("div"); fill.className = "reading-progress-fill"; progress.appendChild(fill); document.body.appendChild(progress);

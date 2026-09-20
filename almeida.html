@@ -167,6 +167,14 @@
 
     .book-detail-edition .book-detail-name + .book-detail-name { margin-top: 4px; }
 
+    .almeida-title-trigger { margin: 0; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; cursor: pointer; }
+
+    html.almeida-negative, html.almeida-negative body { filter: invert(1); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html.almeida-negative, html.almeida-negative body { transition: filter .2s ease; }
+    }
+
     .book-cover-wrap {
       display: flex;
       justify-content: center;
@@ -306,7 +314,7 @@
         <summary>FICHA TÉCNICA</summary>
         <div class="book-edition-content">
           <div class="book-details">
-            <div><span class="book-detail-label">TÍTULO</span>ALMEIDA</div>
+            <div><span class="book-detail-label">TÍTULO</span><button type="button" class="almeida-title-trigger" aria-label="Ativar efeito negativo">ALMEIDA</button></div>
             <div><span class="book-detail-label">AUTOR</span>Bernardo de Almeida Valentim</div>
             <div><span class="book-detail-label">PUBLICAÇÃO</span>Por anunciar</div>
             <div class="book-detail-edition">
@@ -326,6 +334,20 @@
   </main>
 
   <script>
+    (function () {
+      var titleTrigger = document.querySelector(".almeida-title-trigger");
+      var negativeTimer = null;
+      if (titleTrigger) {
+        titleTrigger.addEventListener("click", function () {
+          document.documentElement.classList.add("almeida-negative");
+          window.clearTimeout(negativeTimer);
+          negativeTimer = window.setTimeout(function () {
+            document.documentElement.classList.remove("almeida-negative");
+          }, 5000);
+        });
+      }
+    })();
+
     (function () {
       var details = document.querySelectorAll(".book-preface, .book-edition");
 

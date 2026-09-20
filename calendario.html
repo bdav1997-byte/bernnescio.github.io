@@ -30,18 +30,18 @@
 
     .calendar-timeline::before{content:"";position:absolute;left:0;right:0;top:34px;height:1px;background:#000;}
 
-    .calendar-event{position:relative;min-width:0;padding:0 22px;opacity:0;transform:translateY(12px);animation:calendarFadeIn .8s cubic-bezier(.22,1,.36,1) forwards;}
+    .calendar-event{position:relative;min-width:0;padding:0 18px;display:grid;grid-template-rows:8px 22px 62px auto;align-items:start;opacity:0;animation:calendarFadeIn .8s cubic-bezier(.22,1,.36,1) forwards;}
     .calendar-event:nth-child(1){animation-delay:.15s}.calendar-event:nth-child(2){animation-delay:.3s}.calendar-event:nth-child(3){animation-delay:.45s}.calendar-event:nth-child(4){animation-delay:.6s}
 
-    .calendar-node{position:relative;z-index:1;width:8px;height:8px;margin:0 auto 30px;border:1px solid #000;border-radius:50%;background:#FAFAFA;box-sizing:border-box;}
+    .calendar-node{position:relative;z-index:1;width:8px;height:8px;margin:0 auto;border:1px solid #000;border-radius:50%;background:#FAFAFA;box-sizing:border-box;}
 
-    .calendar-date{margin:0 0 15px;color:#000;font-family:"Courier New",Courier,monospace;font-size:12px;font-weight:400;letter-spacing:.12em;line-height:1.4;text-align:center;}
+    .calendar-date{margin:0 0 0;color:#000;font-family:"Courier New",Courier,monospace;font-size:12px;font-weight:400;letter-spacing:.12em;line-height:1.4;text-align:center;}
 
-    .calendar-event-title{margin:0 0 13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:.07em;line-height:1.4;text-align:center;text-transform:uppercase;}
+    .calendar-event-title{margin:0;color:#000;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:.07em;line-height:1.4;text-align:center;text-transform:uppercase;}
 
-    .calendar-description{max-width:210px;margin:0 auto;color:#444;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:16px;font-weight:500;line-height:1.65;text-align:center;}
+    .calendar-description{max-width:230px;margin:0 auto;color:#444;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:16px;font-weight:500;line-height:1.65;text-align:center;}
 
-    @keyframes calendarFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes calendarFadeIn{from{opacity:0}to{opacity:1}}
 
     html.dark-mode .calendar-kicker,html.dark-mode .calendar-title,html.dark-mode .calendar-date,html.dark-mode .calendar-event-title,
     body.dark-mode .calendar-kicker,body.dark-mode .calendar-title,body.dark-mode .calendar-date,body.dark-mode .calendar-event-title{color:#F5F5F5;}
@@ -61,16 +61,16 @@
 
       .calendar-timeline{display:block;width:100%;padding:0 0 0 30px;}
       .calendar-timeline::before{top:0;bottom:0;left:4px;right:auto;width:1px;height:auto;}
-      .calendar-event{padding:0 0 52px 34px;transform:translateY(10px);}
+      .calendar-event{display:block;padding:0 0 52px 34px;}
       .calendar-event:last-child{padding-bottom:0;}
       .calendar-node{position:absolute;left:0;top:0;width:8px;height:8px;margin:0;}
       .calendar-date{margin:0 0 10px;text-align:left;}
-      .calendar-event-title{margin-bottom:9px;text-align:left;font-size:13px;}
+      .calendar-event-title{margin:0 0 9px;text-align:left;font-size:13px;}
       .calendar-description{max-width:none;margin:0;font-size:17px;line-height:1.65;text-align:left;}
     }
 
     @media(prefers-reduced-motion:reduce){
-      .calendar-event{opacity:1;transform:none;animation:none;}
+      .calendar-event{opacity:1;animation:none;}
     }
   </style>
 </head>

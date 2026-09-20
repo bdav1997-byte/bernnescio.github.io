@@ -81,17 +81,6 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .comboio-countdown-units {
-            display: none;
-            margin-top: 9px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: .12em;
-            line-height: 1.4;
-            text-transform: uppercase;
-        }
-
         .comboio-countdown-label {
             margin-top: 9px;
             font-family: Arial, Helvetica, sans-serif;
@@ -431,7 +420,13 @@
             });
 
             updateCountdown();
-            window.setInterval(updateCountdown, 1000);
+            function scheduleCountdown() {
+                if (Date.now() < target) window.setTimeout(function () {
+                    updateCountdown();
+                    scheduleCountdown();
+                }, 250);
+            }
+            scheduleCountdown();
         })();
 
         (function () {

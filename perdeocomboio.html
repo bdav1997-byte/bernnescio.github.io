@@ -81,6 +81,17 @@
             font-variant-numeric: tabular-nums;
         }
 
+        .comboio-countdown-units {
+            display: none;
+            margin-top: 9px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
         .comboio-countdown-label {
             margin-top: 9px;
             font-family: Arial, Helvetica, sans-serif;
@@ -263,6 +274,7 @@
             <div class="comboio-gate-rule" aria-hidden="true"></div>
 
             <div class="comboio-countdown" id="comboio-countdown" aria-live="polite">00:00:00</div>
+            <div class="comboio-countdown-units" aria-hidden="true">DIAS | HORAS | MINUTOS | SEGUNDOS</div>
             <div class="comboio-countdown-label">21 | 09 | 2026 · 18:00</div>
 
             <form class="comboio-password-form" id="comboio-password-form">
@@ -395,7 +407,14 @@
                 const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
                 const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
                 const seconds = String(totalSeconds % 60).padStart(2, "0");
-                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+                const days = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+                const longFormat = remaining > (4 * 60 * 60 * 1000);
+
+                countdown.textContent = longFormat
+                    ? days + " | " + String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0") + " | " + minutes + " | " + seconds
+                    : hours + ":" + minutes + ":" + seconds;
+
+                document.querySelector(".comboio-countdown-units").style.display = longFormat ? "block" : "none";
 
                 if (remaining <= 0) {
                     unlock();

@@ -22,7 +22,7 @@
     opacity:1;
     transition:opacity .45s ease;
   }
-  .magna-warning.is-hidden{
+  html.magna-warning-open,\n  body.magna-warning-open{\n    overflow:hidden !important;\n    overscroll-behavior:none;\n  }\n  .magna-warning.is-hidden{
     opacity:0;
     pointer-events:none;
   }
@@ -193,7 +193,7 @@
 (function(){
   var warning = document.querySelector(".magna-warning");
   var continueButton = document.getElementById("magna-continue");
-  var backButton = document.getElementById("magna-back");
+  var backButton = document.getElementById("magna-back");\n\n  document.documentElement.classList.add("magna-warning-open");\n  document.body.classList.add("magna-warning-open");
 
   continueButton.addEventListener("click", function(){
     warning.classList.add("is-hidden");

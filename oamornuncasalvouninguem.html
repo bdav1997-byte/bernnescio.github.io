@@ -19,6 +19,17 @@
         .amor-gate-title { margin:0; font-family:Arial,Helvetica,sans-serif; font-size:24px; font-weight:400; letter-spacing:.065em; line-height:1.35; text-transform:uppercase; }
         .amor-gate-rule { width:42px; height:1px; margin:28px auto 34px; background:#000; }
         .amor-countdown { margin:0; font-family:"Courier New",Courier,monospace; font-size:22px; font-weight:400; letter-spacing:.12em; line-height:1.4; font-variant-numeric:tabular-nums; }
+        .amor-countdown-units {
+            display: none;
+            margin-top: 9px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: .12em;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
         .amor-countdown-label { margin-top:9px; font-family:Arial,Helvetica,sans-serif; font-size: 15.4px; font-weight:400; letter-spacing:.18em; text-transform:uppercase; }
         .amor-password-form { display:flex; align-items:stretch; justify-content:center; width:min(360px,100%); margin-top:42px; }
         .amor-password { width:100%; min-width:0; border:1px solid #000; border-right:0; border-radius:0; outline:none; background:transparent; color:#000; padding:11px 13px; font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:1.2; letter-spacing:.12em; text-align:center; text-transform:none; -webkit-appearance:none; appearance:none; }
@@ -60,6 +71,7 @@
             <div class="amor-gate-rule" aria-hidden="true"></div>
 
             <div class="amor-countdown" id="amor-countdown" aria-live="polite">00:00:00</div>
+            <div class="amor-countdown-units" aria-hidden="true">DIAS | HORAS | MINUTOS | SEGUNDOS</div>
             <div class="amor-countdown-label">21 | 09 | 2026 · 18:00</div>
 
             <form class="amor-password-form" id="amor-password-form">
@@ -179,7 +191,14 @@
                 const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
                 const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
                 const seconds = String(totalSeconds % 60).padStart(2, "0");
-                countdown.textContent = hours + ":" + minutes + ":" + seconds;
+                const days = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+                const longFormat = remaining > (4 * 60 * 60 * 1000);
+
+                countdown.textContent = longFormat
+                    ? days + " | " + String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0") + " | " + minutes + " | " + seconds
+                    : hours + ":" + minutes + ":" + seconds;
+
+                document.querySelector(".amor-countdown-units").style.display = longFormat ? "block" : "none";
 
                 if (remaining <= 0) {
                     unlock();

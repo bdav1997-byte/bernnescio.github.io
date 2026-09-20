@@ -425,36 +425,26 @@
 
         (function () {
             const timer = document.querySelector('[data-timer]');
-            const target = new Date("2026-09-21T18:00:00+01:00").getTime();
+            let startedAt = null;
 
-            function updateCountdown() {
-                const remaining = Math.max(0, target - Date.now());
-                const totalSeconds = Math.floor(remaining / 1000);
-                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
-                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
-                const seconds = String(totalSeconds % 60).padStart(2, "0");
-                timer.textContent = hours + ":" + minutes + ":" + seconds;
-
-                if (remaining <= 0) {
-                    window.location.reload();
-                }
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        })();
-
-        (function () {
-            const timer = document.querySelector('[data-timer]');
-            const startedAt = Date.now();
             function updateTimer() {
+                if (startedAt === null) {
+                    timer.textContent = '00:00';
+                    return;
+                }
                 const elapsed = Math.floor((Date.now() - startedAt) / 1000);
                 const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
                 const seconds = String(elapsed % 60).padStart(2, '0');
                 timer.textContent = minutes + ':' + seconds;
             }
+
+            window.addEventListener('nescio:recording-start', function () {
+                if (startedAt === null) startedAt = Date.now();
+                updateTimer();
+            });
+
             updateTimer();
-            setInterval(updateTimer, 1000);
+            window.setInterval(updateTimer, 250);
         })();
     </script>
 </body>

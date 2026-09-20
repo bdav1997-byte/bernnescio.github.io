@@ -303,7 +303,7 @@
             observer.observe(document.getElementById("verao-gate"),{attributes:true,attributeFilter:["class"]});
 
             if (document.getElementById("verao-gate").classList.contains("is-unlocked")) startRecordingTimer();
-            setInterval(updateTimer,1000);
+            window.setInterval(updateTimer,250);
         })();
     </script>
 </body>

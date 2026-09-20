@@ -180,7 +180,7 @@
                 const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
                 const seconds = String(totalSeconds % 60).padStart(2, "0");
                 const days = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
-                const longFormat = remaining > (4 * 60 * 60 * 1000);
+                const longFormat = remaining > (24 * 60 * 60 * 1000);
 
                 countdown.textContent = longFormat
                     ? days + " | " + String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0") + " | " + minutes + " | " + seconds

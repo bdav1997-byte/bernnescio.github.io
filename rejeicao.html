@@ -12,6 +12,64 @@
             } catch (error) {}
         })();
     </script>
+    <style>
+        .rejeicao-easter-egg {
+            position: fixed;
+            top: 0;
+            right: 25px;
+            z-index: 1000;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .rejeicao-easter-egg-label {
+            display: inline-block;
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        opacity 0.8s ease;
+            transform-origin: center right;
+        }
+
+        .rejeicao-easter-egg-message {
+            position: fixed;
+            top: 0;
+            right: 25px;
+            transform: translateX(110%);
+            opacity: 0;
+            pointer-events: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        opacity 0.8s ease;
+        }
+
+        .rejeicao-easter-egg.is-active .rejeicao-easter-egg-label {
+            opacity: 0;
+            transform: translateX(-35px);
+        }
+
+        .rejeicao-easter-egg.is-active .rejeicao-easter-egg-message {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 600px) {
+            .rejeicao-easter-egg {
+                right: 20px;
+            }
+
+            .rejeicao-easter-egg-message {
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body class="musas-text">
 
@@ -22,7 +80,7 @@
         <img src="LOGO.png" class="logo" alt="NESCIO">
 
         <article>
-            <div class="musas-meta"><span>REC</span><span>02</span></div>
+            <div class="musas-meta"><span>REC</span><button type="button" class="rejeicao-easter-egg" aria-label="Easter egg"><span class="rejeicao-easter-egg-label">02</span><span class="rejeicao-easter-egg-message">KETINHAS</span></button></div>
             <div class="musas-title-row"><h1>REJEIÇÃO</h1><span class="musas-live-timer" data-timer>00:00</span></div>
             <div class="musas-recording"><span>REC 02</span><span>01:19</span></div>
 
@@ -53,6 +111,11 @@
     <script src="menu.js"></script>
     <script>
         (function () {
+            const easterEgg = document.querySelector('.rejeicao-easter-egg');
+            easterEgg.addEventListener('click', function () {
+                easterEgg.classList.add('is-active');
+            });
+
             const timer = document.querySelector('[data-timer]');
             const startedAt = Date.now();
             function updateTimer() {

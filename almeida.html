@@ -169,10 +169,20 @@
 
     .almeida-title-trigger { margin: 0; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; cursor: pointer; }
 
-    html.almeida-negative, html.almeida-negative body { filter: invert(1); }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 2147483646;
+      pointer-events: none;
+      opacity: 0;
+      -webkit-backdrop-filter: invert(1);
+      backdrop-filter: invert(1);
+      transition: opacity .2s ease;
+    }
 
-    @media (prefers-reduced-motion: no-preference) {
-      html.almeida-negative, html.almeida-negative body { transition: filter .2s ease; }
+    body.almeida-negative::after {
+      opacity: 1;
     }
 
     .book-cover-wrap {
@@ -339,10 +349,10 @@
       var negativeTimer = null;
       if (titleTrigger) {
         titleTrigger.addEventListener("click", function () {
-          document.documentElement.classList.add("almeida-negative");
+          document.body.classList.add("almeida-negative");
           window.clearTimeout(negativeTimer);
           negativeTimer = window.setTimeout(function () {
-            document.documentElement.classList.remove("almeida-negative");
+            document.body.classList.remove("almeida-negative");
           }, 5000);
         });
       }

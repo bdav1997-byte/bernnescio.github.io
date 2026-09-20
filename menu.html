@@ -37,106 +37,26 @@ body.dark-mode .menu-search-icon,body.dark-mode .menu-search-count,body.dark-mod
 body.dark-mode #menuSearchInput,html.dark-mode #menuSearchInput{color:#F5F5F5;}
 body.dark-mode #menuSearchInput::placeholder,html.dark-mode #menuSearchInput::placeholder{color:#777;}
 body.dark-mode .menu-search-input-wrap,html.dark-mode .menu-search-input-wrap{border-bottom-color:#F5F5F5;}
-/* A altura das secções é controlada pelo JavaScript para permitir subcategorias aninhadas. */
 @media(max-width:700px){.theme-toggle{right:16px;font-size:9px;}}
 
+.menu-new-publication{position:relative;display:block;width:fit-content;max-width:100%;color:#777;}
+.menu-new-publication::before{content:"";position:absolute;left:-12px;top:50%;width:4px;height:4px;border-radius:50%;background:#777;opacity:0;transform:translateY(-50%) scale(.25);}
+.menu-new-publication::after{content:"";position:absolute;left:0;right:auto;bottom:-2px;width:0;height:1px;background:#777;opacity:0;}
+.menu-new-publication.menu-new-publication-animate{animation:menuNewPublicationText 4.5s cubic-bezier(.22,1,.36,1) both;}
+.menu-new-publication.menu-new-publication-animate::before{animation:menuNewPublicationDot 4.5s cubic-bezier(.22,1,.36,1) both;}
+.menu-new-publication.menu-new-publication-animate::after{animation:menuNewPublicationUnderline 4.5s linear both;}
+@keyframes menuNewPublicationText{0%{font-weight:400;color:#777;}16%{font-weight:400;color:#6e6e6e;}32%{font-weight:500;color:#555;}55%{font-weight:600;color:#000;}72%,100%{font-weight:400;color:#000;}}
+@keyframes menuNewPublicationDot{0%{opacity:0;transform:translateY(-50%) scale(.25);}10%{opacity:.35;transform:translateY(-50%) scale(.7);}22%{opacity:.8;transform:translateY(-50%) scale(1);}72%{opacity:.8;transform:translateY(-50%) scale(1);}88%,100%{opacity:0;transform:translateY(-50%) scale(.7);}}
+@keyframes menuNewPublicationUnderline{0%,22%{opacity:0;width:0;}22%,80%{opacity:.85;width:100%;}80%,100%{opacity:0;width:100%;}}
+html.dark-mode .menu-new-publication,body.dark-mode .menu-new-publication{color:#999;}
+html.dark-mode .menu-new-publication::before,body.dark-mode .menu-new-publication::before,html.dark-mode .menu-new-publication::after,body.dark-mode .menu-new-publication::after{background:#999;}
+@keyframes menuNewPublicationTextDark{0%{font-weight:400;color:#999;}16%{font-weight:400;color:#a2a2a2;}32%{font-weight:500;color:#b5b5b5;}55%{font-weight:600;color:#F5F5F5;}72%,100%{font-weight:400;color:#F5F5F5;}}
+html.dark-mode .menu-new-publication.menu-new-publication-animate,body.dark-mode .menu-new-publication.menu-new-publication-animate{animation-name:menuNewPublicationTextDark;}
+@media(prefers-reduced-motion:reduce){.menu-new-publication.menu-new-publication-animate,.menu-new-publication.menu-new-publication-animate::before,.menu-new-publication.menu-new-publication-animate::after{animation:none;}}
 
-.menu-new-publication{
-  position:relative;
-  display:block;
-  width:fit-content;
-  max-width:100%;
-  color:#777;
-}
-.menu-new-publication::before{
-  content:"";
-  position:absolute;
-  left:-12px;
-  top:50%;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#777;
-  opacity:0;
-  transform:translateY(-50%) scale(.25);
-}
-.menu-new-publication::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:auto;
-  bottom:-2px;
-  width:0;
-  height:1px;
-  background:#777;
-  opacity:0;
-}
-.menu-new-publication.menu-new-publication-animate{
-  animation:menuNewPublicationText 4.5s cubic-bezier(.22,1,.36,1) both;
-}
-.menu-new-publication.menu-new-publication-animate::before{
-  animation:menuNewPublicationDot 4.5s cubic-bezier(.22,1,.36,1) both;
-}
-.menu-new-publication.menu-new-publication-animate::after{
-  animation:menuNewPublicationUnderline 4.5s linear both;
-}
-@keyframes menuNewPublicationText{
-  0%{font-weight:400;color:#777;}
-  16%{font-weight:400;color:#6e6e6e;}
-  32%{font-weight:500;color:#555;}
-  55%{font-weight:600;color:#000;}
-  72%,100%{font-weight:400;color:#000;}
-}
-@keyframes menuNewPublicationDot{
-  0%{opacity:0;transform:translateY(-50%) scale(.25);}
-  10%{opacity:.35;transform:translateY(-50%) scale(.7);}
-  22%{opacity:.8;transform:translateY(-50%) scale(1);}
-  72%{opacity:.8;transform:translateY(-50%) scale(1);}
-  88%,100%{opacity:0;transform:translateY(-50%) scale(.7);}
-}
-@keyframes menuNewPublicationUnderline{
-  0%,22%{opacity:0;width:0;}
-  22%,80%{opacity:.85;width:100%;}
-  80%,100%{opacity:0;width:100%;}
-}
-html.dark-mode .menu-new-publication,
-body.dark-mode .menu-new-publication{color:#999;}
-html.dark-mode .menu-new-publication::before,
-body.dark-mode .menu-new-publication::before,
-html.dark-mode .menu-new-publication::after,
-body.dark-mode .menu-new-publication::after{background:#999;}
-@keyframes menuNewPublicationTextDark{
-  0%{font-weight:400;color:#999;}
-  16%{font-weight:400;color:#a2a2a2;}
-  32%{font-weight:500;color:#b5b5b5;}
-  55%{font-weight:600;color:#F5F5F5;}
-  72%,100%{font-weight:400;color:#F5F5F5;}
-}
-html.dark-mode .menu-new-publication.menu-new-publication-animate,
-body.dark-mode .menu-new-publication.menu-new-publication-animate{
-  animation-name:menuNewPublicationTextDark;
-}
-@media(prefers-reduced-motion:reduce){
-  .menu-new-publication.menu-new-publication-animate,
-  .menu-new-publication.menu-new-publication-animate::before,
-  .menu-new-publication.menu-new-publication-animate::after{animation:none;}
-}
-@keyframes menuSecondaryReveal{
-  from{opacity:0;transform:translateY(5px);}
-  to{opacity:1;transform:translateY(0);}
-}
-.side-menu.menu-focus-open > .menu-section:not(:first-child){
-  opacity:0;
-  transform:translateY(5px);
-  animation:menuSecondaryReveal .42s ease .7s forwards;
-}
-@media(prefers-reduced-motion:reduce){
-  .side-menu.menu-focus-open > .menu-section:not(:first-child){
-    opacity:1;
-    transform:none;
-    animation:none;
-  }
-}</style>
+@keyframes menuSecondaryReveal{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.side-menu.menu-focus-open > .menu-section:not(:first-child){opacity:0;transform:translateY(5px);animation:menuSecondaryReveal .42s ease .7s forwards;}
+@media(prefers-reduced-motion:reduce){.side-menu.menu-focus-open > .menu-section:not(:first-child){opacity:1;transform:none;animation:none;}}</style>
 
 <div class="site-header">
 <a href="index.html" class="home-button" aria-label="Início"><img src="LOGO.png" alt="NESCIO"></a>
@@ -146,7 +66,6 @@ body.dark-mode .menu-new-publication.menu-new-publication-animate{
 
 <nav class="side-menu" id="sideMenu">
 <div class="menu-section"><div class="menu-title">EM DESTAQUE</div><a href="chuva.html" class="menu-new-publication">CHUVA</a><a href="almeida.html" class="menu-new-publication">ALMEIDA • LIVRO</a></div>
-<div class="menu-section"><div class="menu-title"><a href="calendario.html" style="margin-left:0;">CALENDÁRIO</a></div></div>
 <div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">ATÉ OS AMIGOS SÃO MUSAS</div><div class="menu-section-content">
 <a href="manifestodoinssatisfeito.html">MANIFESTO DO INSATISFEITO</a><a href="rejeicao.html">REJEIÇÃO</a><a href="umtextosemvirgulas.html">UM TEXTO SEM VÍRGULAS</a><a href="chuva.html">CHUVA</a><a href="putasecabroes.html">PUTAS E CABRÕES</a><a href="oamornuncasalvouninguem.html">O AMOR NUNCA SALVOU NINGUÉM</a><a href="o-verao-e-rock.html">O VERÃO É ROCK</a><a href="poucoesperodepoucoespertos.html">POUCO ESPERO DE POUCO ESPERTOS</a><a href="perdeocomboio.html">PERDE O COMBOIO</a>
 </div></div>

@@ -12,6 +12,32 @@
       } catch (error) {}
     })();
   </script>
+  <style>
+    .text-date {
+      display: block;
+      margin: 10px 0 52px;
+      text-align: center;
+      font-size: 13px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: #333;
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .text-date {
+        margin-bottom: 44px;
+        font-size: 12px;
+      }
+    }
+    html.dark-mode .text-date,
+    body.dark-mode .text-date {
+      color: #EAEAEA;
+    }
+  </style>
+
 </head>
 <body>
   <div id="menu-container"></div>
@@ -30,6 +56,8 @@
       <p>Nunca me aborreci. Nunca achei que fosse exagerado. Apetece-me mostrar-te ao mundo e gritar, aclamando o quão feliz sou. Realizado. A dedicação é visível mesmo nas formas mais pacatas de expressão. Existe sempre um gesto ou olhar que, singularmente, reflete a tua ponderação e paciência face à minha opsimatia.</p>
 
       <p>Connosco, as nuvens são verdes, os outros importam. Nada faz sentido e as gotas da chuva não estorvam. Mas o sentido não incomoda, não é por ele que caminhamos. O céu é pequeno e as cores são nossas, a vida é minha, mas juntos caminhamos. Não faz sentido outra forma, outra maneira de encarar a vida: seja boa ou má a prosa, é assim que será servida.</p>
+      <time class="text-date" datetime="2019-10-28">28.10.2019</time>
+    
     </article>
   </main>
   <script src="menu.js"></script>

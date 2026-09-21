@@ -61,11 +61,25 @@ html.dark-mode .menu-new-publication.menu-new-publication-animate,body.dark-mode
 .menu-view-option.is-active{color:#000;font-weight:700;}
 .menu-chronology-section{margin-bottom:0;}
 .side-menu.menu-date-view > [data-menu-project-section]{display:none;}
-.side-menu:not(.menu-date-view) > [data-menu-chronology]{display:none!important;}
+.side-menu.menu-date-view > [data-menu-future-section]{display:none!important;}
+.side-menu.menu-future-view > [data-menu-project-section]{display:none;}
+.side-menu.menu-future-view > [data-menu-chronology]{display:none!important;}
+.side-menu:not(.menu-date-view):not(.menu-future-view) > [data-menu-chronology]{display:none!important;}
+.side-menu:not(.menu-future-view) > [data-menu-future-section]{display:none!important;}
 .menu-chronology-section[hidden]{display:none!important;}
-.menu-chronology-list{display:flex;flex-direction:column;}
+.menu-future-section[hidden]{display:none!important;}
+.menu-chronology-list,.menu-future-list{display:flex;flex-direction:column;}
+.menu-future-item{display:grid;grid-template-columns:74px minmax(0,1fr);column-gap:14px;align-items:baseline;margin:0 0 13px;text-decoration:none;}
+.menu-future-item:last-child{margin-bottom:0;}
+.menu-future-date{color:#777;font-family:"Courier New",Courier,monospace;font-size:10px;font-weight:400;letter-spacing:.04em;line-height:1.4;white-space:nowrap;}
+.menu-future-content{min-width:0;}
+.menu-future-title{color:#000;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:400;letter-spacing:.07em;line-height:1.45;}
+.menu-future-description{margin-top:3px;color:#777;font-family:"Cormorant Garamond",Georgia,serif;font-size:12px;line-height:1.35;letter-spacing:.01em;}
+html.dark-mode .menu-future-date,body.dark-mode .menu-future-date,html.dark-mode .menu-future-description,body.dark-mode .menu-future-description{color:#999;}
+html.dark-mode .menu-future-title,body.dark-mode .menu-future-title{color:#F5F5F5;}
 .menu-chronology-item{display:grid!important;grid-template-columns:74px minmax(0,1fr);column-gap:14px;align-items:baseline;margin-left:0!important;margin-bottom:13px!important;text-decoration:none!important;}
 .menu-chronology-item:last-child{margin-bottom:0!important;}
+.menu-future-section .menu-chronology-date{color:#777;}
 .menu-chronology-date{color:#777;font-family:"Courier New",Courier,monospace;font-size:10px;font-weight:400;letter-spacing:.04em;line-height:1.4;white-space:nowrap;}
 .menu-chronology-title{color:#000;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:400;letter-spacing:.07em;line-height:1.45;}
 .menu-chronology-item:hover .menu-chronology-title{text-decoration:underline;}
@@ -77,9 +91,10 @@ html.dark-mode .menu-chronology-title,body.dark-mode .menu-chronology-title{colo
 @media(max-width:700px){
   .menu-view-switch{gap:14px;margin-bottom:28px;}
   .menu-view-option{font-size:9px;}
-  .menu-chronology-item{grid-template-columns:68px minmax(0,1fr);column-gap:12px;margin-bottom:13px!important;}
-  .menu-chronology-title{font-size:11px;}
-  .menu-chronology-date{font-size:9px;}
+  .menu-chronology-item,.menu-future-item{grid-template-columns:68px minmax(0,1fr);column-gap:12px;margin-bottom:13px!important;}
+  .menu-chronology-title,.menu-future-title{font-size:11px;}
+  .menu-chronology-date,.menu-future-date{font-size:9px;}
+  .menu-future-description{font-size:11px;}
 }
 
 .side-menu.menu-focus-open > .menu-section:not([data-menu-fixed]){opacity:0;transform:translateY(5px);animation:menuSecondaryReveal .42s ease .7s forwards;}
@@ -96,6 +111,23 @@ html.dark-mode .menu-chronology-title,body.dark-mode .menu-chronology-title{colo
 <div class="menu-view-switch" role="tablist" aria-label="Organização do menu">
   <button type="button" class="menu-view-option is-active" data-menu-view="project" role="tab" aria-selected="true">POR PROJETO</button>
   <button type="button" class="menu-view-option" data-menu-view="date" role="tab" aria-selected="false">POR DATA DE LANÇAMENTO</button>
+  <button type="button" class="menu-view-option" data-menu-view="future" role="tab" aria-selected="false">FUTURO</button>
+</div>
+<div class="menu-future-section" data-menu-future-section hidden>
+  <div class="menu-future-list">
+    <div class="menu-future-item">
+      <div class="menu-future-date">25.09.2026</div>
+      <div class="menu-future-content"><div class="menu-future-title">O VERÃO É ROCK</div><div class="menu-future-description">Último texto do “Até os Amigos São Musas”</div></div>
+    </div>
+    <div class="menu-future-item">
+      <div class="menu-future-date">16.10.2026</div>
+      <div class="menu-future-content"><div class="menu-future-title">REISSUE MAGNA</div><div class="menu-future-description">Republicação Galeria Magna e dos 3 textos que a acompanham</div></div>
+    </div>
+    <div class="menu-future-item">
+      <div class="menu-future-date">OUTUBRO</div>
+      <div class="menu-future-content"><div class="menu-future-title">EXPANSÃO MAGNA</div><div class="menu-future-description">Novas publicações no projeto</div></div>
+    </div>
+  </div>
 </div>
 <div class="menu-section collapsible-section" data-menu-project-section><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">ATÉ OS AMIGOS SÃO MUSAS</div><div class="menu-section-content">
 <a href="manifestodoinssatisfeito.html">MANIFESTO DO INSATISFEITO</a><a href="rejeicao.html">REJEIÇÃO</a><a href="umtextosemvirgulas.html">UM TEXTO SEM VÍRGULAS</a><a href="chuva.html">CHUVA</a><a href="putasecabroes.html">PUTAS E CABRÕES</a><a href="oamornuncasalvouninguem.html">O AMOR NUNCA SALVOU NINGUÉM</a><a href="o-verao-e-rock.html">O VERÃO É ROCK</a><a href="poucoesperodepoucoespertos.html">POUCO ESPERO DE POUCO ESPERTOS</a><a href="perdeocomboio.html">PERDE O COMBOIO</a>

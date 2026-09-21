@@ -424,6 +424,8 @@ function setupMenuOrganization(sideMenu) {
 
     chronologySection.hidden = !isDateView;
     futureSection.hidden = !isFutureView;
+    chronologySection.style.display = isDateView ? "" : "none";
+    futureSection.style.display = isFutureView ? "" : "block";
 
     if (isDateView) buildChronology();
 

@@ -330,10 +330,25 @@ function setupMenuOrganization(sideMenu) {
         .filter(item => item.file.endsWith(".html"))
         .filter(item => !excludedFiles.has(item.file));
 
+      // EM DESTAQUE é independente das categorias e deve aparecer sempre
+      // também na cronologia quando o link aponta para um texto.
+      const featuredSection = sideMenu.querySelector('[data-menu-fixed="featured"]');
+      const featuredLinks = featuredSection
+        ? Array.from(featuredSection.querySelectorAll(':scope > a[href]'))
+            .map((link, index) => ({
+              href: link.href,
+              file: getFileName(link.href),
+              fallbackTitle: link.textContent.trim(),
+              order: index - 1000
+            }))
+            .filter(item => item.file.endsWith(".html"))
+            .filter(item => !excludedFiles.has(item.file))
+        : [];
+
       const unique = [];
       const seen = new Set();
 
-      rawLinks.forEach(item => {
+      [...featuredLinks, ...rawLinks].forEach(item => {
         if (seen.has(item.file)) return;
         seen.add(item.file);
         unique.push(item);

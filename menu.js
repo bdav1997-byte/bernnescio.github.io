@@ -23,6 +23,7 @@ fetch("menu.html", { cache: "no-store" })
     if (!container) return;
     container.innerHTML = data;
     setupTheme();
+    setupMenuOrganization(sideMenu);
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
     if (menuToggle && sideMenu) {
@@ -226,6 +227,198 @@ function setupTheme() {
     try { localStorage.setItem("nescio-theme", nextTheme); } catch (error) {}
     applyTheme(nextTheme);
   });
+}
+
+
+function setupMenuOrganization(sideMenu) {
+  const switcher = sideMenu.querySelector(".menu-view-switch");
+  const projectButton = switcher && switcher.querySelector('[data-menu-view="project"]');
+  const dateButton = switcher && switcher.querySelector('[data-menu-view="date"]');
+  const chronologySection = sideMenu.querySelector("[data-menu-chronology]");
+  const chronologyList = chronologySection && chronologySection.querySelector(".menu-chronology-list");
+
+  if (!switcher || !projectButton || !dateButton || !chronologySection || !chronologyList) return;
+
+  const storageKey = "nescio-menu-organization";
+  let chronologyBuilt = false;
+  let buildPromise = null;
+
+  const getFileName = href => {
+    try {
+      return new URL(href, window.location.href).pathname.split("/").pop() || "";
+    } catch (error) {
+      return href.split("/").pop() || "";
+    }
+  };
+
+  const getTextMeta = async (href, fallbackTitle, order) => {
+    try {
+      const response = await fetch(href, { cache: "no-store" });
+      if (!response.ok) throw new Error("Página não disponível");
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const dateElement = doc.querySelector("time.text-date");
+      const headings = Array.from(doc.querySelectorAll("h1"));
+      const titleElement = headings.find(h => !h.classList.contains("verao-gate-title")) || headings[0];
+
+      if (!dateElement || !dateElement.getAttribute("datetime")) return null;
+
+      return {
+        href,
+        title: (titleElement?.textContent || fallbackTitle || "").trim(),
+        date: dateElement.textContent.trim(),
+        dateISO: dateElement.getAttribute("datetime"),
+        order
+      };
+    } catch (error) {
+      console.warn("NESCIO: não foi possível ler a data de", href, error);
+      return null;
+    }
+  };
+
+  const getCicatrizesMeta = async orderStart => {
+    try {
+      const url = new URL("cicatrizesdocomum.html", window.location.href).href;
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) throw new Error("Página de Cicatrizes não disponível");
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+
+      return Array.from(doc.querySelectorAll(".cicatriz-entry")).map((entry, index) => {
+        const dateElement = entry.querySelector("time.text-date");
+        const titleElement = entry.querySelector("h2");
+        if (!dateElement || !dateElement.getAttribute("datetime") || !titleElement) return null;
+
+        return {
+          href: `cicatrizesdocomum.html#${entry.id}`,
+          title: titleElement.textContent.trim(),
+          date: dateElement.textContent.trim(),
+          dateISO: dateElement.getAttribute("datetime"),
+          order: orderStart + index
+        };
+      }).filter(Boolean);
+    } catch (error) {
+      console.warn("NESCIO: não foi possível ler as datas de Cicatrizes.", error);
+      return [];
+    }
+  };
+
+  const buildChronology = async () => {
+    if (chronologyBuilt) return;
+    if (buildPromise) return buildPromise;
+
+    chronologyList.innerHTML = "";
+    const loading = document.createElement("div");
+    loading.className = "menu-chronology-loading";
+    loading.textContent = "A organizar por data…";
+    chronologyList.appendChild(loading);
+
+    buildPromise = (async () => {
+      const excludedFiles = new Set([
+        "almeida.html",
+        "cicatrizesdocomum.html",
+        "galeriacicatrizes.html"
+      ]);
+
+      const rawLinks = Array.from(sideMenu.querySelectorAll('a[href]'))
+        .map((link, order) => ({
+          href: link.href,
+          file: getFileName(link.href),
+          fallbackTitle: link.textContent.trim(),
+          order
+        }))
+        .filter(item => item.file.endsWith(".html"))
+        .filter(item => !excludedFiles.has(item.file));
+
+      const unique = [];
+      const seen = new Set();
+
+      rawLinks.forEach(item => {
+        if (seen.has(item.file)) return;
+        seen.add(item.file);
+        unique.push(item);
+      });
+
+      const pageMeta = await Promise.all(
+        unique.map(item => getTextMeta(item.href, item.fallbackTitle, item.order))
+      );
+
+      const cicatrizesMeta = await getCicatrizesMeta(unique.length + 1000);
+
+      const items = [...pageMeta.filter(Boolean), ...cicatrizesMeta].sort((a, b) => {
+        const byDate = b.dateISO.localeCompare(a.dateISO);
+        return byDate !== 0 ? byDate : a.order - b.order;
+      });
+
+      const fragment = document.createDocumentFragment();
+
+      items.forEach(item => {
+        const link = document.createElement("a");
+        link.className = "menu-chronology-item";
+        link.href = item.href;
+
+        const date = document.createElement("time");
+        date.className = "menu-chronology-date";
+        date.dateTime = item.dateISO;
+        date.textContent = item.date;
+
+        const title = document.createElement("span");
+        title.className = "menu-chronology-title";
+        title.textContent = item.title;
+
+        link.append(date, title);
+        fragment.appendChild(link);
+      });
+
+      chronologyList.innerHTML = "";
+      chronologyList.appendChild(fragment);
+      chronologyBuilt = true;
+    })();
+
+    try {
+      await buildPromise;
+    } finally {
+      buildPromise = null;
+    }
+  };
+
+  const applyView = view => {
+    const isDateView = view === "date";
+
+    sideMenu.classList.toggle("menu-date-view", isDateView);
+    projectButton.classList.toggle("is-active", !isDateView);
+    dateButton.classList.toggle("is-active", isDateView);
+
+    projectButton.setAttribute("aria-selected", isDateView ? "false" : "true");
+    dateButton.setAttribute("aria-selected", isDateView ? "true" : "false");
+
+    chronologySection.hidden = !isDateView;
+
+    if (isDateView) buildChronology();
+
+    try {
+      localStorage.setItem(storageKey, isDateView ? "date" : "project");
+    } catch (error) {}
+  };
+
+  projectButton.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    applyView("project");
+  });
+
+  dateButton.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    applyView("date");
+  });
+
+  let savedView = "project";
+  try {
+    savedView = localStorage.getItem(storageKey) === "date" ? "date" : "project";
+  } catch (error) {}
+
+  applyView(savedView);
 }
 
 function setupReadingProgress() {

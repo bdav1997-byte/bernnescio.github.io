@@ -58,6 +58,10 @@
       opacity: 1;
       transform: translateY(0);
     }
+    main.lemures-popup-active {
+      filter: blur(5px);
+      transition: filter .2s ease;
+    }
     html.dark-mode .lemures-popup,
     body.dark-mode .lemures-popup {
       border-color: #F5F5F5;
@@ -129,6 +133,16 @@
             let popup = null;
             let hideTimer = null;
 
+            function hideLemuresPopup() {
+                if (popup) {
+                    popup.classList.remove('is-visible');
+                }
+                const main = document.querySelector('main');
+                if (main) {
+                    main.classList.remove('lemures-popup-active');
+                }
+            }
+
             function showLemuresPopup(trigger) {
                 if (!popup) {
                     popup = document.createElement('div');
@@ -139,6 +153,11 @@
 
                 popup.textContent = noteText;
                 popup.classList.add('is-visible');
+
+                const main = document.querySelector('main');
+                if (main) {
+                    main.classList.add('lemures-popup-active');
+                }
 
                 const rect = trigger.getBoundingClientRect();
                 const margin = 16;
@@ -162,8 +181,17 @@
 
                 clearTimeout(hideTimer);
                 hideTimer = setTimeout(function () {
-                    popup.classList.remove('is-visible');
+                    hideLemuresPopup();
                 }, 10000);
+            }
+
+            const main = document.querySelector('main');
+            if (main) {
+                main.addEventListener('click', function (event) {
+                    if (!event.target.closest('.lemures-trigger')) {
+                        hideLemuresPopup();
+                    }
+                });
             }
 
             document.querySelectorAll('.lemures-trigger').forEach(function (trigger) {

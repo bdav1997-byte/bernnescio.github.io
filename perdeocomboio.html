@@ -404,6 +404,11 @@
             const timer = document.querySelector('[data-timer]');
             let startedAt = null;
 
+            function startRecordingTimer() {
+                if (startedAt === null) startedAt = Date.now();
+                updateTimer();
+            }
+
             function updateTimer() {
                 if (startedAt === null) {
                     timer.textContent = '00:00';
@@ -415,12 +420,16 @@
                 timer.textContent = minutes + ':' + seconds;
             }
 
-            window.addEventListener('nescio:recording-start', function () {
-                if (startedAt === null) startedAt = Date.now();
-                updateTimer();
-            });
+            window.addEventListener('nescio:recording-start', startRecordingTimer);
 
-            updateTimer();
+            // Se a gravação já tiver sido desbloqueada antes deste bloco ser inicializado,
+            // começa imediatamente; caso contrário, aguarda o evento de desbloqueio.
+            if (document.getElementById('comboio-gate')?.classList.contains('is-unlocked')) {
+                startRecordingTimer();
+            } else {
+                updateTimer();
+            }
+
             window.setInterval(updateTimer, 250);
         })();
     </script>

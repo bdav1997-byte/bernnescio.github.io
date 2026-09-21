@@ -55,7 +55,34 @@ html.dark-mode .menu-new-publication.menu-new-publication-animate,body.dark-mode
 @media(prefers-reduced-motion:reduce){.menu-new-publication.menu-new-publication-animate,.menu-new-publication.menu-new-publication-animate::before,.menu-new-publication.menu-new-publication-animate::after{animation:none;}}
 
 @keyframes menuSecondaryReveal{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
-.side-menu.menu-focus-open > .menu-section:not(:first-child){opacity:0;transform:translateY(5px);animation:menuSecondaryReveal .42s ease .7s forwards;}
+.menu-view-switch{display:flex;align-items:center;gap:18px;margin:0 0 30px;padding:0 0 12px;border-bottom:1px solid #d8d8d8;}
+.menu-view-option{border:0;padding:0;background:transparent;color:#777;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:400;letter-spacing:.12em;line-height:1.4;cursor:pointer;appearance:none;-webkit-appearance:none;}
+.menu-view-option:hover{text-decoration:underline;}
+.menu-view-option.is-active{color:#000;font-weight:700;}
+.menu-chronology-section{margin-bottom:0;}
+.side-menu.menu-date-view > [data-menu-project-section]{display:none;}
+.side-menu:not(.menu-date-view) > [data-menu-chronology]{display:none!important;}
+.menu-chronology-section[hidden]{display:none!important;}
+.menu-chronology-list{display:flex;flex-direction:column;}
+.menu-chronology-item{display:grid!important;grid-template-columns:74px minmax(0,1fr);column-gap:12px;align-items:baseline;margin-left:0!important;margin-bottom:11px!important;text-decoration:none!important;}
+.menu-chronology-item:last-child{margin-bottom:0!important;}
+.menu-chronology-date{color:#777;font-family:"Courier New",Courier,monospace;font-size:9px;font-weight:400;letter-spacing:.04em;line-height:1.4;white-space:nowrap;}
+.menu-chronology-title{color:#000;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:400;letter-spacing:.07em;line-height:1.45;}
+.menu-chronology-item:hover .menu-chronology-title{text-decoration:underline;}
+html.dark-mode .menu-view-switch,body.dark-mode .menu-view-switch{border-bottom-color:#333;}
+html.dark-mode .menu-view-option,body.dark-mode .menu-view-option{color:#999;}
+html.dark-mode .menu-view-option.is-active,body.dark-mode .menu-view-option.is-active{color:#F5F5F5;}
+html.dark-mode .menu-chronology-date,body.dark-mode .menu-chronology-date{color:#999;}
+html.dark-mode .menu-chronology-title,body.dark-mode .menu-chronology-title{color:#F5F5F5;}
+@media(max-width:700px){
+  .menu-view-switch{gap:14px;margin-bottom:28px;}
+  .menu-view-option{font-size:8px;}
+  .menu-chronology-item{grid-template-columns:68px minmax(0,1fr);column-gap:10px;}
+  .menu-chronology-title{font-size:10px;}
+  .menu-chronology-date{font-size:8px;}
+}
+
+.side-menu.menu-focus-open > .menu-section:not([data-menu-fixed]){opacity:0;transform:translateY(5px);animation:menuSecondaryReveal .42s ease .7s forwards;}
 @media(prefers-reduced-motion:reduce){.side-menu.menu-focus-open > .menu-section:not(:first-child){opacity:1;transform:none;animation:none;}}</style>
 
 <div class="site-header">
@@ -65,11 +92,16 @@ html.dark-mode .menu-new-publication.menu-new-publication-animate,body.dark-mode
 </div>
 
 <nav class="side-menu" id="sideMenu">
-<div class="menu-section"><div class="menu-title">EM DESTAQUE</div><a href="almeida.html" class="menu-new-publication">ALMEIDA • LIVRO</a><a href="oamornuncasalvouninguem.html" class="menu-new-publication">O AMOR NUNCA SALVOU NINGUÉM</a><a href="perdeocomboio.html" class="menu-new-publication">PERDE O COMBOIO</a></div>
-<div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">ATÉ OS AMIGOS SÃO MUSAS</div><div class="menu-section-content">
+<div class="menu-section" data-menu-fixed="featured"><div class="menu-title">EM DESTAQUE</div><a href="almeida.html" class="menu-new-publication">ALMEIDA • LIVRO</a><a href="oamornuncasalvouninguem.html" class="menu-new-publication">O AMOR NUNCA SALVOU NINGUÉM</a><a href="perdeocomboio.html" class="menu-new-publication">PERDE O COMBOIO</a></div>
+<div class="menu-view-switch" role="tablist" aria-label="Organização do menu">
+  <button type="button" class="menu-view-option is-active" data-menu-view="project" role="tab" aria-selected="true">POR PROJETO</button>
+  <button type="button" class="menu-view-option" data-menu-view="date" role="tab" aria-selected="false">POR DATA DE LANÇAMENTO</button>
+</div>
+</div>
+<div class="menu-section collapsible-section" data-menu-project-section><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">ATÉ OS AMIGOS SÃO MUSAS</div><div class="menu-section-content">
 <a href="manifestodoinssatisfeito.html">MANIFESTO DO INSATISFEITO</a><a href="rejeicao.html">REJEIÇÃO</a><a href="umtextosemvirgulas.html">UM TEXTO SEM VÍRGULAS</a><a href="chuva.html">CHUVA</a><a href="putasecabroes.html">PUTAS E CABRÕES</a><a href="oamornuncasalvouninguem.html">O AMOR NUNCA SALVOU NINGUÉM</a><a href="o-verao-e-rock.html">O VERÃO É ROCK</a><a href="poucoesperodepoucoespertos.html">POUCO ESPERO DE POUCO ESPERTOS</a><a href="perdeocomboio.html">PERDE O COMBOIO</a>
 </div></div>
-<div class="menu-section collapsible-section">
+<div class="menu-section collapsible-section" data-menu-project-section>
 <div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">MISCELÂNEA</div>
 <div class="menu-section-content">
   <div class="menu-section collapsible-section menu-subsection">
@@ -84,15 +116,18 @@ html.dark-mode .menu-new-publication.menu-new-publication-animate,body.dark-mode
       <a href="sofia.html">SOFIA</a><a href="consciencia.html">CONSCIÊNCIA</a><a href="musa.html">MUSA</a><a href="pandora.html">PANDORA</a><a href="cantodocisne.html">CANTO DO CISNE</a><a href="sosemorretresvezes.html">SÓ SE MORRE TRÊS VEZES</a><a href="joker.html">JOKER</a><a href="anarquiadelemures.html">ANARQUIA DE LEMURES</a><a href="medusadecal.html">MEDUSA DE CAL</a><a href="utopiadelemures.html">UTOPIA DE LEMURES</a><a href="aslinhasdomedo.html">AS LINHAS DO MEDO</a><a href="racionalizacaodamaquina.html">RACIONALIZAÇÃO DA MÁQUINA</a>
     </div>
   </div>
-</div></div><div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">CICATRIZES DO COMUM</div><div class="menu-section-content">
+</div></div><div class="menu-section collapsible-section" data-menu-project-section><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">CICATRIZES DO COMUM</div><div class="menu-section-content">
 <a href="cicatrizesdocomum.html">PERCORRER AS CICATRIZES</a><a href="galeriacicatrizes.html">GALERIA</a>
 </div></div>
-<div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">MAGNA</div><div class="menu-section-content">
+<div class="menu-section collapsible-section" data-menu-project-section><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">MAGNA</div><div class="menu-section-content">
 <span class="menu-coming-soon">MAGNA EROTICA <small>(BREVEMENTE)</small></span><span class="menu-coming-soon">MAGNA RAIVA <small>(BREVEMENTE)</small></span><span class="menu-coming-soon">MAGNA SOLAR <small>(BREVEMENTE)</small></span><span class="menu-coming-soon">GALERIA <small>(BREVEMENTE)</small></span>
 </div></div>
 
 </div>
-<div class="menu-section collapsible-section"><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">OUTROS PROJECTOS</div><div class="menu-section-content"><a href="https://bernnescio.wixstudio.com/n-e-s-c-i-o" target="_blank" rel="noopener noreferrer">NA ESSÊNCIA, SONHOS CONSTROEM IMENSIDÕES OCULTAS</a></div></div>
+<div class="menu-section collapsible-section" data-menu-project-section><div class="menu-title collapsible-title" role="button" tabindex="0" aria-expanded="false">OUTROS PROJECTOS</div><div class="menu-section-content"><a href="https://bernnescio.wixstudio.com/n-e-s-c-i-o" target="_blank" rel="noopener noreferrer">NA ESSÊNCIA, SONHOS CONSTROEM IMENSIDÕES OCULTAS</a></div></div>
+<section class="menu-section menu-chronology-section" data-menu-chronology hidden>
+  <div class="menu-chronology-list" aria-live="polite"></div>
+</section>
 </nav>
 
 <style>

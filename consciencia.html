@@ -12,6 +12,32 @@
       } catch (error) {}
     })();
   </script>
+  <style>
+    .text-date {
+      display: block;
+      margin: 10px 0 52px;
+      text-align: center;
+      font-size: 13px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: #333;
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .text-date {
+        margin-bottom: 44px;
+        font-size: 12px;
+      }
+    }
+    html.dark-mode .text-date,
+    body.dark-mode .text-date {
+      color: #EAEAEA;
+    }
+  </style>
+
 </head>
 <body>
   <div id="menu-container"></div>
@@ -38,6 +64,8 @@
       <p>Consumo a antiga adrenalina, pertencente de um ser outrora adormecido, esquecido arrisco até. Adoro ser chato para os demais e respeitado pelos ‘demenos ’. Quero ver o céu cair e lamber a adrenalina sem o vício. Eu sinto-me eu.</p>
 
       <p>Sejam aquilo que vos instigam encarecidamente a não ser: humanos.</p>
+      <time class="text-date" datetime="2019-10-26">26.10.2019</time>
+    
     </article>
   </main>
 

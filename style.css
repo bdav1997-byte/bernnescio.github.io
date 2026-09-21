@@ -346,7 +346,7 @@ body.dark-mode .category-index-current-marker { background:#FAFAFA; }
     .landing-logo { width:200px; margin-bottom:60px; }
     article h1 { font-size:19px; margin-bottom:35px; }
     article p { font-size:17px; margin-bottom:22px; }
-    .side-menu { width:100%; top:55px; bottom:auto; height:calc(100dvh - 55px); min-height:0; max-height:calc(100dvh - 55px); overflow-x:hidden; overflow-y:scroll; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; touch-action:pan-y; padding:20px 25px calc(36px + env(safe-area-inset-bottom)); }
+    .side-menu { width:100%; top:55px; bottom:auto; height:calc(100svh - 55px); min-height:0; max-height:calc(100svh - 55px); overflow-x:hidden; overflow-y:scroll; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; touch-action:pan-y; scroll-padding-bottom:120px; padding:20px 25px calc(120px + env(safe-area-inset-bottom)); }
     .category-navigation { margin-top:25px; font-size:10px; }
     .category-nav-link,.category-nav-index { font-size:10px; }
     .category-nav-index { padding:0 10px; }

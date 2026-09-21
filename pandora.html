@@ -12,6 +12,32 @@
       } catch (error) {}
     })();
   </script>
+  <style>
+    .text-date {
+      display: block;
+      margin: 10px 0 52px;
+      text-align: center;
+      font-size: 13px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: #333;
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .text-date {
+        margin-bottom: 44px;
+        font-size: 12px;
+      }
+    }
+    html.dark-mode .text-date,
+    body.dark-mode .text-date {
+      color: #EAEAEA;
+    }
+  </style>
+
 </head>
 <body>
   <div id="menu-container"></div>
@@ -34,6 +60,8 @@
       <p>Tu... Tu novamente...</p>
 
       <p>Volta para a caixa, já sabes como...</p>
+      <time class="text-date" datetime="2022-12-12">12.12.2022</time>
+    
     </article>
   </main>
   <script src="menu.js"></script>

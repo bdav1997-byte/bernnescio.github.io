@@ -88,13 +88,7 @@
 
         (function () {
             const timer = document.querySelector('[data-timer]');
-            let startedAt = null;
-
-            function startRecordingTimer() {
-                if (startedAt === null) startedAt = Date.now();
-                updateTimer();
-            }
-
+            let startedAt = Date.now();
             function updateTimer() {
                 if (startedAt === null) {
                     timer.textContent = '00:00';
@@ -105,9 +99,6 @@
                 const seconds = String(elapsed % 60).padStart(2, '0');
                 timer.textContent = minutes + ':' + seconds;
             }
-
-            window.addEventListener('nescio:recording-start', startRecordingTimer);
-
             updateTimer();
             window.setInterval(updateTimer, 250);
         })();

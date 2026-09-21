@@ -234,10 +234,12 @@ function setupMenuOrganization(sideMenu) {
   const switcher = sideMenu.querySelector(".menu-view-switch");
   const projectButton = switcher && switcher.querySelector('[data-menu-view="project"]');
   const dateButton = switcher && switcher.querySelector('[data-menu-view="date"]');
+  const futureButton = switcher && switcher.querySelector('[data-menu-view="future"]');
   const chronologySection = sideMenu.querySelector("[data-menu-chronology]");
+  const futureSection = sideMenu.querySelector("[data-menu-future-section]");
   const chronologyList = chronologySection && chronologySection.querySelector(".menu-chronology-list");
 
-  if (!switcher || !projectButton || !dateButton || !chronologySection || !chronologyList) return;
+  if (!switcher || !projectButton || !dateButton || !futureButton || !chronologySection || !chronologyList || !futureSection) return;
 
   const storageKey = "nescio-menu-organization";
   let chronologyBuilt = false;
@@ -408,20 +410,25 @@ function setupMenuOrganization(sideMenu) {
 
   const applyView = view => {
     const isDateView = view === "date";
+    const isFutureView = view === "future";
 
     sideMenu.classList.toggle("menu-date-view", isDateView);
-    projectButton.classList.toggle("is-active", !isDateView);
+    sideMenu.classList.toggle("menu-future-view", isFutureView);
+    projectButton.classList.toggle("is-active", !isDateView && !isFutureView);
     dateButton.classList.toggle("is-active", isDateView);
+    futureButton.classList.toggle("is-active", isFutureView);
 
-    projectButton.setAttribute("aria-selected", isDateView ? "false" : "true");
+    projectButton.setAttribute("aria-selected", isDateView || isFutureView ? "false" : "true");
     dateButton.setAttribute("aria-selected", isDateView ? "true" : "false");
+    futureButton.setAttribute("aria-selected", isFutureView ? "true" : "false");
 
     chronologySection.hidden = !isDateView;
+    futureSection.hidden = !isFutureView;
 
     if (isDateView) buildChronology();
 
     try {
-      localStorage.setItem(storageKey, isDateView ? "date" : "project");
+      localStorage.setItem(storageKey, isFutureView ? "future" : (isDateView ? "date" : "project"));
     } catch (error) {}
   };
 
@@ -437,9 +444,16 @@ function setupMenuOrganization(sideMenu) {
     applyView("date");
   });
 
+  futureButton.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    applyView("future");
+  });
+
   let savedView = "project";
   try {
-    savedView = localStorage.getItem(storageKey) === "date" ? "date" : "project";
+    const storedView = localStorage.getItem(storageKey);
+    savedView = storedView === "date" || storedView === "future" ? storedView : "project";
   } catch (error) {}
 
   applyView(savedView);

@@ -23,9 +23,9 @@ fetch("menu.html", { cache: "no-store" })
     if (!container) return;
     container.innerHTML = data;
     setupTheme();
-    setupMenuOrganization(sideMenu);
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
+    if (sideMenu) setupMenuOrganization(sideMenu);
     if (menuToggle && sideMenu) {
       menuToggle.addEventListener("click", event => {
         event.preventDefault(); event.stopPropagation();

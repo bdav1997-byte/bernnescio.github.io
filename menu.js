@@ -23,6 +23,48 @@ fetch("menu.html", { cache: "no-store" })
     if (!container) return;
     container.innerHTML = data;
     setupTheme();
+
+    // FALLBACK ROBUSTO PARA O SELECTOR DE VISTAS:
+    // garante que FUTURO responde mesmo se algum estado/estilo anterior
+    // impedir o handler principal de setupMenuOrganization.
+    const menuViewSwitcher = document.querySelector(".menu-view-switch");
+    if (menuViewSwitcher && !menuViewSwitcher.dataset.viewFallbackReady) {
+      menuViewSwitcher.dataset.viewFallbackReady = "true";
+      menuViewSwitcher.addEventListener("click", event => {
+        const button = event.target.closest("[data-menu-view]");
+        if (!button || !menuViewSwitcher.contains(button)) return;
+
+        const sideMenu = document.getElementById("sideMenu");
+        if (!sideMenu) return;
+
+        const view = button.getAttribute("data-menu-view");
+        const chronology = sideMenu.querySelector("[data-menu-chronology]");
+        const future = sideMenu.querySelector("[data-menu-future-section]");
+        if (!chronology || !future) return;
+
+        const isDate = view === "date";
+        const isFuture = view === "future";
+
+        sideMenu.classList.toggle("menu-date-view", isDate);
+        sideMenu.classList.toggle("menu-future-view", isFuture);
+
+        chronology.hidden = !isDate;
+        future.hidden = !isFuture;
+        chronology.style.display = isDate ? "" : "none";
+        future.style.display = isFuture ? "" : "block";
+
+        sideMenu.querySelectorAll("[data-menu-view]").forEach(option => {
+          const active = option.getAttribute("data-menu-view") === view;
+          option.classList.toggle("is-active", active);
+          option.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        try {
+          localStorage.setItem("nescio-menu-organization", view);
+        } catch (error) {}
+      }, true);
+    }
+
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
     if (sideMenu) setupMenuOrganization(sideMenu);

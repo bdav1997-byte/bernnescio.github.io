@@ -476,10 +476,7 @@ function setupCategoryNavigation(sideMenu) {
     links.forEach((link, index) => { const item = document.createElement("a"); item.href = link.getAttribute("href"); item.textContent = link.textContent.trim(); item.className = "category-index-item"; if (index === currentIndex) { item.classList.add("current"); item.setAttribute("aria-current", "page"); const marker = document.createElement("span"); marker.className = "category-index-current-marker"; marker.setAttribute("aria-hidden", "true"); item.prepend(marker); } indexPanel.appendChild(item); });
     // Índice especial "EM DESTAQUE": usa sempre a secção EM DESTAQUE
     // do menu principal, independentemente da categoria/subcategoria atual.
-    const featuredSection = Array.from(sideMenu.children).find(section => {
-      const title = section.querySelector(":scope > .menu-title");
-      return title && title.textContent.trim() === "EM DESTAQUE";
-    });
+    const featuredSection = sideMenu.querySelector('[data-menu-fixed="featured"]');
     const featuredLinks = featuredSection
       ? Array.from(featuredSection.children).filter(child => child.tagName === "A").filter(link => {
           const href = link.getAttribute("href");

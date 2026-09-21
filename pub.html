@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NESCIO</title>
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;background:#FAFAFA;color:#000;font-family:Arial,Helvetica,sans-serif}
-main{width:min(650px,calc(100% - 48px));margin:0 auto;padding:80px 0 100px}
-.logo{display:block;width:72px;height:auto;margin:0 auto 70px}
-.text{margin:0;font-size:14.4px;font-weight:400;line-height:1.8;letter-spacing:.02em;text-align:justify}
-.text p{margin:0 0 28px}
-.text p:last-child{margin-bottom:0;text-align:center}
-@media(max-width:700px){
-  main{width:calc(100% - 40px);padding:55px 0 80px}
-  .logo{width:64px;margin-bottom:55px}
-  .text{font-size:13.2px;line-height:1.8}
-  .text p{margin-bottom:24px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOFIA — NESCIO</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .text-date {
+      display: block;
+      margin: 10px 0 52px;
+      text-align: center;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      line-height: 1;
+      opacity: 0.62;
+    }
+    @media (max-width: 700px) {
+      .text-date {
+        margin-bottom: 44px;
+        font-size: 8px;
+      }
+    }
+  </style>
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
 </head>
 <body>
 <main>

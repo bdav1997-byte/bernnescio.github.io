@@ -402,3 +402,31 @@ body.dark-mode .category-index-current-marker { background:#FAFAFA; }
     .musas-entry p { font-size:22px; line-height:1.86; }
     .musas-text .logo { width:118px; }
 }
+
+
+/* Datas dos textos */
+.text-date {
+  display: block;
+  margin: 10px 0 52px;
+  text-align: center;
+  font-size: 13px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: #333;
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .text-date {
+    margin-bottom: 44px;
+    font-size: 12px;
+  }
+}
+
+html.dark-mode .text-date,
+body.dark-mode .text-date {
+  color: #EAEAEA;
+}

@@ -24,6 +24,53 @@
         font-size: 8px;
       }
     }
+
+    .lemures-trigger {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    .lemures-trigger:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 3px;
+    }
+    .lemures-popup {
+      position: fixed;
+      z-index: 4000;
+      width: min(390px, calc(100vw - 40px));
+      padding: 14px 16px;
+      border: 1px solid #000;
+      background: #FAFAFA;
+      color: #000;
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.55;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(5px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .lemures-popup.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    html.dark-mode .lemures-popup,
+    body.dark-mode .lemures-popup {
+      border-color: #F5F5F5;
+      background: #111;
+      color: #F5F5F5;
+    }
+    @media (max-width: 700px) {
+      .lemures-popup {
+        width: calc(100vw - 32px);
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+    }
   </style>
     <script>
         (function () {
@@ -45,19 +92,19 @@
         <article>
             <h1>UTOPIA DE LEMURES</h1>
 
-            <p>Devolve-me aquilo que arrancaste sem pedir, <em>Lemures</em>. Caminhar sem rumo é um tormento iminente, e sinto carência de algo de que não preciso, sinto falta daquilo que tenho; procuro algo que carrego nas minhas próprias mãos. Por onde andas, <em>Lemures</em>? Porque extorquiste toda a minha boa maré? Eu bem sei o porquê: o meu sorriso era demasiado para ti, isso sim.</p>
+            <p>Devolve-me aquilo que arrancaste sem pedir, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>. Caminhar sem rumo é um tormento iminente, e sinto carência de algo de que não preciso, sinto falta daquilo que tenho; procuro algo que carrego nas minhas próprias mãos. Por onde andas, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>? Porque extorquiste toda a minha boa maré? Eu bem sei o porquê: o meu sorriso era demasiado para ti, isso sim.</p>
 
             <p>Perdi tudo, mas sem nada deixar, porque perder algo é não saber onde está. Eu sei o que procuro, sei onde me deparar com tudo aquilo a que me refiro. Somente não entendo o porquê de não me devolveres tudo aquilo que detenho. Devolve. Não te estou a pedir. Porque fizeste isto? O que atinges aqui?</p>
 
             <p>Não te quero magoar, e isso magoa-me. Não pretendo ficar por cima de nada, só quero aprender com isto, e a ignorância é o melhor remédio. Vai-te embora com todas as tuas forças, pois eu já não as tenho. Minto: até as tenho comigo, apenas não invisto nelas. Gasta as tuas desta vez e usa aquilo que me tiraste para ser feliz, pois o meu sorriso fica-te bem.</p>
 
-            <p>Faz ao próximo aquilo que nunca me fizeste: solta as rédeas, não confias em ti. Temer por algo que não existe é apenas o maior pavor que em ti induziste. A tua criação transformou-se num obstáculo, e não serei eu quem ficará suprimido. Espero que ninguém fique. Não me encontro onde estou por nada daquilo que tens em mente, <em>Lemures</em>. Sempre estive mal, sempre estive estragado. Sempre afirmaram que devia ser evitado. Evita-me, mas não me observes de longe. Não esperes por mim, eu quero partir mais uma vez. Ir para onde tu nunca irás: vou rumo à felicidade. Devagar vou, porém, fica a ver-me partir, tal como sempre desejaste. Mas lembra-te: nunca de longe. Observa tudo com atenção e bem de perto, pois tudo o que vês serão os derradeiros detalhes que recordarás de mim.</p>
+            <p>Faz ao próximo aquilo que nunca me fizeste: solta as rédeas, não confias em ti. Temer por algo que não existe é apenas o maior pavor que em ti induziste. A tua criação transformou-se num obstáculo, e não serei eu quem ficará suprimido. Espero que ninguém fique. Não me encontro onde estou por nada daquilo que tens em mente, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>. Sempre estive mal, sempre estive estragado. Sempre afirmaram que devia ser evitado. Evita-me, mas não me observes de longe. Não esperes por mim, eu quero partir mais uma vez. Ir para onde tu nunca irás: vou rumo à felicidade. Devagar vou, porém, fica a ver-me partir, tal como sempre desejaste. Mas lembra-te: nunca de longe. Observa tudo com atenção e bem de perto, pois tudo o que vês serão os derradeiros detalhes que recordarás de mim.</p>
 
-            <p>A última palavra é sempre a mais bem vista, tida como o mais belo e supremo encantamento. A tua é assim mesmo, aos olhos de quem não as viveu, teor a veneno para os restantes que de tudo sabem. Todavia, em nada te julgo, <em>Lemures</em>. Usa o teu veneno, pois, tal como os mais belos seres da natureza, não envenenam por malícia, apenas têm medo daqueles que são maiores do que eles. E eu percebo-te. Sempre fui gigante ao teu lado. Sei que foi efémero, mas termina o que iniciaste. Observa o Adamastor na sua face, visto que nas minhas costas continuas escondido.</p>
+            <p>A última palavra é sempre a mais bem vista, tida como o mais belo e supremo encantamento. A tua é assim mesmo, aos olhos de quem não as viveu, teor a veneno para os restantes que de tudo sabem. Todavia, em nada te julgo, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>. Usa o teu veneno, pois, tal como os mais belos seres da natureza, não envenenam por malícia, apenas têm medo daqueles que são maiores do que eles. E eu percebo-te. Sempre fui gigante ao teu lado. Sei que foi efémero, mas termina o que iniciaste. Observa o Adamastor na sua face, visto que nas minhas costas continuas escondido.</p>
 
-            <p>Cada um joga com aquilo que tem. Segundo o que proferes, <em>Lemures</em>, eu tenho a máscara, mas digo-te que tu, para toda a vida, carregarás um equívoco nas tuas mãos. Algo que te suporta e permite viver um pouco mais. Se não fosse isso, nada tinhas, ao contrário de mim, que muito possuo e usufruo, apenas não consigo contemplar. Mas, a partir de hoje, tudo muda. A todos os afetados pela minha falta de estima: perdoem a minha distração, mas prossigam.</p>
+            <p>Cada um joga com aquilo que tem. Segundo o que proferes, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>, eu tenho a máscara, mas digo-te que tu, para toda a vida, carregarás um equívoco nas tuas mãos. Algo que te suporta e permite viver um pouco mais. Se não fosse isso, nada tinhas, ao contrário de mim, que muito possuo e usufruo, apenas não consigo contemplar. Mas, a partir de hoje, tudo muda. A todos os afetados pela minha falta de estima: perdoem a minha distração, mas prossigam.</p>
 
-            <p>Aparento ser diferente enquanto redijo e, de facto, sou mesmo. A mudança chegou. Percebi que não careço mais da indiferença alheia e das palavras vãs proferidas por mortais mais perdidos e esquecidos do que eu. Todos estamos assim, <em>Lemures</em>, menos tu. Não és gente, certamente. Ninguém sabe o que fazemos aqui. Mesmo não sabendo bem o que és, uma coisa compreendo à partida: tu és apenas algo mais que por aí vagueia, que se move por estas marcas que tenho. Mas nada temas, tu próprio não necessitas do medo, de nada te serve.</p>
+            <p>Aparento ser diferente enquanto redijo e, de facto, sou mesmo. A mudança chegou. Percebi que não careço mais da indiferença alheia e das palavras vãs proferidas por mortais mais perdidos e esquecidos do que eu. Todos estamos assim, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>, menos tu. Não és gente, certamente. Ninguém sabe o que fazemos aqui. Mesmo não sabendo bem o que és, uma coisa compreendo à partida: tu és apenas algo mais que por aí vagueia, que se move por estas marcas que tenho. Mas nada temas, tu próprio não necessitas do medo, de nada te serve.</p>
 
             <p>Passarei agora toda a minha força, toda a minha essência e a minha palavra para quem verdadeiramente importa… Desta vez, o foco serás só tu, meu querido avô. És tudo para mim. Peço desculpa, aqui e agora, se algum dia te falhei. Não me esqueci nem me esquecerei dos teus valores, nunca: a família está primeiro. Não tenciono desapontar-te. Andei perdido, porém, apenas necessitava de auxílio e procurei-o no lugar errado. Serás eterno comigo, rumo à utopia que não existe. Mas vale a pena acreditar que sim, só para te ver feliz.</p>
 
@@ -65,17 +112,72 @@
 
             <p>Serei breve:</p>
 
-            <p>E se todos os meus poços estiverem cheios, não te esqueças de não beber de nenhum deles. Procura a água de que necessitas, porém, longe, para lá da lua. Não partilho mais contigo aquilo que é meu, <em>Lemures</em>. Tudo o que perdi será meu.</p>
+            <p>E se todos os meus poços estiverem cheios, não te esqueças de não beber de nenhum deles. Procura a água de que necessitas, porém, longe, para lá da lua. Não partilho mais contigo aquilo que é meu, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>. Tudo o que perdi será meu.</p>
 
             <p>Desculpa, avô. Agora conta-me: como tens passado?</p>
 
             <hr>
 
-            <p><em>Lemures</em> — Significa, em latim, “espíritos da noite”. Uso a palavra neste texto como se fosse precisamente isso: um espírito da noite que representa o medo e todos os problemas que tenho experienciado ultimamente. É uma personificação dos problemas e da forma como lidaria com eles caso fossem, de facto, alguém e não algo. Falo de inúmeros temas ocorridos em inúmeros momentos distintos da minha vida, sejam esses momentos provocados por quem for.</p>
             <time class="text-date" datetime="2017-07-06">06.07.2017</time>
         </article>
     </main>
 
+
+        (function () {
+            const noteText = 'Significa, em latim, “espíritos da noite”. Uso a palavra neste texto como se fosse precisamente isso: um espírito da noite que representa o medo e todos os problemas que tenho experienciado ultimamente. É uma personificação dos problemas e da forma como lidaria com eles caso fossem, de facto, alguém e não algo. Falo de inúmeros temas ocorridos em inúmeros momentos distintos da minha vida, sejam esses momentos provocados por quem for.';
+            let popup = null;
+            let hideTimer = null;
+
+            function showLemuresPopup(trigger) {
+                if (!popup) {
+                    popup = document.createElement('div');
+                    popup.className = 'lemures-popup';
+                    popup.setAttribute('role', 'status');
+                    document.body.appendChild(popup);
+                }
+
+                popup.textContent = noteText;
+                popup.classList.add('is-visible');
+
+                const rect = trigger.getBoundingClientRect();
+                const margin = 16;
+                const gap = 12;
+                const popupWidth = Math.min(390, window.innerWidth - (margin * 2));
+                const popupHeight = popup.offsetHeight;
+
+                let left = rect.left + (rect.width / 2) - (popupWidth / 2);
+                left = Math.max(margin, Math.min(left, window.innerWidth - popupWidth - margin));
+
+                let top = rect.bottom + gap;
+                if (top + popupHeight > window.innerHeight - margin) {
+                    top = rect.top - popupHeight - gap;
+                }
+                if (top < margin) {
+                    top = margin;
+                }
+
+                popup.style.left = left + 'px';
+                popup.style.top = top + 'px';
+
+                clearTimeout(hideTimer);
+                hideTimer = setTimeout(function () {
+                    popup.classList.remove('is-visible');
+                }, 5000);
+            }
+
+            document.querySelectorAll('.lemures-trigger').forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    showLemuresPopup(trigger);
+                });
+
+                trigger.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        showLemuresPopup(trigger);
+                    }
+                });
+            });
+        })();
     <script src="menu.js"></script>
 </body>
 </html>

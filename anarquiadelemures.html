@@ -24,6 +24,53 @@
         font-size: 8px;
       }
     }
+
+    .lemures-trigger {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    .lemures-trigger:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 3px;
+    }
+    .lemures-popup {
+      position: fixed;
+      z-index: 4000;
+      width: min(390px, calc(100vw - 40px));
+      padding: 14px 16px;
+      border: 1px solid #000;
+      background: #FAFAFA;
+      color: #000;
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.55;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(5px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .lemures-popup.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    html.dark-mode .lemures-popup,
+    body.dark-mode .lemures-popup {
+      border-color: #F5F5F5;
+      background: #111;
+      color: #F5F5F5;
+    }
+    @media (max-width: 700px) {
+      .lemures-popup {
+        width: calc(100vw - 32px);
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+    }
   </style>
     <script>
         (function () {
@@ -45,7 +92,7 @@
         <article>
             <h1>ANARQUIA DE LEMURES</h1>
 
-            <p>Cá estamos novamente, <em>Lemures</em>. Não sabes morrer? Morrer é não saber como se vive, o que te aguarda?</p>
+            <p>Cá estamos novamente, <em><span class="lemures-trigger" role="button" tabindex="0">Lemures</span></em>. Não sabes morrer? Morrer é não saber como se vive, o que te aguarda?</p>
 
             <p>Há momentos de bravura. Outros, sem ternura, que apenas se vivem por viver. É o afeto que não se sente, a necessidade de solucionar um desfecho que nunca fará, nem deverá fazer, sentido.</p>
 
@@ -70,6 +117,64 @@
         </article>
     </main>
 
+
+    <script>
+        (function () {
+            const noteText = 'Significa, em latim, “espíritos da noite”. Uso a palavra neste texto como se fosse precisamente isso: um espírito da noite que representa o medo e todos os problemas que tenho experienciado ultimamente. É uma personificação dos problemas e da forma como lidaria com eles caso fossem, de facto, alguém e não algo. Falo de inúmeros temas ocorridos em inúmeros momentos distintos da minha vida, sejam esses momentos provocados por quem for.';
+            let popup = null;
+            let hideTimer = null;
+
+            function showLemuresPopup(trigger) {
+                if (!popup) {
+                    popup = document.createElement('div');
+                    popup.className = 'lemures-popup';
+                    popup.setAttribute('role', 'status');
+                    document.body.appendChild(popup);
+                }
+
+                popup.textContent = noteText;
+                popup.classList.add('is-visible');
+
+                const rect = trigger.getBoundingClientRect();
+                const margin = 16;
+                const gap = 12;
+                const popupWidth = Math.min(390, window.innerWidth - (margin * 2));
+                const popupHeight = popup.offsetHeight;
+
+                let left = rect.left + (rect.width / 2) - (popupWidth / 2);
+                left = Math.max(margin, Math.min(left, window.innerWidth - popupWidth - margin));
+
+                let top = rect.bottom + gap;
+                if (top + popupHeight > window.innerHeight - margin) {
+                    top = rect.top - popupHeight - gap;
+                }
+                if (top < margin) {
+                    top = margin;
+                }
+
+                popup.style.left = left + 'px';
+                popup.style.top = top + 'px';
+
+                clearTimeout(hideTimer);
+                hideTimer = setTimeout(function () {
+                    popup.classList.remove('is-visible');
+                }, 10000);
+            }
+
+            document.querySelectorAll('.lemures-trigger').forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    showLemuresPopup(trigger);
+                });
+
+                trigger.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        showLemuresPopup(trigger);
+                    }
+                });
+            });
+        })();
+    </script>
     <script src="menu.js"></script>
 </body>
 </html>

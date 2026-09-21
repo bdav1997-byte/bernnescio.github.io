@@ -76,6 +76,7 @@
     <script>
         (function () {
             const navigation = document.querySelector(".category-navigation");
+            if (!navigation) return;
             const indexButton = navigation.querySelector(".category-nav-index");
             const panels = navigation.querySelectorAll(".category-index-panel");
             const featuredPanel = navigation.querySelector(".category-featured-panel");

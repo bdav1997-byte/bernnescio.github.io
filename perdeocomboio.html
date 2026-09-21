@@ -108,14 +108,7 @@
 
             window.addEventListener('nescio:recording-start', startRecordingTimer);
 
-            // Se a gravação já tiver sido desbloqueada antes deste bloco ser inicializado,
-            // começa imediatamente; caso contrário, aguarda o evento de desbloqueio.
-            if (document.getElementById('comboio-gate')?.classList.contains('is-unlocked')) {
-                startRecordingTimer();
-            } else {
-                updateTimer();
-            }
-
+            updateTimer();
             window.setInterval(updateTimer, 250);
         })();
     </script>

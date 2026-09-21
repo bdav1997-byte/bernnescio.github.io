@@ -367,6 +367,15 @@ function setupMenuOrganization(sideMenu) {
         title.textContent = item.title;
 
         link.append(date, title);
+        link.addEventListener("click", () => {
+          sideMenu.classList.remove("open", "menu-focus-open");
+          document.body.classList.remove("menu-open");
+          const menuToggle = document.getElementById("menuToggle");
+          if (menuToggle) {
+            menuToggle.textContent = "MENU";
+            menuToggle.setAttribute("aria-expanded", "false");
+          }
+        });
         fragment.appendChild(link);
       });
 

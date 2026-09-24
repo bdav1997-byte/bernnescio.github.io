@@ -361,7 +361,8 @@ function setupMenuOrganization(sideMenu) {
       const excludedFiles = new Set([
         "almeida.html",
         "cicatrizesdocomum.html",
-        "galeriacicatrizes.html"
+        "galeriacicatrizes.html",
+        "japossopublicarporquejanao_gosto_de_ti.html"
       ]);
 
       const rawLinks = Array.from(sideMenu.querySelectorAll('a[href]'))

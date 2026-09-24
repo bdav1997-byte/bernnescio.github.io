@@ -62,17 +62,41 @@
         <a href="index.html" class="back-link">← VOLTAR</a>
         <img src="LOGO.png" class="logo" alt="NESCIO">
         <article>
-            <h1>JÁ POSSO PUBLICAR PORQUE JÁ NÃO GOSTO DE TI</h1>
-            <div class="musas-entry"><p>Façamos uma noite de aguarelas, onde os mortos do Panteão se levantam para comemorar o início da nossa história. Conto-te tudo, pois um estranho que se conhece bem nunca matou ninguém.</p></div>
-            <div class="musas-entry"><p>Olho para ti com vergonha, sinto que não te mereço desde o primeiro dia. Retribuis a minha partilha com os teus ouvidos bem abertos, ansioso por escutar mais.</p></div>
-            <div class="musas-entry"><p>Já é tarde, mas quero ficar um pouco mais para ver o teu rosto iluminado pela lua que nos sorri — ela sabia que seríamos um do outro. E assim foi.</p></div>
-            <div class="musas-entry"><p>Beijei-te com iniciativa, como nunca tive por ninguém. Tal como os teus ouvidos, a tua boca recebeu-me também. Lisboa é nossa e das aguarelas prestes a serem pregadas para toda a gente ver.</p></div>
-            <div class="musas-entry"><p>No outro dia, perguntavam-me se tinha arrependimentos. Prontamente respondi que apenas o teu. De boca seca e cortada, disse que lamento. Lamento que te tenha deixado partir. Desculpa não ter sido para ti o que sempre foste para os outros. Aprendi que não se pode amar sem correr por quem vive, sem regar a curiosidade e sem entender que discutir deve ser um ato de amor e não de vitória.</p></div>
-            <div class="musas-entry"><p>Apenas perdi e arco com as consequências: sempre que procuro expressar-me sobre ti, a minha caneta treme pela certeza de saber que nunca iremos pintar juntos novamente.</p></div>
-            <div class="musas-entry"><p>Que as nossas almas se encontrem pelas ruas de Lisboa, nem que seja para contar aos mortos do Panteão que podem voltar a dormir em paz.</p></div>
-            <div class="musas-entry"><p>O amor não volta, mesmo que em segredo ainda guarde os teus pincéis.</p></div>
+            <div class="musas-meta"><span>REC</span><span>EE</span></div>
+            <div class="musas-title-row"><h1>JÁ POSSO PUBLICAR PORQUE JÁ NÃO GOSTO DE TI</h1><span class="musas-live-timer" data-timer>00:00</span></div>
+
+            <div class="musas-entry"><div class="musas-time">00:00</div><p>Façamos uma noite de aguarelas, onde os mortos do Panteão se levantam para comemorar o início da nossa história. Conto-te tudo, pois um estranho que se conhece bem nunca matou ninguém.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:09</div><p>Olho para ti com vergonha, sinto que não te mereço desde o primeiro dia. Retribuis a minha partilha com os teus ouvidos bem abertos, ansioso por escutar mais.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:15</div><p>Já é tarde, mas quero ficar um pouco mais para ver o teu rosto iluminado pela lua que nos sorri — ela sabia que seríamos um do outro. E assim foi.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:24</div><p>Beijei-te com iniciativa, como nunca tive por ninguém. Tal como os teus ouvidos, a tua boca recebeu-me também. Lisboa é nossa e das aguarelas prestes a serem pregadas para toda a gente ver.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:34</div><p>No outro dia, perguntavam-me se tinha arrependimentos. Prontamente respondi que apenas o teu. De boca seca e cortada, disse que lamento. Lamento que te tenha deixado partir. Desculpa não ter sido para ti o que sempre foste para os outros. Aprendi que não se pode amar sem correr por quem vive, sem regar a curiosidade e sem entender que discutir deve ser um ato de amor e não de vitória.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">00:54</div><p>Apenas perdi e arco com as consequências: sempre que procuro expressar-me sobre ti, a minha caneta treme pela certeza de saber que nunca iremos pintar juntos novamente.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:02</div><p>Que as nossas almas se encontrem pelas ruas de Lisboa, nem que seja para contar aos mortos do Panteão que podem voltar a dormir em paz.</p></div>
+
+            <div class="musas-entry"><div class="musas-time">01:10</div><p>O amor não volta, mesmo que em segredo ainda guarde os teus pincéis.</p></div>
         </article>
     </main>
     <script src="menu.js"></script>
+    <script>
+        (function () {
+            const timer = document.querySelector('[data-timer]');
+            if (!timer) return;
+            const startedAt = Date.now();
+            function updateTimer() {
+                const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+                const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                const seconds = String(elapsed % 60).padStart(2, '0');
+                timer.textContent = minutes + ':' + seconds;
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
 </body>
 </html>

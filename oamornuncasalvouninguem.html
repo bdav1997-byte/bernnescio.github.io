@@ -11,6 +11,10 @@
         })();
     </script>
     <style>
+        .easter-egg-trigger { color: inherit; text-decoration: none; cursor: pointer; }
+        .easter-egg-trigger:hover { text-decoration: underline; }
+        html.easter-egg-exit::view-transition-old(root) { animation-duration: 1.2s; animation-timing-function: ease-out; }
+        html.easter-egg-exit::view-transition-new(root) { animation-duration: 1.2s; animation-timing-function: ease-in; }
     </style>
 </head>
 <body class="musas-text">
@@ -66,7 +70,7 @@
 
 <div class="musas-entry"><div class="musas-time">04:16</div><p>A única coisa que prometo é uma: continuarei a ser dos meus, para os meus e com a força que perdi mas sei onde esta. Falta muito pouco para a ter novamente. Esperem por mim, pois se o próximo ano for mexido, será para vos dar em dobro tudo o que me deram.</p></div>
 
-<div class="musas-entry"><div class="musas-time">04:30</div><p>Esperem por mim.</p></div>
+<div class="musas-entry"><div class="musas-time">04:30</div><p><a class="easter-egg-trigger" href="japossopublicarporquejanao_gosto_de_ti.html">Esperem por mim.</a></p></div>
 
 <div class="musas-end"><span>END OF RECORDING</span><span>04:30</span></div>
         </article>
@@ -74,6 +78,14 @@
 
     <script src="menu.js"></script>
     <script>
+        (function () {
+            const trigger = document.querySelector(".easter-egg-trigger");
+            if (!trigger) return;
+            trigger.addEventListener("click", function () {
+                document.documentElement.classList.add("easter-egg-exit");
+            });
+        })();
+
         (function () {
             const navigation = document.querySelector(".category-navigation");
             if (!navigation) return;

@@ -144,6 +144,15 @@
                 gate.classList.add("is-unlocked");
                 document.documentElement.classList.remove("password-gate-locked");
                 document.body.classList.remove("password-gate-locked");
+
+                /* Garante que o bloqueio do gate nunca fica preso depois do desbloqueio. */
+                document.documentElement.style.removeProperty("overflow");
+                document.body.style.removeProperty("position");
+                document.body.style.removeProperty("width");
+                document.body.style.removeProperty("height");
+                document.body.style.removeProperty("inset");
+                document.body.style.removeProperty("overflow");
+
                 password.value = "";
                 window.dispatchEvent(new Event("nescio:recording-start"));
                 window.requestAnimationFrame(function () {

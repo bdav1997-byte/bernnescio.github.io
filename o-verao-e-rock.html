@@ -141,6 +141,7 @@
             const target = new Date("2026-09-25T15:00:00+01:00").getTime();
 
             function unlock() {
+                if (gate.classList.contains("is-unlocked")) return;
                 gate.classList.add("is-unlocked");
                 document.documentElement.classList.remove("password-gate-locked");
                 document.body.classList.remove("password-gate-locked");
@@ -153,13 +154,28 @@
                 document.body.style.removeProperty("inset");
                 document.body.style.removeProperty("overflow");
 
+                /* Reativa explicitamente o scroll antes de limpar o estado temporário. */
+                document.documentElement.style.setProperty("overflow","auto","important");
+                document.body.style.setProperty("position","static","important");
+                document.body.style.setProperty("width","auto","important");
+                document.body.style.setProperty("height","auto","important");
+                document.body.style.setProperty("inset","auto","important");
+                document.body.style.setProperty("overflow","auto","important");
+                void document.body.offsetHeight;
+
                 password.value = "";
                 window.dispatchEvent(new Event("nescio:recording-start"));
                 window.requestAnimationFrame(function () {
                     window.scrollTo({ top:0, left:0, behavior:"auto" });
-                    window.setTimeout(function () {
+                    window.requestAnimationFrame(function () {
+                        document.documentElement.style.removeProperty("overflow");
+                        document.body.style.removeProperty("position");
+                        document.body.style.removeProperty("width");
+                        document.body.style.removeProperty("height");
+                        document.body.style.removeProperty("inset");
+                        document.body.style.removeProperty("overflow");
                         window.scrollTo({ top:0, left:0, behavior:"auto" });
-                    }, 50);
+                    });
                 });
             }
 

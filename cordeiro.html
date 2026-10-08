@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CORDEIRO — NESCIO</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .text-date {
+      display: block;
+      margin: 10px 0 52px;
+      text-align: center;
+      font-size: 13px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: #333;
+    }
+    html.dark-mode .text-date,
+    body.dark-mode .text-date {
+      color: #EAEAEA;
+    }
+    @media (max-width: 700px) {
+      .text-date {
+        margin-bottom: 44px;
+        font-size: 12px;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
+</head>
+
+<body>
+
+  <div id="menu-container"></div>
+
+  <main>
+
+    <a href="index.html" class="back-link">← VOLTAR</a>
+
+    <img src="LOGO.png" class="logo" alt="NESCIO">
+
+    <article>
+
+      <h1>CORDEIRO</h1>
+      <time class="text-date" datetime="2026-10-08">08.10.2026</time>
+
+      <p>Quando o todo se parte por nada, é quando podemos entrar pela inquietude que é a nação dos perdidos. Com naturalidade adquirida por direito, tenho dever de ser o único que se permite ser assim. Mais ninguém pode. Nasci demasiado tarde: vais morrer comigo se assim tiver de ser.</p>
+
+      <p>Toda a carne de lince já foi carne de presa rasa. Arranha com força, guarda uma cicatriz anterior à primeira dentada. Uma ferida que ninguém viu abrir e que todos pretendem que não cicatrize. Ninguém gosta de peles curadas, ninguém gosta de cordeiros. Só de cadáveres e linces. Talvez seja por isso que algumas palavras sejam de cadáveres que ainda sabem falar mas não sabem morrer.</p>
+
+      <p>Quantos dançam de faca na mão à espera que esta caia nos próprios pés? Quantos sabem que, se cortarem uma garganta, serão valorizados pelo que teceram em vida? Quantos atravessam a existência com uma lâmina escondida na sombra de uma consciência cheia de feridas? Se tens essa segurança, perfura com força. Se a navalha não te provoca insegurança, corta a tua língua. Beija-a como se não tivesses outra opção: porque não tens, de todo. Sem arrependimento algum, irá escorrer com alívio e tensão.</p>
+
+      <p>Ora tu, que passas a vida inteira convencido de que serás compreendido quando já não puderes falar. Corta a língua e verás como não quererão saber de ti de igual forma.</p>
+
+      <p>Que silêncio antigo e já indiferente ao sofrimento humano: a única verdade que nunca precisou de língua para falar por alguém ou talvez por todos nós.</p>
+
+    </article>
+
+  </main>
+
+  <script src="menu.js"></script>
+
+</body>
+</html>

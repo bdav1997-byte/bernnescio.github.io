@@ -10,6 +10,36 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
+    html.password-gate-locked,
+    body.password-gate-locked { overflow:hidden !important; }
+
+    .cordeiro-gate {
+      position:fixed; top:0; right:0; bottom:0; left:0; z-index:2147483647;
+      display:flex; align-items:center; justify-content:center;
+      background:#FAFAFA; color:#000; padding:30px 25px; text-align:center;
+    }
+    .cordeiro-gate-inner { width:min(620px,100%); display:flex; flex-direction:column; align-items:center; }
+    .cordeiro-gate-logo { width:min(270px,61vw); height:auto; margin-bottom:58px; }
+    .cordeiro-gate-label { margin:0 0 18px; font-family:Arial,Helvetica,sans-serif; font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    .cordeiro-gate-title { margin:0; font-family:Arial,Helvetica,sans-serif; font-size:24px; font-weight:400; letter-spacing:.065em; line-height:1.35; text-transform:uppercase; }
+    .cordeiro-gate-rule { width:42px; height:1px; margin:28px auto 34px; background:#000; }
+    .cordeiro-countdown { margin:0; font-family:"Courier New",Courier,monospace; font-size:22px; font-weight:400; letter-spacing:.12em; line-height:1.4; font-variant-numeric:tabular-nums; }
+    .cordeiro-countdown-label { margin-top:9px; font-family:Arial,Helvetica,sans-serif; font-size:15.4px; font-weight:400; letter-spacing:.18em; text-transform:uppercase; }
+    .cordeiro-gate.is-unlocked { display:none; }
+
+    html.dark-mode .cordeiro-gate, body.dark-mode .cordeiro-gate { background:#111; color:#F5F5F5; }
+    html.dark-mode .cordeiro-gate-logo, body.dark-mode .cordeiro-gate-logo { filter:invert(1); }
+    html.dark-mode .cordeiro-gate-rule, body.dark-mode .cordeiro-gate-rule { background:#F5F5F5; }
+
+    @media (max-width:700px) {
+      .cordeiro-gate { padding:40px 20px 25px; }
+      .cordeiro-gate-logo { width:min(216px,56vw); margin-bottom:48px; }
+      .cordeiro-gate-title { font-size:18px; }
+      .cordeiro-gate-rule { margin-top:24px; margin-bottom:28px; }
+      .cordeiro-countdown { font-size:18px; letter-spacing:.08em; }
+      .cordeiro-countdown-label { font-size:12.6px; }
+    }
+
     .text-date {
       display: block;
       margin: 10px 0 52px;
@@ -43,9 +73,20 @@
   </script>
 </head>
 
-<body>
+<body class="password-gate-locked">
 
   <div id="menu-container"></div>
+
+  <div class="cordeiro-gate" id="cordeiro-gate" role="dialog" aria-modal="true" aria-label="CORDEIRO ainda não publicado">
+    <div class="cordeiro-gate-inner">
+      <img src="LOGO.png" class="cordeiro-gate-logo" alt="NESCIO">
+      <p class="cordeiro-gate-label">MISCELÂNEA</p>
+      <h1 class="cordeiro-gate-title">CORDEIRO</h1>
+      <div class="cordeiro-gate-rule" aria-hidden="true"></div>
+      <div class="cordeiro-countdown" id="cordeiro-countdown" aria-live="polite">00:00:00</div>
+      <div class="cordeiro-countdown-label">09 | 10 | 2026 · 18:00</div>
+    </div>
+  </div>
 
   <main>
 
@@ -74,5 +115,49 @@
 
   <script src="menu.js"></script>
 
+  <script>
+    (function () {
+      const gate = document.getElementById("cordeiro-gate");
+      const countdown = document.getElementById("cordeiro-countdown");
+      const target = new Date("2026-10-09T18:00:00+01:00").getTime();
+
+      function unlock() {
+        gate.classList.add("is-unlocked");
+        document.documentElement.classList.remove("password-gate-locked");
+        document.body.classList.remove("password-gate-locked");
+        document.documentElement.style.removeProperty("overflow");
+        document.body.style.removeProperty("position");
+        document.body.style.removeProperty("width");
+        document.body.style.removeProperty("height");
+        document.body.style.removeProperty("inset");
+        document.body.style.removeProperty("overflow");
+        window.requestAnimationFrame(function () {
+          window.scrollTo({ top:0, left:0, behavior:"auto" });
+          window.setTimeout(function () {
+            window.scrollTo({ top:0, left:0, behavior:"auto" });
+          }, 50);
+        });
+      }
+
+      function updateCountdown() {
+        const remaining = Math.max(0, target - Date.now());
+        const totalSeconds = Math.floor(remaining / 1000);
+        const days = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+        const hours = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0");
+        const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+        const seconds = String(totalSeconds % 60).padStart(2, "0");
+
+        countdown.textContent = remaining > (24 * 60 * 60 * 1000)
+          ? days + " | " + hours + " | " + minutes + " | " + seconds
+          : hours + ":" + minutes + ":" + seconds;
+
+        if (remaining <= 0) unlock();
+      }
+
+      document.documentElement.classList.add("password-gate-locked");
+      updateCountdown();
+      window.setInterval(updateCountdown, 1000);
+    })();
+  </script>
 </body>
 </html>

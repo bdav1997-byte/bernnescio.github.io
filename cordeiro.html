@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    html.password-gate-locked,
-    body.password-gate-locked { overflow:hidden !important; }
+    html.cordeiro-gate-locked,
+    body.cordeiro-gate-locked { overflow:hidden !important; }
 
     .cordeiro-gate {
       position:fixed; top:0; right:0; bottom:0; left:0; z-index:2147483647;
@@ -73,7 +73,7 @@
   </script>
 </head>
 
-<body class="password-gate-locked">
+<body class="cordeiro-gate-locked">
 
   <div id="menu-container"></div>
 
@@ -123,8 +123,8 @@
 
       function unlock() {
         gate.classList.add("is-unlocked");
-        document.documentElement.classList.remove("password-gate-locked");
-        document.body.classList.remove("password-gate-locked");
+        document.documentElement.classList.remove("cordeiro-gate-locked");
+        document.body.classList.remove("cordeiro-gate-locked");
         document.documentElement.style.removeProperty("overflow");
         document.body.style.removeProperty("position");
         document.body.style.removeProperty("width");
@@ -154,7 +154,7 @@
         if (remaining <= 0) unlock();
       }
 
-      document.documentElement.classList.add("password-gate-locked");
+      document.documentElement.classList.add("cordeiro-gate-locked");
       updateCountdown();
       window.setInterval(updateCountdown, 1000);
     })();

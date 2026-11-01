@@ -290,7 +290,7 @@ main { width:100%; max-width:650px; margin:0 auto; padding:110px 25px 100px; }
 html.dark-mode .sofia-secret-link,
 body.dark-mode .sofia-secret-link { color:#F5F5F5; }
 
-article h1 { margin-bottom:45px; color:#000; font-family:Arial,Helvetica,sans-serif; font-size:22px; font-weight:700; letter-spacing:.04em; text-align:left; }
+article h1 { margin-bottom:45px; color:#000; font-family:Arial,Helvetica,sans-serif; font-size:22px; font-weight:700; letter-spacing:.04em; text-align:center; }
 article p { margin-bottom:25px; font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif; font-size:18px; font-weight:500; text-align:justify; }
 article + article { margin-top:100px; }
 .separator { width:100%; height:1px; background:#000; margin:100px 0; }

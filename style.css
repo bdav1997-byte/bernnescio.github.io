@@ -430,3 +430,11 @@ html.dark-mode .text-date,
 body.dark-mode .text-date {
   color: #EAEAEA;
 }
+
+
+/* TÍTULOS DOS TEXTOS: centrados em todas as páginas, excepto Cicatrizes do Comum. */
+main:not(.cicatrizes-page) h1 {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LIMERÊNCIA STEL — NESCIO</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .text-date {
+      display: block;
+      margin: 10px 0 52px;
+      text-align: center;
+      font-size: 13px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: #333;
+    }
+    html.dark-mode .text-date,
+    body.dark-mode .text-date {
+      color: #EAEAEA;
+    }
+    @media (max-width: 700px) {
+      .text-date {
+        margin-bottom: 44px;
+        font-size: 12px;
+      }
+    }
+  </style>
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.toggle("dark-mode", localStorage.getItem("nescio-theme") === "dark");
+      } catch (error) {}
+    })();
+  </script>
+</head>
+
+<body>
+
+  <div id="menu-container"></div>
+
+  <main>
+
+    <a href="index.html" class="back-link">← VOLTAR</a>
+
+    <img src="LOGO.png" class="logo" alt="NESCIO">
+
+    <article>
+
+      <h1>LIMERÊNCIA STEL</h1>
+      <time class="text-date" datetime="2026-11-01">01.11.2026</time>
+
+      <p>Dorme. Faz um acordo com ruínas, convencido de que a noite tem autoridade para suspender aquilo que nunca serás.</p>
+
+      <p>Não há consciência do que se quer, apenas do nome das coisas que te afundam. O sono conforta a necessidade miserável que os seres pequenos têm de se manter assim.</p>
+
+      <p>Ainda assim, permaneces, pois há uma estranha familiaridade em continuar a perder, mesmo que seja sempre da mesma maneira.</p>
+
+      <p>Já não preciso de que o mundo me vença, pois sou eu que lhe dou trabalho. Um dia deixarei de chamar descanso a esta ausência de ser gente e de ser prudente, não por falta de coragem, mas por falta de esperança.</p>
+
+      <p>Não há que ter sono. Há que saber quando é hora de dormir e quando é hora de saber que nem tudo se sabe mas sabemos que tudo se pode perder.</p>
+
+    </article>
+
+  </main>
+
+  <script src="menu.js"></script>
+
+</body>
+</html>

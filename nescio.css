@@ -1,24 +1,28 @@
-/* N.E.S.C.I.O. — estrutura inspirada em Cicatrizes do Comum */
-.nescio-page{max-width:1000px;padding-bottom:150px;}
-.nescio-page .logo{margin-bottom:75px;}
-.nescio-header{border-top:1px solid #000;border-bottom:1px solid #000;padding:20px 0 28px;margin-bottom:90px;}
-.nescio-label{font-family:Arial,Helvetica,sans-serif;font-size:9px;letter-spacing:.14em;color:#777;margin:0 0 18px;text-align:left;}
-.nescio-header h1{font-family:Arial,Helvetica,sans-serif;font-size:28px;letter-spacing:.04em;margin:0 0 15px;color:#000;text-align:left !important;}
-.nescio-intro{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:19px;line-height:1.55;max-width:620px;color:#000;margin:0;}
-.nescio-entries{display:flex;flex-direction:column;gap:0;}
-.nescio-entry{display:grid;grid-template-columns:90px minmax(0,1fr);gap:35px;padding:0 0 58px;margin:0 0 58px;border-bottom:1px solid #bbb;scroll-margin-top:85px;}
-.nescio-number{display:block;font-family:"Courier New",Courier,monospace;font-size:11px;letter-spacing:.1em;color:#777;padding-top:7px;}
-.nescio-copy h2{font-family:Arial,Helvetica,sans-serif;font-size:21px;letter-spacing:.04em;line-height:1.25;color:#000;margin:0 0 25px;}
-.nescio-copy p{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:18px;line-height:1.75;text-align:justify;color:#000;margin:0 0 25px;}
-.nescio-copy p:last-of-type{margin-bottom:0;}
-.nescio-copy time{display:block;margin:30px 0 0;text-align:right;font-family:"Courier New",Courier,monospace;font-size:11px;letter-spacing:.1em;color:#777;}
-.nescio-entry:last-child{border-bottom:0;}
-.nescio-index{position:fixed !important;left:0 !important;right:0 !important;bottom:0 !important;top:auto !important;z-index:2005 !important;width:100% !important;height:58px !important;display:block !important;margin:0 !important;padding:0 !important;background:#FAFAFA !important;border-top:1px solid #000 !important;overflow:hidden !important;}
-.nescio-index-inner{height:100%;display:flex;align-items:center;gap:0;padding:0 20px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;}.nescio-index-inner::-webkit-scrollbar{display:none;}
-.nescio-index a,.nescio-index a:link,.nescio-index a:visited{height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;color:#000 !important;background:transparent !important;text-decoration:none !important;white-space:nowrap;font-family:Arial,Helvetica,sans-serif;}.nescio-index a:hover{opacity:.55;}.nescio-index a span{font-family:"Courier New",Courier,monospace;font-size:9px;color:#777 !important;letter-spacing:.08em;}.nescio-index a strong{font-size:9px;font-weight:400;letter-spacing:.08em;color:inherit !important;}.nescio-index a[aria-current="true"] strong{font-weight:700;}
-html.dark-mode .nescio-header,body.dark-mode .nescio-header,html.dark-mode .nescio-index,body.dark-mode .nescio-index{border-color:#F5F5F5 !important;background:#111 !important;}
-html.dark-mode .nescio-label,body.dark-mode .nescio-label,html.dark-mode .nescio-number,body.dark-mode .nescio-number,html.dark-mode .nescio-copy time,body.dark-mode .nescio-copy time,html.dark-mode .nescio-index a span,body.dark-mode .nescio-index a span{color:#999 !important;}
-html.dark-mode .nescio-header h1,body.dark-mode .nescio-header h1,html.dark-mode .nescio-intro,body.dark-mode .nescio-intro,html.dark-mode .nescio-copy h2,body.dark-mode .nescio-copy h2,html.dark-mode .nescio-copy p,body.dark-mode .nescio-copy p,html.dark-mode .nescio-index a,body.dark-mode .nescio-index a{color:#F5F5F5 !important;}
-html.dark-mode .nescio-entry,body.dark-mode .nescio-entry{border-bottom-color:#333;}
-.nescio-index ~ .back-to-top{bottom:76px;}
-@media(max-width:700px){html,body{overflow-x:hidden;max-width:100%;}.nescio-page{max-width:none;padding-bottom:125px;}.nescio-page .logo{margin-bottom:60px;}.nescio-header{margin-bottom:60px;padding:18px 0 24px;}.nescio-header h1{font-size:21px;}.nescio-intro{font-size:17px;}.nescio-entry{grid-template-columns:32px minmax(0,1fr);gap:12px;padding-bottom:38px;margin-bottom:38px;scroll-margin-top:70px;}.nescio-copy h2{font-size:19px;margin-bottom:18px;}.nescio-copy p{font-size:17px;line-height:1.72;text-align:left;margin-bottom:20px;}.nescio-copy time{margin-top:24px;font-size:10px;}.nescio-index{height:54px !important;}.nescio-index-inner{padding:0 16px;}.nescio-index a{padding:0 11px;}.nescio-index a strong{font-size:8px;}}
+/* N.E.S.C.I.O. — linguagem visual de Cicatrizes do Comum, sem integração de imagens */
+.nescio-page{max-width:1000px;padding-bottom:150px}
+.nescio-page .logo{margin-bottom:75px}
+.nescio-header{border-top:1px solid #000;border-bottom:1px solid #000;padding:20px 0 28px;margin-bottom:90px}
+.nescio-label{font-family:Arial,Helvetica,sans-serif;font-size:9px;letter-spacing:.14em;color:#777;margin:0 0 18px;text-align:left}
+.nescio-header h1{font-family:Arial,Helvetica,sans-serif;font-size:28px;letter-spacing:.04em;margin:0 0 15px;color:#000;text-align:left!important}
+.nescio-intro{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:19px;line-height:1.55;max-width:620px;color:#000;margin:0}
+.nescio-entries{display:flex;flex-direction:column;gap:90px}
+.nescio-entry{display:block;max-width:620px;width:100%;margin:0 auto;scroll-margin-top:85px}
+.nescio-copy{padding-top:4px;padding-right:12px}
+.nescio-number{display:block;font-family:"Courier New",Courier,monospace;font-size:11px;letter-spacing:.1em;color:#777;margin-bottom:15px}
+.nescio-copy h2{font-family:Arial,Helvetica,sans-serif;font-size:21px;letter-spacing:.04em;line-height:1.25;color:#000;margin:0 0 25px}
+.nescio-copy p{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:18px;line-height:1.75;text-align:justify;color:#000;margin:0 0 25px}
+.nescio-copy p:last-of-type{margin-bottom:0}
+.nescio-copy time{display:block;margin:30px 0 0;text-align:left;font-family:"Courier New",Courier,monospace;font-size:13px;letter-spacing:.2em;font-weight:400;font-variant-numeric:tabular-nums;line-height:1;color:#333}
+.nescio-index{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;z-index:2005!important;width:100%!important;height:58px!important;display:block!important;margin:0!important;padding:0!important;background:#FAFAFA!important;border-top:1px solid #000!important;overflow:hidden!important}
+.nescio-index-inner{height:100%;display:flex;align-items:center;gap:0;padding:0 20px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.nescio-index-inner::-webkit-scrollbar{display:none}
+.nescio-index a,.nescio-index a:link,.nescio-index a:visited{height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;color:#000!important;background:transparent!important;text-decoration:none!important;white-space:nowrap;font-family:Arial,Helvetica,sans-serif}
+.nescio-index a:hover{opacity:.55}
+.nescio-index a span{font-family:"Courier New",Courier,monospace;font-size:9px;color:#777!important;letter-spacing:.08em}
+.nescio-index a strong{font-size:9px;font-weight:400;letter-spacing:.08em;color:inherit!important}
+html.dark-mode .nescio-header,body.dark-mode .nescio-header,html.dark-mode .nescio-index,body.dark-mode .nescio-index{border-color:#F5F5F5!important;background:#111!important}
+html.dark-mode .nescio-label,body.dark-mode .nescio-label,html.dark-mode .nescio-number,body.dark-mode .nescio-number,html.dark-mode .nescio-copy time,body.dark-mode .nescio-copy time,html.dark-mode .nescio-index a span,body.dark-mode .nescio-index a span{color:#999!important}
+html.dark-mode .nescio-header h1,body.dark-mode .nescio-header h1,html.dark-mode .nescio-intro,body.dark-mode .nescio-intro,html.dark-mode .nescio-copy h2,body.dark-mode .nescio-copy h2,html.dark-mode .nescio-copy p,body.dark-mode .nescio-copy p,html.dark-mode .nescio-index a,body.dark-mode .nescio-index a{color:#F5F5F5!important}
+.nescio-index~.back-to-top{bottom:76px}
+@media(min-width:1401px){.nescio-page{max-width:1100px;padding-bottom:165px}.nescio-header{padding-top:24px}.nescio-header h1{font-size:31px}.nescio-intro{font-size:20px}.nescio-entry{max-width:680px}.nescio-copy h2{font-size:23px}.nescio-copy p{font-size:20px}}
+@media(max-width:700px){html,body{overflow-x:hidden;max-width:100%}.nescio-page{max-width:none;padding-bottom:125px}.nescio-page .logo{margin-bottom:60px}.nescio-header{margin-bottom:60px;padding:18px 0 24px}.nescio-header h1{font-size:21px}.nescio-intro{font-size:17px}.nescio-entries{gap:60px}.nescio-entry{max-width:none;width:100%;scroll-margin-top:70px}.nescio-copy{padding:0}.nescio-copy h2{font-size:19px;margin-bottom:18px}.nescio-copy p{font-size:17px;line-height:1.72;text-align:left;margin-bottom:20px}.nescio-copy time{margin-top:28px;font-size:12px}.nescio-index{height:54px!important}.nescio-index-inner{padding:0 16px}.nescio-index a{padding:0 11px}.nescio-index a strong{font-size:8px}}
